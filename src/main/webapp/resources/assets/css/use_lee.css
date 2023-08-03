@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+/* 세차장리스트 */
+.card {
+	flex-direction: row;
+}
+
+.washList {
+	width:40%;
+}
+
+.list {
+	margin-bottom : 1.5rem;
+	vertical-align : middle;
+}
+
+.star {
+	margin-bottom:2rem;
+}
+
+.card-body {
+	display: grid;
+    align-content: space-evenly;
+    padding : 1rem 2rem;
+}
+
+i {
+	margin-right:5px;
+}
+
+
+/* 회원가입 */
+#checkID {cursor: pointer;}
+
+.tel {
+	width:25%;
+	display:inline;
+}
+
+.tel2 {
+	width:33%;
+	display:inline;
+}
