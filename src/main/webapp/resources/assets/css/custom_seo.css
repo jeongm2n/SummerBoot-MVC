@@ -68,3 +68,11 @@ Custom Css
 	background-color: #FFDAB9;
 	border : none;
 }
+
+.shops{
+	border : none;
+  	border-radius : 20px;
+	background-color : #F5F5F5;
+	width : 45%;
+	height : 30px;
+}
