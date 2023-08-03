@@ -45,7 +45,7 @@
                         <a class="nav-link" href="#">지점</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">예약</a>
+                        <a class="nav-link" href="./reservation/reservation1">예약</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">세차용품</a>

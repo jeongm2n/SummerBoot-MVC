@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="${path}/resources/img/seoul.jpg" alt="">
+                        <img class="img-fluid" src="resources/assets/img/seoul.jpg" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
@@ -48,7 +48,7 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="${path}/resources/img/gunpo.jpg" alt="">
+                        <img class="img-fluid" src="resources/assets/img/gunpo.jpg" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
@@ -67,7 +67,7 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="${path}/resources/img/pyeongtaek.jpg" alt="">
+                        <img class="img-fluid" src="resources/assets/img/pyeongtaek.jpg" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
@@ -86,7 +86,7 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="${path}/resources/img/daegu.jpg" alt="">
+                        <img class="img-fluid" src="resources/assets/img/daegu.jpg" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
@@ -115,12 +115,12 @@
 <section class="container py-5">
     <div class="row text-center pt-3 justify-content-center">
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="${path}/resources/img/05.jpg" class="rounded-circle img-fluid border"></a>
+            <a href="#"><img src="resources/assets/img/05.jpg" class="rounded-circle img-fluid border"></a>
             <h5 class="text-center mt-3 mb-3"><b>외부세차</b></h5>
             <p class="text-center"><a class="btn btn-washboot">가이드</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="${path}/resources/img/06.jpg" class="rounded-circle img-fluid border"></a>
+            <a href="#"><img src="resources/assets/img/06.jpg" class="rounded-circle img-fluid border"></a>
             <h2 class="h5 text-center mt-3 mb-3"><b>내부세차</b></h2>
             <p class="text-center"><a class="btn btn-washboot">가이드</a></p>
         </div>
