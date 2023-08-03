@@ -1,0 +1,70 @@
+/*
+Custom Css
+*/
+
+.btn {
+	height:30px;
+} 
+
+.span-time{
+	vertical-align : middle;
+	display : inline-block;
+	width : 20%;
+	line-height : 70px;
+}
+
+.btn-secondary{
+	background-color: lightgray;	
+}
+
+.div-margin{
+	width : 75%;
+	margin-left : 12.5%;
+	margin-right : 12.5%;
+	margin-top : 20px;
+}
+
+.btn-h{
+	border : none;
+  	border-radius : 20px;
+  	width : 15%;
+  	margin-right : 2%;
+  	background-color : #F5F5F5;
+}
+
+.btn-h:hover{
+	background-color : #FFDAB9;
+}
+
+.btn-click{
+	background-color : #FD8008;
+}
+
+.btn-outline-dark:hover{
+	background-color : #FD8008;
+}
+
+#wrapper{
+	width : 100%
+}
+
+.div-margin2{
+	width : 30%;
+	margin-top : 5px;
+}
+
+.orange-button {
+	background-color: white;
+	color: #FD8008; 
+	border: 2px solid #FD8008; 
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 13pt;
+	cursor: pointer;
+}
+
+.btn-time{
+	color : white;
+	background-color: #FFDAB9;
+	border : none;
+}
