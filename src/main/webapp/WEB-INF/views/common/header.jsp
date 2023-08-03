@@ -49,7 +49,7 @@
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">예약</a>
+                            <a class="nav-link" href="${path}/reservation/reservation1">예약</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="shop.html">세차용품</a>
