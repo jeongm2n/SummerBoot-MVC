@@ -7,74 +7,24 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="${path}/resources/img/apple-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/img/favicon.ico">
+    <link rel="apple-touch-icon" href="${path}/resources/assets/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/assets/img/favicon.ico">
 
-    <link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${path}/resources/css/templatemo.css">
-    <link rel="stylesheet" href="${path}/resources/css/custom_Yang.css">
+    <link rel="stylesheet" href="${path}/resources/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${path}/resources/assets/css/templatemo.css">
+    <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang.css">
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="${path}/resources/css/fontawesome.min.css">
+    <link rel="stylesheet" href="${path}/resources/assets/css/fontawesome.min.css">
  
 </head>
 <body>
-	<!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container d-flex justify-content-between align-items-center">
-
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
-                WashBoot
-            </a>
-
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-                <div class="flex-fill">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">지점</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">예약</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="shop.html">새차용품</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="navbar align-self-center d-flex">
-                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                            <div class="input-group-text">
-                                <i class="fa fa-fw fa-search"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- Close Header -->
+	<%@ include file="../layout/header.jsp"%>
     
     <div class="main">
       <div class="add_inform">
-        <div class="padding_1">
+        <div class="container">
           <div>
             <nav>
               <li class="head"><a href="#">장바구니</a></li>
@@ -124,7 +74,7 @@
       <div class="pro_inform">
         <div class="padding_2">
           <div class="product">
-		  	<img src="${path}/resources/img/bullsone.jpg" class="img">
+		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
 		  	<a class="amount">x 1</a>
 		  	<a class="name">불스원 유리 광택 클리너</a>
 		  	<a class="price">10000원</a>
@@ -143,6 +93,8 @@
         </div>
       </div>
     </div>
+	<%@ include file="../layout/footer.jsp"%>
+    
     
 </body>
 </html>
