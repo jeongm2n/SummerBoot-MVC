@@ -1,0 +1,153 @@
+.main {
+	accent-color: #FD8008;
+}
+
+.add_inform {
+	float:left;
+	height: 100%;
+	width: 60%;
+	padding-top: 30px;
+	border-right: 5px solid #adb5bd;
+}
+
+.padding_1 {
+	padding-left: 20%;
+	padding-right: 20%;
+}
+
+.head {
+  	font-size: 0.9rem !important;
+  	font-size: bold;
+  	display: inline-block;
+  	color: #495057
+}
+
+.head a {
+  	font-size: 0.9rem !important;
+ 	display: inline-block;
+  	text-decoration-line: none;
+}
+
+.input{
+	margin-top : 5%;
+}
+
+.Inform_label {
+	font-size: 1.2rem !important;
+	font-weight: 800 !important;
+	display: inline-block;
+}
+
+.input_type1 {
+	width: 100%;
+	height: 50px;
+	margin-top:10px;
+}
+
+.input_type2 {
+	width: 49%;
+	height: 50px;
+	margin-top:10px;
+}
+
+select {color: #FD8008;}
+input::placeholder {color:#FD8008;}
+input::-webkit-input-placeholder {color:#FD8008;}
+input:-ms-input-placeholder {color:#FD8008;}
+
+.sub{
+	width: 30%;
+	height: 4%;
+	background-color: white;
+	border: 3px solid #FD8008;
+	border-radius: 7px;
+}
+
+.pro_inform {
+	display:inline-block; 
+	height: 100%;
+	width: 40%;
+	background-color: #ced4da;
+}
+
+.padding_2 {
+	padding-top: 10%;
+	padding-left: 20%;
+	padding-right: 10%;
+}
+.product { width: 400px; line-height: 75px}
+
+.product .img {
+	width: 75px;
+	height : 75px;
+	border-radius: 10px;
+}
+.product a{
+  color: #495057 !important;
+  font-size: 1rem !important;
+  text-decoration-line: none;
+}
+.product .amount {
+	vertical-align:top;
+	font-weight: 800 !important;
+}
+.product .name{
+	margin-left: 15px;
+	margin-right: 15px;
+	vertical-align:middle;
+	font-weight: 600 !important;
+}
+.product .price{
+	float: right;
+	vertical-align:bottom;
+	font-weight: 600 !important;
+}
+
+.point {
+	margin-top: 50px;
+	width: 400px;
+	height: 75px;
+}
+
+.point .Label {
+	float: left;
+	font-size: 0.7rem !important;
+	font-weight: 800 !important;
+}
+
+.point a {
+	float: right;
+	color: #495057 !important;
+  	font-size: 0.7rem !important;
+  	text-decoration-line: none;
+}
+
+.point .point_input{
+	float: left;
+	width:65%;
+	height: 35px;
+}
+
+.point .btn {
+	float: right;
+	padding:0px;
+	width: 30%;
+	height: 35px;
+	background-color: white;
+	border: 3px solid #FD8008;
+	border-radius: 7px;
+}
+
+.total { width:400px; height: 75px;}
+
+.total a {
+	float: right;
+	color: #495057 !important;
+  	font-size: 1rem !important;
+  	font-weight: 600 !important;
+  	text-decoration-line: none;
+}
+
+.total .total_price {
+	margin-top: 20px;
+}

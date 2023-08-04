@@ -1,0 +1,149 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<html>
+<head>
+	<title>Payment</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="${path}/resources/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/img/favicon.ico">
+
+    <link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${path}/resources/css/templatemo.css">
+    <link rel="stylesheet" href="${path}/resources/css/custom_Yang.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="${path}/resources/css/fontawesome.min.css">
+ 
+</head>
+<body>
+	<!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+                WashBoot
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">지점</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">예약</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shop.html">새차용품</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex">
+                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                            <div class="input-group-text">
+                                <i class="fa fa-fw fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                    </a>
+                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                    </a>
+                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Header -->
+    
+    <div class="main">
+      <div class="add_inform">
+        <div class="padding_1">
+          <div>
+            <nav>
+              <li class="head"><a href="#">장바구니</a></li>
+    	      <li class="head">&nbsp;>&nbsp;<b>정보</b>&nbsp;>&nbsp;</li>
+    	      <li class="head">결제</li>
+            </nav>
+          </div>
+          <div class="input">
+          <form name="adressForm" action="" method=post onSubmit="">
+            <div class="">
+              <li class="Inform_label">연락처</li><br>
+              <input type="text" name="" id="" class="input_type1" placeholder="전화번호(-제외)" minlength='5' maxlength='10' required ><br>
+		  	  <input type="checkbox" name="sts" id="" value="동의" checked> sns 수신 동의<br><br>
+              <li class="Inform_label">주소</li><br>
+              <select name="domain" id=domain class="input_type1" onchange="setEmailDomain(this.value); return false;">
+		  	    <option value=""disabled selected>-선택-</option>
+	      	    <option value="경기도">경기도</option>
+		  	    <option value="서울특별시">서울특별시</option>
+		  	    <option value="강원특별자치도">강원도</option>
+		  	    <option value="충청북도">충청북도</option>
+		  	    <option value="충청남도">충청남도</option>
+		  	    <option value="전라북도">전라북도</option>
+		  	    <option value="전라남도">전라남도</option>
+		  	    <option value="경상북도">경상북도</option>
+		  	    <option value="경상남도">경상남도</option>
+		  	    <option value="제주특별자치도">제주특별자치도</option>
+		  	    <option value="부산광역시">부산광역시</option>
+		  	    <option value="대구광역시">대구광역시</option>
+		  	    <option value="인천광역시">인천광역시</option>
+		  	    <option value="광주광역시">광주광역시</option>
+		  	    <option value="대전광역시">대전광역시</option>
+		  	    <option value="울산광역시">울산광역시</option>
+		  	    <option value="세종특별자치시">세종특별자치시</option>
+		   	  </select><br>
+		   	  <input type="text" name="" id="" class="input_type1" placeholder="이름" minlength='2' maxlength='10' required ><br>
+		   	  <input type="text" name="" id="" class="input_type2" placeholder="우편번호" minlength='5' maxlength='6' required >
+              <input type="text" name="" id="" class="input_type2" style="float: right" placeholder="시/군/구" minlength='5' maxlength='20' required ><br>
+              <input type="text" name="" id="" class="input_type1" placeholder="도로명 주소" minlength='5' maxlength='20' required ><br>
+              <input type="text" name="" id="" class="input_type1" placeholder="상세 주소(옵션)" minlength='5' maxlength='20' required ><br>
+              <input type="checkbox" name="save_add" id="" value="동의" checked> 다음에도 동일한 주소 사용<br>
+            </div>
+            <input type="submit" class="sub" value="이 주소로 배송" >
+          </form>
+          </div>
+        </div>
+      </div>
+      <div class="pro_inform">
+        <div class="padding_2">
+          <div class="product">
+		  	<img src="${path}/resources/img/bullsone.jpg" class="img">
+		  	<a class="amount">x 1</a>
+		  	<a class="name">불스원 유리 광택 클리너</a>
+		  	<a class="price">10000원</a>
+          </div>
+          <div class="point">
+            <label class="Label">포인트 사용</label>
+            <a>보유포인트 : 1000pt</a>
+            <input type="text" name="" id="" class="point_input" placeholder="포인트 사용" minlength='5' maxlength='10' required >
+           	<button type="button" class="btn" onclick="">전액 사용</button><br>
+          </div>
+          <div class="total">
+          	<a class="product_price">물품 가격 : 10000원</a><br>
+            <a class="shipping">배송비 : 3000원</a><br>
+            <a class="total_price">총 : 13000원</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</body>
+</html>
+ 
