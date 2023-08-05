@@ -14,6 +14,15 @@ public class MemberVO {
 		this.tel = tel;
 	}
 	
+	MemberVO(String id, String pwd, String name, String tel, int point) {
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.tel = tel;
+		this.point = point;
+	}
+	
+	
 	public String getId() {
 		return id;
 	}
