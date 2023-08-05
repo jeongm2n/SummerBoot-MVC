@@ -20,7 +20,7 @@
  
 </head>
 <body>
-	<%@ include file="../layout/header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
     
     <div class="main">
       <div class="add_inform">
@@ -93,7 +93,7 @@
         </div>
       </div>
     </div>
-	<%@ include file="../layout/footer.jsp"%>
+	<%@ include file="../common/footer.jsp"%>
     
     
 </body>
