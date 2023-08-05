@@ -5,18 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<<<<<<< HEAD
+
 </head>
 <body>
 	<%@ include file="./common/header.jsp" %>
     <link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
-=======
-
-<%@ include file="./common/header.jsp" %>
-<link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
-</head>
-<body>
->>>>>>> origin/lee
 	
 	<section class="bg-light">
         <div class="container py-5">
