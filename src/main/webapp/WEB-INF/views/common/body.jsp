@@ -1,5 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -26,18 +27,15 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="resources/assets/img/seoul.jpg" alt="">
+                        <img class="img-fluid" src="${path}/resources/assets/img/seoul.jpg" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
-                            <h1 class="h1 text-success"><b>Wash Boot</b> 서울 본점</h1>
-                            <h3 class="h2">Tiny and Perfect eCommerce Template</h3>
+                            <h1 class="h1"><b>Wash Boot</b> 서울 본점</h1>
+                            <h3 class="h2">서울 광진구 능동로 209 (군자동)</h3>
                             <p>
-                                Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1).
-                                This template is 100% free provided by <a rel="sponsored" class="text-success" href="https://templatemo.com" target="_blank">TemplateMo</a> website.
-                                Image credits go to <a rel="sponsored" class="text-success" href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
-                                <a rel="sponsored" class="text-success" href="https://unsplash.com/" target="_blank">Unsplash</a> and
-                                <a rel="sponsored" class="text-success" href="https://icons8.com/" target="_blank">Icons 8</a>.
+                                기존 세차장과 다르게 고객님이 예약한 시간에 바로바로 세차가 가능한 Wash Boot 서울본점입니다.<br>
+                                더나은 서비스를 위하여 여유로운 세차공간으로 고객여러분을 맞이 하고 있습니다.
                             </p>
                         </div>
                     </div>
@@ -48,15 +46,15 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="resources/assets/img/gunpo.jpg" alt="">
+                        <img class="img-fluid" src="${path}/resources/assets/img/gunpo.jpg" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
                             <h1 class="h1"><b>Wash Boot</b> 경기군포점</h1>
-                            <h3 class="h2">Aliquip ex ea commodo consequat</h3>
+                            <h3 class="h2">경기 군포시 청백리길 6 (금정동)</h3>
                             <p>
-                                You are permitted to use this Zay CSS template for your commercial websites.
-                                You are <strong>not permitted</strong> to re-distribute the template ZIP file in any kind of template collection websites.
+                                줄서서 기다리지 말고, 예약을 통해서 시간아껴보세요!<br>
+                                지금은 핫썸머 이벤트 중입니다. 방문하셔서 사은품 챙겨가세요 :)
                             </p>
                         </div>
                     </div>
@@ -67,15 +65,15 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="resources/assets/img/pyeongtaek.jpg" alt="">
+                        <img class="img-fluid" src="${path}/resources/assets/img/pyeongtaek.jpg" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
                             <h1 class="h1"><b>Wash Boot</b> 경기평택점</h1>
-                            <h3 class="h2">Ullamco laboris nisi ut </h3>
+                            <h3 class="h2">경기 평택시 경기대로 245 (비전동)</h3>
                             <p>
-                                We bring you 100% free CSS templates for your websites.
-                                If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.
+                                연중무휴 오픈 프리미엄 실내 셀프세차장. 700평 국내 최대 규모의 실내 셀프세차장입니다.<br>
+                                깨끗한 시설에서 기분좋게 세차해보세요.
                             </p>
                         </div>
                     </div>
@@ -86,15 +84,15 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="resources/assets/img/daegu.jpg" alt="">
+                        <img class="img-fluid" src="${path}/resources/assets/img/daegu.jpg" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
                             <h1 class="h1"><b>Wash Boot</b> 대구점</h1>
-                            <h3 class="h2">Ullamco laboris nisi ut </h3>
+                            <h3 class="h2">대구 중구 공평로 88 (동인동1가)</h3>
                             <p>
-                                We bring you 100% free CSS templates for your websites.
-                                If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.
+                                최신식 시설을 자랑하는 Wash Boot 대구점입니다. <br>
+                                옆 차와 간섭없는 넓은 공간에서 쾌적한 셀프세차하러 오세요.
                             </p>
                         </div>
                     </div>
@@ -115,14 +113,14 @@
 <section class="container py-5">
     <div class="row text-center pt-3 justify-content-center">
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="resources/assets/img/05.jpg" class="rounded-circle img-fluid border"></a>
+            <a href="#"><img src="${path}/resources/assets/img/05.jpg" class="rounded-circle img-fluid border"></a>
             <h5 class="text-center mt-3 mb-3"><b>외부세차</b></h5>
-            <p class="text-center"><a class="btn btn-washboot">가이드</a></p>
+            <p class="text-center"><a class="btn btn-washboot" href="#">가이드</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="resources/assets/img/06.jpg" class="rounded-circle img-fluid border"></a>
+            <a href="#"><img src="${path}/resources/assets/img/06.jpg" class="rounded-circle img-fluid border"></a>
             <h2 class="h5 text-center mt-3 mb-3"><b>내부세차</b></h2>
-            <p class="text-center"><a class="btn btn-washboot">가이드</a></p>
+            <p class="text-center"><a class="btn btn-washboot" href="#">가이드</a></p>
         </div>
     </div>
 </section>

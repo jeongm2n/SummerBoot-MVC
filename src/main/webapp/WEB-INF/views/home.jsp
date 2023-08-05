@@ -10,27 +10,8 @@
 	<title>Wash Boot</title>
 </head>
 <body>
-<%@ include file="layout/header.jsp"%>
-<%@ include file="layout/body.jsp"%>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<%@ include file="layout/footer.jsp"%>
+<%@ include file="common/header.jsp"%>
+<%@ include file="common/body.jsp"%>
+<%@ include file="common/footer.jsp"%>
 </body>
 </html>
