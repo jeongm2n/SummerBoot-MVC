@@ -25,13 +25,6 @@
 	$(document).on('click', '#join' , function() {
 	   location.href = "join";
 	});
-	
-	$(document).ready(function() {
-        var message = "${msg}";
-        if ("${msg}" != '') {
-            alert(message);
-        }
-    });
 </script>
 
 </head>

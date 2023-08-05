@@ -84,7 +84,7 @@
 						  </a>
 						  <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
 						    <div class="message-body">
-						      <a href="${path }/member/my_info" class="d-flex align-items-center gap-2 dropdown-item">
+						      <a href="#" class="d-flex align-items-center gap-2 dropdown-item">
 						        <i class="fa fa-user fs-6"></i><span>내 정보</span>
 						      </a>
 						      <a href="#" class="d-flex align-items-center gap-2 dropdown-item">

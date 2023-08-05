@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
 </head>
 <body>
 	<%@ include file="./common/header.jsp" %>
-	<link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
 	
 	<section class="bg-light">
         <div class="container py-5">
