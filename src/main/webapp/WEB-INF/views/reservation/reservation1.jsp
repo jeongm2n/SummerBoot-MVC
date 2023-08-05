@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="../resources/assets/css/templatemo.css">
     <link rel="stylesheet" href="../resources/assets/css/custom_seo.css">
     
-    <%--script 따로 빼놓은 파일 연동 --%>
-    <script src="../resources/assets/js/reservation1.js"></script>
-    
     <%-- 지점선택 시 아래에 선택한 지점이 뜨도록 --%>
     <script>
     $(document).ready(function(){
@@ -23,6 +20,7 @@
 	    	var btn = document.getElementById('btn-shop');
 	        btn.innerHTML = shopName; })	
 	    });
+    
     </script>
 </head>
 
@@ -37,7 +35,6 @@
     	<span class="border border-4" style="display:inline-block;width:35%;height:100px;float:left">지점 선택
     	<div class="container text-center">
     	<div class="row row-cols-2">
-    	<script type="text/javascript">saveShopName();</script>
     	<div class="col"><input type="radio" class="btn-check shops" name="shops" id="shop1" value="서울본점" autocomplete="off" checked>
     	<label class="btn btn-secondary" for="shop1">서울&nbsp;본점</label></div>
     	<div class="col"><input type="radio" class="btn-check shops" name="shops" id="shop2" value="경기군포점" autocomplete="off">
@@ -55,47 +52,46 @@
 					<input type="radio" class="btn-check" name="options" id="30" value=30 autocomplete="off" checked>
 					<label class="btn btn-secondary" for="30">30M</label></span>
 				<span class="span-time">	
-					<input type="radio" class="btn-check" name="options" id="100" value=100 autocomplete="off">
+					<input type="radio" class="btn-check" name="options" id="100" value=60 autocomplete="off">
 					<label class="btn btn-secondary" for="100">1H</label></span>
 				<span class="span-time">	
-					<input type="radio" class="btn-check" name="options" id="130" value=130 autocomplete="off">
+					<input type="radio" class="btn-check" name="options" id="130" value=90 autocomplete="off">
 					<label class="btn btn-secondary" for="130">1H30M</label></span>
 				<span class="span-time">	
-					<input type="radio" class="btn-check" name="options" id="200" value=200 autocomplete="off">
+					<input type="radio" class="btn-check" name="options" id="200" value=120 autocomplete="off">
 					<label class="btn btn-secondary" for="200">2H</label></span>
 			</span>
     	</span>
     </div>
     
     <div style="margin-top:40px;height:400px">
-    	<div class="border border-4" style="width:48%;height:300px;float:left">
-    	<table style="width:100%;height:100%;font-weight:bold" id="calendar" align="center">
-		<tr>
-			<td align="center"><label onclick="prevMonth()"> ◀ </label></td>
-			<td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
-			<td align="center"><label onclick="nextMonth()"> ▶ </label></td>
-		</tr>
-		<tr>
-			<td align="center"><font color ="#F79DC2">일</font></td>
-			<td align="center">월</td>
-			<td align="center">화</td>
-			<td align="center">수</td>
-			<td align="center">목</td>
-			<td align="center">금</td>
-			<td align="center"><font color ="skyblue">토</font></td>
-		</tr>
-		<script type="text/javascript">buildCalendar();</script>
-	</table>
+    	<div class="border border-4" style="width:48%;height:370px;float:left">
+    		<table class="calendartb" id="calendar">
+    		<thead style="border-bottom: 1px solid #000;">
+				<tr>
+					<td class="thead" align="center"><label onclick="prevMonth()"> ◀ </label></td>
+					<td class="thead" colspan="5" align="center" id="calendarTitle"></td>
+					<td class="thead" align="center"><label onclick="nextMonth()"> ▶ </label></td>
+				</tr>
+				<tr>
+					<td class="thead"><font color ="#F79DC2">일</font></td>
+					<td class="thead">월</td>
+					<td class="thead">화</td>
+					<td class="thead">수</td>
+					<td class="thead">목</td>
+					<td class="thead">금</td>
+					<td class="thead"><font color ="skyblue">토</font></td>
+				</tr>
+			<thead>
+			</table>
     	</div>
     	<div class="border border-4" style="float:right;width:50%;height:400px;text-align:center">
-    	<div id="container" style="width:100%;height:200px;text-align:center;margin-top:30px;">
     	<legend>시간</legend>
-    	<script type="text/javascript">timeHour()</script>
+    	<div id="container1" style="width:100%;height:200px;text-align:center;margin-top:30px;">
     	</div>
     	<hr>
-    	<div id="container-m" style="margin-top:10px;width:100%;height:100px">
     	<legend>분</legend>
-    	<script type="text/javascript">timeMinute()</script>
+    	<div id="container2" style="margin-top:10px;width:100%;height:100px">
     	</div>	
     	</div>
     </div>
@@ -112,5 +108,8 @@
     </div>
 </div>
 <%@ include file="../common/footer.jsp" %>
+
+	<%--script 따로 빼놓은 파일 연동 --%>
+    <script src="../resources/assets/js/reservation1.js"></script>
 </body>
 </html>

@@ -76,3 +76,46 @@ Custom Css
 	width : 45%;
 	height : 30px;
 }
+
+.btn-disabled{
+	border : none;
+  	border-radius : 20px;
+  	width : 15%;
+  	margin-right : 2%;
+	background-color : #D3D3D3
+}
+
+.calendartb {
+  width : 100%;
+  height : 100%;
+  border-collapse : collapse;
+  text-align : center;
+  font-weight : bold
+}
+
+th, td {
+  text-align : center;
+  padding : 10px;
+  background-color : #f0f0f0;
+}
+
+td {
+  cursor : pointer;
+  background-color : #D3D3D3
+}
+
+.td-click:hover {
+  background-color : #FFDAB9;
+}
+
+.td-click{
+	background-color : #FFFFFF;
+}
+
+.selected{
+	background-color : #FFDAB9;
+}
+
+.thead{
+	background-color : #FFFFFF;
+}
