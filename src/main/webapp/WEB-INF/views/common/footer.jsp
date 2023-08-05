@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Wash Boot</title>
-    <jsp:include page="/WEB-INF/common.jsp" />
 </head>
 <body>
 	<!-- Start Footer -->
