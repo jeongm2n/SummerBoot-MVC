@@ -84,7 +84,7 @@
     	</div>
     	<div class="border border-4" style="float:right;width:50%;height:400px;text-align:center">
     	<legend>시간</legend>
-    	<div id="container1" style="width:100%;height:200px;text-align:center;margin-top:30px;">
+    	<div id="container1" style="width:100%;height:200px;text-align:center;margin-top:30px">
     	</div>
     	<hr>
     	<legend>분</legend>

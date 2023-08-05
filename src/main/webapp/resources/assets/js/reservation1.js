@@ -112,8 +112,8 @@
 	    var line = 0;
 	    	
 	    for(i=9 ; i<24 ; i++){
-	    	if(line%5==0){
-	    		var br = document.createElement('br');
+	    	if(line!=0 && line%5==0){
+				const br = document.createElement('br');
             	hourContainer.appendChild(br);
 	    	}
 	    	var button = document.createElement('button');
