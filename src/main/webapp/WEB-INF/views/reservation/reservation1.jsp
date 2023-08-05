@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Wash Boot</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<%--jQuery js --%>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../resources/assets/css/templatemo.css">
-    <link rel="stylesheet" href="../resources/assets/css/custom_seo.css">
-    
+    <%@ include file="../common/header.jsp" %>
+    <link rel="stylesheet" href="${path}/resources/assets/css/custom_seo.css">
     <%-- 지점선택 시 아래에 선택한 지점이 뜨도록 --%>
     <script>
     $(document).ready(function(){
@@ -27,7 +25,6 @@
 <body>
 <div id="wrapper">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> 
-<%@ include file="../common/header.jsp" %>
     
     <div class="div-margin" style="height:800px;">
     <div style="text-align:center;height:100px">
