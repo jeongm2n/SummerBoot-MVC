@@ -12,9 +12,9 @@
 	<title>Wash Boot</title>
     <jsp:include page="/WEB-INF/common.jsp" />
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_ryu.css">
+    <link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
 </head>
 
-<body>
 	<% String user_id = (String)session.getAttribute("user_id"); %>
     <!--Start Top -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
@@ -32,7 +32,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-washboot logo medium h1 align-self-center" href="/">
+            <a class="navbar-brand text-washboot logo medium h1 align-self-center" href="${path}">
                 Wash Boot
             </a>
 
@@ -56,25 +56,14 @@
                     </ul>
                 </div>
                 <!--로그인버튼-->
-                <div>
-                    <form action="./member/login" method="get"><button class="login_btn" type="submit">로그인
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                        </svg>
-                    </button></form>
-                </div>
+                
                 <!--로그인버튼-->
                 <div class="navbar align-self-center d-flex">
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <% if(user_id != null) { %>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
-                   		<% } else { %>
-                   		<span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
-                   		<% } %>
-                    </a>
 					<% if(user_id != null) { %>
+					<a class="nav-icon position-relative text-decoration-none" href="#">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                    </a>
                     <ul class="navbar-nav flex-row align-items-center justify-content-end">
 						<li class="nav-item dropdown">
 						  <a class="nav-icon-hover menu" href="#" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -96,16 +85,19 @@
 						  </div>
 						</li>
 					</ul>
-                    	<% } else { %>
-                    <a class="nav-icon position-relative text-decoration-none" href="login">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
-                    </a>
-                    	<% } %>
+                   	<% } else { %>
+                    <div>
+                    <form action="${path }/member/login" method="get"><button class="login_btn" type="submit">로그인
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                        </svg>
+                    </button></form>
+              	  </div>
+                   	<% } %>
                 </div>
             </div>
 
         </div>
     </nav>
-</body>
 </html>

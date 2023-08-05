@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html lang="ko">
@@ -23,14 +24,4 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 </head>
-
-<body>
-<!-- Start Script -->
-<script src="${path}/resources/assets/js/jquery-1.11.0.min.js"></script>
-<script src="${path}/resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="${path}/resources/assets/js/bootstrap.bundle.min.js"></script>
-<script src="${path}/resources/assets/js/templatemo.js"></script>
-<script src="${path}/resources/assets/js/custom.js"></script>
-<!-- End Script -->
-</body>
 </html>
