@@ -15,8 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class PayController {
 
 	@RequestMapping(value = "/inform", method = RequestMethod.GET)
-	public String reservation2() {
+	public String inform() {
 		return "pay/inform";
+	}
+	
+	@RequestMapping(value = "/payment", method = RequestMethod.GET)
+	public String payment() {
+		return "pay/payment";
 	}
 	
 }

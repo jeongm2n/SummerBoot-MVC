@@ -6,18 +6,8 @@
 	<title>Payment</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="apple-touch-icon" href="${path}/resources/assets/img/apple-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/assets/img/favicon.ico">
-
-    <link rel="stylesheet" href="${path}/resources/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${path}/resources/assets/css/templatemo.css">
+    
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang.css">
-
-    <!-- Load fonts style after rendering the layout styles -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="${path}/resources/assets/css/fontawesome.min.css">
- 
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -33,7 +23,7 @@
             </nav>
           </div>
           <div class="input">
-          <form name="adressForm" action="" method=post onSubmit="">
+          <form name="adressForm" action="../pay/payment" method=get onSubmit="">
             <div class="">
               <li class="Inform_label">연락처</li><br>
               <input type="text" name="" id="" class="input_type1" placeholder="전화번호(-제외)" minlength='5' maxlength='10' required ><br>
@@ -93,6 +83,7 @@
         </div>
       </div>
     </div>
+    
 	<%@ include file="../common/footer.jsp"%>
     
     
