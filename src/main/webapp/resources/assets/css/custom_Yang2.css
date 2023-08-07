@@ -2,7 +2,7 @@
 	accent-color: #FD8008;
 }
 
-.add_inform {
+.pay_inform {
 	float:left;
 	height: 100%;
 	width: 55%;
@@ -10,7 +10,7 @@
 	border-right: 2px solid #adb5bd;
 }
 
-.add_inform .container {
+.pay_inform .container {
 	float:right;
 	width:700px;
 	padding-right: 100px;
@@ -29,11 +29,11 @@
   	text-decoration-line: none;
 }
 
-.input{
+.payment{
 	margin-top : 5%;
 }
 
-.Inform_label {
+.payment_label {
 	font-size: 1.2rem !important;
 	font-weight: 800 !important;
 	display: inline-block;
