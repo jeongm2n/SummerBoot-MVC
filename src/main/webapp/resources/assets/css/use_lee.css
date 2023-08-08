@@ -1,5 +1,6 @@
 @charset "UTF-8";
-
+/* #FFB26B */
+/* FFD36E */
 /* 세차장리스트 */
 .card {
 	flex-direction: row;
@@ -46,4 +47,18 @@ i {
 .pwd {
 	width: 70%;
     margin: 0 auto;
+}
+
+.addr {
+	display:flex;
+	flex-direction: column;
+	position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+}
+
+.addr-text {
+	flex:1 1 auto;
+	/* width: 1%; */
 }

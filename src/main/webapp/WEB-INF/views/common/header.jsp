@@ -62,7 +62,7 @@
 					<% if(user_id != null) { %>
 					<a class="nav-icon position-relative text-decoration-none" href="#">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                       <!--  <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span> -->
                     </a>
                     <ul class="navbar-nav flex-row align-items-center justify-content-end">
 						<li class="nav-item dropdown">
@@ -71,7 +71,7 @@
 						  </a>
 						  <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
 						    <div class="message-body">
-						      <a href="#" class="d-flex align-items-center gap-2 dropdown-item">
+						      <a href="${path}/member/my_info" class="d-flex align-items-center gap-2 dropdown-item">
 						        <i class="fa fa-user fs-6"></i><span>내 정보</span>
 						      </a>
 						      <a href="#" class="d-flex align-items-center gap-2 dropdown-item">
