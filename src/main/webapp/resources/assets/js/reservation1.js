@@ -40,6 +40,8 @@
 		var nowMonth = now.getMonth()+1;
     	monthEquals = thisMonth(nowMonth, realMonth);
     	
+    	var selectedtd = null;
+    	
     	var first = new Date(now.getFullYear(), now.getMonth(), 1);
       	var last = new Date(now.getFullYear(), now.getMonth()+1, 0);
       	
@@ -63,7 +65,7 @@
 					const emptyCell = document.createElement('td');
         			weekRow.appendChild(emptyCell);
 				}else{
-					const dateCell = document.createElement('td');
+					var dateCell = document.createElement('td');
 					dateCell.setAttribute('id',date);
 					dateCell.textContent = date;
 					
@@ -83,7 +85,11 @@
 			            		var btn = document.getElementById('btn-date');
 			                	btn.innerHTML = clickedMD;
 			                	
-			                	dateCell.classList.toggle('selected');
+				                if(dateCell != null){
+									dateCell.classList.remove('selected');
+								}
+								dateCell = this;
+								this.classList.add('selected');
 			                	
 			                	timeHour();
 			                	timeMinute();
