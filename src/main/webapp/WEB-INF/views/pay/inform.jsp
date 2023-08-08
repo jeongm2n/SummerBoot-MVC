@@ -12,24 +12,24 @@
 <body>
 	<%@ include file="../common/header.jsp"%>
     
-    <div class="main">
-      <div class="add_inform">
+    <div class="main row justify-content-md-center">
+      <div class="add_inform col col-lg-7">
         <div class="container">
           <div>
             <nav>
               <li class="head"><a href="#">장바구니</a></li>
     	      <li class="head">&nbsp;>&nbsp;<b>정보</b>&nbsp;>&nbsp;</li>
-    	      <li class="head">결제</li>
+    	      <li class="head">결제</li><br>
             </nav>
           </div>
           <div class="input">
           <form name="adressForm" action="../pay/payment" method=get onSubmit="">
             <div class="">
-              <li class="Inform_label">연락처</li><br>
-              <input type="text" name="" id="" class="input_type1" placeholder="전화번호(-제외)" minlength='5' maxlength='10' required ><br>
+              <label for="phone" class="Inform_label">연락처</label><br>
+              <input type="text" name="phone" id="phone" class="input_type1" placeholder="전화번호" minlength='5' maxlength='10' required ><br>
 		  	  <input type="checkbox" name="sts" id="" value="동의" checked> sns 수신 동의<br><br>
-              <li class="Inform_label">주소</li><br>
-              <select name="domain" id=domain class="input_type1" onchange="setEmailDomain(this.value); return false;">
+              <label for="state" class="Inform_label">주소</label><br>
+              <select name="state" id=state class="input_type1" onchange="setEmailDomain(this.value); return false;">
 		  	    <option value=""disabled selected>-선택-</option>
 	      	    <option value="경기도">경기도</option>
 		  	    <option value="서울특별시">서울특별시</option>
@@ -61,8 +61,8 @@
           </div>
         </div>
       </div>
-      <div class="pro_inform">
-        <div class="padding_2">
+      <div class="pro_inform col col-lg-5">
+        <div class="container">
           <div class="product">
 		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
 		  	<a class="amount">x 1</a>
