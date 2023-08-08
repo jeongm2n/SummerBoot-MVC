@@ -8,11 +8,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang.css">
+    <script src="${path}/resources/assets/js/inform.js"></script>
+    
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
     
+    
     <div class="main row justify-content-md-center">
+      <div class="mobile_pro_inform col col-lg-5">
+        <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a>13000₩</a></button>
+        <div class="content">
+        <div class="container">
+		  <div class="product">
+		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
+		  	<div style="float:right;">
+		  	  <div class="text_box">
+		  	    <a class="amount">x 1</a>
+		  	  </div>
+		  	  <div class="text_box" style="text-align: center;">
+		  	    <a class="name">불스원 유리 광택 클리너</a>
+		  	  </div>
+		  	  <div class="text_box">
+		  	    <a class="price">10000원</a>
+		  	  </div>
+		  	</div>
+          </div>
+          <div class="product">
+		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
+		  	<div style="float:right;">
+		  	  <div class="text_box">
+		  	    <a class="amount">x 1</a>
+		  	  </div>
+		  	  <div class="text_box" style="text-align: center;">
+		  	    <a class="name">불스원 유리 광택 클리너</a>
+		  	  </div>
+		  	  <div class="text_box">
+		  	    <a class="price">10000원</a>
+		  	  </div>
+		  	</div>
+          </div>
+          <div class="product">
+		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
+		  	<div style="float:right;">
+		  	  <div class="text_box">
+		  	    <a class="amount">x 1</a>
+		  	  </div>
+		  	  <div class="text_box" style="text-align: center;">
+		  	    <a class="name">불스원 유리 광택 클리너</a>
+		  	  </div>
+		  	  <div class="text_box">
+		  	    <a class="price">10000원</a>
+		  	  </div>
+		  	</div>
+          </div>
+          <div class="point">
+            <label class="Label">포인트 사용</label>
+            <a>보유포인트 : 1000pt</a>
+            <input type="text" name="" id="" class="point_input" placeholder="포인트 사용" minlength='5' maxlength='10' required >
+           	<button type="button" class="btn" onclick="">전액 사용</button><br>
+          </div>
+          <div class="total">
+          	<a class="product_price">물품 가격 : 10000원</a><br>
+			<a class="shipping">배송비 : 3000원</a><br>
+            <a class="total_price">총 : 13000원</a>
+          </div>
+        </div>
+      </div>
+      </div>
       <div class="add_inform col col-lg-7">
         <div class="container">
           <div>
@@ -61,13 +124,49 @@
           </div>
         </div>
       </div>
-      <div class="pro_inform col col-lg-5">
+      <div class="pc_pro_inform col col-lg-5">
         <div class="container">
+		  <div class="product">
+		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
+		  	<div style="float:right;">
+		  	  <div class="text_box">
+		  	    <a class="amount">x 1</a>
+		  	  </div>
+		  	  <div class="text_box" style="text-align: center;">
+		  	    <a class="name">불스원 유리 광택 클리너</a>
+		  	  </div>
+		  	  <div class="text_box">
+		  	    <a class="price">10000원</a>
+		  	  </div>
+		  	</div>
+          </div>
           <div class="product">
 		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
-		  	<a class="amount">x 1</a>
-		  	<a class="name">불스원 유리 광택 클리너</a>
-		  	<a class="price">10000원</a>
+		  	<div style="float:right;">
+		  	  <div class="text_box">
+		  	    <a class="amount">x 1</a>
+		  	  </div>
+		  	  <div class="text_box" style="text-align: center;">
+		  	    <a class="name">불스원 유리 광택 클리너</a>
+		  	  </div>
+		  	  <div class="text_box">
+		  	    <a class="price">10000원</a>
+		  	  </div>
+		  	</div>
+          </div>
+          <div class="product">
+		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
+		  	<div style="float:right;">
+		  	  <div class="text_box">
+		  	    <a class="amount">x 1</a>
+		  	  </div>
+		  	  <div class="text_box" style="text-align: center;">
+		  	    <a class="name">불스원 유리 광택 클리너</a>
+		  	  </div>
+		  	  <div class="text_box">
+		  	    <a class="price">10000원</a>
+		  	  </div>
+		  	</div>
           </div>
           <div class="point">
             <label class="Label">포인트 사용</label>
@@ -77,12 +176,13 @@
           </div>
           <div class="total">
           	<a class="product_price">물품 가격 : 10000원</a><br>
-            <a class="shipping">배송비 : 3000원</a><br>
+			<a class="shipping">배송비 : 3000원</a><br>
             <a class="total_price">총 : 13000원</a>
           </div>
         </div>
       </div>
     </div>
+      
     
 	<%@ include file="../common/footer.jsp"%>
     
