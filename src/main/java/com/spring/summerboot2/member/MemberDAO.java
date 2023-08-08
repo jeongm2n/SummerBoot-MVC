@@ -5,38 +5,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
+import com.spring.summerboot2.DBconn;
 
 public class MemberDAO {
 	private PreparedStatement pstmt;
 	private Connection con;
-	private DataSource dataFactory;
 	private ResultSet rs;
 	
-	public MemberDAO() {
-		try {
-			Context ctx = new InitialContext();
-			Context envContext = (Context) ctx.lookup("java:/comp/env");
-
-			dataFactory = (DataSource) envContext.lookup("jdbc/washboot");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public void join(MemberVO vo) {
 		try {
-			con = dataFactory.getConnection();
+			con = DBconn.getDBCP();
 			
-			String sql = "INSERT INTO member(id, pwd, name, tel) VALUES (?, ?, ?, ?)";
+			String sql = "INSERT INTO sb_member(id, pwd, mem_name, tel, address) VALUES (?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPwd());
-			pstmt.setString(3, vo.getName());
+			pstmt.setString(3, vo.getMem_name());
 			pstmt.setString(4, vo.getTel());
+			pstmt.setString(5, vo.getAddress());
 			
 			System.out.println("prepareStatement : " + sql);
 			pstmt.executeUpdate();
@@ -51,9 +38,9 @@ public class MemberDAO {
 		int count = 0;
 		
 		try {
-			con = dataFactory.getConnection();
+			con = DBconn.getDBCP();
 			
-			String sql = "SELECT count(*) as cnt FROM member";
+			String sql = "SELECT count(*) as cnt FROM sb_member";
 			sql += " WHERE id = '" + id + "' AND pwd = '" + pwd + "'";
 			
 			System.out.println("prepareStatement : " + sql);
@@ -82,9 +69,9 @@ public class MemberDAO {
 		int count = 0;
 		
 		try {
-			con = dataFactory.getConnection();
+			con = DBconn.getDBCP();
 			
-			String sql = "SELECT count(*) as cnt FROM member";
+			String sql = "SELECT count(*) as cnt FROM sb_member";
 			sql += " WHERE id = '" + id + "'";
 			
 			System.out.println("prepareStatement : " + sql);
@@ -112,9 +99,9 @@ public class MemberDAO {
 	public List<MemberVO> my_info(String user_id) {
 		List<MemberVO> list= new ArrayList<MemberVO>();
 		try {
-			con = dataFactory.getConnection();
+			con = DBconn.getDBCP();
 			
-			String sql = "SELECT * FROM member where id=?";
+			String sql = "SELECT * FROM sb_member where id=?";
 			System.out.println("prepareStatement : " + sql);
 			
 			pstmt = con.prepareStatement(sql);
@@ -124,8 +111,9 @@ public class MemberDAO {
 			while(rs.next()) {
 				String id = rs.getString("id");
 				String pwd = rs.getString("pwd");
-				String name = rs.getString("name");
+				String name = rs.getString("mem_name");
 				String tel = rs.getString("tel");
+				String address = rs.getString("address");
 				int point = rs.getInt("point");
 				
 				System.out.println(id);
@@ -134,7 +122,7 @@ public class MemberDAO {
 				System.out.println(tel);
 				System.out.println(point);
 				
-				MemberVO vo = new MemberVO(id, pwd, name, tel, point);
+				MemberVO vo = new MemberVO(id, pwd, name, tel, address, point);
 				list.add(vo);
 			}
 			rs.close();
@@ -150,9 +138,9 @@ public class MemberDAO {
 		boolean change = false;
 		try {
 			int cnt=0;
-			con = dataFactory.getConnection();
+			con = DBconn.getDBCP();
 
-			String sql = "SELECT count(*) as cnt FROM member WHERE id = '" + id + "' AND pwd = '" + origin_pwd + "'";
+			String sql = "SELECT count(*) as cnt FROM sb_member WHERE id = '" + id + "' AND pwd = '" + origin_pwd + "'";
 			System.out.println("prepareStatement : " + sql);
 			pstmt = con.prepareStatement(sql);
 			// 4) 실행
@@ -184,18 +172,19 @@ public class MemberDAO {
 		return change;
 	}
 	
-	public boolean update(String user_id, String tel) {
+	public boolean update(String user_id, String tel, String address) {
 		boolean change = false;
 		try {
-			con = dataFactory.getConnection();
+			con = DBconn.getDBCP();
 			
-			String sql = "UPDATE member";
-			sql += " SET tel=? WHERE id = ?";
+			String sql = "UPDATE sb_member";
+			sql += " SET tel=?, address=? WHERE id = ?";
 			System.out.println("prepareStatement : " + sql);
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, tel);
-			pstmt.setString(2, user_id);
+			pstmt.setString(2, address);
+			pstmt.setString(3, user_id);
 
 			pstmt.executeUpdate();
 			pstmt.close();

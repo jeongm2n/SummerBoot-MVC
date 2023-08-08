@@ -12,7 +12,7 @@ public interface  MemberService  {
 	public boolean login(String id, String pwd);
 	public boolean overlappedID(String id);
 	public boolean pwd_change(String id, String origin_pwd, String new_pwd);
-	public boolean update(String user_id, String tel);
+	public boolean update(String user_id, String tel, String address);
 	
 	public List<MemberVO> my_info(String user_id);
 	

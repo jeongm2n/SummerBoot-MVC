@@ -15,6 +15,9 @@
 <link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호검색 -->
+<script src="${path}/resources/assets/js/daumPostcode.js"></script>
+
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 <script>
@@ -87,7 +90,7 @@
 	                
 	                <div class="input-group mb-3">
 	                    <label for="inputsubject" class="title">이름</label>
-	                    <input type="text" class="form-control mt-1" id="name" name="name" value="${my_info.name }" disabled>
+	                    <input type="text" class="form-control mt-1" id="name" name="name" value="${my_info.mem_name }" disabled>
 	                </div>
 	                
 	                <c:set var="phone" value="${fn:split(my_info.tel,'-')}" />
@@ -99,6 +102,33 @@
                     	<span style="padding:2%">-</span>
 	                    <input type="text" class="form-control mt-1 tel col-md-1" id="tel3" name="tel3" value="${phone[2] }">
 	                </div>
+	                
+	                <c:set var="addr" value="${fn:split(my_info.address,'/')}" />
+	                <div class="input-group mb-3">
+	                    <label for="inputsubject" class="title">주소</label>
+						<button type="button" class="btn btn-washboot mt-1 search" onclick="execDaumPostcode();">주소찾기</button>
+	                </div>
+					<div class="input-group mb-3">
+						<label for="inputsubject" class="title"></label>
+						<div class="addr">
+							<label class="addr-label">우편번호</label>
+							<input type="text" class="form-control mt-1 addr-text col-md-2" id="zipcode" name="zipcode" value="${addr[0] }" pattern="[0-9]{5}" placeholder="우편번호 (숫자 5자리)" title="우편번호 (숫자 5자리)" maxlength="5" required>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<label for="inputsubject" class="title"></label>
+						<div class="addr">
+							<label class="addr-label">도로명 주소</label>
+							<input type="text" class="form-control mt-1 addr-text col-md-2" id="road_addr" name="road_addr" value="${addr[1] }" placeholder="도로명 주소" title="도로명 주소" required>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<label for="inputsubject" class="title"></label>
+						<div class="addr">
+							<label class="addr-label">나머지 주소</label>
+							<input type="text" class="form-control mt-1 addr-text" id="rest_addr" name="rest_addr" value="${addr[2] }">
+						</div>
+					</div>
 	                
 	                <div class="input-group mb-3">
 	                    <label for="inputsubject" class="title">적립금</label>
@@ -121,7 +151,11 @@
 
 <style>
 .title {
-	width: 30%;
+	width: 136px;
     padding-top: 2%;
 }
 
+.search {
+	border-radius : 0;
+}
+</style>
