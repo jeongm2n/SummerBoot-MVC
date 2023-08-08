@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호검색 -->
+<script src="${path}/resources/assets/js/daumPostcode.js"></script>
+
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 <script>
@@ -110,7 +113,7 @@
                     <div class="input-group-text btn-washboot mt-1" id="checkID" onclick="fn_overlapped();">중복확인</div>
                     <div><input type="hidden" value="false" id="overlap_check"></div>
                 </div>
-                <div class="mb-3 notice_id" id = "notice_id" style="display : none; padding-left:30%;">
+                <div class="mb-3 notice_id" id = "notice_id" style="display : none; padding-left:136px;">
                 	<span id="notice_id"></span>
                 </div>
                 
@@ -122,7 +125,7 @@
                     <label for="inputemail" class="title">비밀번호 확인</label>
                     <input type="password" class="form-control mt-1" id="check_pwd" name="check_pwd" placeholder="PASSWORD" oninput="isSame();">
                 </div>
-                <div class="mb-3 hidden" style="display : none; padding-left:30%;"> <!-- 비밀번호확인 일치 여부 알림 표시 -->
+                <div class="mb-3 hidden" style="display : none; padding-left:136px;"> <!-- 비밀번호확인 일치 여부 알림 표시 -->
                 	<label></label>
                 	<span id="notice"></span>
                 </div>
@@ -139,6 +142,33 @@
                     <span style="padding:2%">-</span>
                     <input type="text" class="form-control mt-1 tel2 col-md-2" id="tel3" name="tel3" placeholder="PHONE" value="1111">
                 </div>
+                
+                <div class="input-group mb-3">
+	                    <label for="inputsubject" class="title">주소</label>
+						<button type="button" class="btn btn-washboot mt-1 search" onclick="execDaumPostcode();">주소찾기</button>
+	                </div>
+					<div class="input-group mb-3">
+						<label for="inputsubject" class="title"></label>
+						<div class="addr">
+							<label class="addr-label">우편번호</label>
+							<input type="text" class="form-control mt-1 addr-text col-md-2" id="zipcode" name="zipcode" pattern="[0-9]{5}" placeholder="우편번호 (숫자 5자리)" title="우편번호 (숫자 5자리)" maxlength="5" required>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<label for="inputsubject" class="title"></label>
+						<div class="addr">
+							<label class="addr-label">도로명 주소</label>
+							<input type="text" class="form-control mt-1 addr-text col-md-2" id="road_addr" name="road_addr" placeholder="도로명 주소" title="도로명 주소" required>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<label for="inputsubject" class="title"></label>
+						<div class="addr">
+							<label class="addr-label">나머지 주소</label>
+							<input type="text" class="form-control mt-1 addr-text" id="rest_addr" name="rest_addr" placeholder="나머지 주소">
+						</div>
+					</div>
+                
                 <div class="row">
                     <div class="col text-center mt-2">
                         <button type="button" class="btn btn-washboot btn-lg px-3" id="join">회원가입</button>
@@ -154,7 +184,11 @@
 
 <style>
 .title {
-	width: 30%;
+	width: 136px;
     padding-top: 2%;
+}
+
+.search {
+	border-radius : 0;
 }
 </style>

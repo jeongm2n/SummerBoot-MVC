@@ -40,9 +40,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean update(String user_id, String tel) {
+	public boolean update(String user_id, String tel, String address) {
 		MemberDAO dao =  new MemberDAO();
-		return dao.update(user_id, tel);
+		return dao.update(user_id, tel, address);
 	}
 	
 	

@@ -46,12 +46,9 @@ Custom Css
 }
 
 #wrapper{
-	width : 100%
-}
-
-.div-margin2{
-	width : 30%;
-	margin-top : 5px;
+	width : 100%;
+	margin-top : 50px;
+	margin-bottom : 50px;
 }
 
 .orange-button {
@@ -73,8 +70,8 @@ Custom Css
 .shops{
 	border : none;
   	border-radius : 20px;
-	background-color : #F5F5F5;
-	width : 45%;
+	background-color : #C0C0C0;
+	width : 150px !important;
 	height : 30px;
 }
 
@@ -120,4 +117,30 @@ td {
 
 .thead{
 	background-color : #FFFFFF;
+}
+
+.div1, .div2, .div3, .div4{
+	margin-top : 50px;
+}
+
+.div1{
+	width : 450px;
+	height : 130px;
+}
+
+.div2{
+	width : 600px;
+	height : 130px;
+}
+
+.div3{
+	width : 610px;
+	height : 400px;
+	text-align : center
+}
+
+.div4{
+	text-align : center;
+	width : 630px;
+	height : 400px
 }

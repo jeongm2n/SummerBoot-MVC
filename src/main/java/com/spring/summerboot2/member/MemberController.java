@@ -77,8 +77,9 @@ public class MemberController {
 		String pwd = mem.get("pwd");
 		String name = mem.get("name");
 		String tel = mem.get("tel1") + "-" + mem.get("tel2") + "-" + mem.get("tel3");
+		String address = mem.get("zipcode") + "/" + mem.get("road_addr") + "/" + mem.get("rest_addr");
 		
-		MemberVO vo = new MemberVO(id, pwd, name, tel);
+		MemberVO vo = new MemberVO(id, pwd, name, tel, address);
 		System.err.println("controller");
 		memberService.regist(vo);
 		
@@ -143,14 +144,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/info_update", method = RequestMethod.POST)
-	public ModelAndView update(@RequestParam("tel1") String tel1, @RequestParam("tel2") String tel2, @RequestParam("tel3") String tel3, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) throws Exception {
+	public ModelAndView update(@RequestParam Map<String, String> mem, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("user_id");
-		String tel =  tel1 + "-" + tel2 + "-" + tel3;
-		boolean change = memberService.update(user_id, tel);
+		String tel =  mem.get("tel1") + "-" + mem.get("tel2") + "-" + mem.get("tel3");
+		String address = mem.get("zipcode") + "/" + mem.get("road_addr") + "/" + mem.get("rest_addr");
+		boolean change = memberService.update(user_id, tel, address);
 		
 		ModelAndView mav = new ModelAndView();
 	

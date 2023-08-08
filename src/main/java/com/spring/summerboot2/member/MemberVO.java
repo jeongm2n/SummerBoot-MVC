@@ -3,22 +3,25 @@ package com.spring.summerboot2.member;
 public class MemberVO {
 	private String id;
 	private String pwd;
-	private String name;
+	private String mem_name;
 	private String tel;
+	private String address;
 	private int point;
 	
-	MemberVO(String id, String pwd, String name, String tel) {
+	MemberVO(String id, String pwd, String mem_name, String tel, String address) {
 		this.id = id;
 		this.pwd = pwd;
-		this.name = name;
+		this.mem_name = mem_name;
 		this.tel = tel;
+		this.address = address;
 	}
 	
-	MemberVO(String id, String pwd, String name, String tel, int point) {
+	MemberVO(String id, String pwd, String mem_name, String tel, String address, int point) {
 		this.id = id;
 		this.pwd = pwd;
-		this.name = name;
+		this.mem_name = mem_name;
 		this.tel = tel;
+		this.address = address;
 		this.point = point;
 	}
 	
@@ -34,17 +37,23 @@ public class MemberVO {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public String getName() {
-		return name;
+	public String getMem_name() {
+		return mem_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
 	public String getTel() {
 		return tel;
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public int getPoint() {
 		return point;
