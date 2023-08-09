@@ -1,5 +1,8 @@
+html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
+
 .main {
 	accent-color: #FD8008;
+	height: auto;
 }
 .collapsible {
     background-color: #F5F5F5;
@@ -13,7 +16,6 @@
     font-size: 15px;
 }
 .collapsible a {
-	display: inline-block;
 	float:right;
 }
 
@@ -55,7 +57,7 @@
 
 .add_inform {
 	display:flex;
-	height: 100%;
+	height: auto;
 	padding-top: 30px;
 }
 
@@ -88,6 +90,17 @@
 	font-size: 1.2rem !important;
 	font-weight: 800 !important;
 	display: inline-block;
+}
+
+.add_btn {
+	float: right;
+	width: 100px;
+	height: 30px;
+	font-size:1rem !important;
+	color: white !important;
+	background-color: #FD8008;
+	border: 2px solid #de6e18;
+	border-radius: 5px;
 }
 
 input {

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang.css">
+    
     <script src="${path}/resources/assets/js/inform.js"></script>
     
 </head>
@@ -91,9 +92,11 @@
               <label for="phone" class="Inform_label">연락처</label><br>
               <input type="text" name="phone" id="phone" class="input_type1" placeholder="전화번호" minlength='5' maxlength='10' required ><br>
 		  	  <input type="checkbox" name="sts" id="" value="동의" checked> sns 수신 동의<br><br>
-              <label for="state" class="Inform_label">주소</label><br>
+              <label for="state" class="Inform_label">주소</label>
+              <button type="button" class="add_btn" onclick="?">주소 검색</button>
+              <br>
               <select name="state" id=state class="input_type1" onchange="setEmailDomain(this.value); return false;">
-		  	    <option value=""disabled selected>-선택-</option>
+		  	    <option value=""disabled selected>-도/시 선택-</option>
 	      	    <option value="경기도">경기도</option>
 		  	    <option value="서울특별시">서울특별시</option>
 		  	    <option value="강원특별자치도">강원도</option>
