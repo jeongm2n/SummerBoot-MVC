@@ -12,12 +12,15 @@
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_seo.css">
     <%-- 지점선택 시 아래에 선택한 지점이 뜨도록 --%>
     <script>
+    const shops=['서울본점','경기군포점','경기평택점','대구점'];
     $(document).ready(function(){
 	    $("input:radio[name='shops']").click(function(){
-	    	shopName = $("input[name='shops']:checked").val();
+	    	n = $("input[name='shops']:checked").val();
+	    	shopName = shops[n-1];
 	    	var btn = document.getElementById('btn-shop');
-	        btn.innerHTML = shopName; })	
+	        btn.innerHTML = shopName; 
 	    });
+	});
     
     </script>
 </head>
@@ -31,13 +34,13 @@
     	<div class="col border border-4 div1" style="float:right">지점 선택
     	<div class="container text-center">
     	<div class="row row-cols-2">
-    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop1" value="서울본점" autocomplete="off" checked>
+    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop1" value=1 autocomplete="off">
     	<label class="btn btn-secondary shops" for="shop1">서울&nbsp;&nbsp;본점</label></div>
-    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop2" value="경기군포점" autocomplete="off">
+    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop2" value=2 autocomplete="off">
     	<label class="btn btn-secondary shops" for="shop2">경기군포점</label></div>
-    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop3" value="경기평택점" autocomplete="off">
+    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop3" value=3 autocomplete="off">
     	<label class="btn btn-secondary shops" for="shop3">경기평택점</label></div>
-    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop4" value="대구점" autocomplete="off">
+    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop4" value=4 autocomplete="off">
     	<label class="btn btn-secondary shops" for="shop4">대&nbsp;&nbsp;구&nbsp;&nbsp;점</label></div></div></div>
     	</div>
     </div>
@@ -46,16 +49,16 @@
 	    	<span style="display:inline-block;width:20%;line-height:80px;float:left;vertical-align:middle">사용시간</span>
 	    	<span style="display:inline-block;width:80%;height:80px;float:right">
 		    	<span class="span-time">
-					<input type="radio" class="btn-check" name="options" id="30" value=30 autocomplete="off" checked>
+					<input type="radio" class="btn-check" name="options" id="30" value=29 autocomplete="off" checked>
 					<label class="btn btn-secondary" for="30">30M</label></span>
 				<span class="span-time">	
-					<input type="radio" class="btn-check" name="options" id="100" value=60 autocomplete="off">
+					<input type="radio" class="btn-check" name="options" id="100" value=59 autocomplete="off">
 					<label class="btn btn-secondary" for="100">1H</label></span>
 				<span class="span-time">	
-					<input type="radio" class="btn-check" name="options" id="130" value=90 autocomplete="off">
+					<input type="radio" class="btn-check" name="options" id="130" value=89 autocomplete="off">
 					<label class="btn btn-secondary" for="130">1H30M</label></span>
 				<span class="span-time">	
-					<input type="radio" class="btn-check" name="options" id="200" value=120 autocomplete="off">
+					<input type="radio" class="btn-check" name="options" id="200" value=119 autocomplete="off">
 					<label class="btn btn-secondary" for="200">2H</label></span>
 			</span>
     	</div>
@@ -110,5 +113,53 @@
 
 	<%--script 따로 빼놓은 파일 연동 --%>
     <script src="../resources/assets/js/reservation1.js"></script>
+    <script>
+	    /* <c:forEach var="list" items="${forres1 }">
+			detailInfo.push("${list.no }"); 
+			detailInfo.push("${list.date }");
+			detailInfo.push("${list.startTime }");
+			detailInfo.push("${list.useTime }");
+			dbInfo.push(detailInfo);
+		</c:forEach> */
+		
+		function getDB(){
+
+			$.ajax({
+				url : "chkReservation1.do",
+				type : "get",
+				data : {
+					no : n,
+					date : clickedMD
+				},
+				async : true,
+				dataType: "json",
+				success : function(data){
+					try {
+		                // 데이터가 제대로 전달되었는지 확인
+		                console.log(data);
+
+		                // 데이터 처리 로직
+		                for (var i = 0; i < data.length; i++) {
+		                    var startTime = data[i].startTime;
+		                    var useTime = data[i].useTime;
+		                    console.log("Start Time:", startTime);
+		                    console.log("Use Time:", useTime);
+		                }
+		            } catch (error) {
+		                console.error("Error in success callback:", error);
+		            }
+				},
+				error: function(xhr, status, error) {
+			        console.log("AJAX Error:", xhr.responseText);
+			        console.log("Status:", status);
+			        console.log("Error:", error);
+			    },
+			    headers: {
+			        "Accept": "application/json"
+			    }
+			});
+		}
+    </script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </body>
 </html>

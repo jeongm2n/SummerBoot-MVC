@@ -24,6 +24,14 @@
     var selectedHour = null;
     var selectedMinute = null;
     
+    const detailInfo = [];
+    const dbInfo = [];
+    
+    var start = [];
+    var use = [];
+    
+    var n;
+        
     const calendar = document.getElementById('calendar');
     const hourContainer = document.getElementById('container1');
     const minuteContainer = document.getElementById('container2');
@@ -35,6 +43,8 @@
     	} 
     	return 1;
     }
+    
+    
     
     function buildCalendar(){
 		var nowMonth = now.getMonth()+1;
@@ -80,11 +90,12 @@
 						        clickedDate = selectedDate >= 10 ? selectedDate : '0' + selectedDate; 
 				            	clickedMonth = selectedMonth >= 10 ? selectedMonth : '0' + selectedMonth;
 				            	clickedMD = clickedMonth + "-" + clickedDate;
-			            						
+			            		
+			            		getDB();				
 			            		document.getElementById("btn-date").value = clickedMD;
 			            		var btn = document.getElementById('btn-date');
 			                	btn.innerHTML = clickedMD;
-			                	
+											                	
 				                if(dateCell != null){
 									dateCell.classList.remove('selected');
 								}
@@ -93,6 +104,9 @@
 			                	
 			                	timeHour();
 			                	timeMinute();
+
+								alert(start[0]);
+								alert(use[0]);			                	
 				        	};
 						}
 					}
@@ -250,7 +264,7 @@
     		alert("지점, 날짜, 시간을 확인해주세요");
     		return false;
     	}else{
-    		window.location.href = "./reservation2?shopName="+shopName+"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+useTime;
+    		window.location.href = "./reservation2?shopName="+shopName+"&no="+n+"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+useTime;
     		return true;
     	}
     }

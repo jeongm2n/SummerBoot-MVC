@@ -18,10 +18,10 @@ Custom Css
 }
 
 .div-margin{
-	width : 75%;
-	margin-left : 12.5%;
-	margin-right : 12.5%;
-	margin-top : 20px;
+	text-align : center;
+	width : 600px;
+	height : 100px;
+	margin-top : 50px;
 }
 
 .btn-h{
@@ -47,7 +47,8 @@ Custom Css
 
 #wrapper{
 	width : 100%;
-	margin-top : 50px;
+	min-height : 1200px;
+	margin-top : 40px;
 	margin-bottom : 50px;
 }
 
