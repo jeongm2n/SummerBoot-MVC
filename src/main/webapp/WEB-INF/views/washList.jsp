@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 	<%@ include file="./common/header.jsp" %>
-    <link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
+    <link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
 </head>
 <body>
 	

@@ -9,7 +9,7 @@
 <title>로그인</title>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
+<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
 
 <script>
 	$(document).on('click', '#login' , function() {
