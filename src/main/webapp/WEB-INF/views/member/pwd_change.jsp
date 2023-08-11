@@ -12,7 +12,7 @@
 
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ include file="../common/header.jsp" %>
-<link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
+<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />

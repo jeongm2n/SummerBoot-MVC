@@ -12,7 +12,7 @@
 	<title>Wash Boot</title>
     <jsp:include page="/WEB-INF/common.jsp" />
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_ryu.css">
-    <link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
+    <link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
 </head>
 
 	<% String user_id = (String)session.getAttribute("user_id"); %>
@@ -60,7 +60,7 @@
                 <!--로그인버튼-->
                 <div class="navbar align-self-center d-flex">
 					<% if(user_id != null) { %>
-					<a class="nav-icon position-relative text-decoration-none" href="#">
+					<a class="nav-icon position-relative text-decoration-none" href="${path}/cart/my_cart">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                        <!--  <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span> -->
                     </a>
