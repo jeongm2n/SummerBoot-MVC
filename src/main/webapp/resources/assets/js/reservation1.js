@@ -24,6 +24,11 @@
     var selectedHour = null;
     var selectedMinute = null;
     
+    var start = [];
+    var use = [];
+    
+    var n;
+        
     const calendar = document.getElementById('calendar');
     const hourContainer = document.getElementById('container1');
     const minuteContainer = document.getElementById('container2');
@@ -35,6 +40,8 @@
     	} 
     	return 1;
     }
+    
+    
     
     function buildCalendar(){
 		var nowMonth = now.getMonth()+1;
@@ -80,19 +87,17 @@
 						        clickedDate = selectedDate >= 10 ? selectedDate : '0' + selectedDate; 
 				            	clickedMonth = selectedMonth >= 10 ? selectedMonth : '0' + selectedMonth;
 				            	clickedMD = clickedMonth + "-" + clickedDate;
-			            						
+			            		
+			            		getDB();				
 			            		document.getElementById("btn-date").value = clickedMD;
 			            		var btn = document.getElementById('btn-date');
 			                	btn.innerHTML = clickedMD;
-			                	
+											                	
 				                if(dateCell != null){
 									dateCell.classList.remove('selected');
 								}
 								dateCell = this;
-								this.classList.add('selected');
-			                	
-			                	timeHour();
-			                	timeMinute();
+								this.classList.add('selected');	                	
 				        	};
 						}
 					}
@@ -112,11 +117,15 @@
 	  	}
 	}
     
-    function timeHour(){
+    function timeHour(start, use){
 		removeAllChildren(hourContainer);
 		//한 줄에 5개만 있도록 갯수 설정하는 변수
 	    var line = 0;
+<<<<<<< HEAD
 	    
+=======
+	   	
+>>>>>>> seo
 	    for(i=9 ; i<24 ; i++){
 	    	if(line!=0 && line%5==0){
 				const br = document.createElement('br');
@@ -138,6 +147,7 @@
 				if(i >= currentHour){
 	            	button.classList.add('btn-h');
 	            	button.onclick = function(){
+						timeMinute();
 						selectedHour = this.getAttribute('id');
 						
 						if(selectedHour == 9){
@@ -157,6 +167,7 @@
 			}else{
 				button.classList.add('btn-h');
 				button.onclick = function(){
+					timeMinute();
 					selectedHour = this.getAttribute('id');
 					if(selectedHour == 9){
 						selectedHour = "0" + selectedHour;
@@ -250,7 +261,7 @@
     		alert("지점, 날짜, 시간을 확인해주세요");
     		return false;
     	}else{
-    		window.location.href = "./reservation2?shopName="+shopName+"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+useTime;
+    		window.location.href = "./reservation2?shopName="+shopName+"&no="+n+"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+useTime;
     		return true;
     	}
     }
