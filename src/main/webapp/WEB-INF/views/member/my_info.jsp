@@ -7,66 +7,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>내 정보</title>
-
-<% request.setCharacterEncoding("utf-8"); %>
-<%@ include file="../common/header.jsp" %>
-<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호검색 -->
-<script src="${path}/resources/assets/js/daumPostcode.js"></script>
-
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-
-<script>
-	function pwd_change(){
-		location.href="${contextPath}/member/pwd_change"
- 	}
+	<meta charset="UTF-8">
+	<title>내 정보</title>
 	
-	$(document).on('click', '#update' , function() {
-	    if($("#tel1").val().length != 3 || $("#tel2").val().length != 4 || $("#tel3").val().length != 4){
-	   		alert("올바른 휴대폰 번호를 입력하세요.");
-	   		return;
-	   	} else {
-	   		alert("업데이트!!");
-			document.getElementById("infoForm").submit();
-	   	}
+	<% request.setCharacterEncoding("utf-8"); %>
+	<%@ include file="../common/header.jsp" %>
+	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호검색 -->
+	<script src="${path}/resources/assets/js/daumPostcode.js"></script>
+	
+	<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+	
+	<script>
+		function pwd_change(){
+			location.href="${contextPath}/member/pwd_change"
+	 	}
 		
-	});
-	 
-	function isSame() {
-		$(".hidden").show();
-		var pw = $('#new_pwd').val();
-		var confirmPw = $('#new_pwd_check').val();
-		if(pw !='' && confirmPw !=''){
-			if(pw == confirmPw){
-				$('#notice').text("일치!!");
-				document.getElementById('notice').style.color = 'blue';
-			}
-			else{
-				$('#notice').text("불일치!!");
-				document.getElementById('notice').style.color = 'red';
+		$(document).on('click', '#update' , function() {
+		    if($("#tel1").val().length != 3 || $("#tel2").val().length != 4 || $("#tel3").val().length != 4){
+		   		alert("올바른 휴대폰 번호를 입력하세요.");
+		   		return;
+		   	} else {
+		   		alert("업데이트!!");
+				document.getElementById("infoForm").submit();
+		   	}
+			
+		});
+		 
+		function isSame() {
+			$(".hidden").show();
+			var pw = $('#new_pwd').val();
+			var confirmPw = $('#new_pwd_check').val();
+			if(pw !='' && confirmPw !=''){
+				if(pw == confirmPw){
+					$('#notice').text("일치!!");
+					document.getElementById('notice').style.color = 'blue';
+				}
+				else{
+					$('#notice').text("불일치!!");
+					document.getElementById('notice').style.color = 'red';
+				}
 			}
 		}
-	}
-	
-	$(document).ready(function() {
-        var message = "${msg}";
-        if (message == 999) {
-            alert("비밀번호 수정이 완료되었습니다.");
-            location.href="${path }/member/my_info";
-        } else if (message == 888) {
-        	alert("정보 수정이 완료되었습니다.");
-            location.href="${path }/member/my_info";
-        } else if (message == 4) {
-        	alert("오류로 정보 수정에 실패하였습니다.");
-            location.href="${path }/member/my_info";
-        }
-    });
-	
-</script>
+		
+		$(document).ready(function() {
+	        var message = "${msg}";
+	        if (message == 999) {
+	            alert("비밀번호 수정이 완료되었습니다.");
+	            location.href="${path }/member/my_info";
+	        } else if (message == 888) {
+	        	alert("정보 수정이 완료되었습니다.");
+	            location.href="${path }/member/my_info";
+	        } else if (message == 4) {
+	        	alert("오류로 정보 수정에 실패하였습니다.");
+	            location.href="${path }/member/my_info";
+	        }
+	    });
+		
+	</script>
 
 </head>
 <body> 

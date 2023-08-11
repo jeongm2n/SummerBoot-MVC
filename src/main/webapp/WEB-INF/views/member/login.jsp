@@ -28,7 +28,7 @@
 	
 	$(document).ready(function() {
         var message = "${msg}";
-        if ("${msg}" != '') {
+        if ("${msg}" != '') { //로그인 실패 시 로그인 실패 알림
             alert(message);
         }
     });
@@ -61,7 +61,6 @@
             </form>
         </div>
     </div>
-	
 	
 	<%@ include file="../common/footer.jsp" %>
 </body>
