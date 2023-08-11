@@ -64,7 +64,7 @@
     	</div>
     	</div>
     
-    <div class="col-lg-6">
+    <div class="col-lg-6" style="height:550px">
     	<div class="border border-4 div3" style="float:right;text-align:center">
     		<table class="calendartb" id="calendar">
     		<thead style="border-bottom: 1px solid #000;">
@@ -87,7 +87,7 @@
     	</div>
     </div>
     
-    <div class="col-lg-6">
+    <div class="col-lg-6" style="height:550px">
     	<div class="border border-4 div4" style="float:left;text-align:center">
     	<legend>시간</legend>
     	<div id="container1" style="width:100%;height:200px;text-align:center;margin-top:30px">
@@ -97,13 +97,12 @@
     	<div id="container2" style="margin-top:10px;width:100%;height:100px">
     	</div>	
     	</div>
-    </div>
-    <div class="col-lg-6"></div>
-    <div class="col-lg-6" style="width:400px;height:50px;margin-top:20px">
-    <button id="btn-shop" type="button" class="orange-button btn-time" style="margin-right:5px" disabled></button>
-    <button id="btn-date" type="button" class="orange-button btn-time" style="margin-right:5px" disabled></button>
-    <button id="btn-time" type="button" class="orange-button btn-time" style="margin-right:5px" disabled></button>
-    <button type="button" class="orange-button" onclick="return goReservation2();">Next></button>
+    	<div style="width:400px;height:50px;margin-top:15px;float:right">
+		    <button id="btn-shop" type="button" class="orange-button btn-time" style="margin-right:5px" disabled></button>
+		    <button id="btn-date" type="button" class="orange-button btn-time" style="margin-right:5px" disabled></button>
+		    <button id="btn-time" type="button" class="orange-button btn-time" style="margin-right:5px" disabled></button>
+		    <button type="button" class="orange-button" onclick="return goReservation2();">Next></button>
+    	</div>
     </div>
     
     <div class="border border-4" style="width:100%;height:100px;margin-top:40px">주간날씨
@@ -114,13 +113,6 @@
 	<%--script 따로 빼놓은 파일 연동 --%>
     <script src="../resources/assets/js/reservation1.js"></script>
     <script>
-	    /* <c:forEach var="list" items="${forres1 }">
-			detailInfo.push("${list.no }"); 
-			detailInfo.push("${list.date }");
-			detailInfo.push("${list.startTime }");
-			detailInfo.push("${list.useTime }");
-			dbInfo.push(detailInfo);
-		</c:forEach> */
 		
 		function getDB(){
 
@@ -137,14 +129,16 @@
 					try {
 		                // 데이터가 제대로 전달되었는지 확인
 		                console.log(data);
-
+						var start = [];
+						var use = [];
 		                // 데이터 처리 로직
 		                for (var i = 0; i < data.length; i++) {
-		                    var startTime = data[i].startTime;
-		                    var useTime = data[i].useTime;
-		                    console.log("Start Time:", startTime);
-		                    console.log("Use Time:", useTime);
+		                    start[i] = data[i].startTime;
+		                    use[i] = data[i].useTime;
+		                    console.log("Start Time:", start[i]);
+		                    console.log("Use Time:", use[i]);
 		                }
+		                timeHour(start,use);
 		            } catch (error) {
 		                console.error("Error in success callback:", error);
 		            }

@@ -21,7 +21,7 @@ public class ReservationDAO {
 			String startTime;
 			String useTime;
 			
-			String sql = "SELECT startTime,useTime FROM sb_reservation WHERE no="+no+" AND date='"+date+"'";
+			String sql = "SELECT startTime,useTime FROM sb_reservation WHERE no="+no+" AND res_date='"+date+"'";
 			
 			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class ReservationDAO {
 		try {
 			conn = DBconn.getDBCP();
 	
-			String sql = "SELECT site FROM sb_reservation WHERE no="+no+" AND date='"+date+"' AND startTime='"+startTime+"'"
+			String sql = "SELECT site FROM sb_reservation WHERE no="+no+" AND res_date='"+date+"' AND startTime='"+startTime+"'"
 					+ " ORDER BY site ASC";
 
 			System.out.println("sql : " + sql);

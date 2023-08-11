@@ -24,9 +24,6 @@
     var selectedHour = null;
     var selectedMinute = null;
     
-    const detailInfo = [];
-    const dbInfo = [];
-    
     var start = [];
     var use = [];
     
@@ -100,13 +97,7 @@
 									dateCell.classList.remove('selected');
 								}
 								dateCell = this;
-								this.classList.add('selected');
-			                	
-			                	timeHour();
-			                	timeMinute();
-
-								alert(start[0]);
-								alert(use[0]);			                	
+								this.classList.add('selected');	                	
 				        	};
 						}
 					}
@@ -126,11 +117,11 @@
 	  	}
 	}
     
-    function timeHour(){
+    function timeHour(start, use){
 		removeAllChildren(hourContainer);
 		//한 줄에 5개만 있도록 갯수 설정하는 변수
 	    var line = 0;
-	    	
+	   	
 	    for(i=9 ; i<24 ; i++){
 	    	if(line!=0 && line%5==0){
 				const br = document.createElement('br');
@@ -152,6 +143,7 @@
 				if(i >= currentHour){
 	            	button.classList.add('btn-h');
 	            	button.onclick = function(){
+						timeMinute();
 						selectedHour = this.getAttribute('id');
 						
 						if(selectedHour == 9){
@@ -171,6 +163,7 @@
 			}else{
 				button.classList.add('btn-h');
 				button.onclick = function(){
+					timeMinute();
 					selectedHour = this.getAttribute('id');
 					if(selectedHour == 9){
 						selectedHour = "0" + selectedHour;
