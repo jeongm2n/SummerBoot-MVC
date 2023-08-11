@@ -10,8 +10,8 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <%@ include file="../common/header.jsp" %>
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_seo.css">
-    <%-- 지점선택 시 아래에 선택한 지점이 뜨도록 --%>
     <script>
+    // 지점선택 시 아래에 선택한 지점이 뜨도록 
     const shops=['서울본점','경기군포점','경기평택점','대구점'];
     $(document).ready(function(){
 	    $("input:radio[name='shops']").click(function(){
@@ -115,7 +115,9 @@
     <script>
 		
 		function getDB(){
-
+		//페이지 전환 없이 DB의 값을 가져오기 위함
+		//원하는 예약 날짜를 선택 시 컨트롤러의 chkReservation1.do 액션이 실행됨
+		//json형태로 컨트롤러에 데이터를 보내면 쿼리문을 실행하여 결과값을 다시 json으로 받아옴
 			$.ajax({
 				url : "chkReservation1.do",
 				type : "get",

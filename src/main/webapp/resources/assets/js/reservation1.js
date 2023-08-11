@@ -42,58 +42,58 @@
     }
     
     
-    
+    //달력 만드는 함수
     function buildCalendar(){
 		var nowMonth = now.getMonth()+1;
     	monthEquals = thisMonth(nowMonth, realMonth);
     	
-    	var selectedtd = null;
-    	
     	var first = new Date(now.getFullYear(), now.getMonth(), 1);
+    	//달의 첫 번째 날을 구하기 위함
       	var last = new Date(now.getFullYear(), now.getMonth()+1, 0);
-      	
+      	//달의 마지막날을 구하기 위함
       	
       	const monthLabel = document.getElementById('calendarTitle');
+      	//달력의 yyyy년 M월을 표현하기 위한 Label
       	var headerYM = now.getFullYear()+"년"+(now.getMonth()+1)+"월";
   		monthLabel.textContent = headerYM;
       	
   		const tbody = document.createElement('tbody');
   		tbody.setAttribute('id','calBody');
   		
-  		let date = 1;
-  		var week = (last.getDate()/7)+1;
+  		let date = 1; //1일~ 마지막날까지 반복문 돌릴 변수
+  		var week = (last.getDate()/7)+1; //해당 달이 몇 주인지 구하는 변수
   		for (i=0; i<week; i++) {
-    		const weekRow = document.createElement('tr');
-    		for(j=0 ; j<7 ; j++){
-				if(i===0 && j<first.getDay()){
+    		const weekRow = document.createElement('tr'); //각 주마다 <tr>을 만들고
+    		for(j=0 ; j<7 ; j++){ //7일을 돌면서 요일 셀을 만듬
+				if(i===0 && j<first.getDay()){ //첫 번째 주이면서, 달의 첫 번째 날보다 앞의 셀들은 비워둬야 하므로
+					const emptyCell = document.createElement('td'); //아무것도 없는 빈 셀을 생성
+        			weekRow.appendChild(emptyCell);
+				}else if(date > last.getDate()){ //마지막날보다 date가 남았으면 빈 셀로 생성
 					const emptyCell = document.createElement('td');
         			weekRow.appendChild(emptyCell);
-				}else if(date > last.getDate()){
-					const emptyCell = document.createElement('td');
-        			weekRow.appendChild(emptyCell);
-				}else{
+				}else{ //해당 달의 첫번째 날~ 마지막날 사이의 숫자들이면 날짜 셀을 생성 (ex 1~31일)
 					var dateCell = document.createElement('td');
 					dateCell.setAttribute('id',date);
 					dateCell.textContent = date;
 					
-					if(monthEquals == 0){
-						if(date>=now.getDate() && date<=(now.getDate()+6)){
+					if(monthEquals == 0){ //이번 달이면
+						if(date>=now.getDate() && date<=(now.getDate()+6)){ //오늘로부터 일주일 동안만 예약가능하도록 하기 위함
 							dateCell.classList.add('td-click');
-							dateCell.onclick = function(){
-						        selectedMonth = 1 + now.getMonth();
-						        selectedDate = this.getAttribute('id');
+							dateCell.onclick = function(){ //7일 동안만 클릭가능하도록 클릭이벤트 설정
+						        selectedMonth = 1 + now.getMonth(); //선택한 달의 정보
+						        selectedDate = this.getAttribute('id'); //선택한 날의 정보
 						        
 						        //10의자리 숫자면 그대로, 1의자리 숫자면 0을 붙여서 (ex.09)
 						        clickedDate = selectedDate >= 10 ? selectedDate : '0' + selectedDate; 
 				            	clickedMonth = selectedMonth >= 10 ? selectedMonth : '0' + selectedMonth;
-				            	clickedMD = clickedMonth + "-" + clickedDate;
+				            	clickedMD = clickedMonth + "-" + clickedDate; //"08-11" 의 형태로 만듬
 			            		
-			            		getDB();				
+			            		getDB(); //DB에서 해당 지점의 선택한 날짜의 예약 정보를 가져오기 위한 함수 실행			
 			            		document.getElementById("btn-date").value = clickedMD;
 			            		var btn = document.getElementById('btn-date');
-			                	btn.innerHTML = clickedMD;
+			                	btn.innerHTML = clickedMD; //아래쪽에 사용자가 선택한 날짜를 띄우기 위한 코드
 											                	
-				                if(dateCell != null){
+				                if(dateCell != null){ //다른 셀을 선택 시 색 변경 (선택된 셀은 주황색, 아닌 셀은 흰색)
 									dateCell.classList.remove('selected');
 								}
 								dateCell = this;
@@ -102,48 +102,49 @@
 						}
 					}
 					
-			        weekRow.appendChild(dateCell);
-			        date++;
+			        weekRow.appendChild(dateCell); //날짜 셀을 주 <tr>에 추가
+			        date++; 
 				}
 			}
-			tbody.appendChild(weekRow);
+			tbody.appendChild(weekRow); //테이블의 tbody에 각 주 <tr>을 추가
 		}
   		return tbody;
 	}
     
-    function removeAllChildren(element) {
+    function removeAllChildren(element) { //시간, 분 버튼 초기화 시키기 위한 함수
 	  	while (element.firstChild) {
 	    	element.removeChild(element.firstChild);
 	  	}
 	}
     
-    function timeHour(start, use){
-		removeAllChildren(hourContainer);
-		//한 줄에 5개만 있도록 갯수 설정하는 변수
-	    var line = 0;
+    function timeHour(start, use){ //예약 가능 시간대 버튼 만드는 함수
+    
+		removeAllChildren(hourContainer); //이 함수가 실행될 때마다 시간대 버튼을 다 지웠다가 다시 만들기 위함
+		
+	    var line = 0; //한 줄에 5개만 있도록 갯수 설정하는 변수 
 	   	
-	    for(i=9 ; i<24 ; i++){
+	    for(i=9 ; i<24 ; i++){ //9시~23시까지 예약가능하도록 버튼 생성
 	    	if(line!=0 && line%5==0){
 				const br = document.createElement('br');
-            	hourContainer.appendChild(br);
+            	hourContainer.appendChild(br); 
 	    	}
 	    	var button = document.createElement('button');
 	        button.type = 'button';
-	        if(i==9){
+	        if(i==9){ //9시만 혼자 일의 자리 수이기 때문에 09시로 표현하기 위함
 	            button.innerHTML = "0"+i+"시";
 	        }
-	        else{
+	        else{ //나머지는 다 "시"만 붙이면 됨
 	            button.innerHTML = i+"시";
 	        }
 	        
-	        button.setAttribute('id',i);
+	        button.setAttribute('id',i); //각 버튼의 아이디는 각 버튼의 시간으로 설정
 	        
-			//오늘 날짜에 적용할 js
-		    if(currentMD == clickedMD){
-				if(i >= currentHour){
+			
+		    if(currentMD == clickedMD){ //사용자가 선택한 날짜가 오늘이면
+				if(i >= currentHour){ //현재 시간보다 이후의 시간이면 (아직 지나지 않은 시간이면) 클릭 이벤트 연결
 	            	button.classList.add('btn-h');
 	            	button.onclick = function(){
-						timeMinute();
+						timeMinute(); //시간 클릭 시 분 선택 버튼 생성
 						selectedHour = this.getAttribute('id');
 						
 						if(selectedHour == 9){
@@ -157,10 +158,10 @@
 						selectedbtn_H = this;
 						this.classList.add('btn-click');
 					};
-	            }else{ //현재 시간보다 이전 시간은 선택못하게
+	            }else{ //현재 시간보다 이전 시간은 선택못하게 (이미 지난 시간은 선택 못하게)
 					button.classList.add('btn-disabled');
 				}
-			}else{
+			}else{ //사용자가 선택한 날이 오늘이 아니면 시간대는 신경 안써도 되므로
 				button.classList.add('btn-h');
 				button.onclick = function(){
 					timeMinute();
@@ -224,23 +225,23 @@
     	}
     }
     
-    function removeMonth(parentElement, childId){
+    function removeMonth(parentElement, childId){  //달력 초기화하는 함수
 		const childElement = parentElement.querySelector('#' + childId);
 		if (childElement) {
 			parentElement.removeChild(childElement);
 		}
 	}
     
-    //이전 달 달력
+    //이전 달 달력 출력
     function prevMonth(){
-		removeMonth(calendar,'calBody');
+		removeMonth(calendar,'calBody'); //초기화하지 않으면 계속 쌓임
 		now = new Date(now.getFullYear(), now.getMonth()-1, now.getDate());
     	calendar.appendChild(buildCalendar());
     	hourContainer.innerHTML = ""; // 시간 선택 버튼 컨테이너 초기화
   		minuteContainer.innerHTML = ""; // 분 선택 버튼 컨테이너 초기화
     }
     
-	//다음 달 달력
+	//다음 달 달력 출력
     function nextMonth(){
 		removeMonth(calendar,'calBody');
     	now = new Date(now.getFullYear(), now.getMonth()+1, now.getDate());
@@ -258,6 +259,7 @@
     		return false;
     	}else{
     		window.location.href = "./reservation2?shopName="+shopName+"&no="+n+"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+useTime;
+    		//reservation2로 지점 이름, 세차장 고유번호, 선택날짜, 선택한 시작시간, 사용시간에 대한 정보를 넘김
     		return true;
     	}
     }

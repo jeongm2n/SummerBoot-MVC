@@ -24,21 +24,6 @@ public class ReservationController {
 		 return "reservation/reservation1"; 
 	 }
 	
-	/*
-	 * @RequestMapping(value = "/reservation1", method = RequestMethod.GET) public
-	 * ModelAndView chkReservation(HttpServletRequest request,HttpServletResponse
-	 * response) throws Exception { request.setCharacterEncoding("utf-8");
-	 * response.setContentType("text/html; charset=utf-8");
-	 * 
-	 * List<ReservationVO> forres1 = rsDAO.forReservation1();
-	 * 
-	 * ModelAndView mav = new ModelAndView(); mav.addObject("forres1",forres1);
-	 * mav.setViewName("reservation/reservation1"); 
-	 * return mav; 
-	 * }
-	 */
-	
-	
 	@RequestMapping(value = "/chkReservation1.do", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<ReservationVO> chkReservation(@RequestParam("no") int no, @RequestParam("date") String date) throws Exception {
@@ -46,6 +31,7 @@ public class ReservationController {
 		for (ReservationVO resVO : forres1) {
 		    String startTime = resVO.getStartTime();
 		    String useTime = resVO.getUseTime();
+		    //해당 날짜의 예약된 정보를 가져옴
 		    System.out.println("StartTime: " + startTime + ", UseTime: " + useTime);
 		}
 		return forres1;
@@ -58,6 +44,7 @@ public class ReservationController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
+		//예약된 세차 구역의 정보를 가져옴
 		List<Integer> sites = rsDAO.chkSite(no, date, startTime);
 		
 		for (int site : sites) {
