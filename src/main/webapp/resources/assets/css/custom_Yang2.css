@@ -1,171 +1,150 @@
-.main {
-	accent-color: #FD8008;
-}
-
+/*결제 정보*/
 .pay_inform {
-	float:left;
-	height: 100%;
-	width: 55%;
+	display:flex;
+	height: auto;
 	padding-top: 30px;
-	border-right: 2px solid #adb5bd;
 }
 
 .pay_inform .container {
-	float:right;
-	width:700px;
-	padding-right: 100px;
+    justify-content: flex-end;
+	width: 70%;
+	max-width: 750px;
+	min-width: 400px;
 }
 
-.head {
-  	font-size: 0.9rem !important;
-  	font-size: bold;
-  	display: inline-block;
-  	color: #495057
-}
-
-.head a {
-  	font-size: 0.9rem !important;
- 	display: inline-block;
-  	text-decoration-line: none;
-}
-
-.payment{
-	margin-top : 5%;
-}
-
-.payment_label {
-	font-size: 1.2rem !important;
-	font-weight: 800 !important;
+.chkadd { 
 	display: inline-block;
-}
-
-input {
+	width: 100%;;
+	min-width: 350px;
+	height: 120px;
+	margin-top: 10px;
 	border: 1px solid #adb5bd;
-	border-radius: 5px;
-}
-
-.input_type1 {
-	width: 100%;
-	height: 50px;
-	margin-top:10px;
-}
-
-.input_type2 {
-	width: 49%;
-	height: 50px;
-	margin-top:10px;
-}
-
-select { border: solid #adb5bd 1px; border-radius: 5px; color: #FD8008;}
-input::placeholder {color:#FD8008;}
-input::-webkit-input-placeholder {color:#FD8008;}
-input:-ms-input-placeholder {color:#FD8008;}
-
-.sub{
-	width: 150px;
-	height: 50px;
-	font-size:1rem !important;
-	color: white !important;
-	background-color: #FD8008;
-	border: 2px solid #de6e18;
-	border-radius: 5px;
-}
-
-.pro_inform {
-	display:inline-block; 
-	height: 100%;
-	width: 44%;
-	padding-top: 30px;
-	background-color: #F5F5F5;
-}
-
-.pro_inform .container {
-	float:left;
-	padding-left: 75px;
-	
-}
-.product { 
-	width: 400px; 
-	line-height: 75px;
-}
-
-.product .img {
-	width: 75px;
-	height : 75px;
-	border: solid #adb5bd 1px; 
 	border-radius: 10px;
 }
-.product a{
-  color: #495057 !important;
-  font-size: 1rem !important;
-  text-decoration-line: none;
+
+.chkadd .inform {
+	width: 90%;
+	height: 60px;
+	margin: 0px 5%;
+	padding : 20px 0px 10px 0px;
 }
-.product .amount {
-	vertical-align:top;
-	font-weight: 800 !important;
+
+.chkadd .box {
+	float: left;
+	width: 100%;
+	height: 100%;
+	font-weight: 600 !important;
+	text-align: center;
 }
-.product .name{
-	margin-left: 15px;
-	margin-right: 15px;
-	vertical-align:middle;
+
+.chkadd .textbox {
+	margin: 0px;
 	font-weight: 600 !important;
 }
-.product .price{
-	float: right;
-	vertical-align:bottom;
-	font-weight: 600 !important;
+
+.chkadd .tag {
+	float:left;
+	vertical-align: middle;
+	width: 15%;
+	height: 20px;
 }
 
-.point {
-	margin-top: 50px;
-	width: 400px;
-	height: 75px;
-	line-height: 30px;
+.chkadd .detail{
+	display :inline-block;
+	vertical-align: middle;
+	width : 60%;
+	height: 20px;
 }
 
-.point .Label {
+.chkadd .c_btn{
+	float:right;
+	vertical-align: middle;
+	width: 15%;
+	height: 20px;
+}
+
+.chkadd span{
+  	color: #495057 !important;
+  	font-size: 0.8rem !important;
+}
+
+.chkadd a{
+	font-size: 0.8rem !important;
+}
+
+/*결제 방식 선택*/
+.tabs {
+  	padding-bottom: 40px;
+  	background-color: #ffffff;
+ 	width: 100%;
+ 	margin: 0 auto;
+ 	border: 1px solid #adb5bd;
+	border-radius: 10px;
+}
+
+.tab_item {
+	width: calc(100%/2);
+	height: 50px;
+	border-bottom: 3px solid #FD8008;
+	background-color: #f8f8f8;
+	line-height: 50px;
+	font-size: 16px;
+	text-align: center;
+	color: #333333;
+	display: block;
 	float: left;
-	font-size: 0.7rem !important;
-	font-weight: 800 !important;
+	text-align: center;
+	font-weight: bold;
+	transition: all 0.2s ease;
+}
+.tab_item:hover {
+	opacity: 0.75;
 }
 
-.point a {
-	float: right;
-	color: #495057 !important;
-  	font-size:0.8rem !important;
-  	text-decoration-line: none;
+input[name="tab_item"] {
+  	display: none;
 }
 
-.point .point_input{
-	float: left;
-	vertical-align:bottom;
-	width:65%;
-	height: 35px;
+.tab_content {
+	display: none;
+	padding: 40px 40px 0;
+	clear: both;
+	overflow: hidden;
 }
 
-.point .btn {
-	float: right;
-	vertical-align:bottom;
-	padding:0px;
-	width: 120px;
-	height: 35px;
-	font-size:1rem !important;
-	color: white !important;
-	background-color: #FD8008;
-	border: 2px solid #de6e18;
-	border-radius: 5px;
+#all:checked ~ #all_content,
+#programming:checked ~ #programming_content,
+#design:checked ~ #design_content {
+  	display: block;
 }
 
-.total { width:400px; height: 75px;}
-
-.total a {
-	float: right;
-	color: #495057 !important;
-  	font-size: 1rem !important;
-  	font-weight: 600 !important;
-  	text-decoration-line: none;
+/* 선택된 탭 스타일 */
+.tabs input:checked + .tab_item {
+	background-color: #F7BE81;
+	color: #fff;
 }
 
-.total .total_price {
-	margin-top: 20px;
-}
+/*미디어 쿼리*/
+@media screen and (max-width: 800px) {
+	.pay_inform .container {
+		margin-left: auto !important;
+		margin-right: auto !important;		
+	}
+	
+	.chkadd .detail{
+		width : 200px;
+	}
+
+	
+} 
+
+@media screen and (min-width: 800px) {
+	.pay_inform {
+		border-right: 2px solid #adb5bd;
+	}
+	.pay_inform .container {
+		margin-left: auto !important;	
+		margin-right: max(10%, 30px) !important;
+	}
+	
+} 

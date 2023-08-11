@@ -1,26 +1,85 @@
+/*여백 방지*/
+html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
+
 .main {
 	accent-color: #FD8008;
+	height: auto;
 }
 
+/*여닫는 메뉴용*/
+.collapsible {
+    background-color: #F5F5F5;
+    color: #FD8008;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+.collapsible a {
+	float:right;
+}
+
+.active,
+.collapsible:hover {
+    background-color: #F5F5F5;
+}
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #F5F5F5;
+}
+.collapsible:after {
+    content: '\2212';
+    color: #FD8008;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+.active:after {
+    content: "\2193";
+}
+
+/*작은화면용 제품정보*/
+.mobile_pro_inform {
+    grid-area: main;
+	background-color: #F5F5F5;
+}
+
+.mobile_pro_inform .container {
+	margin-right: auto !important;
+	margin-left: auto !important;
+	padding: 0px !important;
+	width: 30%;
+	max-width: 750px;
+	min-width: 350px;
+}
+
+/*주소 정보 입력창*/
 .add_inform {
-	float:left;
-	height: 100%;
-	width: 55%;
+	display:flex;
+	height: auto;
 	padding-top: 30px;
-	border-right: 2px solid #adb5bd;
+	padding-bottom: 30px;
 }
 
 .add_inform .container {
-	float:right;
-	width:700px;
-	padding-right: 100px;
+    justify-content: flex-end;
+	width: 70%;
+	max-width: 750px;
+	min-width: 400px;
 }
 
 .head {
   	font-size: 0.9rem !important;
   	font-size: bold;
   	display: inline-block;
-  	color: #495057
+  	color: #495057;
+  	height: 21px;
 }
 
 .head a {
@@ -39,31 +98,10 @@
 	display: inline-block;
 }
 
-input {
-	border: 1px solid #adb5bd;
-	border-radius: 5px;
-}
-
-.input_type1 {
-	width: 100%;
-	height: 50px;
-	margin-top:10px;
-}
-
-.input_type2 {
-	width: 49%;
-	height: 50px;
-	margin-top:10px;
-}
-
-select { border: solid #adb5bd 1px; border-radius: 5px; color: #FD8008;}
-input::placeholder {color:#FD8008;}
-input::-webkit-input-placeholder {color:#FD8008;}
-input:-ms-input-placeholder {color:#FD8008;}
-
-.sub{
-	width: 150px;
-	height: 50px;
+.add_btn {
+	float: right;
+	width: 100px;
+	height: 30px;
 	font-size:1rem !important;
 	color: white !important;
 	background-color: #FD8008;
@@ -71,54 +109,169 @@ input:-ms-input-placeholder {color:#FD8008;}
 	border-radius: 5px;
 }
 
-.pro_inform {
-	display:inline-block; 
-	height: 100%;
-	width: 44%;
-	padding-top: 30px;
+/*input칸*/
+.input_type1 {
+  	position: relative;
+  	width: 100%;
+  	height: 60px;
+  	margin-top: 20px;
+}
+
+.input_type2{
+	position: relative;
+	width: 49%;
+	height: 60px;
+	margin-top: 20px;
+}
+
+.text_input {
+  color: #222222;
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  padding-left: 10px;
+  padding-top: 15px;
+  position: relative;
+  background: none;
+  z-index: auto;
+}
+
+.text_input::placeholder { color: #aaaaaa; }
+.text_input:focus { outline: none; }
+
+.input_span {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  background-color: #FD8008;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  transition: 0.5s;
+}
+
+.input_label {
+  position: relative;
+  color: #aaa;
+  left: 10px;
+  font-size: 1rem !important;
+  bottom: 35px;
+  transition: all .2s;
+}
+
+.text_input:focus ~ .input_label, .text_input:valid ~ .input_label {
+  font-size: 0.7rem !important;
+  bottom: 65px;
+  color: #FD8008;
+  font-weight: bold;
+}
+
+.text_input:focus ~ .input_span, .text_input:valid ~ .input_span {
+  width: 100%;
+}
+
+
+select { border: solid #adb5bd 1px; border-radius: 5px; color: #FD8008;}
+input::placeholder {color:#FD8008;}
+input::-webkit-input-placeholder {color:#FD8008;}
+input:-ms-input-placeholder {color:#FD8008;}
+
+.sub_btn{
+	width: 150px;
+	height: 50px;
+	margin-top: 15px;
+	font-size:1rem !important;
+	color: white !important;
+	background-color: #FD8008;
+	border: 2px solid #de6e18;
+	border-radius: 5px;
+}
+
+/*미디어 쿼리*/
+@media screen and (max-width: 800px) {
+	.pc_pro_inform {
+		display:none !important;
+	}
+	.add_inform .container {
+		margin-left: auto !important;
+		margin-right: auto !important;		
+	}
+} 
+
+@media screen and (min-width: 800px) {
+	.mobile_pro_inform {
+		display:none !important;
+	}
+	.add_inform {
+		border-right: 2px solid #adb5bd;
+	}
+	.add_inform .container {
+		margin-left: auto !important;	
+		margin-right: max(10%, 30px) !important;
+	}
+} 
+
+/*큰 화면의 제품정보*/
+.pc_pro_inform {
+	display: flex;
+    grid-area: main;
+	padding: 30px 0px 50px 0px !important;
 	background-color: #F5F5F5;
 }
 
-.pro_inform .container {
-	float:left;
-	padding-left: 75px;
-	
+
+.pc_pro_inform .container {
+	align-items: center;
+	justify-content: flex-start;
+	margin-right: auto !important;
+	margin-left: auto !important;
+	padding: 0px !important;
+	width: 30%;
+	max-width: 750px;
+	min-width: 350px;
 }
+
+/*각 제품 정보*/
 .product { 
-	width: 400px; 
-	line-height: 75px;
+	display: inline-block;
+	width: 350px;
+	height: 75px;
+	margin-top: 10px;
 }
 
 .product .img {
+	float:left;
 	width: 75px;
 	height : 75px;
 	border: solid #adb5bd 1px; 
 	border-radius: 10px;
 }
 .product a{
-  color: #495057 !important;
-  font-size: 1rem !important;
-  text-decoration-line: none;
+  	color: #495057 !important;
+  	font-size: 1rem !important;
+  	text-decoration-line: none;
+}
+.product .text_box {
+	width: 274px;
+	height: 25px;
+	margin: 0px;
 }
 .product .amount {
-	vertical-align:top;
 	font-weight: 800 !important;
 }
 .product .name{
-	margin-left: 15px;
-	margin-right: 15px;
-	vertical-align:middle;
 	font-weight: 600 !important;
 }
 .product .price{
 	float: right;
-	vertical-align:bottom;
 	font-weight: 600 !important;
 }
 
 .point {
 	margin-top: 50px;
-	width: 400px;
+	width: 350px;
 	height: 75px;
 	line-height: 30px;
 }
@@ -156,7 +309,7 @@ input:-ms-input-placeholder {color:#FD8008;}
 	border-radius: 5px;
 }
 
-.total { width:400px; height: 75px;}
+.total { width:350px; height: 100px; margin-bottom: 20px;}
 
 .total a {
 	float: right;
