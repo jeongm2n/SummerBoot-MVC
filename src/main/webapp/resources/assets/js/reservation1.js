@@ -116,7 +116,7 @@
 		removeAllChildren(hourContainer);
 		//한 줄에 5개만 있도록 갯수 설정하는 변수
 	    var line = 0;
-	    var a= 0;	
+	    
 	    for(i=9 ; i<24 ; i++){
 	    	if(line!=0 && line%5==0){
 				const br = document.createElement('br');
