@@ -14,9 +14,12 @@
 
 </head>
 <body>
+<!-- 	헤더 -->
 	<%@ include file="../common/header.jsp"%>
     
+<!--     부트스트랩 그리드 -->
 	<div class="main row justify-content-md-center">
+	<!--     모바일화면에서 or 작은 화면에서 보일 상품 정보 -->
       <div class="mobile_pro_inform col col-lg-5">
         <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a>13000₩</a></button>
         <div class="content">
@@ -116,18 +119,20 @@
 			      </div>
 			    </div>
 			  </div>
-			  <form name="ㅔayment_select" action="?" method=get onSubmit="">
+			  <label for="payment_select" class="Inform_label" style="margin-top: 50px;">결제 수단</label><br>
+			  <label style="font-size: 0.7rem !important; ">모든 거래는 안전하고 암호화됩니다.</label>
+			  <form name="payment_select" action="?" method=get onSubmit="">
 			    <div class="select_payment">
 			      <div class="tabs">
     		  	    <input id="all" type="radio" name="tab_item" value="kg"checked>
-    		  	    <label class="tab_item" style="border-top-left-radius: 10px;" for="all">카드결제</label>
+    		  	    <label class="tab_item" style="border-top-left-radius: 10px;" for="all">카드로 결제</label>
     		  	    <input id="programming" type="radio" name="tab_item" value="no">
     		  	    <label class="tab_item" style="border-top-right-radius: 10px;" for="programming">무통장 입금</label>
     		  	    <div class="tab_content" id="all_content">
-        	  	      결제하기 클릭시 카드결제 창이 실행됩니다. 
+        	  	      "결제하기"를 클릭하면 안전하게 구매를 완료할 수 있도록 카드결제 창으로 이동합니다.
     		  	    </div>
     		  	    <div class="tab_content" id="programming_content">
-        	  	  	  결제하기 클릭시 무통장 결제 창이 실행됩니다.
+        	  	  	  "결제하기"를 클릭하면 안전하게 구매를 완료할 수 있도록 무통장 입금 창으로 이동합니다.
 			  	    </div>
 			  	  </div>
 			  	  <input type="submit" class="sub" style="margin-top: 20px;" value="결제하기" >
@@ -137,6 +142,7 @@
           </div>
         </div>
       </div>
+      <!--       pc or 큰화면에서 보일 제품 정보 -->
       <div class="pc_pro_inform col col-lg-5">
         <div class="container">
 		  <div class="product">
@@ -195,7 +201,12 @@
         </div>
       </div>
     </div>
+    
+<!-- 	백엔드 제작 중 -->
 	
+	
+	
+<!-- 	푸터 -->
 	<%@ include file="../common/footer.jsp"%>
     
     

@@ -1,9 +1,12 @@
+/*여백 방지*/
 html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
 
 .main {
 	accent-color: #FD8008;
 	height: auto;
 }
+
+/*여닫는 메뉴용*/
 .collapsible {
     background-color: #F5F5F5;
     color: #FD8008;
@@ -41,6 +44,7 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
     content: "\2193";
 }
 
+/*작은화면용 제품정보*/
 .mobile_pro_inform {
     grid-area: main;
 	background-color: #F5F5F5;
@@ -55,10 +59,12 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
 	min-width: 350px;
 }
 
+/*주소 정보 입력창*/
 .add_inform {
 	display:flex;
 	height: auto;
 	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 .add_inform .container {
@@ -103,31 +109,79 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
 	border-radius: 5px;
 }
 
-input {
-	border: 1px solid #adb5bd;
-	border-radius: 5px;
-}
-
+/*input칸*/
 .input_type1 {
-	width: 100%;
-	height: 60px;
-	margin-top:10px;
+  	position: relative;
+  	width: 100%;
+  	height: 60px;
+  	margin-top: 20px;
 }
 
-.input_type2 {
+.input_type2{
+	position: relative;
 	width: 49%;
 	height: 60px;
-	margin-top:10px;
+	margin-top: 20px;
 }
+
+.text_input {
+  color: #222222;
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  padding-left: 10px;
+  padding-top: 15px;
+  position: relative;
+  background: none;
+  z-index: auto;
+}
+
+.text_input::placeholder { color: #aaaaaa; }
+.text_input:focus { outline: none; }
+
+.input_span {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  background-color: #FD8008;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  transition: 0.5s;
+}
+
+.input_label {
+  position: relative;
+  color: #aaa;
+  left: 10px;
+  font-size: 1rem !important;
+  bottom: 35px;
+  transition: all .2s;
+}
+
+.text_input:focus ~ .input_label, .text_input:valid ~ .input_label {
+  font-size: 0.7rem !important;
+  bottom: 65px;
+  color: #FD8008;
+  font-weight: bold;
+}
+
+.text_input:focus ~ .input_span, .text_input:valid ~ .input_span {
+  width: 100%;
+}
+
 
 select { border: solid #adb5bd 1px; border-radius: 5px; color: #FD8008;}
 input::placeholder {color:#FD8008;}
 input::-webkit-input-placeholder {color:#FD8008;}
 input:-ms-input-placeholder {color:#FD8008;}
 
-.sub{
+.sub_btn{
 	width: 150px;
 	height: 50px;
+	margin-top: 15px;
 	font-size:1rem !important;
 	color: white !important;
 	background-color: #FD8008;
@@ -135,6 +189,7 @@ input:-ms-input-placeholder {color:#FD8008;}
 	border-radius: 5px;
 }
 
+/*미디어 쿼리*/
 @media screen and (max-width: 800px) {
 	.pc_pro_inform {
 		display:none !important;
@@ -158,6 +213,7 @@ input:-ms-input-placeholder {color:#FD8008;}
 	}
 } 
 
+/*큰 화면의 제품정보*/
 .pc_pro_inform {
 	display: flex;
     grid-area: main;
@@ -177,7 +233,7 @@ input:-ms-input-placeholder {color:#FD8008;}
 	min-width: 350px;
 }
 
-
+/*각 제품 정보*/
 .product { 
 	display: inline-block;
 	width: 350px;

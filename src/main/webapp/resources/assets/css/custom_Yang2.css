@@ -1,4 +1,4 @@
-
+/*결제 정보*/
 .pay_inform {
 	display:flex;
 	height: auto;
@@ -72,9 +72,8 @@
 	font-size: 0.8rem !important;
 }
 
-/* 탭 전체 스타일 */
+/*결제 방식 선택*/
 .tabs {
-  	margin-top: 50px !important;
   	padding-bottom: 40px;
   	background-color: #ffffff;
  	width: 100%;
@@ -83,7 +82,6 @@
 	border-radius: 10px;
 }
 
-/* 탭 스타일 */
 .tab_item {
 	width: calc(100%/2);
 	height: 50px;
@@ -103,12 +101,10 @@
 	opacity: 0.75;
 }
 
-/* 라디오 버튼 UI삭제*/
 input[name="tab_item"] {
   	display: none;
 }
 
-/* 탭 컨텐츠 스타일 */
 .tab_content {
 	display: none;
 	padding: 40px 40px 0;
@@ -116,8 +112,6 @@ input[name="tab_item"] {
 	overflow: hidden;
 }
 
-
-/* 선택 된 탭 콘텐츠를 표시 */
 #all:checked ~ #all_content,
 #programming:checked ~ #programming_content,
 #design:checked ~ #design_content {
@@ -130,7 +124,7 @@ input[name="tab_item"] {
 	color: #fff;
 }
 
-
+/*미디어 쿼리*/
 @media screen and (max-width: 800px) {
 	.pay_inform .container {
 		margin-left: auto !important;

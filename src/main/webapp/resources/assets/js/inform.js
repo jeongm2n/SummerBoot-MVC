@@ -1,3 +1,4 @@
+//여닫는 메뉴 함수
 function collapse(element) {
     var before = document.getElementsByClassName("active")[0]        
     if (before && document.getElementsByClassName("active")[0] != element) {  
