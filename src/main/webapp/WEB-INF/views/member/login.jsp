@@ -9,7 +9,7 @@
 <title>로그인</title>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
+<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
 
 <script>
 	$(document).on('click', '#login' , function() {
@@ -28,7 +28,7 @@
 	
 	$(document).ready(function() {
         var message = "${msg}";
-        if ("${msg}" != '') {
+        if ("${msg}" != '') { //로그인 실패 시 로그인 실패 알림
             alert(message);
         }
     });
@@ -61,7 +61,6 @@
             </form>
         </div>
     </div>
-	
 	
 	<%@ include file="../common/footer.jsp" %>
 </body>

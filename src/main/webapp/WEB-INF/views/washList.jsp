@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 	<%@ include file="./common/header.jsp" %>
-    <link rel="stylesheet" href="${path}/resources/assets/css/use_lee.css">
+    <link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
 </head>
 <body>
+	<% String file_repo = "/summerboot2/resources/assets/img/"; %>
 	
 	<section class="bg-light">
         <div class="container py-5">
@@ -18,10 +18,11 @@
                     <h1 class="h1">지점 정보</h1>
                 </div>
             </div>
+            <c:forEach var="list" items="${washList }">
             <div class="row">
                 <div class="mb-4">
                     <div class="card h-100">
-                        <img src="${path}/resources/assets/img/seoul.jpg" class="card-img-top washList" alt="...">
+                        <img src="<%=file_repo %>${list.img}" class="card-img-top washList" alt="...">
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between star">
                                 <li>
@@ -31,13 +32,11 @@
                                     <i class="text-muted fa fa-star"></i>
                                     <i class="text-muted fa fa-star"></i>
                                 </li>
-                                <li class="h3 text-decoration-none text-dark text-right">서울 본점</li>
+                                <li class="h3 text-decoration-none text-dark text-right">${list.name }</li>
                             </ul>
                             <div class="list">
 	                            <i class="fa fa-map-marker-alt"></i>
-	   	                        <span class="card-text h3">
-	                                서울 광진구 능동로 209 (군자동)
-	   	                        </span>
+	   	                        <span class="card-text h3" onclick = "map('${list.no }');" style="cursor: pointer;">${list.address } </span>
                             </div>
                             <div class="list">
 	                            <i class="fa fa-clock"></i>
@@ -55,118 +54,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <div class="card h-100">
-                        <img src="${path}/resources/assets/img/gunpo.jpg" class="card-img-top washList" alt="...">
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between star">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                                <li class="h3 text-decoration-none text-dark text-right">경기 군포점</li>
-                            </ul>
-                            <div class="list">
-	                            <i class="fa fa-map-marker-alt"></i>
-	   	                        <span class="card-text h3">
-	                                경기 군포시 청백리길 6 (금정동)
-	   	                        </span>
-                            </div>
-                            <div class="list">
-	                            <i class="fa fa-clock"></i>
-	   	                        <span class="card-text h3">
-	                           		 AM 9:00 ~ PM 12:00
-	   	                        </span>
-   	                        </div>
-   	                        <div class="list">
-	                            <i class="fa fa-phone"></i>
-	                            <span class="card-text h3">
-	                           		 031-392-3000
-	   	                        </span>
-   	                        </div>
-                            <p class="text-muted pt-4">Reviews (48)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <div class="card h-100">
-                        <img src="${path}/resources/assets/img/pyeongtaek.jpg" class="card-img-top washList" alt="...">
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between star">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                </li>
-                                <li class="h3 text-decoration-none text-dark text-right">경기 평택점</li>
-                            </ul>
-                            <div class="list">
-	                            <i class="fa fa-map-marker-alt"></i>
-	   	                        <span class="card-text h3">
-	                                경기 평택시 경기대로 245 (비전동)
-	   	                        </span>
-                            </div>
-                            <div class="list">
-	                            <i class="fa fa-clock"></i>
-	   	                        <span class="card-text h3">
-	                           		 AM 9:00 ~ PM 12:00
-	   	                        </span>
-   	                        </div>
-   	                        <div class="list">
-	                            <i class="fa fa-phone"></i>
-	                            <span class="card-text h3">
-	                           		 031-8024-5000
-	   	                        </span>
-   	                        </div>
-                            <p class="text-muted pt-4">Reviews (74)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <div class="card h-100">
-                        <img src="${path}/resources/assets/img/daegu.jpg" class="card-img-top washList" alt="...">
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between star">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                </li>
-                                <li class="h3 text-decoration-none text-dark text-right">대구점</li>
-                            </ul>
-                            <div class="list">
-	                            <i class="fa fa-map-marker-alt"></i>
-	   	                        <span class="card-text h3">
-	                                대구 중구 공평로 88 (동인동1가)
-	   	                        </span>
-                            </div>
-                            <div class="list">
-	                            <i class="fa fa-clock"></i>
-	   	                        <span class="card-text h3">
-	                           		 AM 9:00 ~ PM 12:00
-	   	                        </span>
-   	                        </div>
-   	                        <div class="list">
-	                            <i class="fa fa-phone"></i>
-	                            <span class="card-text h3">
-	                           		 053-803-0114
-	   	                        </span>
-   	                        </div>
-                            <p class="text-muted pt-4">Reviews (74)</p>
-                        </div>
-                    </div>
-                </div>
             </div>
+            </c:forEach>
         </div>
     </section>
     
     <%@ include file="./common/footer.jsp" %>
 </body>
 </html>
+
+<script>
+	function map(store) {
+		window.open("http://localhost:8060/summerboot2/branch/map?store=" + store, 'name(about:blank)', 'width=500, height=500');
+	}
+</script>

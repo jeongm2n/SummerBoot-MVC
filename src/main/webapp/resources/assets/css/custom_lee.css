@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /* #FFB26B */
 /* FFD36E */
+
 /* 세차장리스트 */
 .card {
 	flex-direction: row;
@@ -62,3 +63,56 @@ i {
 	flex:1 1 auto;
 	/* width: 1%; */
 }
+
+/* 장바구니 */
+.badge {
+	color:black;
+}
+
+.row_cart {
+	align-items: center;
+	
+}
+
+@media (min-width: 992px) {
+  .row_cart {
+  	flex : 1 1 40%;
+   	justify-content: space-around;
+  }
+}
+.cart_list {
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.product_img {
+	width: 35%;
+	height : 35%;
+    margin-right: 5%;
+}
+
+.quan {
+	margin-top : 0;
+	margin-bottom : 0;
+}
+
+.pay {
+	justify-content: flex-end;
+	margin-bottom:1%;
+    align-items: center;
+}
+
+.cost {
+	max-width: 170px;
+}
+
+.delete {
+	position: absolute;
+    margin-left: 85%;
+}
+
+/* @media (min-width:992px){} */
+/* @media (min-width: 992px) {
+  .row_media { flex-direction: column;}
+} */

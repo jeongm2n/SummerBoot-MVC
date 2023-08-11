@@ -151,8 +151,10 @@ public class MemberDAO {
 				cnt = rs.getInt("cnt");
 			}
 			
-			if (cnt == 0) {
-				sql = "UPDATE member";
+			System.err.println(cnt);
+			
+			if (cnt == 1) {
+				sql = "UPDATE sb_member";
 				sql += " SET pwd=? WHERE id = ?";
 				System.out.println("prepareStatement : " + sql);
 	

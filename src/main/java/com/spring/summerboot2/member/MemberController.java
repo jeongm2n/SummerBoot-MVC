@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,22 +30,19 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String login(Model model, @RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		ModelAndView mav = new ModelAndView();
 		boolean login = memberService.login(id, pwd);
 		
 		if(login) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", id);
-			mav.setViewName("washList");
-			return mav;
+			return "home";
 		} else {
-			mav.addObject("msg", "아이디와 비밀번호가 일치하지 않습니다.");
-			mav.setViewName("member/login");
-			return mav;
+			model.addAttribute("msg", "아이디와 비밀번호가 일치하지 않습니다.");
+			return "member/login";
 		}
 	}
 	
