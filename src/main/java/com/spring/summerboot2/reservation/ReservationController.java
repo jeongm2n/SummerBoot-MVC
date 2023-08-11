@@ -46,9 +46,11 @@ public class ReservationController {
 		
 		//예약된 세차 구역의 정보를 가져옴
 		List<Integer> sites = rsDAO.chkSite(no, date, startTime);
+		int i = 0;
 		
 		for (int site : sites) {
-		    System.out.println("site: " + site);
+		    System.out.println("site "+i+": " + site);
+		    i++;
 		}
 		
 		ModelAndView mav = new ModelAndView();
