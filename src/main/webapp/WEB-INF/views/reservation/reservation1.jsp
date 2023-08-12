@@ -90,12 +90,12 @@
     	</div>
     </div>
     
-<!--     div5를 가운데에 붙이기 위해 text-align: center 사용 -->
-    <div class="col-lg-6" style="height:550px; text-align: center;">
+<!--     가운데 정렬을 위해 text-align을 사용해야 하는데 미디어 쿼리 사용 위해 m_div라는 클래스 추가 -->
+    <div class="col-lg-6 m_div" style="height:550px;">
 <!--       버튼을 오른쪽으로 붙여야하기에 630px짜리 div를 하나 생성 inline-block을 제거시 왼쪽으로 붙어버림-->
       <div style="height:100%; width:630px; display: inline-block;">
-        <!--     	style을 div4 클래스를 이용해 css로 옮김 -->
-    	<div class="border border-4 div4" style="text-align:center">
+        <!--     	div4는 위의 div때문에 style 그대로 사용!-->
+    	<div class="border border-4 div4" style="text-align:center; float:left;">
     	<legend>시간</legend>
 		<!--		margin-top이 legend 기본 margin에 뭍혀 안쓰임 제거 -->
     	<div id="container1" style="width:100%;height:200px;text-align:center;">

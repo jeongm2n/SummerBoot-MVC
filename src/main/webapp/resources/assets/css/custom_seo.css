@@ -178,23 +178,16 @@ td {
 	.div1 { margin-left: auto !important;	margin-right: auto !important;		} 
 	.div2 { margin-left: auto !important;	margin-right: auto !important;		}
 	.div3 { margin-left: auto !important;	margin-right: auto !important;		}
-	.div4 { margin-left: auto !important;	margin-right: auto !important;		}
+	.m_div { text-align: center;}
 	
 } 
 
 @media screen and (min-width: 1000px) {
 	.Point_sel{ padding-right:80px; }
 	
-	.div1 {
-		float:right;
-	}
-	.div2{
-		float:left;
-	}
-	.div3 {
-		float:right;
-	}
-	.div4{
-		float:left;
-	}
+	.div1 { float:right;}
+	.div2 { float:left;}
+	.div3 { float:right;}
+	.div4 { float:left;}
+	.m_div {text-align: left;}
 } 
