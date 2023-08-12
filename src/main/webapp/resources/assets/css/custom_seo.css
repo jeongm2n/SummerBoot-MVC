@@ -50,6 +50,9 @@ Custom Css
 	min-height : 1200px;
 	margin-top : 40px;
 	margin-bottom : 50px;
+/*	row에 기본 margin right 값이 있길래 제거할라고 넣었어요!*/
+	margin-right : 0px !important; 
+	margin-left : 0px !important;
 }
 
 .orange-button {
@@ -60,6 +63,8 @@ Custom Css
 	border-radius: 5px;
 	font-size: 13pt;
 	cursor: pointer;
+	/*정렬 용*/
+	display: inline-block;
 }
 
 .btn-time{
@@ -145,3 +150,51 @@ td {
 	width : 630px;
 	height : 400px
 }
+
+.div5{
+	width:630px;
+	height:50px;
+	margin-top:15px;
+/*	가운데 정렬용!*/
+/*	text-align: center;*/
+/*	오른쪽 정렬 용! 가운데에 붙이고싶으면 위에꺼 살려요! 얘 지우고!*/
+	text-align: right;
+/*	div가 안쓰이고 있었음 inline-block을 추가해 사용되게끔*/
+	display: inline-block;
+}
+
+.div6{
+/*	너무 꽉차는 느낌이라 width를 95%로 바꿔봤어요!*/
+	width:95%;
+	height:100px;
+	margin-top:40px;
+/*	가운데 정렬 하기 위해 추가했어요! 왼쪽에 붙어있더라구요*/
+	margin-right:auto;
+	margin-left:auto;
+}
+
+/*미디어 쿼리*/
+@media screen and (max-width: 1000px) {
+	.div1 { margin-left: auto !important;	margin-right: auto !important;		} 
+	.div2 { margin-left: auto !important;	margin-right: auto !important;		}
+	.div3 { margin-left: auto !important;	margin-right: auto !important;		}
+	.div4 { margin-left: auto !important;	margin-right: auto !important;		}
+	
+} 
+
+@media screen and (min-width: 1000px) {
+	.Point_sel{ padding-right:80px; }
+	
+	.div1 {
+		float:right;
+	}
+	.div2{
+		float:left;
+	}
+	.div3 {
+		float:right;
+	}
+	.div4{
+		float:left;
+	}
+} 
