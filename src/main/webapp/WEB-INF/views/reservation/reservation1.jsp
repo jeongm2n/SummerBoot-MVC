@@ -29,10 +29,9 @@
 <div id="wrapper" class="row">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> 
     
-    <%--나중에 지점 리스트 페이지에서 넘어오는 지점 정보가 있을때와 네비바의 예약을 눌러서 들어왔을 때 다르게 뜨도록 수정해야함!! --%>
-    <div class="col-lg-6 Point_sel" style="text-align:center;">
-		<!--		style을 div1 클래스를 이용해 css로 옮김 -->
-    	<div class="col border border-4 div1">지점 선택
+    <div class="col-lg-6 Point_sel">
+	  <div class="c_div1">
+    	<div class="col border border-4 div1"><a class="title">지점 선택</a>
     	<div class="container text-center">
     	<div class="row row-cols-2">
     	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop1" value=1 autocomplete="off">
@@ -44,9 +43,10 @@
     	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop4" value=4 autocomplete="off">
     	<label class="btn btn-secondary shops" for="shop4">대&nbsp;&nbsp;구&nbsp;&nbsp;점</label></div></div></div>
     	</div>
+	  </div>
     </div>
+<!--     	이 부분도 위에 지점선택처럼 바꾸고 싶었으나 그건 너무 많이 만지는거 같아서 나중에 원하시면 말해주세요 제가 수정할께요! -->
     	<div class="col-lg-6">
-    	<!--     	style을 div2 클래스를 이용해 css로 옮김 -->
     	<div class="border border-4 div2" style="text-align:center">
 	    	<span style="display:inline-block;width:20%;line-height:80px;float:left;vertical-align:middle">사용시간</span>
 	    	<span style="display:inline-block;width:80%;height:80px;float:right">
@@ -65,9 +65,7 @@
 			</span>
     	</div>
     	</div>
-<!--     모바일 페이지시 위아래 간격을 위해 height를 450px로 변경 pc 화면에서 발생하는 오류는 없음 울퉁불퉁 되지 않고 자동으로 오른쪽 div 높이대로 여백을 생성해주기때문 -->
     <div class="col-lg-6" style="height:450px">
-        <!--     	style을 div3 클래스를 이용해 css로 옮김 -->
     	<div class="border border-4 div3" style="text-align:center">
     		<table class="calendartb" id="calendar">
     		<thead style="border-bottom: 1px solid #000;">
@@ -90,24 +88,17 @@
     	</div>
     </div>
     
-<!--     가운데 정렬을 위해 text-align을 사용해야 하는데 미디어 쿼리 사용 위해 m_div라는 클래스 추가 -->
     <div class="col-lg-6 m_div" style="height:550px;">
-<!--       버튼을 오른쪽으로 붙여야하기에 630px짜리 div를 하나 생성 inline-block을 제거시 왼쪽으로 붙어버림-->
-      <div style="height:100%; width:630px; display: inline-block;">
-        <!--     	div4는 위의 div때문에 style 그대로 사용!-->
+      <div class="c_div2">
     	<div class="border border-4 div4" style="text-align:center; float:left;">
     	<legend>시간</legend>
-		<!--		margin-top이 legend 기본 margin에 뭍혀 안쓰임 제거 -->
     	<div id="container1" style="width:100%;height:200px;text-align:center;">
     	</div>
     	<hr>
     	<legend>분</legend>
-    	<!--     	margin-top이 legend 기본 margin에 뭍혀 안쓰임 제거 -->
-		<!--     	height 100px이 칸을 넘어가기에 안에 넣기 위해 75px로 변경 -->
     	<div id="container2" style="width:100%;height:75px">
     	</div>	
     	</div>
-    	<!--      div5 클래스를 생성하여 style을 css로 옮김 -->
     	<div class="div5">
 		    <button id="btn-shop" type="button" class="orange-button btn-time" style="margin-right:5px" disabled></button>
 		    <button id="btn-date" type="button" class="orange-button btn-time" style="margin-right:5px" disabled></button>
@@ -117,7 +108,6 @@
       </div>
     </div>
     
-<!--      div5 클래스를 생성하여 style을 css로 옮김 -->
     <div class="border border-4 div6">주간날씨
     </div>
 </div>

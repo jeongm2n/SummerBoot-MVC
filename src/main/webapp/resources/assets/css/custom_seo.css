@@ -129,30 +129,69 @@ td {
 	margin-top : 50px;
 }
 
+.container{
+	padding: 0px !important;
+}
+
+.title{
+	color: #495057 !important;
+	text-decoration-line: none;
+	font-weight: 800 !important;
+}
+
+.c_div1{
+	width:95%;
+	max-width:610px;
+	min-width : 390px;
+	height:100%;
+	display: inline-block;
+	text-align: center;
+}
+
+.c_div2{
+	width:95%;
+	max-width:630px;
+	min-width : 390px;
+	height:100%;
+	display: inline-block;
+}
+
 .div1{
-	width : 450px;
+	width : 100%;
+	max-width : 450px;
 	height : 130px;
+	margin-right:auto;
+	margin-left:auto;
+	
 }
 
 .div2{
-	width : 600px;
+	width : 95%;
+	max-width : 600px;
+	min-width : 390px;
 	height : 130px;
 }
 
 .div3{
-	width : 610px;
+	width : 95% !important;
+	max-width : 610px;
+	min-width : 390px;
 	height : 400px;
-	text-align : center
+	text-align : center;
 }
 
 .div4{
+	width : 100% !important;
 	text-align : center;
-	width : 630px;
-	height : 400px
+	max-width : 630px;
+	min-width : 390px;
+	height : 400px;
 }
 
 .div5{
-	width:630px;
+	width: 100%;
+	max-width:630px;
+	min-width : 390px;
 	height:50px;
 	margin-top:15px;
 /*	가운데 정렬용!*/
@@ -166,6 +205,8 @@ td {
 .div6{
 /*	너무 꽉차는 느낌이라 width를 95%로 바꿔봤어요!*/
 	width:95%;
+	max-width: 1240px;
+	min-width : 390px;
 	height:100px;
 	margin-top:40px;
 /*	가운데 정렬 하기 위해 추가했어요! 왼쪽에 붙어있더라구요*/
@@ -175,7 +216,7 @@ td {
 
 /*미디어 쿼리*/
 @media screen and (max-width: 1000px) {
-	.div1 { margin-left: auto !important;	margin-right: auto !important;		} 
+	.Point_sel { text-align:center; display: inline-block;}
 	.div2 { margin-left: auto !important;	margin-right: auto !important;		}
 	.div3 { margin-left: auto !important;	margin-right: auto !important;		}
 	.m_div { text-align: center;}
@@ -183,9 +224,7 @@ td {
 } 
 
 @media screen and (min-width: 1000px) {
-	.Point_sel{ padding-right:80px; }
-	
-	.div1 { float:right;}
+	.Point_sel { text-align:right; display: inline-block;}
 	.div2 { float:left;}
 	.div3 { float:right;}
 	.div4 { float:left;}
