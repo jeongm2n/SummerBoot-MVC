@@ -89,7 +89,7 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
 }
 
 .input{
-	margin-top : 5%;
+	margin-top : 20px;
 }
 
 .Inform_label {
@@ -124,7 +124,7 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
 	margin-top: 20px;
 }
 
-.text_input {
+._input {
   color: #222222;
   width: 100%;
   height: 60px;
@@ -137,8 +137,8 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
   z-index: auto;
 }
 
-.text_input::placeholder { color: #aaaaaa; }
-.text_input:focus { outline: none; }
+._input::placeholder { color: #aaaaaa; }
+._input:focus { outline: none; }
 
 .input_span {
   display: block;
@@ -161,16 +161,19 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
   transition: all .2s;
 }
 
-.text_input:focus ~ .input_label, .text_input:valid ~ .input_label {
+.text:focus ~ .input_label, .text[value]:not([value=""]) ~ .input_label {
   font-size: 0.7rem !important;
   bottom: 65px;
   color: #FD8008;
-  font-weight: bold;
 }
+.text:focus ~ .input_span, .text[value]:not([value=""]) ~ .input_span { width: 100%;}
 
-.text_input:focus ~ .input_span, .text_input:valid ~ .input_span {
-  width: 100%;
+.select:focus ~ .input_label, .select:valid ~ .input_label {
+  font-size: 0.7rem !important;
+  bottom: 65px;
+  color: #FD8008;
 }
+.select:focus ~ .input_span, .select:valid ~ .input_span { width: 100%;}
 
 
 select { border: solid #adb5bd 1px; border-radius: 5px; color: #FD8008;}
