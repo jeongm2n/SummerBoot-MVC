@@ -11,6 +11,8 @@
 
     <title>Wash Boot</title>
     <jsp:include page="/WEB-INF/common.jsp" />
+    <link rel="stylesheet" href="${path}/resources/assets/css/custom_ryu.css">
+    <script src="//code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -109,22 +111,127 @@
 </div>
 <!-- End 세차장 배너 -->
 
+<!-- Start 당일예약현황 -->
+<section class="container py-5">
+    <div class="row text-center pt-5 pb-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1">Today's Reservation</h1>
+            <p>
+                상쾌한 셀프세차, Wash Boot와 함께!<br>
+                Wash Boot 오늘의 예약현황과 날씨를 확인해보세요.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-6 col-lg-3 pb-5">
+            <a data-bs-toggle="collapse" role="button" href="#res_seoul" aria-expanded="false" aria-controls="res_seoul" onclick="return false">
+            <div class="h-100 py-5 services-icon-wap shadow">
+                <div class="h1 text-success text-center"><i class="fa fa-truck fa-lg"></i></div>
+                <h2 class="h5 mt-4 text-center">서울 본점</h2>
+            </div></a>
+        </div>
+
+        <div class="col-md-6 col-lg-3 pb-5">
+            <a data-bs-toggle="collapse" role="button" href="#res_gunpo" aria-expanded="false" aria-controls="res_gunpo" onclick="return false">
+            <div class="h-100 py-5 services-icon-wap shadow">
+                <div class="h1 text-success text-center"><i class="fas fa-exchange-alt"></i></div>
+                <h2 class="h5 mt-4 text-center">경기 군포점</h2>
+            </div></a>
+        </div>
+
+        <div class="col-md-6 col-lg-3 pb-5">
+            <a data-bs-toggle="collapse" role="button" href="#res_pyeongtaek" aria-expanded="false" aria-controls="res_pyeongtaek" onclick="return false">
+            <div class="h-100 py-5 services-icon-wap shadow">
+                <div class="h1 text-success text-center"><i class="fa fa-percent"></i></div>
+                <h2 class="h5 mt-4 text-center">경기 평택점</h2>
+            </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-3 pb-5">
+            <a data-bs-toggle="collapse" role="button" href="#res_daegu" aria-expanded="false" aria-controls="res_daegu" onclick="return false">
+            <div class="h-100 py-5 services-icon-wap shadow">
+                <div class="h1 text-success text-center"><i class="fa fa-user"></i></div>
+                <h2 class="h5 mt-4 text-center">대구점</h2>
+            </div>
+            </a>
+        </div>
+
+        <div class="collapse show" id="res_seoul">
+            <div class="card card-body">
+                서울 본점 예약현황
+            </div>
+        </div>
+        <div class="collapse" id="res_gunpo">
+            <div class="card card-body">
+                경기 군포점 예약현황
+            </div>
+        </div>
+        <div class="collapse" id="res_pyeongtaek">
+            <div class="card card-body">
+                경기 평택점 예약현황
+            </div>
+        </div>
+        <div class="collapse" id="res_daegu">
+            <div class="card card-body">
+                대구점 예약현황
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End 당일예약현황 -->
+
 <!-- Start 세차가이드 -->
 <section class="container py-5">
     <div class="row text-center pt-3 justify-content-center">
-        <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="${path}/resources/assets/img/05.jpg" class="rounded-circle img-fluid border"></a>
+        <div class="col-12 col-md-4 p-5 mt-3 popupModalVideo">
+            <img src="${path}/resources/assets/img/05.jpg" class="rounded-circle img-fluid border">
             <h5 class="text-center mt-3 mb-3"><b>외부세차</b></h5>
-            <p class="text-center"><a class="btn btn-washboot" href="#">가이드</a></p>
+            <!-- data-video="youtube주소일부"-->
+            <p class="text-center"><a data-video="lWHEHVpYiuk" class="btn btn-washboot">가이드</a></p>
         </div>
-        <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="${path}/resources/assets/img/06.jpg" class="rounded-circle img-fluid border"></a>
+        <div class="col-12 col-md-4 p-5 mt-3 popupModalVideo">
+            <img src="${path}/resources/assets/img/06.jpg" class="rounded-circle img-fluid border">
             <h2 class="h5 text-center mt-3 mb-3"><b>내부세차</b></h2>
-            <p class="text-center"><a class="btn btn-washboot" href="#">가이드</a></p>
+            <p class="text-center"><a data-video="OWj8gocWwg8" class="btn btn-washboot">가이드</a></p>
         </div>
+    </div>
+    <div class="video_modal_popup">
+        <div class="video_modal_popup-closer"></div>
     </div>
 </section>
 <!-- End 세차가이드 -->
 
+<!-- 예약현황 js: 지점 클릭시 다른지점 섹션닫기-->
+<script>
+    document.getElementById("res_seoul").addEventListener("show.bs.collapse",function() {
+        $("#res_gunpo, #res_pyeongtaek, #res_daegu").collapse("hide");
+    });
+    document.getElementById("res_gunpo").addEventListener("show.bs.collapse",function() {
+        $("#res_seoul, #res_pyeongtaek, #res_daegu").collapse("hide");
+    });
+    document.getElementById("res_pyeongtaek").addEventListener("show.bs.collapse",function() {
+        $("#res_gunpo, #res_seoul, #res_daegu").collapse("hide");
+    });
+    document.getElementById("res_daegu").addEventListener("show.bs.collapse",function() {
+        $("#res_gunpo, #res_pyeongtaek, #res_seoul").collapse("hide");
+    });
+
+</script>
+
+
+<!-- 세차가이드 js: 모달팝업창으로 유튜브영상 보여주기 -->
+<script>
+    $(".popupModalVideo a").click(function() {
+    $(".video_modal_popup").addClass("reveal"),
+    $(".video_modal_popup .video-wrapper").remove(),
+    $(".video_modal_popup").append("<div class='video-wrapper'><iframe width='560' height='315' src='https://youtube.com/embed/" + $(this).data("video") + "?rel=0&playsinline=1&autoplay=1' allow='autoplay; encrypted-media' allowfullscreen></iframe></div>")
+    }),
+    $(".video_modal_popup-closer").click(function() {
+    $(".video_modal_popup .video-wrapper").remove(),
+    $(".video_modal_popup").removeClass("reveal")
+    });
+</script>
 </body>
 </html>
