@@ -16,6 +16,16 @@
     $(document).ready(function(){
 	    $("input:radio[name='shops']").click(function(){
 	    	n = $("input[name='shops']:checked").val();
+	    	switch(n){
+	    		case 1 : getAPI("66","126");
+	    				break;
+	    		case 2 : getAPI("59","122");
+	    				break;
+	    		case 3 : getAPI("62","114");
+	    				break;
+	    		case 4 : getAPI("89","91");
+	    				break;
+	    	}
 	    	shopName = shops[n-1];
 	    	var btn = document.getElementById('btn-shop');
 	        btn.innerHTML = shopName; 
@@ -141,6 +151,36 @@
 		                    console.log("Use Time:", use[i]);
 		                }
 		                timeHour(start,use);
+		            } catch (error) {
+		                console.error("Error in success callback:", error);
+		            }
+				},
+				error: function(xhr, status, error) {
+			        console.log("AJAX Error:", xhr.responseText);
+			        console.log("Status:", status);
+			        console.log("Error:", error);
+			    },
+			    headers: {
+			        "Accept": "application/json"
+			    }
+			});
+		}
+		
+		function getAPI(nx,ny){
+			$.ajax({
+				url : "getweather.do",
+				type : "post",
+				data : {
+					today : currentYMD, 
+					nx : nx,
+					ny : ny
+				},
+				async : true,
+				dataType: "json",
+				success : function(data){
+					try {
+		                // 데이터가 제대로 전달되었는지 확인
+		                console.log(data);
 		            } catch (error) {
 		                console.error("Error in success callback:", error);
 		            }

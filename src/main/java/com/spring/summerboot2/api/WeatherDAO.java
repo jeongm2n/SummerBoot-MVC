@@ -61,8 +61,7 @@ public class WeatherDAO {
 		for (int i = 0; i < items.length(); ++i) {
 		    JSONObject item = (JSONObject)items.get(i);
 		    String fcstDate = item.getString("fcstDate");
-		    String loc = rec.getString("loc");
-		    // ...
+		    String loc = item.getString("loc");
 		}
 	}
 }
