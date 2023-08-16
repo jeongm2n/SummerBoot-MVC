@@ -25,6 +25,14 @@ public class MemberVO {
 		this.point = point;
 	}
 	
+	public MemberVO(String id, String mem_name, String tel, String address, int point) {
+		this.id = id;
+		this.mem_name = mem_name;
+		this.tel = tel;
+		this.address = address;
+		this.point = point;
+	}
+	
 	public String getId() {
 		return id;
 	}
