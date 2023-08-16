@@ -197,4 +197,34 @@ public class MemberDAO {
 		}
 		return change;
 	}
+	
+	public List<MemberVO> userList() {
+		List<MemberVO> list= new ArrayList<MemberVO>();
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "SELECT * FROM sb_member ORDER BY id";
+			System.out.println("prepareStatement : " + sql);
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String id = rs.getString("id");
+				String name = rs.getString("mem_name");
+				String tel = rs.getString("tel");
+				String address = rs.getString("address");
+				int point = rs.getInt("point");
+				
+				MemberVO vo = new MemberVO(id, name, tel, address, point);
+				list.add(vo);
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

@@ -35,7 +35,6 @@ public class WashlistDAO {
 				System.out.println(name);
 				System.out.println(address);
 				System.out.println(sites);
-				System.out.println(img);
 				
 				WashlistVO vo = new WashlistVO(no, name, address, sites, img);
 				list.add(vo);

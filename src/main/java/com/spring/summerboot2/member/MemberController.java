@@ -156,7 +156,7 @@ public class MemberController {
 	
 		if(change) {
 			mav.addObject("msg", 888);
-			mav.setViewName("/member/my_info");
+			mav.setViewName("member/my_info");
 			
 			return mav;
 		} else {

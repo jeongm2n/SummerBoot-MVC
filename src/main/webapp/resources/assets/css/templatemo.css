@@ -48,6 +48,15 @@ Table of contents
 	left : -2.5rem;
 }
 
+/* 관리자페이지 */
+.bg-gradient-washboot {
+    background-color: #FD8008;
+    background-size: cover;
+}
+
+.text-washboot {
+	color:#FD8008;
+}
 
 
 /* Typography */
