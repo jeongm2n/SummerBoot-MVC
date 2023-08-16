@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <Resource
+            name="jdbc/washboot"
+            auth="Container"
+            type="javax.sql.DataSource"
+            driverClassName="com.mysql.jdbc.Driver"
+
+            url="jdbc:mysql://db-hf42t.pub-cdb.ntruss.com/campusDB"
+            username = "scott"
+            password = "love1103!@"
+            maxActive="20"
+            maxIdle="10"
+            maxWait="3000"/>
+</Context>
