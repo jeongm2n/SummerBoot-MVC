@@ -54,7 +54,7 @@
                 <div id="collapseStores" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="${path}/admin/storeList">지점리스트</a>
-                        <a class="collapse-item" href="#">지점 추가</a>
+                        <a class="collapse-item" href="${path}/admin/storeForm">지점 추가</a>
                     </div>
                 </div>
             </li>

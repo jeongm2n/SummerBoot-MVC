@@ -3,7 +3,7 @@
 /* FFD36E */
 
 /* 세차장리스트 */
-.card {
+.wash-card {
 	flex-direction: row;
 }
 
@@ -30,6 +30,12 @@ i {
 	margin-right:5px;
 }
 
+.list-addr {
+	cursor : pointer;
+}
+.list-addr:hover {
+	color : #FD8008;
+}
 
 /* 회원가입 */
 #checkID {cursor: pointer;}
