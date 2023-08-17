@@ -39,6 +39,7 @@ public class MemberController {
 		if(login) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", id);
+			session.removeAttribute("Inform");
 			return "home";
 		} else {
 			model.addAttribute("msg", "아이디와 비밀번호가 일치하지 않습니다.");
@@ -91,6 +92,7 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request) throws Exception {
 		request.getSession().invalidate();
+//		request.getSession().removeAttribute("user_id");
 		return "home";
 	}
 	

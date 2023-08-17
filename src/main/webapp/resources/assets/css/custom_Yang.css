@@ -92,6 +92,10 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
 	margin-top : 20px;
 }
 
+.chkbox{
+	display:block;
+}
+
 .Inform_label {
 	font-size: 1.2rem !important;
 	font-weight: 800 !important;
@@ -175,6 +179,10 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
 }
 .select:focus ~ .input_span, .select:valid ~ .input_span { width: 100%;}
 
+.post_error {
+  font-size: 0.5rem !important;
+  color: #FD8008;
+}
 
 select { border: solid #adb5bd 1px; border-radius: 5px; color: #FD8008;}
 input::placeholder {color:#FD8008;}
@@ -273,6 +281,7 @@ input:-ms-input-placeholder {color:#FD8008;}
 }
 
 .point {
+	display: block;
 	margin-top: 50px;
 	width: 350px;
 	height: 75px;
@@ -297,6 +306,14 @@ input:-ms-input-placeholder {color:#FD8008;}
 	vertical-align:bottom;
 	width:65%;
 	height: 35px;
+	border: 1px solid #FD8008;
+	border-radius: 5px;
+}
+
+.point .point_input::-webkit-inner-spin-button { 	
+	appearance: none;
+	-moz-appearance: textfield;
+    -webkit-appearance: none;
 }
 
 .point .btn {
@@ -312,7 +329,7 @@ input:-ms-input-placeholder {color:#FD8008;}
 	border-radius: 5px;
 }
 
-.total { width:350px; height: 100px; margin-bottom: 20px;}
+.total { width:350px; height: 100px; margin-bottom: 20px; margin-top: 20px;}
 
 .total a {
 	float: right;
