@@ -17,13 +17,13 @@
 	    $("input:radio[name='shops']").click(function(){
 	    	n = $("input[name='shops']:checked").val();
 	    	switch(n){
-	    		case 1 : getAPI("66","126");
+	    		case "1" : getAPI("66","126");
 	    				break;
-	    		case 2 : getAPI("59","122");
+	    		case "2" : getAPI("59","122");
 	    				break;
-	    		case 3 : getAPI("62","114");
+	    		case "3" : getAPI("62","114");
 	    				break;
-	    		case 4 : getAPI("89","91");
+	    		case "4" : getAPI("89","91");
 	    				break;
 	    	}
 	    	shopName = shops[n-1];
@@ -166,9 +166,9 @@
 			});
 		}
 		
-		function getAPI(nx,ny){
+		function getAPI(nx,ny){//3일간의 날씨정보 API 담아오기!!
 			$.ajax({
-				url : "getweather.do",
+				url : "${path}/api/getWeather.do",
 				type : "post",
 				data : {
 					today : currentYMD, 
@@ -181,6 +181,14 @@
 					try {
 		                // 데이터가 제대로 전달되었는지 확인
 		                console.log(data);
+		                for(i=0;i<data.length;i++){
+		                	const item = data[i];
+		                	console.log("fcstDate : "+item.date);
+		                	console.log("ampop : "+item.ampop);
+		                	console.log("pmpop : "+item.pmpop);
+		                	console.log("tmx : "+item.tmx);
+		                	console.log("tmn : "+item.tmn);
+		                }
 		            } catch (error) {
 		                console.error("Error in success callback:", error);
 		            }
