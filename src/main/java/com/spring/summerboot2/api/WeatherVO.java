@@ -3,18 +3,58 @@ package com.spring.summerboot2.api;
 public class WeatherVO {
 	
 	private String date;
-	private int maxtemp;
-	private int mintemp;
-	private String pcp;
+	private String tmx;
+	private String tmn;
+	private String ampop;
+	private String pmpop;
 	
-	public WeatherVO() {
-		
-	}
-	
-	public WeatherVO(String date, String pcp, int maxtemp, int mintemp) {
+	public WeatherVO(String date, String ampop, String pmpop, String tmx, String tmn) {
 		this.date = date;
-		this.pcp = pcp;
-		this.maxtemp = maxtemp;
-		this.mintemp = mintemp;
+		this.ampop = ampop;
+		this.pmpop = pmpop;
+		this.tmx = tmx;
+		this.tmn = tmn;
 	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getTmx() {
+		return tmx;
+	}
+
+	public void setTmx(String tmx) {
+		this.tmx = tmx;
+	}
+
+	public String getTmn() {
+		return tmn;
+	}
+
+	public void setTmn(String tmn) {
+		this.tmn = tmn;
+	}
+
+	public String getAmpop() {
+		return ampop;
+	}
+
+	public void setAmpop(String ampop) {
+		this.ampop = ampop;
+	}
+
+	public String getPmpop() {
+		return pmpop;
+	}
+
+	public void setPmpop(String pmpop) {
+		this.pmpop = pmpop;
+	}
+	
+	
 }

@@ -21,7 +21,7 @@ public class Get7Controller {
 	public List<WeatherVO> getWeather(@RequestParam("today") String today, @RequestParam("nx") String nx, @RequestParam("ny") String ny) throws Exception{
 		WeatherDAO wdao = new WeatherDAO();
 		
-		List<WeatherVO> weekWeather = wdao.get3Days(today, nx, ny);
+		List<WeatherVO> weekWeather = wdao.get3Days(today, nx, ny); //today는 발표일자를 오늘로 설정하기 위한 변수, nx,ny는 위치 정보
 		
 		return weekWeather;
 	}
