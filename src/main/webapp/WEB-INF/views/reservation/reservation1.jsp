@@ -17,13 +17,13 @@
 	    $("input:radio[name='shops']").click(function(){
 	    	n = $("input[name='shops']:checked").val();
 	    	switch(n){
-	    		case "1" : getAPI("66","126");
+	    		case "1" : getAPI("66","126","11B10101");
 	    				break;
-	    		case "2" : getAPI("59","122");
+	    		case "2" : getAPI("59","122","11B20610");
 	    				break;
-	    		case "3" : getAPI("62","114");
+	    		case "3" : getAPI("62","114","11B20606");
 	    				break;
-	    		case "4" : getAPI("89","91");
+	    		case "4" : getAPI("89","91","11H10701");
 	    				break;
 	    	}
 	    	shopName = shops[n-1];
@@ -166,14 +166,15 @@
 			});
 		}
 		
-		function getAPI(nx,ny){//3일간의 날씨정보 API 담아오기!!
+		function getAPI(nx,ny,location){//3일간의 날씨정보 API 담아오기!!
 			$.ajax({
-				url : "${path}/api/getWeather.do",
+				url : "${path}/api/weekweather.do",
 				type : "post",
 				data : {
 					today : currentYMD, 
 					nx : nx,
-					ny : ny
+					ny : ny,
+					location : location
 				},
 				async : true,
 				dataType: "json",
