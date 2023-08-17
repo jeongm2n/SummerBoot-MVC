@@ -125,7 +125,6 @@ public class WeatherDAO {
         }
         rd.close();
         conn.disconnect();
-        System.out.println(sb.toString());
         
         JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObject = (JSONObject)jsonParser.parse(sb);
@@ -206,8 +205,6 @@ public class WeatherDAO {
         }
         rd1.close();
         conn1.disconnect();
-        System.out.println(sb1.toString());
-		
 		
 		StringBuilder urlBuilder2 = new StringBuilder("http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa"); /*중기기온조회URL*/
         urlBuilder2.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+skey); /*Service Key*/
@@ -234,7 +231,6 @@ public class WeatherDAO {
         }
         rd2.close();
         conn2.disconnect();
-        System.out.println(sb2.toString());
 		
         JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObject = (JSONObject)jsonParser.parse(sb1);

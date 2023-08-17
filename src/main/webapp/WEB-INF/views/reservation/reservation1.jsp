@@ -135,7 +135,7 @@
 					no : n,
 					date : clickedMD
 				},
-				async : true,
+				async : false,
 				dataType: "json",
 				success : function(data){
 					try {
@@ -176,20 +176,24 @@
 					ny : ny,
 					location : location
 				},
-				async : true,
+				async : false,
 				dataType: "json",
 				success : function(data){
 					try {
 		                // 데이터가 제대로 전달되었는지 확인
 		                console.log(data);
-		                for(i=0;i<data.length;i++){
+		                for(i=0; i<data.length; i++){
 		                	const item = data[i];
+		                	
 		                	console.log("fcstDate : "+item.date);
 		                	console.log("ampop : "+item.ampop);
 		                	console.log("pmpop : "+item.pmpop);
 		                	console.log("tmx : "+item.tmx);
 		                	console.log("tmn : "+item.tmn);
+		                	
+		                	weather[i] = data[i];
 		                }
+		                plusDate();
 		            } catch (error) {
 		                console.error("Error in success callback:", error);
 		            }
