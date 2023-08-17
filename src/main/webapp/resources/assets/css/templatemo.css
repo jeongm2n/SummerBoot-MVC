@@ -48,6 +48,15 @@ Table of contents
 	left : -2.5rem;
 }
 
+/* 관리자페이지 */
+.bg-gradient-washboot {
+    background-color: #FD8008;
+    background-size: cover;
+}
+
+.text-washboot {
+	color:#FD8008;
+}
 
 
 /* Typography */
@@ -189,7 +198,7 @@ footer {
 /* Services */
 .services-icon-wap {transition: .3s;}
 .services-icon-wap:hover, .services-icon-wap:hover i {color: #fff;}
-.services-icon-wap:hover {background: #69bb7e;}
+.services-icon-wap:hover {background: #FD8008;}
 /* Contact map */
 .leaflet-control a, .leaflet-control { font-size: 10px !important;}
 .form-control { border: 1px solid #e8e8e8;}
@@ -236,7 +245,7 @@ footer {
 /* Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
   #templatemo_main_nav .navbar-nav {max-width: 550px;}
-  #template-mo-zay-hero-carousel .carousel-item {min-height: 30rem !important;}
+  #template-mo-zay-hero-carousel .carousel-item {min-height: 40rem !important;}
   .product-wap .h3, .product-wap li, .product-wap i, .product-wap p {font-size: 18px !important;}
   .product-wap .product-color-dot {
     width: 12px;

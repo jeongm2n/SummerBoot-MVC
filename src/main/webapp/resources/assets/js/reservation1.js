@@ -3,12 +3,15 @@
 
     var realMonth = date.getMonth()+1; 
     var realToDay = date.getDate();
+    var realYear = date.getFullYear();
     
     var currentMonth = realMonth >= 10 ? realMonth : "0" + realMonth;
     var currentDate = date.getDate() >= 10 ? date.getDate() : "0" +date.getDate();
     var currentMD = currentMonth + "-" + currentDate;
     var currentHour = date.getHours();
     var currentMinute = date.getMinutes();
+    
+    var currentYMD = realYear + currentMonth + currentDate;
     
     var selectedCell;
     var selectedbtn_H;

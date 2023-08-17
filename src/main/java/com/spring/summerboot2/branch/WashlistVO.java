@@ -15,6 +15,13 @@ public class WashlistVO {
 		this.img = img;
 	}
 	
+	public WashlistVO(int no, String name, String address, int sites) {
+		this.no = no;
+		this.name = name;
+		this.address = address;
+		this.sites = sites;
+	}
+	
 	public int getNo() {
 		return no;
 	}
