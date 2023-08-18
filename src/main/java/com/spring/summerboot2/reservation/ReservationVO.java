@@ -8,8 +8,17 @@ public class ReservationVO {
 	private String startTime;
 	private String useTime;
 	private String qr_img;
-	
+
 	public ReservationVO(String startTime, String useTime) {
+		this.startTime=startTime;
+		this.useTime=useTime;
+	}
+
+	public ReservationVO(int no, String member_id, String date, int site, String startTime, String useTime) {
+		this.no=no;
+		this.member_id=member_id;
+		this.date=date;
+		this.site=site;
 		this.startTime=startTime;
 		this.useTime=useTime;
 	}
