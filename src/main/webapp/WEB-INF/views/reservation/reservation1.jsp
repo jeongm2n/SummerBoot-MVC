@@ -32,6 +32,26 @@
 	    });
 	});
     
+    $(document).ready(function() {
+       $('label[for="30"]').click(function() {
+         $('#m_30').prop('checked', true);
+         $('#30').prop('checked', true);
+       });
+       $('label[for="100"]').click(function() {
+           $('#m_100').prop('checked', true);
+           $('#100').prop('checked', true);
+         });
+       $('label[for="130"]').click(function() {
+           $('#m_130').prop('checked', true);
+           $('#130').prop('checked', true);
+         });
+       $('label[for="200"]').click(function() {
+           $('#m_200').prop('checked', true);
+           $('#200').prop('checked', true);
+         });
+
+     });
+
     </script>
 </head>
 
@@ -56,24 +76,41 @@
 	  </div>
     </div>
 <!--     	이 부분도 위에 지점선택처럼 바꾸고 싶었으나 그건 너무 많이 만지는거 같아서 나중에 원하시면 말해주세요 제가 수정할께요! -->
-    	<div class="col-lg-6">
-    	<div class="border border-4 div2" style="text-align:center">
+    	<div class="col-lg-6 p_time">
+    	<div class="border border-4 div2" style="text-align:center;">
 	    	<span style="display:inline-block;width:20%;line-height:80px;float:left;vertical-align:middle">사용시간</span>
 	    	<span style="display:inline-block;width:80%;height:80px;float:right">
 		    	<span class="span-time">
-					<input type="radio" class="btn-check" name="options" id="30" value=29 autocomplete="off" checked>
+					<input type="radio" class="btn-check" name="p_options" id="30" value=29 autocomplete="off" checked>
 					<label class="btn btn-secondary" for="30">30M</label></span>
 				<span class="span-time">	
-					<input type="radio" class="btn-check" name="options" id="100" value=59 autocomplete="off">
+					<input type="radio" class="btn-check" name="p_options" id="100" value=59 autocomplete="off">
 					<label class="btn btn-secondary" for="100">1H</label></span>
 				<span class="span-time">	
-					<input type="radio" class="btn-check" name="options" id="130" value=89 autocomplete="off">
+					<input type="radio" class="btn-check" name="p_options" id="130" value=89 autocomplete="off">
 					<label class="btn btn-secondary" for="130">1H30M</label></span>
 				<span class="span-time">	
-					<input type="radio" class="btn-check" name="options" id="200" value=119 autocomplete="off">
+					<input type="radio" class="btn-check" name="p_options" id="200" value=119 autocomplete="off">
 					<label class="btn btn-secondary" for="200">2H</label></span>
 			</span>
     	</div>
+    	</div>
+    	<div class="col-lg-6 m_time">
+    	<div class="col border border-4 div2">
+    	<div style="width:100%; text-align:center;">
+    		<a class="title">사용 시간</a><br>
+    	</div>	
+	    	<div class="container text-center">
+	    	<div class="row row-cols-2">
+	    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check" name="m_options" id="m_30" value=29 autocomplete="off" checked>
+	    	<label class="btn btn-secondary shops" for="30">30M</label></div>
+	    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check" name="m_options" id="m_100" value=59 autocomplete="off">
+	    	<label class="btn btn-secondary shops" for="100">1H</label></div>
+	    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check" name="m_options" id="m_130" value=89 autocomplete="off">
+	    	<label class="btn btn-secondary shops" for="130">1H30M</label></div>
+	    	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check" name="m_options" id="m_200" value=119 autocomplete="off">
+	    	<label class="btn btn-secondary shops" for="200">2H</label></div></div></div>
+	    </div>
     	</div>
     <div class="col-lg-6" style="height:450px">
     	<div class="border border-4 div3" style="text-align:center">

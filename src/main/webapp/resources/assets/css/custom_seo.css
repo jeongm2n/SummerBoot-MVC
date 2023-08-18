@@ -220,7 +220,7 @@ td {
 	.div2 { margin-left: auto !important;	margin-right: auto !important;		}
 	.div3 { margin-left: auto !important;	margin-right: auto !important;		}
 	.m_div { text-align: center;}
-	
+	.p_time { display: none;}
 } 
 
 @media screen and (min-width: 1000px) {
@@ -229,4 +229,5 @@ td {
 	.div3 { float:right;}
 	.div4 { float:left;}
 	.m_div {text-align: left;}
+	.m_time { display: none;}
 } 
