@@ -3,7 +3,7 @@ package com.spring.summerboot2.reservation;
 public class ReservationVO {
 	private int no;
 	private String member_id;
-	private String date;
+	private String res_date;
 	private int site;
 	private String startTime;
 	private String useTime;
@@ -14,13 +14,23 @@ public class ReservationVO {
 		this.useTime=useTime;
 	}
 
-	public ReservationVO(int no, String member_id, String date, int site, String startTime, String useTime) {
+	public ReservationVO(int no, String member_id, String res_date, int site, String startTime, String useTime) {
 		this.no=no;
 		this.member_id=member_id;
-		this.date=date;
+		this.res_date=res_date;
 		this.site=site;
 		this.startTime=startTime;
 		this.useTime=useTime;
+	}
+	
+	
+
+	public ReservationVO(String member_id, String res_date, int site, String startTime, String useTime) {
+		this.member_id = member_id;
+		this.res_date = res_date;
+		this.site = site;
+		this.startTime = startTime;
+		this.useTime = useTime;
 	}
 
 	public int getNo() {
@@ -38,13 +48,13 @@ public class ReservationVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-
-	public String getDate() {
-		return date;
+	
+	public String getRes_date() {
+		return res_date;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setRes_date(String res_date) {
+		this.res_date = res_date;
 	}
 
 	public int getSite() {

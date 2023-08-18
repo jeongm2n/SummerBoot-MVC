@@ -9,6 +9,7 @@ import com.spring.summerboot2.branch.WashlistVO;
 import com.spring.summerboot2.member.MemberDAO;
 import com.spring.summerboot2.member.MemberVO;
 import com.spring.summerboot2.product.ProductVO;
+import com.spring.summerboot2.reservation.*;
 
 @Service
 public class AdminService {
@@ -30,5 +31,10 @@ public class AdminService {
 	public boolean addProduct(ProductVO vo) {
 		AdminDAO dao = new AdminDAO();
 		return dao.add(vo);
+	}
+	
+	public List<ReservationVO> reservationList(int no){
+		ReservationDAO resdao = new ReservationDAO();
+		return resdao.showList(no);
 	}
 }
