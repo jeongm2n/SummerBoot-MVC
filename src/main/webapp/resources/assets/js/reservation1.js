@@ -300,6 +300,7 @@
 		return img;
 	}
 	
+	//주간날씨 채우는 함수
 	function makeWeather(){
 		weathertable.innerHTML='';
 		
