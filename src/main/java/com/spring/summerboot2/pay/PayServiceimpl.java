@@ -1,5 +1,6 @@
 package com.spring.summerboot2.pay;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -12,14 +13,15 @@ public class PayServiceimpl implements PayService{
 		return paydao.Load_Inform(id, s_inform);
 	}
 
-	@Override
-	public String[] Make_Inform(Map<String, String> inform) {
+	public String[] Add_Session(Map<String, String> inform) {
 		PayDAO paydao = new PayDAO();
-		return paydao.Make_Inform(inform);
+		return paydao.Add_Session(inform);
 	}
 	
 	public void Save_Inform(String id, Map<String, String> inform) {
 		PayDAO paydao = new PayDAO();
 		paydao.Save_Inform(id, inform);
 	}
+
+
 }

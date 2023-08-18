@@ -10,8 +10,17 @@
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang.css">
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang2.css">
     
-    <script src="${path}/resources/assets/js/inform.js"></script>
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    
+    <script src="${path}/resources/assets/js/pay/collapse.js"></script> 
+    
+    <script>
+	$(function(){
+		if(${point eq null}) { document.getElementById("p_point_price").style.display = "none"; document.getElementById("m_point_price").style.display = "none";}
+		else { document.getElementById("p_point_price").style.display = "block"; document.getElementById("m_point_price").style.display = "block";}
+	})
+	</script>
+	
 </head>
 <body>
 <!-- 	헤더 -->
@@ -21,33 +30,30 @@
 	<div class="main row justify-content-md-center">
 	<!--     모바일화면에서 or 작은 화면에서 보일 상품 정보 -->
       <div class="mobile_pro_inform col col-lg-5">
-        <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a>13000₩</a></button>
+        <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a>${total_price}₩</a></button>
         <div class="content">
         <div class="container">
+        <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
+		  	<img src="${path}/resources/assets/img/${product.img}" class="img">
 		  	<div style="float:right;">
 		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
+		  	    <a class="amount">x ${product.quantity}</a>
 		  	  </div>
 		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
+		  	    <a class="name">${product.name}</a>
 		  	  </div>
 		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
+		  	    <a class="price">${product.price}원</a>
 		  	  </div>
 		  	</div>
           </div>
-          <div class="point">
-            <label class="Label">포인트 사용</label>
-            <a>보유포인트 : 1000pt</a>
-            <input type="text" name="" id="" class="point_input" placeholder="포인트 사용" minlength='5' maxlength='10' required >
-           	<button type="button" class="btn" onclick="">전액 사용</button><br>
-          </div>
+        </c:forEach>
           <div class="total">
-          	<a class="product_price">물품 가격 : 10000원</a><br>
-			<a class="shipping">배송비 : 3000원</a><br>
-            <a class="total_price">총 : 13000원</a>
+          	<a class="price">물품 가격 : + ${product_price}원</a><br>
+			<a class="price">배송비 : + ${shipping_price}원</a><br>
+			<a class="point_price" id="m_point_price">포인트 : - ${point}원</a><br>
+            <a class="total_price">총 : ${total_price}원</a>
           </div>
         </div>
       </div>
@@ -117,58 +123,27 @@
       <!--       pc or 큰화면에서 보일 제품 정보 -->
       <div class="pc_pro_inform col col-lg-5">
         <div class="container">
+        <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
+		  	<img src="${path}/resources/assets/img/${product.img}" class="img">
 		  	<div style="float:right;">
 		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
+		  	    <a class="amount">x ${product.quantity}</a>
 		  	  </div>
 		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
+		  	    <a class="name">${product.name}</a>
 		  	  </div>
 		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
+		  	    <a class="price">${product.price}원</a>
 		  	  </div>
 		  	</div>
           </div>
-          <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
-		  	<div style="float:right;">
-		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
-		  	  </div>
-		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
-		  	  </div>
-		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
-		  	  </div>
-		  	</div>
-          </div>
-          <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
-		  	<div style="float:right;">
-		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
-		  	  </div>
-		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
-		  	  </div>
-		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
-		  	  </div>
-		  	</div>
-          </div>
-          <div class="point">
-            <label class="Label">포인트 사용</label>
-            <a>보유포인트 : 1000pt</a>
-            <input type="text" name="" id="" class="point_input" placeholder="포인트 사용" minlength='5' maxlength='10' required >
-           	<button type="button" class="btn" onclick="">전액 사용</button><br>
-          </div>
+        </c:forEach>
           <div class="total">
-          	<a class="product_price">물품 가격 : 10000원</a><br>
-			<a class="shipping">배송비 : 3000원</a><br>
-            <a class="total_price">총 : 13000원</a>
+          	<a class="price">물품 가격 : + ${product_price}원</a><br>
+			<a class="price">배송비 : + ${shipping_price}원</a><br>
+			<a class="point_price" id="p_point_price">포인트 : - ${point}원</a><br>
+            <a class="total_price">총 : ${total_price}원</a>
           </div>
         </div>
       </div>
