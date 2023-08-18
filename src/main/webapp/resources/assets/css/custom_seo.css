@@ -148,6 +148,21 @@ td {
 
 .weatherdiv{
 	width : 100%;
-	height : 150px;
+	height : 100%;
 	margin-top : 40px
+}
+
+.weathertb{
+	text-align : center;
+	width : 100%;
+	height : 100%;
+}
+
+.weathertd{
+	background-color: white;
+}
+
+.weatherimg{
+	width : 60px;
+	height : 60px
 }

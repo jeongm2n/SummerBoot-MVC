@@ -115,7 +115,9 @@
     	</div>
     </div>
     
-    <div class="border border-4 weatherdiv">주간날씨
+    <div class="border border-4 weatherdiv table-responsive">주간날씨
+    <table id="weather" class="weathertb table">
+    </table>
     </div>
 </div>
 <%@ include file="../common/footer.jsp" %>
@@ -194,6 +196,7 @@
 		                	weather[i] = data[i];
 		                }
 		                plusDate();
+		                makeWeather();
 		            } catch (error) {
 		                console.error("Error in success callback:", error);
 		            }

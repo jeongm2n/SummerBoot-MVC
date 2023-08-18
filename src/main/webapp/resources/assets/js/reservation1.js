@@ -37,6 +37,7 @@
     const calendar = document.getElementById('calendar');
     const hourContainer = document.getElementById('container1');
     const minuteContainer = document.getElementById('container2');
+    const weathertable = document.getElementById('weather');
     
     
     function thisMonth(nowMonth, realMonth){ //이번달이면 0, 다음달이면 1 리턴
@@ -281,8 +282,67 @@
 			plusMonth = (plusdate.getMonth()+1) >= 10 ? (plusdate.getMonth()+1) : "0" + (plusdate.getMonth()+1);
     		plusDate = plusdate.getDate() >= 10 ? plusdate.getDate() : "0" + plusdate.getDate();
     		weather[i].date = plusfullYear + plusMonth + plusDate;
-    		alert(weather[i].date);
 		}
+	}
+	
+	function judgeweather(pop){
+		const img = new Image();
+		if(pop<30){
+			img.src = "../resources/assets/img/sun.png";
+		}
+		else if(pop>=30 && pop<50){
+			img.src = "../resources/assets/img/cloudy.png";
+		}
+		else{
+			img.src = "../resources/assets/img/rain.png";
+		}
+		img.classList.add('weatherimg')
+		return img;
+	}
+	
+	function makeWeather(){
+		weathertable.innerHTML='';
+		
+		const week = document.createElement('tr');
+		const weathers = document.createElement('tr');
+		const temps = document.createElement('tr');
+		var img = new Image();
+		
+		for(i=0; i<7; i++){
+			const eachday = document.createElement('th');
+			eachday.colSpan = 2;
+			eachday.innerText = weather[i].date;
+			week.appendChild(eachday);
+			
+			const amweather = document.createElement('td');
+			const br = document.createElement('br');
+			amweather.innerText = "오전";
+			amweather.appendChild(br);
+			img = judgeweather(weather[i].ampop)
+			amweather.appendChild(img);
+			amweather.classList.add('weathertd');
+			
+			const pmweather = document.createElement('td');
+			const br2 = document.createElement('br');
+			pmweather.innerText = "오후";
+			pmweather.appendChild(br2);
+			img = judgeweather(weather[i].pmpop)
+			pmweather.appendChild(img);
+			pmweather.classList.add('weathertd');
+			
+			weathers.appendChild(amweather);
+			weathers.appendChild(pmweather);
+			
+			const temp = document.createElement('td');
+			temp.colSpan = 2;
+			temp.innerText = weather[i].tmn + "/" + weather[i].tmx;
+			temp.classList.add('weathertd');
+			temps.appendChild(temp);
+		}
+		
+		weathertable.appendChild(week);
+		weathertable.appendChild(weathers);
+		weathertable.appendChild(temps);
 	}
     
     calendar.appendChild(buildCalendar());

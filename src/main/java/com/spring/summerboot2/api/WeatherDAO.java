@@ -140,6 +140,7 @@ public class WeatherDAO {
 		String ampop = "";
 		String pmpop = "";
 		String tmn = "";
+		double convert;
 		String tmx = "";
 		
 		for (int i = 0; i < item.size(); i++) { //JSONArray를 돌면서 값을 뽑아올 반복문
@@ -153,6 +154,8 @@ public class WeatherDAO {
 		    			System.out.println("ampop : "+ampop);
 		    		}else if(((String)data.get("category")).equals("TMN")) { 
 		    			tmn = (String)data.get("fcstValue"); //최저온도를 TMN에 저장
+		    			convert = Double.parseDouble(tmn);
+		    			tmn = Integer.toString((int) convert);
 		    			System.out.println("tmn : "+tmn);
 		    		}
 		    	}else if(((String)data.get("fcstTime")).equals("1500")) { 
@@ -162,6 +165,8 @@ public class WeatherDAO {
 		    			System.out.println("pmpop : "+pmpop);
 		    		}else if(((String)data.get("category")).equals("TMX")) { 
 		    			tmx = (String)data.get("fcstValue"); //최고온도를 tmx에 저장
+		    			convert = Double.parseDouble(tmx);
+		    			tmx = Integer.toString((int) convert);
 		    			System.out.println("tmx : "+tmx);
 		    		}
 		    	}
