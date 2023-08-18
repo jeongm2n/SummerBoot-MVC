@@ -12,8 +12,6 @@ function execDaumPostcode() {
 			  roadAddress = roadAddress.replace(data.sigungu,"");
 			  roadAddress = roadAddress.replace(data.bname,"");
 			  $('input[name=street_add]').attr('value',roadAddress.trim());
-
-//			  document.getElementById("street_add").value = roadAddress.trim();
             }
         }).open();
     });

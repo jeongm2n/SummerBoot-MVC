@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Payment</title>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang.css">
@@ -38,34 +38,6 @@
 		  	  </div>
 		  	</div>
           </div>
-          <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
-		  	<div style="float:right;">
-		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
-		  	  </div>
-		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
-		  	  </div>
-		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
-		  	  </div>
-		  	</div>
-          </div>
-          <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
-		  	<div style="float:right;">
-		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
-		  	  </div>
-		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
-		  	  </div>
-		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
-		  	  </div>
-		  	</div>
-          </div>
           <div class="point">
             <label class="Label">포인트 사용</label>
             <a>보유포인트 : 1000pt</a>
@@ -84,8 +56,8 @@
         <div class="container">
           <div>
             <nav>
-              <li class="head"><a href="#">장바구니</a></li>
-    	      <li class="head">&nbsp;>&nbsp;<a href="#"><b>정보</b></a>&nbsp;>&nbsp;</li>
+              <li class="head"><a href="../cart/my_cart">장바구니</a></li>
+    	      <li class="head"><a href="inform">&nbsp;>&nbsp;<b>정보</b></a>&nbsp;>&nbsp;</li>
     	      <li class="head">결제</li>
             </nav>
           </div>
@@ -98,7 +70,7 @@
 			      	  <span class="text">연락처</span>
 			        </div>
 			        <div class="detail">
-			          <span class="text">010-9725-6608</span>
+			          <span class="text">${C_Inform[0]}</span>
 			        </div>
 			        <div class="c_btn">
 			       	  <a class="btn_text" href="#">변경</a>
@@ -111,7 +83,7 @@
 			      	  <span class="text">주소</span>
 			        </div>
 			        <div class="detail">
-			          <span class="text">경기도 군포시 고산로 151번길 26-23 110동 1001호</span>
+			          <span class="text">${C_Inform[1]}</span>
 			        </div>
 			        <div class="c_btn">
 			      	  <a class="btn_text" href="#">변경</a>

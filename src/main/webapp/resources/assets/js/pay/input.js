@@ -6,3 +6,8 @@ window.addEventListener('load', function() {
     })
   }
 })
+
+function all_point(point){
+	$('input[name=m_point]').attr('value',point);
+	$('input[name=p_point]').attr('value',point);
+}
