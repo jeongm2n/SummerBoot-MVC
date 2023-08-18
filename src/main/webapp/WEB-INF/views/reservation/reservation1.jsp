@@ -17,13 +17,13 @@
 	    $("input:radio[name='shops']").click(function(){
 	    	n = $("input[name='shops']:checked").val();
 	    	switch(n){
-	    		case "1" : getAPI("66","126");
+	    		case "1" : getAPI("66","126","11B10101");
 	    				break;
-	    		case "2" : getAPI("59","122");
+	    		case "2" : getAPI("59","122","11B20610");
 	    				break;
-	    		case "3" : getAPI("62","114");
+	    		case "3" : getAPI("62","114","11B20606");
 	    				break;
-	    		case "4" : getAPI("89","91");
+	    		case "4" : getAPI("89","91","11H10701");
 	    				break;
 	    	}
 	    	shopName = shops[n-1];
@@ -138,7 +138,7 @@
 					no : n,
 					date : clickedMD
 				},
-				async : true,
+				async : false,
 				dataType: "json",
 				success : function(data){
 					try {
@@ -169,29 +169,34 @@
 			});
 		}
 		
-		function getAPI(nx,ny){//3일간의 날씨정보 API 담아오기!!
+		function getAPI(nx,ny,location){//3일간의 날씨정보 API 담아오기!!
 			$.ajax({
-				url : "${path}/api/getWeather.do",
+				url : "${path}/api/weekweather.do",
 				type : "post",
 				data : {
 					today : currentYMD, 
 					nx : nx,
-					ny : ny
+					ny : ny,
+					location : location
 				},
-				async : true,
+				async : false,
 				dataType: "json",
 				success : function(data){
 					try {
 		                // 데이터가 제대로 전달되었는지 확인
 		                console.log(data);
-		                for(i=0;i<data.length;i++){
+		                for(i=0; i<data.length; i++){
 		                	const item = data[i];
+		                	
 		                	console.log("fcstDate : "+item.date);
 		                	console.log("ampop : "+item.ampop);
 		                	console.log("pmpop : "+item.pmpop);
 		                	console.log("tmx : "+item.tmx);
 		                	console.log("tmn : "+item.tmn);
+		                	
+		                	weather[i] = data[i];
 		                }
+		                plusDate();
 		            } catch (error) {
 		                console.error("Error in success callback:", error);
 		            }

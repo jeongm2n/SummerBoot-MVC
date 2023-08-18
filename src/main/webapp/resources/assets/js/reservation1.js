@@ -32,6 +32,8 @@
     
     var n;
         
+    var weather = new Array();
+    
     const calendar = document.getElementById('calendar');
     const hourContainer = document.getElementById('container1');
     const minuteContainer = document.getElementById('container2');
@@ -266,6 +268,22 @@
     		return true;
     	}
     }
+    
+    function plusDate(){
+		var plusdate = new Date();
+		var plusMonth;
+		var plusDate;
+		var plusfullYear;
+		
+		for(i=3; i<7; i++){
+			plusdate.setDate(date.getDate()+i);
+			plusfullYear = plusdate.getFullYear();
+			plusMonth = (plusdate.getMonth()+1) >= 10 ? (plusdate.getMonth()+1) : "0" + (plusdate.getMonth()+1);
+    		plusDate = plusdate.getDate() >= 10 ? plusdate.getDate() : "0" + plusdate.getDate();
+    		weather[i].date = plusfullYear + plusMonth + plusDate;
+    		alert(weather[i].date);
+		}
+	}
     
     calendar.appendChild(buildCalendar());
     
