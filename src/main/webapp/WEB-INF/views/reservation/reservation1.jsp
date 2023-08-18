@@ -115,7 +115,7 @@
     	</div>
     </div>
     
-    <div class="border border-4" style="width:100%;height:100px;margin-top:40px">주간날씨
+    <div class="border border-4 weatherdiv">주간날씨
     </div>
 </div>
 <%@ include file="../common/footer.jsp" %>
