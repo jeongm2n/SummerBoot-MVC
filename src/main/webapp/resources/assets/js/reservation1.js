@@ -281,9 +281,9 @@
 			plusMonth = (plusdate.getMonth()+1) >= 10 ? (plusdate.getMonth()+1) : "0" + (plusdate.getMonth()+1);
     		plusDate = plusdate.getDate() >= 10 ? plusdate.getDate() : "0" + plusdate.getDate();
     		weather[i].date = plusfullYear + plusMonth + plusDate;
-    		alert(weather[i].date);
 		}
 	}
+	
     
     calendar.appendChild(buildCalendar());
     

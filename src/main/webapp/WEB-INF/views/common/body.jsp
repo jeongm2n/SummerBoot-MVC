@@ -256,7 +256,7 @@
         //비동기
         $.ajax({
             type   : "GET",
-            url    : "/getTodayResList?site=" + site, //파라미터 넘기는 방식과 컨트롤러에서 받는 방법
+            url    : "${path}/getTodayResList?site=" + site, //파라미터 넘기는 방식과 컨트롤러에서 받는 방법
             success: function (data) {
                 $(`#resList\${site}`).html('') // 템플릿 문자열, Jquery 사용방법
 
@@ -295,7 +295,7 @@
 
             },
             error  : function () {
-                alert("통신 실패.")
+                alert("통신 실패.");
             }
         });
     }
