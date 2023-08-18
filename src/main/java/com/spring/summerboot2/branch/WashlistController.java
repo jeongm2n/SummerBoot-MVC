@@ -31,8 +31,13 @@ public class WashlistController {
     }
 
     @RequestMapping(value = "/map", method = RequestMethod.GET)
-    public String map(@RequestParam("store") String store, Model model) {
-		model.addAttribute("store", store);
-		return "map";
+    public ModelAndView map(@RequestParam("store") String store) {
+    	List<WashlistVO> washList;
+    	washList = washlistService.washList();
+    	ModelAndView mav = new ModelAndView();
+    	mav.addObject("washList", washList);
+    	mav.addObject("store", store);
+    	mav.setViewName("map");
+		return mav;
     }
 }

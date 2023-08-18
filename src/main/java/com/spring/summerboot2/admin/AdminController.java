@@ -85,14 +85,14 @@ public class AdminController {
 		String saveName="";
 		if(!file.isEmpty()) {
 			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			String filename=file.getOriginalFilename();
+			String filename=file.getOriginalFilename(); //파일 이름
 			
 			System.out.println("file.getOriginalFilename = " + filename);
 			int index = filename.lastIndexOf(".");
-			saveName= product.get("product_id") + filename.substring(index); 
+			saveName= product.get("product_id") + filename.substring(index); // 사진파일의 확장자명 구하기
 			
-			String fullPath = uploadPath + saveName;
-			file.transferTo(new File(fullPath));
+			String fullPath = uploadPath + saveName; //파일이름을 상품코드로 변경
+			file.transferTo(new File(fullPath)); //파일 저장
 		}
 		 
 		ModelAndView mav = new ModelAndView();
@@ -105,5 +105,53 @@ public class AdminController {
 		}
 		mav.setViewName("admin/addProduct");
 		return mav;
+	}
+	
+	@RequestMapping(value = "/storeForm", method = RequestMethod.GET)
+    public String storeForm() {
+        return "admin/addStore";
+    }
+	
+	@RequestMapping(value = "/addStore", method = RequestMethod.POST)
+	public String addStore(@RequestParam MultipartFile file, @RequestParam Map<String, String> store) throws IOException {
+		String uploadPath = "C:/ThisIsJava/workspace/SummerBoot-MVC/src/main/webapp/resources/assets/img/";
+		
+		String name = store.get("name");
+		String road_addr = store.get("road_addr");
+		String rest_addr = store.get("rest_addr");
+		int sites =Integer.parseInt(store.get("sites"));
+		String tel = store.get("tel");
+		String open_time = store.get("open_time");
+		String end_time = store.get("end_time");
+		
+		
+		System.out.println("name : " + name);
+		System.out.println("address" + road_addr + " " + rest_addr);
+		System.out.println("sites : " +sites); 
+		System.out.println("tel : " + tel);
+		System.out.println("open_time : " + open_time);
+		System.out.println("end_time : " + end_time);
+		
+		String saveName="";
+		if(!file.isEmpty()) {
+			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			String filename=file.getOriginalFilename(); //파일 이름
+			
+			System.out.println("file.getOriginalFilename = " + filename);
+			int index = filename.lastIndexOf(".");
+			saveName= store.get("name") + filename.substring(index); // 사진파일의 확장자명 구하기
+			
+			String fullPath = uploadPath + saveName; //파일이름을 상품코드로 변경
+			file.transferTo(new File(fullPath)); //파일 저장
+		}
+		 
+		/*
+		 * ModelAndView mav = new ModelAndView();
+		 * 
+		 * ProductVO vo = new ProductVO(product_id, name, amount, price, saveName); if
+		 * (adminService.addProduct(vo)) { mav.addObject("msg", 888); } else {
+		 * mav.addObject("msg", 4); } mav.setViewName("admin/addProduct");
+		 */
+		return "admin";
 	}
 }
