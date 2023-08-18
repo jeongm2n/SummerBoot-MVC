@@ -18,18 +18,27 @@
 	<script>
 	$(function(){
 		if(${p_view}){
-			document.getElementById("point").style.display = "block";
-			document.getElementById("chkbox").style.display = "block";
+			document.getElementById("M_point").style.display = "block";
+			document.getElementById("P_point").style.display = "block";
+			document.getElementById("s_chkbox").style.display = "block";
+			document.getElementById("a_chkbox").style.display = "block";
 		}
 		else{
-			document.getElementById("point").style.display = "none";
-			document.getElementById("chkbox").style.display = "none";
+			document.getElementById("M_point").style.display = "none";
+			document.getElementById("P_point").style.display = "none";
+			document.getElementById("s_chkbox").style.display = "none";
+			document.getElementById("a_chkbox").style.display = "none";
 		}
 	})
 	
-	$(document).ready( function propChagne(){
+	$(document).ready( function propChange(){
 	$("#state").val("${inform.state}").prop("selected", true);
 	});
+	
+	function limiter(input){
+		if (input.value < 0) input.value = 0;
+		if (input.value > ${inform.point}) input.value = ${inform.point};
+	}
 	</script>
 </head>
 <body>
@@ -41,65 +50,38 @@
     <div class="main row justify-content-md-center">
 <!--     모바일화면에서 or 작은 화면에서 보일 상품 정보 -->
       <div class="mobile_pro_inform col col-lg-5">
-        <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a>13000₩</a></button>
+        <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a>가격 : 계산중</a></button>
         <div class="content">
         <div class="container">
+        <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
+		  	<img src="${path}/resources/assets/img/${product.img}" class="img">
 		  	<div style="float:right;">
 		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
+		  	    <a class="amount">x ${product.quantity}</a>
 		  	  </div>
 		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
+		  	    <a class="name">${product.name}</a>
 		  	  </div>
 		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
+		  	    <a class="price">${product.price}원</a>
 		  	  </div>
 		  	</div>
           </div>
-          <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
-		  	<div style="float:right;">
-		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
-		  	  </div>
-		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
-		  	  </div>
-		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
-		  	  </div>
-		  	</div>
-          </div>
-          <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
-		  	<div style="float:right;">
-		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
-		  	  </div>
-		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
-		  	  </div>
-		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
-		  	  </div>
-		  	</div>
-          </div>
-          <div class="point" id="point">
+        </c:forEach>
+          <div class="point" id="M_point">
             <label class="Label">포인트 사용</label>
             <a>보유포인트 : ${inform.point}pt</a>
-            <input type="number" name="m_point" id="m_point" class="point_input" placeholder="포인트 사용" min="0" max="${inform.point}" required>
+            <input type="number" name="m_point" id="m_point" class="point_input" placeholder="포인트 사용" min="0" max="${inform.point}" onchange="limiter(this);" required>
            	<button type="button" class="btn" onclick="all_point(${inform.point})">전액 사용</button><br>
           </div>
           <div class="total">
-          	<a class="product_price">물품 가격 : 10000원</a><br>
-			<a class="shipping">배송비 : 3000원</a><br>
-            <a class="total_price">총 : 13000원</a>
+          	<a class="price">물품 가격 : + ${product_price}원</a><br>
+			<a class="price">배송비 : 계산 중</a><br>
           </div>
         </div>
       </div>
-      </div>
+    </div>
       <div class="add_inform col col-lg-7">
         <div class="container">
           <div>
@@ -118,9 +100,9 @@
     	        <label class="input_label" for="phone">전화번호 ( -제외 )</label>
     	        <span class="input_span"></span>
 		   	  </div>
-		   	  <div class="chkbox" id="chkbox">
+		   	  <div class="chkbox" id="s_chkbox">
 		  	    <input type="checkbox" name="snssts" id="snssts" value="동의" checked> 
-		  	    <label>sns 수신 동의</label>
+		  	    <label for=snssts>sns 수신 동의</label>
 		  	  </div>
 		  	  <br><br><br>
               <label for="state" class="Inform_label">주소</label>
@@ -182,12 +164,13 @@
     	        <label class="input_label" for="option_add">상세 주소(옵션)</label>
     	        <span class="input_span"></span>
 		   	  </div>
-		   	  <div class="chkbox" id="chkbox" style="margin-top: 3px;">
+		   	  <div class="chkbox" id="a_chkbox" style="margin-top: 3px;">
                 <input type="checkbox" name="save_add" id="save_add" value="동의" checked>
-                <label for="save_add" id=chk_label>다음에도 동일한 주소 사용</label>
+                <label for="save_add">다음에도 동일한 주소 사용</label>
                 <br>
 		   	  </div>
             </div>
+            <input type="hidden" name="h_point" id="h_point">
             <input type="submit" class="sub_btn" value="이 주소로 배송" >
           </form>
           </div>
@@ -196,58 +179,31 @@
 <!--       pc or 큰화면에서 보일 제품 정보 -->
       <div class="pc_pro_inform col col-lg-5">
         <div class="container">
+        <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
+		  	<img src="${path}/resources/assets/img/${product.img}" class="img">
 		  	<div style="float:right;">
 		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
+		  	    <a class="amount">x ${product.quantity}</a>
 		  	  </div>
 		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
+		  	    <a class="name">${product.name}</a>
 		  	  </div>
 		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
+		  	    <a class="price">${product.price}원</a>
 		  	  </div>
 		  	</div>
           </div>
-          <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
-		  	<div style="float:right;">
-		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
-		  	  </div>
-		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
-		  	  </div>
-		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
-		  	  </div>
-		  	</div>
-          </div>
-          <div class="product">
-		  	<img src="${path}/resources/assets/img/bullsone.jpg" class="img">
-		  	<div style="float:right;">
-		  	  <div class="text_box">
-		  	    <a class="amount">x 1</a>
-		  	  </div>
-		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">불스원 유리 광택 클리너</a>
-		  	  </div>
-		  	  <div class="text_box">
-		  	    <a class="price">10000원</a>
-		  	  </div>
-		  	</div>
-          </div>
-          <div class="point" id="point">
+        </c:forEach>
+          <div class="point" id="P_point">
             <label class="Label">포인트 사용</label>
             <a>보유포인트 : ${inform.point}pt</a>
-            <input type="number" name="p_point" id="p_point" class="point_input" placeholder="포인트 사용" min="0" max="${inform.point}" required >
+            <input type="number" name="p_point" id="p_point" class="point_input" placeholder="포인트 사용" min="1" max="${inform.point}" onchange="limiter(this);" required>
            	<button type="button" class="btn" onclick="all_point(${inform.point})">전액 사용</button><br>
           </div>
           <div class="total">
-          	<a class="product_price">물품 가격 : 10000원</a><br>
-			<a class="shipping">배송비 : 3000원</a><br>
-            <a class="total_price">총 : 13000원</a>
+          	<a class="price">물품 가격 : + ${product_price}원</a><br>
+			<a class="price">배송비 : 계산 중</a><br>
           </div>
         </div>
       </div>
@@ -258,10 +214,10 @@
     
         
     <script>
-    $("#p_point").keydown(function(){ $('#m_point').val($(this).val()); });
-    $("#p_point").change(function(){ $('#m_point').val($(this).val()); });
-    $("#m_point").keydown(function(){ $('#p_point').val($(this).val()); });
-    $("#m_point").change(function(){ $('#p_point').val($(this).val()); });
+    $("#p_point").keydown(function(){ $('#m_point').val($(this).val()); $('#h_point').val($(this).val()); });
+    $("#p_point").change(function(){ $('#m_point').val($(this).val()); $('#h_point').val($(this).val()); });
+    $("#m_point").keydown(function(){ $('#p_point').val($(this).val()); $('#h_point').val($(this).val()); });
+    $("#m_point").change(function(){ $('#p_point').val($(this).val()); $('#h_point').val($(this).val()); });
 	</script>
 </body>
 </html>

@@ -60,7 +60,7 @@ public class PayDAO {
 		return null;
 	}
 	
-	public String[] Make_Inform(Map<String, String> Inform) {
+	public String[] Add_Session(Map<String, String> Inform) {
 		String[] C_Inform = new String[2];
 		String tel = Inform.get("tel");
 		StringBuffer p_tel = new StringBuffer(tel);

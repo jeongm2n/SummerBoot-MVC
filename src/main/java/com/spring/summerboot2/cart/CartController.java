@@ -68,16 +68,4 @@ public class CartController {
 		return "";
 	}
 	
-	
-	@RequestMapping(value = "/check", method = RequestMethod.POST)
-	public ModelAndView check(@RequestParam Map<String, String> cart, HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("user_id");
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("order", cart);
-		mav.setViewName("member/check");
-		
-		return mav;
-	}
 }
