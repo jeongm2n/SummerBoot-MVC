@@ -10,7 +10,7 @@ public class WashlistVO {
 	private String img;
 	
 
-	WashlistVO(int no, String name, String address, int sites, String tel, String time, String img) {
+	public WashlistVO(int no, String name, String address, int sites, String tel, String time, String img) {
 		this.no = no;
 		this.name = name;
 		this.address = address;
@@ -20,13 +20,39 @@ public class WashlistVO {
 		this.img = img;
 	}
 	
-	public WashlistVO(int no, String name, String address, int sites, String time, String tel) {
+	public WashlistVO(int no, String address, int sites, String tel, String time, String img) {
+		this.no = no;
+		this.address = address;
+		this.sites = sites;
+		this.tel = tel;
+		this.time = time;
+		this.img = img;
+	}
+	
+	public WashlistVO(int no, String address, int sites, String tel, String time) {
+		this.no = no;
+		this.address = address;
+		this.sites = sites;
+		this.tel = tel;
+		this.time = time;
+	}
+	
+	public WashlistVO(int no, String name, String address, int sites, String tel, String time) {
 		this.no = no;
 		this.name = name;
 		this.address = address;
 		this.sites = sites;
 		this.tel = tel;
 		this.time = time;
+	}
+	
+	public WashlistVO(String name, String address, int sites, String tel, String time, String img) {
+		this.name = name;
+		this.address = address;
+		this.sites = sites;
+		this.tel = tel;
+		this.time = time;
+		this.img = img;
 	}
 	
 	public int getNo() {

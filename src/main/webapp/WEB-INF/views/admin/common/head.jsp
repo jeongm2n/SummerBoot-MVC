@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <meta charset="UTF-8">
 <meta charset="utf-8">
@@ -17,4 +19,3 @@
 <!-- Custom styles for this template-->
 <link rel="stylesheet" href="${path}/resources/assets/css/sb-admin-2.min.css">
 <link rel="stylesheet" href="${path}/resources/assets/css/templatemo.css">
-

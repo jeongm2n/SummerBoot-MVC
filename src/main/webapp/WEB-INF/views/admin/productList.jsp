@@ -11,7 +11,7 @@
 
 <body id="page-top">
     <!-- Page Wrapper -->
-    <c:set var="file_repo" value="/ThisIsJava/workspace/SummerBoot-MVC/src/main/webapp/resources/assets/img/"/>
+    <c:set var="file_repo" value="/summerboot2/resources/assets/img/"/>
     <div id="wrapper">
 		<%@ include file="./common/sidebar.jsp" %>
 

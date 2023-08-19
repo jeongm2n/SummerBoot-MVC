@@ -18,9 +18,10 @@
 	        	alert("오류로 지점 등록에 실패하였습니다.");
 	        }else if (message == 888) {
 	        	alert("새 지점이 등록되었습니다.");
-	            location.href="${path }/admin/storeList";
+	            location.href="${path }/admin/store/storeList";
 	        }
 	    });
+	    
     </script>
 </head>
 
@@ -50,7 +51,7 @@
 				                </div>
 				            	<div class="input-group mb-3">
 					                <label for="inputsubject" class="title">지점명</label>
-				                    <input type="text" class="form-control mt-1" id="name" name="name">
+				                    <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Wash Boot OOO점 형식으로 입력해주세요">
 				                </div>
 				                <div class="input-group mb-3">
 				                    <label for="inputname" class="title">주소</label>
@@ -76,7 +77,7 @@
 				                </div>
 				                <div class="input-group mb-3">
 				                    <label for="inputsubject" class="title">전화번호</label>
-				                    <input type="text" class="form-control mt-1" id="tel" name="tel">
+				                    <input type="text" class="form-control mt-1" id="tel" name="tel" placeholder="OO-OOOO-OOOO 형식으로 입력해주세요">
 				                </div>
 				                <div class="input-group mb-3">
 				                    <label for="inputsubject" class="title">운영시간</label>
@@ -108,12 +109,44 @@
 		$('#imgTag').html("<img src='"+URL.createObjectURL(file)+"' style='max-height:100px; max-width:100px;'/>");
 	}
 	
+	function fn_overlapped(){
+	    if($("#name").val().length == 0){
+	   	 alert("지점명을 입력하세요");
+	   	 return;
+	    }
+	    
+	    var _name = $("#name").val();
+	    var res = false;
+	    
+	    $.ajax({
+	       type:"post",
+	       async:false,  
+	       url:"${path}/admin/store/overlappedName",
+	       dataType:"text",
+	       data: {name:_name},
+	       success:function (data){
+	    	  $(".notice_id").show();
+	          if(data=='not_usable'){
+	        	  alert("이미 존재하는 지점명입니다.");
+	        	  res = false;
+	          } else {
+	        	  res = true;
+	          }
+	       },
+	       error:function(request, error){
+				alert("에러가 발생했습니다.");
+				console.log("code : " + request.status + "\n" + "message : " + request.responseText +"\n" + "error : " + error	);
+			}
+	    });
+	    
+	    return res;
+	 }
+	
 	$(document).on('click', '#add' , function() {
 		if(!$("#file").val()) {
 			alert("상품사진을 선택해주세요.");
 	   		return;
-		} else if($("#name").val().length == 0){
-	   		alert("지점명을 입력하세요.");
+	   	} else if(!fn_overlapped()) {
 	   		return;
 	   	} else if($("#road_addr").val().length == 0) {
 	   		alert("주소를 입력하세요.");
@@ -130,7 +163,11 @@
 	   	} else if($("#end_time").val().length == 0) {
 	   		alert("운영종료시간을 입력하세요.");
 	   		return;
+	   	} else if($("#end_time").val().length == 0) {
+	   		alert("운영종료시간을 입력하세요.");
+	   		return;
 	   	} else {
+	   		alert(">>>>>");
 			document.getElementById("storeForm").submit();
 	   	}
 	});

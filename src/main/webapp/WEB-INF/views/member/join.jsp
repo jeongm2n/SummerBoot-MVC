@@ -16,7 +16,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호검색 -->
 <script src="${path}/resources/assets/js/daumPostcode.js"></script>
 
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 
 <script>
 	function fn_overlapped(){
