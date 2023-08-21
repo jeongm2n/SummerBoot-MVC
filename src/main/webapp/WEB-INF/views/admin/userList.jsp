@@ -18,10 +18,9 @@
 
             <!-- Main Content -->
             <div id="content">
-			<%@ include file="./common/topbar.jsp" %>
-			
-			<div class="container-fluid">
-
+				<%@ include file="./common/topbar.jsp" %>
+				
+				<div class="container-fluid">
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -37,6 +36,7 @@
                                             <th>Phone</th>
                                             <th>Address</th>
                                             <th>Point</th>
+                                            <th>탈퇴</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -46,6 +46,7 @@
                                             <th>Phone</th>
                                             <th>Address</th>
                                             <th>Point</th>
+                                            <th>탈퇴</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -64,6 +65,7 @@
 			                                            <td>${list.tel }</td>
 			                                            <td>${address[0]} ${address[1]} ${address[2]}</td>
 			                                            <td>${list.point }</td>
+			                                            <td onclick="user_delete('${list.id}')" style="cursor:pointer;">탈퇴</td>
 			                                        </tr>
 				                            	</c:forEach>
 			                            	</c:when>
@@ -82,3 +84,28 @@
 	<%@ include file="./common/footer.jsp" %>
 </body>
 </html>
+
+<script>
+	function user_delete(id) {
+		alert(id);
+		if(confirm(id + "님을 탈퇴처리하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				enctype:"multipart/form-data",
+				url:"${path}/admin/deleteUser",
+				dataType:"text",
+				data: {user_id : id},
+				success:function (data){
+					alert(id + "님의 탈퇴처리가 완료되었습니다.");
+					document.location.reload();
+				},
+				error:function(request, error){
+					alert("에러가 발생했습니다.");
+					console.log("code : " + request.status + "\n" + "message : " + request.responseText +"\n" + "error : " + error	);
+				}
+			});
+		} else {
+			return;
+		}
+	}
+</script>

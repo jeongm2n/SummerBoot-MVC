@@ -14,4 +14,9 @@ public class HomeController {
     public String home() {
         return "home";
     }
+    
+    @RequestMapping(value = "/qna", method = RequestMethod.GET)
+    public String inquiry() {
+        return "inquiry";
+    }
 }
