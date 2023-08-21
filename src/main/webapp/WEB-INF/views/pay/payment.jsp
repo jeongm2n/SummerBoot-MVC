@@ -60,7 +60,7 @@
                 if(res.paid_amount == data.response.amount){
                     alert("결제 및 결제검증완료");
                     let link = '/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}';
-                    location.replace(link);
+                    location.href = link;
                 } else {
                     alert("결제 실패");
                 }

@@ -1,12 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+	<title>Payment</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </head>
-<body>
-<h1> ����! </h1>
+<body oncontextmenu="return false">
+<!-- 헤더파일 -->
+	<%@ include file="../common/header.jsp"%>
+	
+    <div style="height: 500px; width: 100%;">
+    	<div style="height: 500px; width:1000px; position: relative; margin: auto;">
+    		<div style=" width: 100%; position: absolute; top: 45%; text-align: center;">
+    			<h1>주문 ${merchant_uid}이 결제 완료되었습니다.</h1>
+    			<input type=button value="메인페이지로" onclick="location.href = '../'" >
+    		</div>
+    	</div>
+    </div>
+<!--     푸터 -->
+	<%@ include file="../common/footer.jsp"%>
+    
+    <script>
+	function noEvent() {
+	    if (event.keyCode == 116) {
+	        event.keyCode= 2;
+	        return false;
+	    }
+	    else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82))
+	    {
+	        return false;
+	    }
+	}
+	document.onkeydown = noEvent;
+
+    history.pushState(null, null, "http://localhost:8060/pay/pay_after");
+    
+    window.onpopstate = function(event) {
+    history.go(1);
+    };
+    </script>
 </body>
 </html>
+ 
