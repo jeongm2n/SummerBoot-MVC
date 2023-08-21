@@ -116,9 +116,9 @@ public class ReservationDAO {
 		return resVO;
 	}
 	
-	public void deleteres(int res_no) {
+	public int deleteres(int res_no) {
 		PreparedStatement pstmt;
-		
+		int result = 0;
 		try {
 			conn = DBconn.getDBCP();
 			
@@ -128,10 +128,13 @@ public class ReservationDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.executeUpdate();
 			
+			result = 1;
+			
 			pstmt.close();
 			conn.close();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 }

@@ -63,8 +63,9 @@ public class AdminService {
 		return resdao.showresList(carwash_no);
 	}
 	
-	public void deleteres(int res_no) {
+	public int deleteres(int res_no) {
 		ReservationDAO resDAO = new ReservationDAO();
-		resDAO.deleteres(res_no);
+		int result = resDAO.deleteres(res_no);
+		return result;
 	}
 }

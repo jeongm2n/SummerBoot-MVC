@@ -19,7 +19,13 @@
 				},
 				async : false,
 				success : function(data){
-					alert("예약 번호 "+res_no+" 삭제 완료");
+					var result = parseInt(data);
+					if(result==1){
+						alert("예약번호 "+res_no+"의 삭제가 완료되었습니다.");
+						location.reload();
+					}else{
+						alert("삭제에 실패했습니다.");
+					}
 				},
 				error: function(xhr, status, error) {
 			        console.log("AJAX Error:", xhr.responseText);

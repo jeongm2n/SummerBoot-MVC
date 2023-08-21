@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -116,7 +117,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/deleteres", method = RequestMethod.POST)
-	public void deleteRes(@RequestParam("res_no") int res_no) {
-		adminService.deleteres(res_no);
+	@ResponseBody
+	public int deleteRes(@RequestParam("res_no") int res_no) {
+		int result = adminService.deleteres(res_no);
+		System.out.println(result);
+		return result;
 	}
 }
