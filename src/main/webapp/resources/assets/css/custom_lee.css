@@ -118,6 +118,35 @@ i {
     margin-left: 85%;
 }
 
+/* 관리자페이지 - 지점리스트 */
+.upBody {
+	display:grid;
+	grid-template-columns : 2fr 1fr;
+}
+.storeImg {
+	align-content: stretch;
+	justify-content: flex-end;
+}
+
+@media (max-width: 1200px) {
+	.upBody {
+		grid-template-columns : 1fr;
+		align-items: end;
+	}
+	.upBody > .storeImg{
+		grid-row: 1;
+	}
+}
+
+.store-show {
+	display : table-row;
+}
+.store-hide {
+	display : none;
+}
+.store-update, .store-delete {
+	cursor:pointer;
+}
 /* @media (min-width:992px){} */
 /* @media (min-width: 992px) {
   .row_media { flex-direction: column;}

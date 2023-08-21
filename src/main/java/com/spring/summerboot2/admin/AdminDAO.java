@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.spring.summerboot2.DBconn;
-import com.spring.summerboot2.member.MemberVO;
+import com.spring.summerboot2.branch.WashlistVO;
 import com.spring.summerboot2.product.ProductVO;
 
 public class AdminDAO {
@@ -15,7 +15,7 @@ public class AdminDAO {
 	private Connection con;
 	private ResultSet rs;
 	
-	public boolean add(ProductVO vo) {
+	public boolean addProduct(ProductVO vo) {
 		try {
 			con = DBconn.getDBCP();
 			
@@ -71,5 +71,136 @@ public class AdminDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public boolean addStore(WashlistVO vo) {
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "INSERT INTO sb_carwash(name, address, sites, tel, time, img) VALUES (?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getAddress());
+			pstmt.setInt(3, vo.getSites());
+			pstmt.setString(4, vo.getTel());
+			pstmt.setString(5, vo.getTime());
+			pstmt.setString(6, vo.getImg());
+			
+			System.out.println("prepareStatement : " + sql);
+			pstmt.executeUpdate();
+			pstmt.close();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean overlapped(String name) {
+		int count = 0;
+		
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "SELECT count(*) as cnt FROM sb_carwash";
+			sql += " WHERE name = '" + name + "'";
+			
+			System.out.println("prepareStatement : " + sql);
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery(sql);
+
+			while(rs.next()) {
+				count = rs.getInt("cnt");
+			}
+			System.out.println(count);
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(count == 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public boolean update(WashlistVO vo) {
+		boolean change = false;
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "UPDATE sb_carwash";
+			sql += " SET address=?, sites=?, tel=?, time=? WHERE no = ?";
+			System.out.println("prepareStatement : " + sql);
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getAddress());
+			pstmt.setInt(2, vo.getSites());
+			pstmt.setString(3, vo.getTel());
+			pstmt.setString(4, vo.getTime());
+			pstmt.setInt(5, vo.getNo());
+
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			change = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return change;
+	}
+	
+	public boolean updateImg(WashlistVO vo) {
+		boolean change = false;
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "UPDATE sb_carwash";
+			sql += " SET address=?, sites=?, tel=?, time=?, img=? WHERE no = ?";
+			System.out.println("prepareStatement : " + sql);
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getAddress());
+			pstmt.setInt(2, vo.getSites());
+			pstmt.setString(3, vo.getTel());
+			pstmt.setString(4, vo.getTime());
+			pstmt.setString(5, vo.getImg());
+			pstmt.setInt(6, vo.getNo());
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			change = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return change;
+	}
+	
+	public boolean deleteStore(int no) {
+		boolean change = false;
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "DELETE FROM sb_carwash";
+			sql += " WHERE no = ?";
+			System.out.println("prepareStatement : " + sql);
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			change = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			change = false;
+		}
+		return change;
 	}
 }

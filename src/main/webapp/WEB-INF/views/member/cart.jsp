@@ -17,10 +17,11 @@
 </head>
 
 <body>
+	<c:set var="file_repo" value="/summerboot2/resources/assets/img/"/>
 	<section class="bg-light">
 		<div class="container py-5">
 			<div class="col-lg-12 align-items-stretch" id="cart" >
-				<form id="cartForm" method="get" action="../pay/inform">
+				<form id="cartForm" method="post" action="check">
 					<div class="card w-100 mb-4">
 						<div class="card-body p-4">
 							<div class="container text-center">
@@ -36,8 +37,7 @@
 													<input type="hidden" name="product_id" value="${my_cart.product_id }" class="${my_cart.product_id }">
 												</div>
 												<div class="col-5 cart_list">
-													<img class="product_img" src="${path}/resources/assets/img/${my_cart.img }" width="20px;">
-													<input type="hidden" name="product_img" value="${my_cart.img }" class="${my_cart.product_id }">
+													<img class="product_img" src="${file_repo }${my_cart.img }" width="20px;">
 													<h6 class="fw-semibold mb-1">${my_cart.name }</h6>
 													<input type="hidden" name="product_name" value="${my_cart.name }" class="${my_cart.product_id }">
 												</div>

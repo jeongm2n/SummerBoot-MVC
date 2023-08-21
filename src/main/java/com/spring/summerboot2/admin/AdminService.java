@@ -30,7 +30,32 @@ public class AdminService {
 	
 	public boolean addProduct(ProductVO vo) {
 		AdminDAO dao = new AdminDAO();
-		return dao.add(vo);
+		return dao.addProduct(vo);
+	}
+	
+	public boolean addStore(WashlistVO vo) {
+		AdminDAO dao = new AdminDAO();
+		return dao.addStore(vo);
+	}
+	
+	public boolean overlappedName(String name) {
+		AdminDAO dao = new AdminDAO();
+		return dao.overlapped(name);
+	}
+	
+	public boolean updateStore(WashlistVO vo) {
+		AdminDAO dao = new AdminDAO();
+		return dao.update(vo);
+	}
+	
+	public boolean updateStoreImg(WashlistVO vo) {
+		AdminDAO dao = new AdminDAO();
+		return dao.updateImg(vo);
+	}
+	
+	public boolean deleteStore(int no) {
+		AdminDAO dao = new AdminDAO();
+		return dao.deleteStore(no);
 	}
 	
 	public List<ReservationVO> reservationList(int no){

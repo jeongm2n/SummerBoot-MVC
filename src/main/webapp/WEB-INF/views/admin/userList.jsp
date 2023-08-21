@@ -57,11 +57,12 @@
 	                                    	</c:when>
 	                                    	<c:when test="${!empty users }">
 			                            		<c:forEach var="list" items="${users }">
+			                            		<c:set var="address" value="${fn:split(list.address,'/')}" />
 			                                        <tr>
 			                                            <td>${list.id }</td>
 			                                            <td>${list.mem_name }</td>
 			                                            <td>${list.tel }</td>
-			                                            <td>${list.address }</td>
+			                                            <td>${address[0]} ${address[1]} ${address[2]}</td>
 			                                            <td>${list.point }</td>
 			                                        </tr>
 				                            	</c:forEach>
