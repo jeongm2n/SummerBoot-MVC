@@ -60,6 +60,6 @@ public class AdminService {
 	
 	public List<ReservationVO> reservationList(int no){
 		ReservationDAO resdao = new ReservationDAO();
-		return resdao.showList(no);
+		return resdao.showresList(no);
 	}
 }

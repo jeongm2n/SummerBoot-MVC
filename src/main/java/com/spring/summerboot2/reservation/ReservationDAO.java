@@ -79,7 +79,7 @@ public class ReservationDAO {
 		return sites;
 	}
 	
-	public List<ReservationVO> showList(int no){
+	public List<ReservationVO> showresList(int no){
 		PreparedStatement pstmt;
 		List<ReservationVO> resVO = new ArrayList<>();
 		ReservationVO vo;

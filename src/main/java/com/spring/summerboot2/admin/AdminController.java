@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.summerboot2.branch.WashlistVO;
 import com.spring.summerboot2.member.MemberVO;
 import com.spring.summerboot2.product.ProductVO;
+import com.spring.summerboot2.reservation.ReservationVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -101,4 +102,15 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/reservationList", method = RequestMethod.GET)
+	public ModelAndView showresList(@RequestParam("no") int no) {
+		
+		List<ReservationVO> resList;
+		resList = adminService.reservationList(no);
+		 
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("resList", resList); 
+		mav.setViewName("admin/reservationList");
+		return mav;
+	}
 }

@@ -23,8 +23,6 @@ public class ReservationVO {
 		this.useTime=useTime;
 	}
 	
-	
-
 	public ReservationVO(String member_id, String res_date, int site, String startTime, String useTime) {
 		this.member_id = member_id;
 		this.res_date = res_date;
