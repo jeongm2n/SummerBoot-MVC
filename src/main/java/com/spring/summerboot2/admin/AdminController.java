@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.summerboot2.branch.WashlistVO;
 import com.spring.summerboot2.member.MemberVO;
 import com.spring.summerboot2.product.ProductVO;
+import com.spring.summerboot2.reservation.ReservationDAO;
 import com.spring.summerboot2.reservation.ReservationVO;
 
 @Controller
@@ -103,14 +104,19 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/reservationList", method = RequestMethod.GET)
-	public ModelAndView showresList(@RequestParam("no") int no) {
+	public ModelAndView showresList(@RequestParam("carwash_no") int carwash_no) {
 		
 		List<ReservationVO> resList;
-		resList = adminService.reservationList(no);
+		resList = adminService.reservationList(carwash_no);
 		 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("resList", resList); 
 		mav.setViewName("admin/reservationList");
 		return mav;
+	}
+	
+	@RequestMapping(value = "/deleteres", method = RequestMethod.POST)
+	public void deleteRes(@RequestParam("res_no") int res_no) {
+		adminService.deleteres(res_no);
 	}
 }

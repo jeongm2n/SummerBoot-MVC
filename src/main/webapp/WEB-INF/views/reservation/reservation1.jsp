@@ -40,7 +40,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> 
     
     <%--나중에 지점 리스트 페이지에서 넘어오는 지점 정보가 있을때와 네비바의 예약을 눌러서 들어왔을 때 다르게 뜨도록 수정해야함!! --%>
-    <div class="col-lg-6" style="text-align:center;padding-right:80px">
+    <div class="col-lg-6" style="padding-right:80px;height:200px">
     	<div class="col border border-4 div1" style="float:right">지점 선택
     	<div class="container text-center">
     	<div class="row row-cols-2">
@@ -54,8 +54,8 @@
     	<label class="btn btn-secondary shops" for="shop4">대&nbsp;&nbsp;구&nbsp;&nbsp;점</label></div></div></div>
     	</div>
     </div>
-    	<div class="col-lg-6">
-    	<div class="border border-4 div2" style="float:left;text-align:center">
+    	<div class="col-lg-6" style=";height:200px">
+    	<div class="border border-4 div2" style="float:left">
 	    	<span style="display:inline-block;width:20%;line-height:80px;float:left;vertical-align:middle">사용시간</span>
 	    	<span style="display:inline-block;width:80%;height:80px;float:right">
 		    	<span class="span-time">
@@ -73,9 +73,10 @@
 			</span>
     	</div>
     	</div>
-    
-    <div class="col-lg-6" style="height:550px">
-    	<div class="border border-4 div3" style="float:right;text-align:center">
+    	
+    <div class="col-lg-6" style="height:450px">
+    	<div class="border border-4 div3" style="float:right;">
+    	<b style="color:#FFDAB9">달력은 현재 달에서 +1달 까지만 조회하실 수 있습니다.</b>
     		<table class="calendartb" id="calendar">
     		<thead style="border-bottom: 1px solid #000;">
 				<tr>
@@ -97,7 +98,7 @@
     	</div>
     </div>
     
-    <div class="col-lg-6" style="height:550px">
+    <div class="col-lg-6" style="height:450px">
     	<div class="border border-4 div4" style="float:left;text-align:center">
     	<legend>시간</legend>
     	<div id="container1" style="width:100%;height:200px;text-align:center;margin-top:30px">
