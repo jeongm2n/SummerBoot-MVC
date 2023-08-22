@@ -127,12 +127,12 @@ td {
 
 .div1{
 	width : 450px;
-	height : 130px;
+	height : 160px;
 }
 
 .div2{
 	width : 600px;
-	height : 130px;
+	height : 160px;
 }
 
 .div3{
@@ -195,3 +195,14 @@ td {
 	.m_div {text-align: left;}
 	.m_time { display: none;}
 } 
+
+.shops:hover + .addr{
+	display : block;
+}
+
+.addr{
+	text-align : center;
+	display : none;
+	width : 180px;
+	height : 40px;
+}
