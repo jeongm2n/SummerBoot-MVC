@@ -203,4 +203,27 @@ public class AdminDAO {
 		}
 		return change;
 	}
+	
+	public boolean deleteUser(String id) {
+		boolean change = false;
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "DELETE FROM sb_member";
+			sql += " WHERE id = ?";
+			System.out.println("prepareStatement : " + sql);
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			change = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			change = false;
+		}
+		return change;
+	}
 }

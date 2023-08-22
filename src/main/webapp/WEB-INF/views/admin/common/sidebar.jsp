@@ -53,7 +53,7 @@
                 </a>
                 <div id="collapseStores" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="${path}/admin/store/storeList">지점리스트</a>
+                        <a class="collapse-item" href="${path}/admin/store/storeList?no=1">지점리스트</a>
                         <a class="collapse-item" href="${path}/admin/store/storeForm">지점 추가</a>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                     <i class="fas fa-fw fa-calendar"></i>
                     <span>예약관리</span>
                 </a>
-                <div id="collapseReservation" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseReservation" class="collapse" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">지점명:</h6>
@@ -117,7 +117,7 @@
                 </a>
                 <div id="collapseOrder" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">주문확인</a>
+                        <a class="collapse-item" href="${path}/admin/order/orderList">주문확인</a>
                         <a class="collapse-item" href="#">반품 관리</a>
                     </div>
                 </div>

@@ -123,4 +123,16 @@ public class AdminController {
 		System.out.println(result);
 		return result;
 	}
+	
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+	public void deleteStore(@RequestParam("user_id") String user_id, HttpServletResponse response) throws Exception {
+		PrintWriter writer = response.getWriter();
+		boolean deleteUser = adminService.deleteUser(user_id);
+		
+		if(deleteUser) {
+			writer.print("delete");
+		} else {
+			writer.print("fail");
+		}
+	}
 }

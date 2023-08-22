@@ -68,4 +68,14 @@ public class AdminService {
 		int result = resDAO.deleteres(res_no);
 		return result;
 	}
+
+	public boolean deleteUser(String id) {
+		AdminDAO dao = new AdminDAO();
+		return dao.deleteUser(id);
+	}
+	
+	public List<OrderVO> orderList(){
+		OrderDAO orderdao = new OrderDAO();
+		return orderdao.orderList();
+	}
 }
