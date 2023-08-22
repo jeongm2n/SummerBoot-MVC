@@ -1,5 +1,5 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="ko">
@@ -10,7 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Wash Boot</title>
-    <jsp:include page="/WEB-INF/common.jsp" />
+    <jsp:include page="/WEB-INF/common.jsp"/>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_ryu.css">
     <script src="//code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
 </head>
@@ -102,10 +103,12 @@
             </div>
         </div>
     </div>
-    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel"
+       role="button" data-bs-slide="prev">
         <i class="fas fa-chevron-left"></i>
     </a>
-    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel"
+       role="button" data-bs-slide="next">
         <i class="fas fa-chevron-right"></i>
     </a>
 </div>
@@ -115,7 +118,11 @@
 <section class="container py-5">
     <div class="row text-center pt-5 pb-3">
         <div class="col-lg-6 m-auto">
-            <h1 class="h1">Today's Reservation</h1>
+            <h1 class="h1"><b>
+                Today's Reservation<br>
+                <c:set var="date" value="<%=new java.util.Date()%>"/>
+                <fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
+            </b></h1>
             <p>
                 상쾌한 셀프세차, Wash Boot와 함께!<br>
                 Wash Boot 오늘의 예약현황과 날씨를 확인해보세요.
@@ -125,57 +132,79 @@
     <div class="row">
 
         <div class="col-md-6 col-lg-3 pb-5">
-            <a data-bs-toggle="collapse" role="button" href="#res_seoul" aria-expanded="false" aria-controls="res_seoul" onclick="return false">
-            <div class="h-100 py-5 services-icon-wap shadow">
-                <div class="h1 text-success text-center"><i class="fa fa-truck fa-lg"></i></div>
-                <h2 class="h5 mt-4 text-center">서울 본점</h2>
-            </div></a>
-        </div>
-
-        <div class="col-md-6 col-lg-3 pb-5">
-            <a data-bs-toggle="collapse" role="button" href="#res_gunpo" aria-expanded="false" aria-controls="res_gunpo" onclick="return false">
-            <div class="h-100 py-5 services-icon-wap shadow">
-                <div class="h1 text-success text-center"><i class="fas fa-exchange-alt"></i></div>
-                <h2 class="h5 mt-4 text-center">경기 군포점</h2>
-            </div></a>
-        </div>
-
-        <div class="col-md-6 col-lg-3 pb-5">
-            <a data-bs-toggle="collapse" role="button" href="#res_pyeongtaek" aria-expanded="false" aria-controls="res_pyeongtaek" onclick="return false">
-            <div class="h-100 py-5 services-icon-wap shadow">
-                <div class="h1 text-success text-center"><i class="fa fa-percent"></i></div>
-                <h2 class="h5 mt-4 text-center">경기 평택점</h2>
-            </div>
+            <a data-bs-toggle="collapse" role="button" href="#res_seoul" aria-expanded="false" aria-controls="res_seoul"
+               onclick="getTodayResList('1'); return false">
+                <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h1 text-success text-center"><i class="fa fa-car-side fa-lg"></i></div>
+                    <h2 class="h5 mt-4 text-center">서울 본점</h2>
+                </div>
             </a>
         </div>
 
         <div class="col-md-6 col-lg-3 pb-5">
-            <a data-bs-toggle="collapse" role="button" href="#res_daegu" aria-expanded="false" aria-controls="res_daegu" onclick="return false">
-            <div class="h-100 py-5 services-icon-wap shadow">
-                <div class="h1 text-success text-center"><i class="fa fa-user"></i></div>
-                <h2 class="h5 mt-4 text-center">대구점</h2>
-            </div>
+            <a data-bs-toggle="collapse" role="button" href="#res_gunpo" aria-expanded="false" aria-controls="res_gunpo"
+               onclick="getTodayResList('2'); return false">
+                <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h1 text-success text-center"><i class="fa fa-car-alt fa-lg"></i></div>
+                    <h2 class="h5 mt-4 text-center">경기 군포점</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-3 pb-5">
+            <a data-bs-toggle="collapse" role="button" href="#res_pyeongtaek" aria-expanded="false"
+               aria-controls="res_pyeongtaek" onclick="getTodayResList('3'); return false">
+                <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h1 text-success text-center"><i class="fa fa-car-side fa-lg"></i></div>
+                    <h2 class="h5 mt-4 text-center">경기 평택점</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-3 pb-5">
+            <a data-bs-toggle="collapse" role="button" href="#res_daegu" aria-expanded="false" aria-controls="res_daegu"
+               onclick="getTodayResList('4'); return false">
+                <div class="h-100 py-5 services-icon-wap shadow">
+                    <div class="h1 text-success text-center"><i class="fa fa-car-alt fa-lg"></i></div>
+                    <h2 class="h5 mt-4 text-center">대구점</h2>
+                </div>
             </a>
         </div>
 
         <div class="collapse show" id="res_seoul">
             <div class="card card-body">
-                서울 본점 예약현황
+                서울 본점 날씨
+            </div>
+            <div class="card card-body">
+                서울 본점 예약현황<br>
+                <div id="resList1"></div>
             </div>
         </div>
         <div class="collapse" id="res_gunpo">
             <div class="card card-body">
+                경기 군포점 날씨
+            </div>
+            <div class="card card-body">
                 경기 군포점 예약현황
+                <div id="resList2"></div>
             </div>
         </div>
         <div class="collapse" id="res_pyeongtaek">
             <div class="card card-body">
+                경기 평택점 날씨
+            </div>
+            <div class="card card-body">
                 경기 평택점 예약현황
+                <div id="resList3"></div>
             </div>
         </div>
         <div class="collapse" id="res_daegu">
             <div class="card card-body">
+                대구점 날씨
+            </div>
+            <div class="card card-body">
                 대구점 예약현황
+                <div id="resList4"></div>
             </div>
         </div>
     </div>
@@ -203,35 +232,84 @@
 </section>
 <!-- End 세차가이드 -->
 
-<!-- 예약현황 js: 지점 클릭시 다른지점 섹션닫기-->
 <script>
-    document.getElementById("res_seoul").addEventListener("show.bs.collapse",function() {
+    <!-- 예약현황 : 지점 클릭시 다른지점 섹션닫기-->
+    document.getElementById("res_seoul").addEventListener("show.bs.collapse", function () {
         $("#res_gunpo, #res_pyeongtaek, #res_daegu").collapse("hide");
     });
-    document.getElementById("res_gunpo").addEventListener("show.bs.collapse",function() {
+    document.getElementById("res_gunpo").addEventListener("show.bs.collapse", function () {
         $("#res_seoul, #res_pyeongtaek, #res_daegu").collapse("hide");
     });
-    document.getElementById("res_pyeongtaek").addEventListener("show.bs.collapse",function() {
+    document.getElementById("res_pyeongtaek").addEventListener("show.bs.collapse", function () {
         $("#res_gunpo, #res_seoul, #res_daegu").collapse("hide");
     });
-    document.getElementById("res_daegu").addEventListener("show.bs.collapse",function() {
+    document.getElementById("res_daegu").addEventListener("show.bs.collapse", function () {
         $("#res_gunpo, #res_pyeongtaek, #res_seoul").collapse("hide");
     });
 
-</script>
-
-
-<!-- 세차가이드 js: 모달팝업창으로 유튜브영상 보여주기 -->
-<script>
-    $(".popupModalVideo a").click(function() {
-    $(".video_modal_popup").addClass("reveal"),
-    $(".video_modal_popup .video-wrapper").remove(),
-    $(".video_modal_popup").append("<div class='video-wrapper'><iframe width='560' height='315' src='https://youtube.com/embed/" + $(this).data("video") + "?rel=0&playsinline=1&autoplay=1' allow='autoplay; encrypted-media' allowfullscreen></iframe></div>")
-    }),
-    $(".video_modal_popup-closer").click(function() {
-    $(".video_modal_popup .video-wrapper").remove(),
-    $(".video_modal_popup").removeClass("reveal")
+    <!-- 예약현황 : 오늘의 예약현황 보여주기 -->
+    //메인페이지 로드되면 서울지점(1) 함수실행
+    $( document ).ready(function() {
+        getTodayResList('1');
     });
+    function getTodayResList(site) {
+        //비동기
+        $.ajax({
+            type   : "GET",
+            url    : "${path}/getTodayResList?site=" + site, //파라미터 넘기는 방식과 컨트롤러에서 받는 방법
+            success: function (data) {
+                $(`#resList\${site}`).html('') // 템플릿 문자열, Jquery 사용방법
+
+                let baseTable = `
+                                 <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">사용자</th>
+                        <th scope="col">시작시간</th>
+                        <th scope="col">종료시간</th>
+                        <th scope="col">Site</th>
+                    </tr>
+                    </thead>
+                    <tbody >`
+
+                if (!data) {
+                    baseTable += `<tr> <td colSpan="5" align="center">오늘 예약이 없습니다.</td> </tr>`;
+                } else {
+                    for (const item of data) {
+                        baseTable += `
+                     <tr>
+                                    <th scope="row">1</th>
+                                    <td>\${item.member_id}</td>
+                                    <td>\${item.startTime}</td>
+                                    <td>11:00</td>
+                                    <td>\${item.site}</td>
+                                </tr>
+                    `;
+                    }
+                }
+                baseTable += `</tbody>
+                </table>`
+
+                $(`#resList\${site}`).html(baseTable)
+
+            },
+            error  : function () {
+                alert("통신 실패.");
+            }
+        });
+    }
+
+    <!-- 세차가이드 : 모달팝업창으로 유튜브영상 보여주기 -->
+    $(".popupModalVideo a").click(function () {
+        $(".video_modal_popup").addClass("reveal"),
+        $(".video_modal_popup .video-wrapper").remove(),
+        $(".video_modal_popup").append("<div class='video-wrapper'><iframe width='560' height='315' src='https://youtube.com/embed/" + $(this).data("video") + "?rel=0&playsinline=1&autoplay=1' allow='autoplay; encrypted-media' allowfullscreen></iframe></div>")
+    }),
+    $(".video_modal_popup-closer").click(function () {
+        $(".video_modal_popup .video-wrapper").remove(),
+        $(".video_modal_popup").removeClass("reveal")
+     });
 </script>
 </body>
 </html>

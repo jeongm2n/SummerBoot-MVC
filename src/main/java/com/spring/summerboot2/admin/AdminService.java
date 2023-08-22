@@ -9,6 +9,7 @@ import com.spring.summerboot2.branch.WashlistVO;
 import com.spring.summerboot2.member.MemberDAO;
 import com.spring.summerboot2.member.MemberVO;
 import com.spring.summerboot2.product.ProductVO;
+import com.spring.summerboot2.reservation.*;
 
 @Service
 public class AdminService {
@@ -29,6 +30,52 @@ public class AdminService {
 	
 	public boolean addProduct(ProductVO vo) {
 		AdminDAO dao = new AdminDAO();
-		return dao.add(vo);
+		return dao.addProduct(vo);
+	}
+	
+	public boolean addStore(WashlistVO vo) {
+		AdminDAO dao = new AdminDAO();
+		return dao.addStore(vo);
+	}
+	
+	public boolean overlappedName(String name) {
+		AdminDAO dao = new AdminDAO();
+		return dao.overlapped(name);
+	}
+	
+	public boolean updateStore(WashlistVO vo) {
+		AdminDAO dao = new AdminDAO();
+		return dao.update(vo);
+	}
+	
+	public boolean updateStoreImg(WashlistVO vo) {
+		AdminDAO dao = new AdminDAO();
+		return dao.updateImg(vo);
+	}
+	
+	public boolean deleteStore(int no) {
+		AdminDAO dao = new AdminDAO();
+		return dao.deleteStore(no);
+	}
+	
+	public List<ReservationVO> reservationList(int no){
+		ReservationDAO resdao = new ReservationDAO();
+		return resdao.showresList(no);
+	}
+	
+	public int deleteres(int res_no) {
+		ReservationDAO resDAO = new ReservationDAO();
+		int result = resDAO.deleteres(res_no);
+		return result;
+	}
+
+	public boolean deleteUser(String id) {
+		AdminDAO dao = new AdminDAO();
+		return dao.deleteUser(id);
+	}
+	
+	public List<OrderVO> orderList(){
+		OrderDAO orderdao = new OrderDAO();
+		return orderdao.orderList();
 	}
 }

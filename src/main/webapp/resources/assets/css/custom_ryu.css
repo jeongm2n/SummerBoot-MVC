@@ -13,6 +13,10 @@ a {
     color: black;
 }
 
+.table {
+    --bs-table-hover-bg: #FFDAB9 !important;
+}
+
 /*세차가이드*/
 .video_modal_popup.reveal {
     display: flex;

@@ -1,9 +1,10 @@
 	var now = new Date(); //띄울 달력의 날짜 정보
-    var date = new Date(); //실제 현재 날짜의 정보
-
-    var realMonth = date.getMonth()+1; 
-    var realToDay = date.getDate();
-    var realYear = date.getFullYear();
+    const date = new Date(); //실제 현재 날짜의 정보
+    
+    //이 프로그램을 실행시킨 변하지 않는 현재 날짜의 정보
+    const realMonth = date.getMonth()+1; 
+    const realToDay = date.getDate();
+    const realYear = date.getFullYear();
     
     var currentMonth = realMonth >= 10 ? realMonth : "0" + realMonth;
     var currentDate = date.getDate() >= 10 ? date.getDate() : "0" +date.getDate();
@@ -32,23 +33,30 @@
     
     var n;
         
+    var weather = new Array();
+    
+    //8월 28~9월3일처럼 일주일안에 다음달로 넘어가는 기간이 있을 수 있으니 크기가 7인 배열 days와 months에 같은 인덱스에 일, 월의 정보를 넣어둠
+    var days = [];
+    var months = [];
+    for(i=0;i<7;i++){
+		var d = new Date(now);
+		d.setDate(now.getDate() + i);
+		months[i] = d.getMonth()+1;
+		days[i] = d.getDate();
+	}
+	
+	var cnt = 0; //달력을 현재 달과 다음달만 조회할 수 있도록 설정하는 변수
+    
     const calendar = document.getElementById('calendar');
     const hourContainer = document.getElementById('container1');
     const minuteContainer = document.getElementById('container2');
+    const weathertable = document.getElementById('weather');
     
-    
-    function thisMonth(nowMonth, realMonth){ //이번달이면 0, 다음달이면 1 리턴
-    	if (nowMonth*1 == realMonth*1){
-    		return 0;
-    	} 
-    	return 1;
-    }
-    
-    
+    //예약 가능한 기간이 다음달로 넘어갈 시 
+    var r = 0;
     //달력 만드는 함수
-    function buildCalendar(){
+    function buildCalendar(now){
 		var nowMonth = now.getMonth()+1;
-    	monthEquals = thisMonth(nowMonth, realMonth);
     	
     	var first = new Date(now.getFullYear(), now.getMonth(), 1);
     	//달의 첫 번째 날을 구하기 위함
@@ -79,8 +87,9 @@
 					dateCell.setAttribute('id',date);
 					dateCell.textContent = date;
 					
-					if(monthEquals == 0){ //이번 달이면
-						if(date>=now.getDate() && date<=(now.getDate()+6)){ //오늘로부터 일주일 동안만 예약가능하도록 하기 위함
+					if(months[r] === nowMonth){  //예약 가능한 날짜의 Month 값이 현재 띄워진 달력의 달과 일치하면
+						if(date === days[r]){ //예약 가능한 날짜의 Date 값과 같은 date에 클릭 이벤트 설정
+							r++; //days와 months의 인덱스를 높여주는 변수
 							dateCell.classList.add('td-click');
 							dateCell.onclick = function(){ //7일 동안만 클릭가능하도록 클릭이벤트 설정
 						        selectedMonth = 1 + now.getMonth(); //선택한 달의 정보
@@ -237,20 +246,32 @@
     
     //이전 달 달력 출력
     function prevMonth(){
-		removeMonth(calendar,'calBody'); //초기화하지 않으면 계속 쌓임
-		now = new Date(now.getFullYear(), now.getMonth()-1, now.getDate());
-    	calendar.appendChild(buildCalendar());
-    	hourContainer.innerHTML = ""; // 시간 선택 버튼 컨테이너 초기화
-  		minuteContainer.innerHTML = ""; // 분 선택 버튼 컨테이너 초기화
+		if(cnt == 0){
+			alert("현재 달에서 이전 달은 조회하실 수 없습니다.");
+		}else{
+			r = 0;
+			cnt -= 1;
+			removeMonth(calendar,'calBody'); //초기화하지 않으면 계속 쌓임
+			now = new Date(now.getFullYear(), now.getMonth()-1, now.getDate());
+	    	calendar.appendChild(buildCalendar(now));
+	    	hourContainer.innerHTML = ""; // 시간 선택 버튼 컨테이너 초기화
+	  		minuteContainer.innerHTML = ""; // 분 선택 버튼 컨테이너 초기화
+		}
     }
     
 	//다음 달 달력 출력
     function nextMonth(){
-		removeMonth(calendar,'calBody');
-    	now = new Date(now.getFullYear(), now.getMonth()+1, now.getDate());
-    	calendar.appendChild(buildCalendar());
-    	hourContainer.innerHTML = ""; // 시간 선택 버튼 컨테이너 초기화
-  		minuteContainer.innerHTML = ""; // 분 선택 버튼 컨테이너 초기화
+		if(cnt == 1){
+			alert("현재 달에서 +1달까지만 조회하실 수 있습니다.")
+		}
+		else{
+			cnt += 1;
+			removeMonth(calendar,'calBody');
+	    	now = new Date(now.getFullYear(), now.getMonth()+1, now.getDate());
+	    	calendar.appendChild(buildCalendar(now));
+	    	hourContainer.innerHTML = ""; // 시간 선택 버튼 컨테이너 초기화
+	  		minuteContainer.innerHTML = ""; // 분 선택 버튼 컨테이너 초기화
+  		}
     }
     
 	//Next>버튼 클릭 시 예약페이지2로 이동
@@ -267,5 +288,80 @@
     	}
     }
     
-    calendar.appendChild(buildCalendar());
+    function plusDate(){
+		var plusdate = new Date();
+		var plusMonth;
+		var plusDate;
+		var plusfullYear;
+		
+		for(i=3; i<7; i++){
+			plusdate.setDate(date.getDate()+i);
+			plusfullYear = plusdate.getFullYear();
+			plusMonth = (plusdate.getMonth()+1) >= 10 ? (plusdate.getMonth()+1) : "0" + (plusdate.getMonth()+1);
+    		plusDate = plusdate.getDate() >= 10 ? plusdate.getDate() : "0" + plusdate.getDate();
+    		weather[i].date = plusfullYear + plusMonth + plusDate;
+		}
+	}
+	
+	function judgeweather(pop){
+		const img = new Image();
+		if(pop<30){
+			img.src = "../resources/assets/img/sun.png";
+		}
+		else if(pop>=30 && pop<50){
+			img.src = "../resources/assets/img/cloudy.png";
+		}
+		else{
+			img.src = "../resources/assets/img/rain.png";
+		}
+		img.classList.add('weatherimg')
+		return img;
+	}
+	
+	//주간날씨 채우는 함수
+	function makeWeather(){
+		weathertable.innerHTML='';
+		
+		const week = document.createElement('tr');
+		const weathers = document.createElement('tr');
+		const temps = document.createElement('tr');
+		var img = new Image();
+		
+		for(i=0; i<7; i++){
+			const eachday = document.createElement('th');
+			eachday.colSpan = 2;
+			eachday.innerText = weather[i].date;
+			week.appendChild(eachday);
+			
+			const amweather = document.createElement('td');
+			const br = document.createElement('br');
+			amweather.innerText = "오전";
+			amweather.appendChild(br);
+			img = judgeweather(weather[i].ampop)
+			amweather.appendChild(img);
+			amweather.classList.add('weathertd');
+			
+			const pmweather = document.createElement('td');
+			const br2 = document.createElement('br');
+			pmweather.innerText = "오후";
+			pmweather.appendChild(br2);
+			img = judgeweather(weather[i].pmpop)
+			pmweather.appendChild(img);
+			pmweather.classList.add('weathertd');
+			
+			weathers.appendChild(amweather);
+			weathers.appendChild(pmweather);
+			
+			const temp = document.createElement('td');
+			temp.colSpan = 2;
+			temp.innerText = weather[i].tmn + "/" + weather[i].tmx;
+			temp.classList.add('weathertd');
+			temps.appendChild(temp);
+		}
+		
+		weathertable.appendChild(week);
+		weathertable.appendChild(weathers);
+		weathertable.appendChild(temps);
+	}
     
+    calendar.appendChild(buildCalendar(now));

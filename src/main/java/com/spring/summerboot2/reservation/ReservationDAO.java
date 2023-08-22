@@ -79,4 +79,62 @@ public class ReservationDAO {
 		return sites;
 	}
 	
+	public List<ReservationVO> showresList(int no){
+		PreparedStatement pstmt;
+		List<ReservationVO> resVO = new ArrayList<>();
+		ReservationVO vo;
+		
+		try {
+			conn = DBconn.getDBCP();
+			
+			String sql = "SELECT res_no, member_id, res_date, site, startTime, useTime FROM sb_reservation WHERE no="+no
+					+ " ORDER BY res_date, startTime ASC";
+			
+			System.out.println("sql : " + sql);
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				int res_no = rs.getInt("res_no");
+				String member_id = rs.getString("member_id");
+				String res_date = rs.getString("res_date");
+				int site = rs.getInt("site");
+				String startTime = rs.getString("startTime");
+				String useTime = rs.getString("useTime");
+				
+				vo = new ReservationVO(res_no,member_id,res_date,site,startTime,useTime);
+				resVO.add(vo);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resVO;
+	}
+	
+	public int deleteres(int res_no) {
+		PreparedStatement pstmt;
+		int result = 0;
+		try {
+			conn = DBconn.getDBCP();
+			
+			String sql = "DELETE FROM sb_reservation WHERE res_no="+res_no;
+			System.out.println("sql : " + sql);
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			
+			result = 1;
+			
+			pstmt.close();
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

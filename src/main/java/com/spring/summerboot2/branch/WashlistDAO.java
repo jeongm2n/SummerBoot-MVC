@@ -29,14 +29,17 @@ public class WashlistDAO {
 				String name = rs.getString("name");
 				String address = rs.getString("address");
 				int sites = rs.getInt("sites");
+				String tel = rs.getString("tel");
+				String time = rs.getString("time");
 				String img = rs.getString("img");
 				
 				System.out.println(no);
 				System.out.println(name);
 				System.out.println(address);
 				System.out.println(sites);
+				System.out.println(time);
 				
-				WashlistVO vo = new WashlistVO(no, name, address, sites, img);
+				WashlistVO vo = new WashlistVO(no, name, address, sites, tel, time, img);
 				list.add(vo);
 			}
 			rs.close();

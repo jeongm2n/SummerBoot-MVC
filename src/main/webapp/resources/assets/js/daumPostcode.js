@@ -24,7 +24,10 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('zipcode').value = data.zonecode;
+                var zipcode_exist = document.getElementById('zipcode') ? true : false;
+                if(zipcode_exist) {
+	                document.getElementById('zipcode').value = data.zonecode;
+				}
                 document.getElementById('road_addr').value = roadAddr;
                 window.close();
 

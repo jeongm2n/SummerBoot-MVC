@@ -11,6 +11,7 @@
 
 <body id="page-top">
     <!-- Page Wrapper -->
+    <c:set var="file_repo" value="/summerboot2/resources/assets/img/"/>
     <div id="wrapper">
 		<%@ include file="./common/sidebar.jsp" %>
 
@@ -59,7 +60,7 @@
 	                                    	<c:when test="${!empty productList }">
 			                            		<c:forEach var="list" items="${productList }">
 			                                        <tr class="item">
-			                                            <td align=center class="img" style="padding:0"><img src = "${path}/resources/assets/img/${list.img }"></td>
+			                                            <td align=center class="img" style="padding:0"><img src = "${file_repo }${list.img }"></td>
 			                                            <td class="id">${list.product_id }</td>
 			                                            <td class="name">${list.name }</td>
 			                                            <td class="amount">${list.amount }</td>

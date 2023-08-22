@@ -5,21 +5,54 @@ public class WashlistVO {
 	private String name;
 	private String address;
 	private int sites;
+	private String tel;
+	private String time;
 	private String img;
 	
-	WashlistVO(int no, String name, String address, int sites, String img) {
+
+	public WashlistVO(int no, String name, String address, int sites, String tel, String time, String img) {
 		this.no = no;
 		this.name = name;
 		this.address = address;
 		this.sites = sites;
+		this.tel = tel;
+		this.time = time;
 		this.img = img;
 	}
 	
-	public WashlistVO(int no, String name, String address, int sites) {
+	public WashlistVO(int no, String address, int sites, String tel, String time, String img) {
+		this.no = no;
+		this.address = address;
+		this.sites = sites;
+		this.tel = tel;
+		this.time = time;
+		this.img = img;
+	}
+	
+	public WashlistVO(int no, String address, int sites, String tel, String time) {
+		this.no = no;
+		this.address = address;
+		this.sites = sites;
+		this.tel = tel;
+		this.time = time;
+	}
+	
+	public WashlistVO(int no, String name, String address, int sites, String tel, String time) {
 		this.no = no;
 		this.name = name;
 		this.address = address;
 		this.sites = sites;
+		this.tel = tel;
+		this.time = time;
+	}
+	
+	public WashlistVO(String name, String address, int sites, String tel, String time, String img) {
+		this.name = name;
+		this.address = address;
+		this.sites = sites;
+		this.tel = tel;
+		this.time = time;
+		this.img = img;
 	}
 	
 	public int getNo() {
@@ -45,6 +78,21 @@ public class WashlistVO {
 	}
 	public void setSites(int sites) {
 		this.sites = sites;
+	}
+	public String getTel() {
+		return tel;
+	}
+	
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	
+	public String getTime() {
+		return time;
+	}
+	
+	public void setTime(String time) {
+		this.time = time;
 	}
 	public String getImg() {
 		return img;

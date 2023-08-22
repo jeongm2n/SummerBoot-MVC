@@ -2,20 +2,28 @@ package com.spring.summerboot2.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.summerboot2.branch.WashlistVO;
 import com.spring.summerboot2.member.MemberVO;
 import com.spring.summerboot2.product.ProductVO;
+import com.spring.summerboot2.reservation.ReservationDAO;
+import com.spring.summerboot2.reservation.ReservationVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -37,17 +45,6 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("users", userList);
 		mav.setViewName("admin/userList");
-        return mav;
-    }
-	
-	@RequestMapping(value = "/storeList", method = RequestMethod.GET)
-    public ModelAndView storeList() {
-		List<WashlistVO> storeList;
-		storeList = adminService.washList();
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("washList", storeList);
-		mav.setViewName("admin/storeList");
         return mav;
     }
 	
@@ -85,14 +82,14 @@ public class AdminController {
 		String saveName="";
 		if(!file.isEmpty()) {
 			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			String filename=file.getOriginalFilename();
+			String filename=file.getOriginalFilename(); //파일 이름
 			
 			System.out.println("file.getOriginalFilename = " + filename);
 			int index = filename.lastIndexOf(".");
-			saveName= product.get("product_id") + filename.substring(index); 
+			saveName= product.get("product_id") + filename.substring(index); // 사진파일의 확장자명 구하기
 			
-			String fullPath = uploadPath + saveName;
-			file.transferTo(new File(fullPath));
+			String fullPath = uploadPath + saveName; //파일이름을 상품코드로 변경
+			file.transferTo(new File(fullPath)); //파일 저장
 		}
 		 
 		ModelAndView mav = new ModelAndView();
@@ -105,5 +102,37 @@ public class AdminController {
 		}
 		mav.setViewName("admin/addProduct");
 		return mav;
+	}
+	
+	@RequestMapping(value = "/reservationList", method = RequestMethod.GET)
+	public ModelAndView showresList(@RequestParam("no") int no) {
+		
+		List<ReservationVO> resList;
+		resList = adminService.reservationList(no);
+		 
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("resList", resList); 
+		mav.setViewName("admin/reservationList");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/deleteres", method = RequestMethod.POST)
+	@ResponseBody
+	public int deleteRes(@RequestParam("res_no") int res_no) {
+		int result = adminService.deleteres(res_no);
+		System.out.println(result);
+		return result;
+	}
+	
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+	public void deleteStore(@RequestParam("user_id") String user_id, HttpServletResponse response) throws Exception {
+		PrintWriter writer = response.getWriter();
+		boolean deleteUser = adminService.deleteUser(user_id);
+		
+		if(deleteUser) {
+			writer.print("delete");
+		} else {
+			writer.print("fail");
+		}
 	}
 }
