@@ -70,10 +70,10 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">지점명:</h6>
-                        <a class="collapse-item" href="${path}/admin/reservationList?carwash_no=1">서울본점</a>
-                        <a class="collapse-item" href="${path}/admin/reservationList?carwash_no=2">경기군포점</a>
-                        <a class="collapse-item" href="${path}/admin/reservationList?carwash_no=3">경기평택점</a>
-                        <a class="collapse-item" href="${path}/admin/reservationList?carwash_no=4">대구점</a>
+                        <a class="collapse-item" href="${path}/admin/reservationList?no=1">서울본점</a>
+                        <a class="collapse-item" href="${path}/admin/reservationList?no=2">경기군포점</a>
+                        <a class="collapse-item" href="${path}/admin/reservationList?no=3">경기평택점</a>
+                        <a class="collapse-item" href="${path}/admin/reservationList?no=4">대구점</a>
                     </div>
                 </div>
             </li>

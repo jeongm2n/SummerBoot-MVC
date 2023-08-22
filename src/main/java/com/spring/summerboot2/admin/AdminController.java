@@ -105,10 +105,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/reservationList", method = RequestMethod.GET)
-	public ModelAndView showresList(@RequestParam("carwash_no") int carwash_no) {
+	public ModelAndView showresList(@RequestParam("no") int no) {
 		
 		List<ReservationVO> resList;
-		resList = adminService.reservationList(carwash_no);
+		resList = adminService.reservationList(no);
 		 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("resList", resList); 

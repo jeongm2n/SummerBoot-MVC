@@ -12,7 +12,7 @@ public class ReservationDAO {
 	private Connection conn;
 	private ResultSet rs;
 	
-	public List<ReservationVO> chkReservation1(int carwash_no, String date){
+	public List<ReservationVO> chkReservation1(int no, String date){
 		List<ReservationVO> forres1 = new ArrayList();
 		PreparedStatement pstmt;
 		try {
@@ -21,7 +21,7 @@ public class ReservationDAO {
 			String startTime;
 			String useTime;
 			
-			String sql = "SELECT startTime,useTime FROM sb_reservation WHERE carwash_no="+carwash_no+" AND res_date='"+date+"'";
+			String sql = "SELECT startTime,useTime FROM sb_reservation WHERE no="+no+" AND res_date='"+date+"'";
 			
 			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
@@ -45,7 +45,7 @@ public class ReservationDAO {
 		return forres1;
 	}
 	
-	public List<Integer> chkSite(int carwash_no, String date, String startTime){
+	public List<Integer> chkSite(int no, String date, String startTime){
 		PreparedStatement pstmt;
 
 		List<Integer> sites = new ArrayList();
@@ -57,7 +57,7 @@ public class ReservationDAO {
 		try {
 			conn = DBconn.getDBCP();
 	
-			String sql = "SELECT site FROM sb_reservation WHERE carwash_no="+carwash_no+" AND res_date='"+date+"' AND startTime='"+startTime+"'"
+			String sql = "SELECT site FROM sb_reservation WHERE no="+no+" AND res_date='"+date+"' AND startTime='"+startTime+"'"
 					+ " ORDER BY site ASC";
 
 			System.out.println("sql : " + sql);
@@ -79,7 +79,7 @@ public class ReservationDAO {
 		return sites;
 	}
 	
-	public List<ReservationVO> showresList(int carwash_no){
+	public List<ReservationVO> showresList(int no){
 		PreparedStatement pstmt;
 		List<ReservationVO> resVO = new ArrayList<>();
 		ReservationVO vo;
@@ -87,7 +87,7 @@ public class ReservationDAO {
 		try {
 			conn = DBconn.getDBCP();
 			
-			String sql = "SELECT res_no, member_id, res_date, site, startTime, useTime FROM sb_reservation WHERE carwash_no="+carwash_no
+			String sql = "SELECT res_no, member_id, res_date, site, startTime, useTime FROM sb_reservation WHERE no="+no
 					+ " ORDER BY res_date, startTime ASC";
 			
 			System.out.println("sql : " + sql);

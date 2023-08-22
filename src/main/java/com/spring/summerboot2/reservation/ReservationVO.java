@@ -2,7 +2,7 @@ package com.spring.summerboot2.reservation;
 
 public class ReservationVO {
 	private int res_no;
-	private int carwash_no;
+	private int no;
 	private String member_id;
 	private String res_date;
 	private int site;
@@ -31,13 +31,13 @@ public class ReservationVO {
 	public void setRes_no(int res_no) {
 		this.res_no = res_no;
 	}
-
-	public int getCarwash_no() {
-		return carwash_no;
+	
+	public int getNo() {
+		return no;
 	}
 
-	public void setCarwash_no(int carwash_no) {
-		this.carwash_no = carwash_no;
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public String getMember_id() {

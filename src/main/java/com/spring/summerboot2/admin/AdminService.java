@@ -58,9 +58,9 @@ public class AdminService {
 		return dao.deleteStore(no);
 	}
 	
-	public List<ReservationVO> reservationList(int carwash_no){
+	public List<ReservationVO> reservationList(int no){
 		ReservationDAO resdao = new ReservationDAO();
-		return resdao.showresList(carwash_no);
+		return resdao.showresList(no);
 	}
 	
 	public int deleteres(int res_no) {
