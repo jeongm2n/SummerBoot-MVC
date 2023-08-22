@@ -2,6 +2,7 @@ package com.spring.summerboot2.pay;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,12 +11,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import com.spring.summerboot2.cart.CartVO;
 
 @Controller
 @RequestMapping("/pay")
@@ -131,13 +136,11 @@ public class PayController {
 			mav.setViewName("pay/payment");
 		}
 		else {    
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('세션이 만료되었습니다.');</script>");
-			mav.setViewName("../member/cart");
-			out.close();
+			mav.setViewName("home");
 		}
 		return mav;
 	}
+	
 	
 	@RequestMapping(value = "/back_inform", method = RequestMethod.GET)
 	public ModelAndView inform(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -172,12 +175,15 @@ public class PayController {
 			mav.setViewName("pay/inform");
 		}
 		else {    
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('세션이 만료되었습니다.');</script>");
-			mav.setViewName("../member/cart");
-			out.close();
+			mav.setViewName("home");
 		}
+		
 		return mav;
+	}
+	
+	@RequestMapping(value = "/go_back")
+	public String go_back(){
+		return "../cart/my_cart";
 	}
 	
 	 @ResponseBody
@@ -200,10 +206,12 @@ public class PayController {
 		
 		payService.pay_after(point, merchant_uid, user_id, product, inform);
 		
+		session.removeAttribute("Product");
+		session.removeAttribute("Inform");
+		
+		mav.addObject("merchant_uid", merchant_uid);
 		mav.setViewName("pay/Complate");
 		return mav;
-		
-		
 	}
 	
 }

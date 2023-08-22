@@ -17,6 +17,17 @@
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	
     <script>
+    let type;
+    
+    $(document).ready(function() {
+        $('label[for="card"]').click(function() {
+        	type = "card"
+        });
+        $('label[for="vbank"]').click(function() {
+        	type = "vbank"
+          });
+      });
+    
     var IMP = window.IMP; 
     IMP.init('imp30806126');
     
@@ -41,7 +52,7 @@
     function requestPay() {
         IMP.request_pay({
             pg : 'INIpayTest',
-            pay_method : 'card',
+            pay_method : type,
             //무통장!  vbank 
             merchant_uid: "WB" + makeMerchantUid, 
      	    name : productname,
@@ -60,7 +71,7 @@
                 if(res.paid_amount == data.response.amount){
                     alert("결제 및 결제검증완료");
                     let link = '/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}';
-                    location.replace(link);
+                    location.href = link;
                 } else {
                     alert("결제 실패");
                 }
@@ -174,10 +185,10 @@
 			  <form name="payment_select" action="?" method=get onSubmit="">
 			    <div class="select_payment">
 			      <div class="tabs">
-    		  	    <input id="all" type="radio" name="tab_item" value="kg"checked>
-    		  	    <label class="tab_item" style="border-top-left-radius: 10px;" for="all">카드로 결제</label>
-    		  	    <input id="programming" type="radio" name="tab_item" value="no">
-    		  	    <label class="tab_item" style="border-top-right-radius: 10px;" for="programming">무통장 입금</label>
+    		  	    <input id="card" type="radio" name="tab_item" checked>
+    		  	    <label class="tab_item" style="border-top-left-radius: 10px;" for=""card"">카드로 결제</label>
+    		  	    <input id="vbank" type="radio" name="tab_item">
+    		  	    <label class="tab_item" style="border-top-right-radius: 10px;" for="vbank">무통장 입금</label>
     		  	    <div class="tab_content" id="all_content">
         	  	      "결제하기"를 클릭하면 안전하게 구매를 완료할 수 있도록 카드결제 창으로 이동합니다.
     		  	    </div>
