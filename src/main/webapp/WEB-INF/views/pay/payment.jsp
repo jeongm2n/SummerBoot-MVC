@@ -6,21 +6,80 @@
 	<title>Payment</title>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang.css">
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang2.css">
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    
     <script src="${path}/resources/assets/js/pay/collapse.js"></script> 
-    
-    <script>
-	$(function(){
-		if(${point eq null}) { document.getElementById("p_point_price").style.display = "none"; document.getElementById("m_point_price").style.display = "none";}
-		else { document.getElementById("p_point_price").style.display = "block"; document.getElementById("m_point_price").style.display = "block";}
-	})
-	</script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<!-- iamport.payment.js -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	
+    <script>
+    var IMP = window.IMP; 
+    IMP.init('imp30806126');
+    
+    let today = new Date();   
+
+    let year = today.getFullYear().toString().substr(2, 2); // 년도
+    let month = today.getMonth() + 1;  // 월
+    let date = today.getDate();  // 날짜
+    let hours = today.getHours(); // 시
+    let minutes = today.getMinutes();  // 분
+    let seconds = today.getSeconds();  // 초
+    let milliseconds = today.getMilliseconds(); //밀리세컨
+    
+    let makeMerchantUid = year + month + date + hours +  minutes + seconds + milliseconds;
+    
+    let productname = "";
+    <c:forEach var="product" items="${product}" varStatus="status">
+    	productname += "${product.name}" + ",";
+    </c:forEach>
+    productname = productname.slice(0, -1);
+    
+    function requestPay() {
+        IMP.request_pay({
+            pg : 'INIpayTest',
+            pay_method : 'card',
+            //무통장!  vbank 
+            merchant_uid: "WB" + makeMerchantUid, 
+     	    name : productname,
+            amount : ${total_price},
+            buyer_tel : '${B_Inform[0]}',
+            buyer_email : '${B_Inform[1]}',
+            buyer_addr : '${B_Inform[2]}',
+            buyer_postcode : '${B_Inform[3]}',
+            buyer_name : '${B_Inform[4]}'
+        }, function(res) {
+            // 결제검증
+            $.ajax({
+                type : "POST",
+                url : "/verifyIamport/" + res.imp_uid
+            }).done(function(data) {
+                if(res.paid_amount == data.response.amount){
+                    alert("결제 및 결제검증완료");
+                    let link = '/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}';
+                    location.replace(link);
+                } else {
+                    alert("결제 실패");
+                }
+            });
+        });
+    }
+    
+    $(function(){
+    	if(${point eq null}){
+    		document.getElementById("m_point_price").style.display = "none";
+    		document.getElementById("p_point_price").style.display = "none";
+    	}
+    	else{
+    		document.getElementById("m_point_price").style.display = "block";
+    		document.getElementById("p_point_price").style.display = "block";
+    	}
+    })
+    </script>
+    
 </head>
 <body>
 <!-- 	헤더 -->
@@ -35,7 +94,7 @@
         <div class="container">
         <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
-		  	<img src="${path}/resources/assets/img/${product.img}" class="img">
+		  	<img src="${path}/resources/assets/img/${product.img}" class="img" >
 		  	<div style="float:right;">
 		  	  <div class="text_box">
 		  	    <a class="amount">x ${product.quantity}</a>
@@ -63,7 +122,7 @@
           <div>
             <nav>
               <li class="head"><a href="../cart/my_cart">장바구니</a></li>
-    	      <li class="head"><a href="inform">&nbsp;>&nbsp;<b>정보</b></a>&nbsp;>&nbsp;</li>
+    	      <li class="head"><a href="back_inform">&nbsp;>&nbsp;<b>정보</b></a>&nbsp;>&nbsp;</li>
     	      <li class="head">결제</li>
             </nav>
           </div>
@@ -76,10 +135,23 @@
 			      	  <span class="text">연락처</span>
 			        </div>
 			        <div class="detail">
-			          <span class="text">${C_Inform[0]}</span>
+			          <span class="text">${B_Inform[0]}</span>
 			        </div>
 			        <div class="c_btn">
-			       	  <a class="btn_text" href="#">변경</a>
+			       	  <a class="btn_text" href="back_inform">변경</a>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="inform" style="border-bottom: 1px solid #adb5bd;">
+			      <div class="box">
+			        <div class="tag">
+			      	  <span class="text">이메일</span>
+			        </div>
+			        <div class="detail">
+			          <span class="text">${B_Inform[1]}</span>
+			        </div>
+			        <div class="c_btn">
+			      	  <a class="btn_text" href="back_inform">변경</a>
 			        </div>
 			      </div>
 			    </div>
@@ -89,10 +161,10 @@
 			      	  <span class="text">주소</span>
 			        </div>
 			        <div class="detail">
-			          <span class="text">${C_Inform[1]}</span>
+			          <span class="text">${B_Inform[2]}</span>
 			        </div>
 			        <div class="c_btn">
-			      	  <a class="btn_text" href="#">변경</a>
+			      	  <a class="btn_text" href="back_inform">변경</a>
 			        </div>
 			      </div>
 			    </div>
@@ -113,7 +185,7 @@
         	  	  	  "결제하기"를 클릭하면 안전하게 구매를 완료할 수 있도록 무통장 입금 창으로 이동합니다.
 			  	    </div>
 			  	  </div>
-			  	  <input type="submit" class="sub" style="margin-top: 20px;" value="결제하기" >
+			  	  <input type="button" class="sub" style="margin-top: 20px;" onclick="requestPay()" value="결제하기" >
 			    </div>
 			  </form>
 			</div>

@@ -17,13 +17,7 @@
     
 	<script>
 	$(function(){
-		if(${p_view}){
-			document.getElementById("M_point").style.display = "block";
-			document.getElementById("P_point").style.display = "block";
-			document.getElementById("s_chkbox").style.display = "block";
-			document.getElementById("a_chkbox").style.display = "block";
-		}
-		else{
+		if(!${p_view}){
 			document.getElementById("M_point").style.display = "none";
 			document.getElementById("P_point").style.display = "none";
 			document.getElementById("s_chkbox").style.display = "none";
@@ -92,7 +86,7 @@
             </nav>
           </div>
           <div class="input">
-          <form name="addressForm" action="payment" method=get onSubmit="return address_valid();">
+          <form name="addressForm" action="payment" method=get onSubmit="return valid();">
             <div class="">
               <label for="phone" class="Inform_label">연락처</label>
               <div class="input_type1">
@@ -100,6 +94,12 @@
     	        <label class="input_label" for="phone">전화번호 ( -제외 )</label>
     	        <span class="input_span"></span>
 		   	  </div>
+		  	  <div class="input_type1">
+                <input type="text" name="email" id="email" class="_input text" maxlength='20' value="${inform.email}" required title="숫자만 입력해주세요!">
+    	        <label class="input_label" for="phone">이메일 ( 직접입력 )</label>
+    	        <span class="input_span"></span>
+		   	  </div>
+		   	  <span id='email_error' class='error'></span>
 		   	  <div class="chkbox" id="s_chkbox">
 		  	    <input type="checkbox" name="snssts" id="snssts" value="동의" checked> 
 		  	    <label for=snssts>sns 수신 동의</label>
@@ -141,7 +141,7 @@
     	        <label class="input_label" for="postcode">우편번호</label>
     	        <span class="input_span"></span>
 		   	  </div>
-    	        <span id='post_error' class='post_error'></span>
+    	        <span id='error' class='post_error'></span>
 		   	  <div style="display : flex; justify-content: flex-start;">
 		   	    <div class="input_type2" style="margin-right: 1%;">
                   <input type="text" name="city" id="city" class="_input text" pattern="[가-힣\s]+" value="${inform.city}" title="한글만 입력해주세요!">
@@ -171,6 +171,7 @@
 		   	  </div>
             </div>
             <input type="hidden" name="h_point" id="h_point">
+            <input type="hidden" name="h_f_point" id="h_f_point" value = "${inform.point}">
             <input type="submit" class="sub_btn" value="이 주소로 배송" >
           </form>
           </div>

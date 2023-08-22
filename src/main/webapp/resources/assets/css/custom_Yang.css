@@ -84,6 +84,7 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
 }
 
 .head a {
+	color: blue;
   	font-size: 0.9rem !important;
  	display: inline-block;
   	text-decoration-line: none;
@@ -176,7 +177,7 @@ html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
 }
 .select:focus ~ .input_span, .select:valid ~ .input_span { width: 100%;}
 
-.post_error {
+.error {
   font-size: 0.5rem !important;
   color: #FD8008;
 }

@@ -4,6 +4,7 @@ public class InformVO {
 
 
 	private String tel;
+	private String email;
 	private String name;
 	private int point;
 	private String postcode;
@@ -19,17 +20,6 @@ public class InformVO {
 		this.point = point;
 	}
 	
-	public InformVO(String tel , String name, String postcode, String state, String city, String town, String street_add, String option_add) {
-		this.tel = tel;
-		this.name = name;
-		this.postcode = postcode;
-		this.state = state;
-		this.city = city;
-		this.town = town;
-		this.street_add = street_add;
-		this.option_add = option_add;
-	}
-	
 	public InformVO(String tel , String name, int point, String postcode, String state, String city, String town, String street_add, String option_add) {
 		this.tel = tel;
 		this.name = name;
@@ -42,8 +32,24 @@ public class InformVO {
 		this.option_add = option_add;
 	}
 	
+	public InformVO(String tel , String email, String name, int point, String postcode, String state, String city, String town, String street_add, String option_add) {
+		this.tel = tel;
+		this.email = email;
+		this.name = name;
+		this.point = point;
+		this.postcode = postcode;
+		this.state = state;
+		this.city = city;
+		this.town = town;
+		this.street_add = street_add;
+		this.option_add = option_add;
+	}
+	
 	public String getTel() { return tel;}
 	public void setTel(String tel) { this.tel = tel;}
+	
+	public String getEmail() { return email;}
+	public void setEmail(String email) { this.email = email;}
 	
 	public String getName() { return name;}
 	public void setName(String name) { this.name = name;}

@@ -165,3 +165,33 @@ td {
 	width : 60px;
 	height : 60px
 }
+
+.div6{
+/*	너무 꽉차는 느낌이라 width를 95%로 바꿔봤어요!*/
+	width:95%;
+	max-width: 1240px;
+	min-width : 390px;
+	height:100px;
+	margin-top:40px;
+/*	가운데 정렬 하기 위해 추가했어요! 왼쪽에 붙어있더라구요*/
+	margin-right:auto;
+	margin-left:auto;
+}
+
+/*미디어 쿼리*/
+@media screen and (max-width: 1000px) {
+	.Point_sel { text-align:center; display: inline-block;}
+	.div2 { margin-left: auto !important;	margin-right: auto !important;		}
+	.div3 { margin-left: auto !important;	margin-right: auto !important;		}
+	.m_div { text-align: center;}
+	.p_time { display: none;}
+} 
+
+@media screen and (min-width: 1000px) {
+	.Point_sel { text-align:right; display: inline-block;}
+	.div2 { float:left;}
+	.div3 { float:right;}
+	.div4 { float:left;}
+	.m_div {text-align: left;}
+	.m_time { display: none;}
+} 
