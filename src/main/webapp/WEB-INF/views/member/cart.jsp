@@ -21,7 +21,7 @@
 	<section class="bg-light">
 		<div class="container py-5">
 			<div class="col-lg-12 align-items-stretch" id="cart" >
-				<form id="cartForm" method="post" action="check">
+				<form id="cartForm" method="get" action="../pay/inform">
 					<div class="card w-100 mb-4">
 						<div class="card-body p-4">
 							<div class="container text-center">
