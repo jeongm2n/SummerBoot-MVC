@@ -23,7 +23,7 @@ public class InquiryVO {
 		this.state = state;
 	}
 	
-	InquiryVO(int q_no, String writer, String category, String title, String content, String secret, Timestamp ins_date, String state) {
+	InquiryVO(int q_no, String writer, String category, String title, String content, String secret, Timestamp ins_date, String answer, Timestamp answer_date, String state) {
 		this.q_no = q_no;
 		this.writer = writer;
 		this.category = category;
@@ -31,6 +31,8 @@ public class InquiryVO {
 		this.content = content;
 		this.secret = secret;
 		this.ins_date = ins_date;
+		this.answer = answer;
+		this.answer_date = answer_date;
 		this.state = state;
 	}
 	

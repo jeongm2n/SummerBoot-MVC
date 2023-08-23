@@ -105,8 +105,8 @@
 															                </div>
 														                </div>
 														            	<div class="input-group mb-3 storeImg">
-														                	<img src="${file_repo }${list.img}" id="imgTag${list.no }" style="height: 80%; width: 80%; margin:0 auto">
-														                	<input type="file" name="img" id="img" onchange="loadFile(this, ${list.no })">
+														                	<img src="${file_repo }${list.img}" id="imgTag${list.no }" style="height: 80%; width: 80%;">
+														                	<input type="file" name="img" id="img" onchange="loadFile(this, ${list.no })" style="width: 80%;">
 														                </div>
 													                </div>
 													                <div class="row">

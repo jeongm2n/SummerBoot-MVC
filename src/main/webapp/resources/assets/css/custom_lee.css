@@ -37,6 +37,8 @@ i {
 	color : #FD8008;
 }
 
+
+
 /* 회원가입 */
 #checkID {cursor: pointer;}
 
@@ -49,6 +51,8 @@ i {
 	width:33%;
 	display:inline;
 }
+
+
 
 /* 비밀번호 */
 .pwd {
@@ -69,6 +73,8 @@ i {
 	flex:1 1 auto;
 	/* width: 1%; */
 }
+
+
 
 /* 장바구니 */
 .badge {
@@ -118,6 +124,8 @@ i {
     margin-left: 85%;
 }
 
+
+
 /* 관리자페이지 - 지점리스트 */
 .upBody {
 	display:grid;
@@ -125,7 +133,7 @@ i {
 }
 .storeImg {
 	align-content: stretch;
-	justify-content: flex-end;
+	justify-content: center;
 }
 
 @media (max-width: 1200px) {
@@ -148,6 +156,8 @@ i {
 	cursor:pointer;
 }
 
+
+
 /* Q&A */
 .page-link {
 	border:0;
@@ -158,95 +168,118 @@ i {
 	text-decoration : underline;
 	text-underline-position : under;
 }
+.disabled {
+	color: black;
+	pointer-events: none;
+	text-decoration : underline;
+	text-underline-position : under;
+}
+.inquiryT>:not(caption)>*>*{
+	padding : 8px;
+}
+.card-body-inquiry {
+	display: grid;
+    padding : 1rem 2rem;
+    height:400px;
+}
+.inquiry-answer {
+	display : grid;
+	grid-template-columns: 0.5fr 5fr;
+}
+.inquiryTr:hover {
+	background-color : rgba(255, 214, 165, 0.2);
+}
+
+
 
 /* Q&A 글쓰기 */
+.qna {
+	display : grid;
+	grid-template-columns : 0.5fr 2fr;
+	margin-top : 2%;
+}
+.qna-title {
+	text-align: end;
+	border-right: 1px solid black;
+	padding-right: 8%;
+}
+.qnaRadio {
+	margin-left:4%;
+}
+.qna-input {
+	margin-right : 1%;
+	margin-left : 4%;
+}
+.qr {
+	display:inline-block;
+	width:170px;
+}
+#write {
+	margin-top : 2%;
+	text-align : center;
+}
+
+@media (max-width: 992px) {
 	.qna {
-		display : grid;
-		grid-template-columns : 0.5fr 2fr;
-		margin-top : 2%;
+		grid-template-columns : 1fr;
+	    justify-items: start;
+	    margin:2% 4%;
+		border-bottom : 1px solid black;
+	}
+	.qnaRadio {
+		width:100%;
+		padding-bottom:2%;
 	}
 	.qna-title {
 		text-align: end;
-		border-right: 1px solid black;
+		border-right:0px !important;
 		padding-right: 8%;
+		margin-bottom:1%;
 	}
-	.qnaRadio {
-		margin-left:4%;
+	.qna-id {
+		grid-template-columns : 0.5fr 1fr;
+		border-bottom:none;
 	}
-	.qna-input {
-		margin-right : 1%;
-		margin-left : 4%;
+	.qna-t {
+		border-bottom:none;
+	}
+	.qna-x {
+		display:none;
+	}
+	.qna-text {
+		margin-left:0 !important;
+		padding-right:4% !important;
+		width:100%;
 	}
 	.qr {
 		display:inline-block;
 		width:170px;
 	}
-	#write {
-		margin-top : 2%;
-		text-align : center;
-	}
-	
-	@media (max-width: 992px) {
-		.qna {
-			grid-template-columns : 1fr;
-		    justify-items: start;
-		    margin:2% 4%;
-			border-bottom : 1px solid black;
-		}
-		.qnaRadio {
-			width:100%;
-			padding-bottom:2%;
-		}
-		.qna-title {
-			text-align: end;
-			border-right:0px !important;
-			padding-right: 8%;
-			margin-bottom:1%;
-		}
-		.qna-id {
-			grid-template-columns : 0.5fr 1fr;
-			border-bottom:none;
-		}
-		.qna-t {
-			border-bottom:none;
-		}
-		.qna-x {
-			display:none;
-		}
-		.qna-text {
-			margin-left:0 !important;
-			padding-right:4% !important;
-			width:100%;
-		}
-		.qr {
-			display:inline-block;
-			width:170px;
-		}
-	}
-	
-	
-	[type="radio"] {
-		appearance: none;
-		border : 1.5px solid gray;
-		border-radius: 50%;
-		width: 1em;
-		height: 1em;
-		transition: border 0.2s ease-in-out;
-		vertical-align:middle;
-	}
-	[type="radio"]:hover, [type="checkbox"]:hover {
-		cursor: pointer;
-	}
-	[type="radio"]:checked {
-		border: 0.3em solid #FD8008;
-	}
-	
-	[type="checkbox"] {
-		accent-color: #FD8008;
-		width: 1em;
-		height: 1em;
-		vertical-align:middle;
-	}
+}
+
+
+[type="radio"] {
+	appearance: none;
+	border : 1.5px solid gray;
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	transition: border 0.2s ease-in-out;
+	vertical-align:middle;
+}
+[type="radio"]:hover, [type="checkbox"]:hover {
+	cursor: pointer;
+}
+[type="radio"]:checked {
+	border: 0.3em solid #FD8008;
+}
+
+[type="checkbox"] {
+	accent-color: #FD8008;
+	width: 1em;
+	height: 1em;
+	vertical-align:middle;
+}
 	
 
 /* @media (min-width:992px){} */

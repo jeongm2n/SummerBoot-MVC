@@ -33,6 +33,7 @@ public class CommunityController {
 		
 		int count = communityService.inquiryCount();
 		int pages = (count/10) + 1;
+		mav.addObject("page", page);
 		mav.addObject("count", start);
 		mav.addObject("pages", pages);
 		
