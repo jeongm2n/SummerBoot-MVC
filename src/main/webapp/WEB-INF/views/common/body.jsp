@@ -172,37 +172,25 @@
         </div>
 
         <div class="collapse show" id="res_seoul">
-            <div class="card card-body">
-                서울 본점 날씨
-            </div>
-            <div class="card card-body">
+            <div class="card card-body overflow-auto">
                 서울 본점 예약현황<br>
                 <div id="resList1"></div>
             </div>
         </div>
         <div class="collapse" id="res_gunpo">
-            <div class="card card-body">
-                경기 군포점 날씨
-            </div>
-            <div class="card card-body">
+            <div class="card card-body overflow-auto">
                 경기 군포점 예약현황
                 <div id="resList2"></div>
             </div>
         </div>
         <div class="collapse" id="res_pyeongtaek">
-            <div class="card card-body">
-                경기 평택점 날씨
-            </div>
-            <div class="card card-body">
+            <div class="card card-body overflow-auto">
                 경기 평택점 예약현황
                 <div id="resList3"></div>
             </div>
         </div>
         <div class="collapse" id="res_daegu">
-            <div class="card card-body">
-                대구점 날씨
-            </div>
-            <div class="card card-body">
+            <div class="card card-body overflow-auto">
                 대구점 예약현황
                 <div id="resList4"></div>
             </div>
@@ -252,52 +240,57 @@
     $( document ).ready(function() {
         getTodayResList('1');
     });
-    function getTodayResList(site) {
+    function getTodayResList(todayres) {
         //비동기
         $.ajax({
             type   : "GET",
-            url    : "${path}/getTodayResList?site=" + site, //파라미터 넘기는 방식과 컨트롤러에서 받는 방법
+            url    : "${path}/getTodayResList?todayres=" + todayres, //파라미터 넘기는 방식과 컨트롤러에서 받는 방법
             success: function (data) {
-                $(`#resList\${site}`).html('') // 템플릿 문자열, Jquery 사용방법
+                console.log(data)
+                $(`#resList\${todayres}`).html('') // 템플릿 문자열, Jquery 사용방법
 
                 let baseTable = `
                                  <table class="table table-hover">
                     <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">사용자</th>
-                        <th scope="col">시작시간</th>
-                        <th scope="col">종료시간</th>
-                        <th scope="col">Site</th>
+                    <tr style="text-align: center">
+                        <th scope="col">날씨</th>
+                        <th scope="col">시간</th>
+                        <th scope="col">예약현황<br>(예약건수/총자리수)</th>
+                        <th scope="col">예약바로가기</th>
                     </tr>
                     </thead>
                     <tbody >`
-
-                if (!data) {
-                    baseTable += `<tr> <td colSpan="5" align="center">오늘 예약이 없습니다.</td> </tr>`;
+                if (!data || data.length === 0) {
+                    baseTable += `<tr> <td colspan="4" style="text-align: center">오늘 예약이 없습니다.</td> </tr>`;
                 } else {
-                    for (const item of data) {
+                    for (let i = 9; i < 24; i++) {
                         baseTable += `
-                     <tr>
-                                    <th scope="row">1</th>
-                                    <td>\${item.member_id}</td>
-                                    <td>\${item.startTime}</td>
-                                    <td>11:00</td>
-                                    <td>\${item.site}</td>
-                                </tr>
-                    `;
+                            <tr style="text-align: center">
+                            <td></td>
+                            <td>\${i}:00</td>
+                            <td> \${data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length} / \${data[0].sites}</td>
+                            <td><input type="button" id="res_ch" value="예약"></td> </tr>
+                        `;
                     }
                 }
                 baseTable += `</tbody>
                 </table>`
 
-                $(`#resList\${site}`).html(baseTable)
+                $(`#resList\${todayres}`).html(baseTable)
 
             },
             error  : function () {
                 alert("통신 실패.");
             }
         });
+    }
+
+    function getStringBeforeSymbol(inputString, symbol) {
+        const index = inputString.indexOf(symbol);
+        if (index !== -1) {
+            return inputString.substring(0, index);
+        }
+        return null; // 기호가 없는 경우
     }
 
     <!-- 세차가이드 : 모달팝업창으로 유튜브영상 보여주기 -->
