@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import com.spring.summerboot2.DBconn;
 
 public class ReservationDAO {
@@ -88,7 +90,7 @@ public class ReservationDAO {
 			conn = DBconn.getDBCP();
 			
 			String sql = "SELECT res_no, member_id, site, startTime, useTime FROM sb_reservation WHERE no="+no
-					+ " AND res_date="+res_date+" ORDER BY startTime ASC";
+					+ " AND res_date='"+res_date+"' ORDER BY startTime,site ASC";
 			
 			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
@@ -100,9 +102,18 @@ public class ReservationDAO {
 				String member_id = rs.getString("member_id");
 				int site = rs.getInt("site");
 				String startTime = rs.getString("startTime");
-				String useTime = rs.getString("useTime");
+				int useTime = rs.getInt("useTime");
 				
-				vo = new ReservationVO(res_no,member_id,site,startTime,useTime);
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+		        LocalTime parsedTime = LocalTime.parse(startTime, formatter);
+		        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("HH:mm");
+		        startTime = parsedTime.format(outputFormatter);
+		        
+		        LocalTime newTime = parsedTime.plusMinutes(useTime);
+		        
+				String endTime = newTime.format(outputFormatter);
+				System.out.println("startTime, endTime : " + startTime +","+ endTime);
+				vo = new ReservationVO(res_no,member_id,site,startTime,endTime);
 				resVO.add(vo);
 			}
 			rs.close();

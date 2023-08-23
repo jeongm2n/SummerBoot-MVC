@@ -276,7 +276,7 @@
     
 	//Next>버튼 클릭 시 예약페이지2로 이동
     function goReservation2(){
-    	var radiobtn = document.querySelector('input[type=radio][name=options]:checked');
+    	var radiobtn = document.querySelector('input[type=radio][name=p_options]:checked');
     	var useTime = radiobtn.value;
     	if(clickedMD==null || selectedHM==null ||shopName==null){
     		alert("지점, 날짜, 시간을 확인해주세요");

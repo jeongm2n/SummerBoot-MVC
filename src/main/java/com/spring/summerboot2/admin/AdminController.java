@@ -119,8 +119,10 @@ public class AdminController {
 		
 		List<ReservationVO> resList;
 		resList = adminService.reservationList(no,res_date);
-		 
+		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("no", no); 
+		mav.addObject("res_date",res_date);
 		mav.addObject("resList", resList); 
 		mav.setViewName("admin/reservationList");
 		return mav;
