@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
+import com.spring.summerboot2.cart.CartVO;
+
 @Service
 public class PayServiceimpl implements PayService{
 	
@@ -18,7 +20,7 @@ public class PayServiceimpl implements PayService{
 		paydao.Save_Inform(id, snssts, state, postcode, city, town, street_add, option_add, save_add);
 	}
 	
-	public void pay_after(int point, String merchant_uid, String id, ArrayList<ProductVO> product, InformVO inform) {
+	public void pay_after(int point, String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform) {
 		PayDAO paydao = new PayDAO();
 		paydao.pay_after(point, merchant_uid, id, product, inform);
 	}
