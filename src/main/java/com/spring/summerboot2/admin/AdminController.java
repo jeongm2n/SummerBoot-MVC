@@ -104,8 +104,18 @@ public class AdminController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/reservationList", method = RequestMethod.GET)
-	public ModelAndView showresList(@RequestParam("no") int no) {
+	@RequestMapping(value = "/reservationList1", method = RequestMethod.GET)
+	public ModelAndView goresList(@RequestParam("no") int no,@RequestParam("res_date") String res_date){
+		 
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("no", no); 
+		mav.addObject("res_date",res_date);
+		mav.setViewName("admin/reservationList");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/reservationList2", method = RequestMethod.POST)
+	public ModelAndView showresList(@RequestParam("no") int no,@RequestParam("res_date") String res_date){
 		
 		List<ReservationVO> resList;
 		resList = adminService.reservationList(no);

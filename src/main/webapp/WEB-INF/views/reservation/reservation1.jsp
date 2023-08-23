@@ -67,16 +67,16 @@
     	<div class="col" style="padding-bottom:10px">
     	<input type="radio" class="btn-check shops" name="shops" id="shop1" value=1 autocomplete="off">
     	<label class="btn btn-secondary shops" for="shop1">서울&nbsp;&nbsp;본점</label>
-    	<div class="addr"><font style="font-size:10pt">서울 광진구 능동로 209</font></div></div>
+    	<div class="addr"><font style="font-size:12pt">서울 광진구 능동로 209</font></div></div>
     	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop2" value=2 autocomplete="off">
     	<label class="btn btn-secondary shops" for="shop2">경기군포점</label>
-    	<div class="addr"><font style="font-size:10pt">경기 군포시 청백리길 6</font></div></div>
+    	<div class="addr"><font style="font-size:12pt">경기 군포시 청백리길 6</font></div></div>
     	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop3" value=3 autocomplete="off">
     	<label class="btn btn-secondary shops" for="shop3">경기평택점</label>
-    	<div class="addr"><font style="font-size:10pt">경기 평택시 경기대로 245</font></div></div>
+    	<div class="addr"><font style="font-size:12pt">경기 평택시 경기대로 245</font></div></div>
     	<div class="col" style="padding-bottom:10px"><input type="radio" class="btn-check shops" name="shops" id="shop4" value=4 autocomplete="off">
     	<label class="btn btn-secondary shops" for="shop4">대&nbsp;&nbsp;구&nbsp;&nbsp;점</label>
-    	<div class="addr"><font style="font-size:10pt">대구 중구 공평로 88</font></div></div></div>
+    	<div class="addr"><font style="font-size:12pt">대구 중구 공평로 88</font></div></div></div>
     	</div>
     	</div>
     </div>
