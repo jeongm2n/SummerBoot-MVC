@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class TodayresDAO {
@@ -16,28 +18,33 @@ public class TodayresDAO {
     private Connection con;
     private PreparedStatement pstmt;
     private ResultSet rs;
-    public List<ReservationVO> todayresList(String param) {
-        List<ReservationVO> list = new ArrayList<ReservationVO>();
-        if (param == null) {
-            param = "1";
-        }
+
+    public List<Map<String, String>> todayresList(int no) {
+        //carwash_no: 지점1~4까지, 지점별 startTime: 9~23시까지 조회하여 sql문에서 데이터출력
+        List<Map<String, String>> resultList = new ArrayList<>();
         try {
             con = DBconn.getDBCP();
-            String sql = "SELECT no, member_id, res_date, site, startTime, useTime FROM sb_reservation WHERE no = '" + param + "'";
-//            "SELECT no, member_id, res_date, site, startTime, useTime FROM sb_reservation WHERE no = '" + param + "' and DATE_FORMAT(STR_TO_DATE(res_date, '%m-%d'), '%m-%d')=date_format(curdate(), '%m-%d') order by startTime";
+            String sql = "select r.*, c.sites from sb_reservation r join sb_carwash c on r.no = c.no where res_date = date_format(curdate(), '%m-%d') and r.no = '" + no + "';";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                int no = rs.getInt("no");
-                String id = rs.getString("member_id");
-                String date = rs.getString("res_date");
-                int site = rs.getInt("site");
-                String stime = rs.getString("startTime");
-                String utime = rs.getString("useTime");
-
-                ReservationVO vo = new ReservationVO(no, id, date, site, stime, utime);
-                list.add(vo);
+                Map<String, String> result = new HashMap<>();
+                String resNo = rs.getString("res_no");
+                String memberId = rs.getString("member_id");
+                String resDate = rs.getString("res_date");
+                String site = rs.getString("site");
+                String startTime = rs.getString("startTime");
+                String useTime = rs.getString("useTime");
+                String sites = rs.getString("sites");
+                result.put("resNo", resNo);
+                result.put("memberId", memberId);
+                result.put("resDate", resDate);
+                result.put("site", site);
+                result.put("startTime", startTime);
+                result.put("useTime", useTime);
+                result.put("sites", sites);
+                resultList.add(result);
             }
             rs.close();
             pstmt.close();
@@ -45,6 +52,6 @@ public class TodayresDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return list;
+        return resultList;
     }
 }
