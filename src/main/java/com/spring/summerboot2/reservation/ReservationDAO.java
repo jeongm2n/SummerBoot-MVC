@@ -79,7 +79,7 @@ public class ReservationDAO {
 		return sites;
 	}
 	
-	public List<ReservationVO> showresList(int no){
+	public List<ReservationVO> showresList(int no, String res_date){
 		PreparedStatement pstmt;
 		List<ReservationVO> resVO = new ArrayList<>();
 		ReservationVO vo;
@@ -87,8 +87,8 @@ public class ReservationDAO {
 		try {
 			conn = DBconn.getDBCP();
 			
-			String sql = "SELECT res_no, member_id, res_date, site, startTime, useTime FROM sb_reservation WHERE no="+no
-					+ " ORDER BY res_date, startTime ASC";
+			String sql = "SELECT res_no, member_id, site, startTime, useTime FROM sb_reservation WHERE no="+no
+					+ " AND res_date="+res_date+" ORDER BY startTime ASC";
 			
 			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
@@ -98,12 +98,11 @@ public class ReservationDAO {
 			while(rs.next()) {
 				int res_no = rs.getInt("res_no");
 				String member_id = rs.getString("member_id");
-				String res_date = rs.getString("res_date");
 				int site = rs.getInt("site");
 				String startTime = rs.getString("startTime");
 				String useTime = rs.getString("useTime");
 				
-				vo = new ReservationVO(res_no,member_id,res_date,site,startTime,useTime);
+				vo = new ReservationVO(res_no,member_id,site,startTime,useTime);
 				resVO.add(vo);
 			}
 			rs.close();

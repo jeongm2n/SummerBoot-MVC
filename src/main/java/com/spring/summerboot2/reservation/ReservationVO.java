@@ -15,6 +15,15 @@ public class ReservationVO {
 		this.useTime=useTime;
 	}
 	
+	public ReservationVO(int res_no, String member_id, int site, String startTime, String useTime) {
+		super();
+		this.res_no = res_no;
+		this.member_id = member_id;
+		this.site = site;
+		this.startTime = startTime;
+		this.useTime = useTime;
+	}
+
 	public ReservationVO(int res_no, String member_id, String res_date, int site, String startTime, String useTime) {
 		this.res_no = res_no;
 		this.member_id = member_id;

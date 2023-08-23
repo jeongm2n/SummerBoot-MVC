@@ -58,9 +58,9 @@ public class AdminService {
 		return dao.deleteStore(no);
 	}
 	
-	public List<ReservationVO> reservationList(int no){
+	public List<ReservationVO> reservationList(int no, String res_date){
 		ReservationDAO resdao = new ReservationDAO();
-		return resdao.showresList(no);
+		return resdao.showresList(no,res_date);
 	}
 	
 	public int deleteres(int res_no) {
