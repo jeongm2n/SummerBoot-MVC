@@ -54,7 +54,7 @@
                                             <th>삭제</th>
                                         </tr>
                                     </tfoot>
-                                    <tbody>
+                                    <tbody class="store">
                                    		<c:choose>
 	                                    	<c:when test="${empty washList }">
 	                                    		<tr>
@@ -151,7 +151,7 @@
 	});
 
 	$(function(){
-		var article = (".recruit .show");
+		var article = (".store .store-show");
 		
 		$(".store .item .store-update").click(function() {  
 			var myArticle =$(this).parents().next("tr");  

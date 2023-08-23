@@ -46,12 +46,14 @@
                         <li class="nav-item">
 							<a class="nav-link" href="${path}/branch/list">지점</a>
                         </li>
-                        
                         <li class="nav-item">
                             <a class="nav-link" href="${path}/reservation/reservation1">예약</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="${path}/pay/inform">세차용품</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${path}/community/qna">커뮤니티</a>
                         </li>
                     </ul>
                 </div>

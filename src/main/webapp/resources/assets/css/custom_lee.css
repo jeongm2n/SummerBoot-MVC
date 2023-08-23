@@ -147,6 +147,108 @@ i {
 .store-update, .store-delete {
 	cursor:pointer;
 }
+
+/* Q&A */
+.page-link {
+	border:0;
+}
+.pagination .page-link:hover, .pagination .page-link.active {
+	background-color: white;
+	color: black;
+	text-decoration : underline;
+	text-underline-position : under;
+}
+
+/* Q&A 글쓰기 */
+	.qna {
+		display : grid;
+		grid-template-columns : 0.5fr 2fr;
+		margin-top : 2%;
+	}
+	.qna-title {
+		text-align: end;
+		border-right: 1px solid black;
+		padding-right: 8%;
+	}
+	.qnaRadio {
+		margin-left:4%;
+	}
+	.qna-input {
+		margin-right : 1%;
+		margin-left : 4%;
+	}
+	.qr {
+		display:inline-block;
+		width:170px;
+	}
+	#write {
+		margin-top : 2%;
+		text-align : center;
+	}
+	
+	@media (max-width: 992px) {
+		.qna {
+			grid-template-columns : 1fr;
+		    justify-items: start;
+		    margin:2% 4%;
+			border-bottom : 1px solid black;
+		}
+		.qnaRadio {
+			width:100%;
+			padding-bottom:2%;
+		}
+		.qna-title {
+			text-align: end;
+			border-right:0px !important;
+			padding-right: 8%;
+			margin-bottom:1%;
+		}
+		.qna-id {
+			grid-template-columns : 0.5fr 1fr;
+			border-bottom:none;
+		}
+		.qna-t {
+			border-bottom:none;
+		}
+		.qna-x {
+			display:none;
+		}
+		.qna-text {
+			margin-left:0 !important;
+			padding-right:4% !important;
+			width:100%;
+		}
+		.qr {
+			display:inline-block;
+			width:170px;
+		}
+	}
+	
+	
+	[type="radio"] {
+		appearance: none;
+		border : 1.5px solid gray;
+		border-radius: 50%;
+		width: 1em;
+		height: 1em;
+		transition: border 0.2s ease-in-out;
+		vertical-align:middle;
+	}
+	[type="radio"]:hover, [type="checkbox"]:hover {
+		cursor: pointer;
+	}
+	[type="radio"]:checked {
+		border: 0.3em solid #FD8008;
+	}
+	
+	[type="checkbox"] {
+		accent-color: #FD8008;
+		width: 1em;
+		height: 1em;
+		vertical-align:middle;
+	}
+	
+
 /* @media (min-width:992px){} */
 /* @media (min-width: 992px) {
   .row_media { flex-direction: column;}
