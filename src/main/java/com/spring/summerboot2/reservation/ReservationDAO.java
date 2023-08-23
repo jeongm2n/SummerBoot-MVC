@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import com.spring.summerboot2.DBconn;
 
 public class ReservationDAO {
@@ -79,7 +81,7 @@ public class ReservationDAO {
 		return sites;
 	}
 	
-	public List<ReservationVO> showresList(int no){
+	public List<ReservationVO> showresList(int no, String res_date){
 		PreparedStatement pstmt;
 		List<ReservationVO> resVO = new ArrayList<>();
 		ReservationVO vo;
@@ -87,8 +89,8 @@ public class ReservationDAO {
 		try {
 			conn = DBconn.getDBCP();
 			
-			String sql = "SELECT res_no, member_id, res_date, site, startTime, useTime FROM sb_reservation WHERE no="+no
-					+ " ORDER BY res_date, startTime ASC";
+			String sql = "SELECT res_no, member_id, site, startTime, useTime FROM sb_reservation WHERE no="+no
+					+ " AND res_date='"+res_date+"' ORDER BY startTime,site ASC";
 			
 			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
@@ -98,12 +100,20 @@ public class ReservationDAO {
 			while(rs.next()) {
 				int res_no = rs.getInt("res_no");
 				String member_id = rs.getString("member_id");
-				String res_date = rs.getString("res_date");
 				int site = rs.getInt("site");
 				String startTime = rs.getString("startTime");
-				String useTime = rs.getString("useTime");
+				int useTime = rs.getInt("useTime");
 				
-				vo = new ReservationVO(res_no,member_id,res_date,site,startTime,useTime);
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+		        LocalTime parsedTime = LocalTime.parse(startTime, formatter);
+		        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("HH:mm");
+		        startTime = parsedTime.format(outputFormatter);
+		        
+		        LocalTime newTime = parsedTime.plusMinutes(useTime);
+		        
+				String endTime = newTime.format(outputFormatter);
+				System.out.println("startTime, endTime : " + startTime +","+ endTime);
+				vo = new ReservationVO(res_no,member_id,site,startTime,endTime);
 				resVO.add(vo);
 			}
 			rs.close();

@@ -118,9 +118,11 @@ public class AdminController {
 	public ModelAndView showresList(@RequestParam("no") int no,@RequestParam("res_date") String res_date){
 		
 		List<ReservationVO> resList;
-		resList = adminService.reservationList(no);
-		 
+		resList = adminService.reservationList(no,res_date);
+		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("no", no); 
+		mav.addObject("res_date",res_date);
 		mav.addObject("resList", resList); 
 		mav.setViewName("admin/reservationList");
 		return mav;

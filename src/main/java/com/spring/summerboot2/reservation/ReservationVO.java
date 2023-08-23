@@ -9,19 +9,20 @@ public class ReservationVO {
 	private String startTime;
 	private String useTime;
 	private String qr_img;
+	private String endTime;
 
 	public ReservationVO(String startTime, String useTime) {
 		this.startTime=startTime;
 		this.useTime=useTime;
 	}
 	
-	public ReservationVO(int res_no, String member_id, String res_date, int site, String startTime, String useTime) {
+	public ReservationVO(int res_no, String member_id, int site, String startTime, String endTime) {
+		super();
 		this.res_no = res_no;
 		this.member_id = member_id;
-		this.res_date = res_date;
 		this.site = site;
 		this.startTime = startTime;
-		this.useTime = useTime;
+		this.endTime = endTime;
 	}
 
 	public int getRes_no() {
@@ -86,5 +87,13 @@ public class ReservationVO {
 
 	public void setQr_img(String qr_img) {
 		this.qr_img = qr_img;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 }

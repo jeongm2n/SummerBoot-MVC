@@ -59,7 +59,7 @@
                         </div>
 	                    <div class="card-body">
 	                    	<div>
-	                    	<form action="/reservationList2" method="POST">
+	                    	<form action="${path}/admin/reservationList2" method="POST">
 	                    		<table style="width:100%">
 	                    		<tr><th style="width:10%"><span style="background-color:#FFDAB9;">예약날짜</span></th>
 	                    		<td style="width:20%"><input type="text" name="res_date" value="${res_date }" id="datepicker">
@@ -76,6 +76,29 @@
 	                    	</div>
 	                    	</c:when>
 	                    	<c:when test="${!empty res_date }">
+	                    	<div class="table-responsive">
+	                    	<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+	                    		<c:choose>
+		                            <c:when test="${empty resList }">
+		                            	<tr><td colspan=6>예약 정보가 없습니다.</td></tr>
+		                            </c:when>
+		                            <c:when test="${!empty resList }">
+		                            <thead>
+		                            <tr><th>예약번호</th><th>예약자 ID</th><th>세차구역</th><th>시작시간</th><th>종료시간</th><th></th></tr>
+		                            </thead>
+		                            <c:forEach var="data" items="${resList }">
+		                            <tbody>
+		                            	<tr>
+		                            		<td>${data.res_no }</td><td>${data.member_id }</td><td>${data.site }</td>
+		                            		<td>${data.startTime }</td><td>${data.endTime }</td>
+		                      				<th><a href="#" onclick="return deleteres(${data.res_no });">삭제</a></th>
+		                            	</tr>
+		                            </tbody>
+		                            </c:forEach>
+		                            </c:when>
+	                            </c:choose>
+	                    	</table>
+	                    	</div>
 	                    	</c:when>
 	                    	</c:choose>
 	                    </div>
