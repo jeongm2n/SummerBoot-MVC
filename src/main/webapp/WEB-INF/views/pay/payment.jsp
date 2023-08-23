@@ -186,7 +186,7 @@
 			    <div class="select_payment">
 			      <div class="tabs">
     		  	    <input id="card" type="radio" name="tab_item" checked>
-    		  	    <label class="tab_item" style="border-top-left-radius: 10px;" for=""card"">카드로 결제</label>
+    		  	    <label class="tab_item" style="border-top-left-radius: 10px;" for="card">카드로 결제</label>
     		  	    <input id="vbank" type="radio" name="tab_item">
     		  	    <label class="tab_item" style="border-top-right-radius: 10px;" for="vbank">무통장 입금</label>
     		  	    <div class="tab_content" id="all_content">

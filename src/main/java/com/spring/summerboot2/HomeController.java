@@ -15,8 +15,4 @@ public class HomeController {
         return "home";
     }
     
-    @RequestMapping(value = "/qna", method = RequestMethod.GET)
-    public String inquiry() {
-        return "inquiry";
-    }
 }
