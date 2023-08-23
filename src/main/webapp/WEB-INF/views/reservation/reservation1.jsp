@@ -164,7 +164,7 @@
     </div>
     
     <div class="border border-4 weatherdiv table-responsive">주간날씨
-    <table id="weather" class="weathertb table">
+    <table id="weather" class="weathertb">
     </table>
     </div>
 </div>
