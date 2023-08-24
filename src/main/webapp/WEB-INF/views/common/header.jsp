@@ -50,7 +50,7 @@
                             <a class="nav-link" href="${path}/reservation/reservation1">예약</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${path}/pay/inform">세차용품</a>
+                            <a class="nav-link" href="${path}/shop/main/전체,1,0">세차용품</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="${path}/community/qna">커뮤니티</a>

@@ -43,14 +43,15 @@ public class PayController {
 		InformVO inform = null;
 		ArrayList<CartVO> product = new ArrayList<CartVO>();
 		
+		boolean p_view;
+		int product_price = 0;
+		
 		for(int i = 0; i < product_id.length; i++) { product.add(new CartVO(Integer.parseInt(product_id[i]), name[i], Integer.parseInt(quantity[i]), Integer.parseInt(price[i]), img[i]));}
 		
-		int product_price = 0;
 		for(String p_price : price) { product_price += Integer.parseInt(p_price);}
 		
 		session.setAttribute("Product", product);
 		
-		boolean p_view;
 		if(session.getAttribute("user_id") == null) {
 			p_view = false;
 			if(session.getAttribute("Inform") != null) { inform = (InformVO)session.getAttribute("Inform");}
@@ -73,7 +74,7 @@ public class PayController {
 	}
 
 	@RequestMapping(value = "/payment", method = RequestMethod.GET)
-	public ModelAndView payment(@RequestParam Map<String, String> inform, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView payment(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
@@ -81,13 +82,21 @@ public class PayController {
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("Product") != null) {
-			String tel = inform.get("tel"); String email = inform.get("email"); String snssts = inform.get("snssts");
-			String state = inform.get("state"); String name = inform.get("name"); String postcode = inform.get("postcode"); String city = inform.get("city");
-			String town = inform.get("town"); String street_add = inform.get("street_add"); String option_add = inform.get("option_add"); String save_add = inform.get("save_add");
+			String tel = request.getParameter("tel");
+			String email = request.getParameter("email");
+			String snssts = request.getParameter("snssts");
+			String state = request.getParameter("state");
+			String name = request.getParameter("name");
+			String postcode = request.getParameter("postcode");
+			String city = request.getParameter("city");
+			String town = request.getParameter("town");
+			String street_add = request.getParameter("street_add");
+			String option_add = request.getParameter("option_add");
+			String save_add = request.getParameter("save_add");
 	
 			String[] b_Inform = new String[5];
 			
-			StringBuffer p_tel = new StringBuffer(tel);
+			StringBuffer p_tel = new StringBuffer(tel);			
 			p_tel.insert(7, "-"); p_tel.insert(3, "-");
 			b_Inform[0] = p_tel.toString();
 			b_Inform[1] = email;
@@ -96,18 +105,24 @@ public class PayController {
 			switch(state) {
 				case "강원특별자치도": case "제주특별자치도": case "세종특별자치시": b_Inform[2] += state + " "; break;
 				case "부산": case "대구": case "인천": case "광주": case "대전": case "울산": b_Inform[2] += state + "광역시 "; break;
-				case "경기": b_Inform[2] += state + "도 "; break; case "서울": b_Inform[2] += state + "특별시 "; break; case "충북": b_Inform[2] += "충청북도 "; break;
-				case "충남": b_Inform[2] += "충청남도 "; break; case "전북": b_Inform[2] += "전라북도 "; break; case "전남": b_Inform[2] += "전라남도 "; break;
-				case "경북": b_Inform[2] += "경상북도 "; break; case "경남": b_Inform[2] += "경상남도 "; break; default : break;
+				case "경기": b_Inform[2] += state + "도 "; break; 
+				case "서울": b_Inform[2] += state + "특별시 "; break; 
+				case "충북": b_Inform[2] += "충청북도 "; break;
+				case "충남": b_Inform[2] += "충청남도 "; break; 
+				case "전북": b_Inform[2] += "전라북도 "; break; 
+				case "전남": b_Inform[2] += "전라남도 "; break;
+				case "경북": b_Inform[2] += "경상북도 "; break; 
+				case "경남": b_Inform[2] += "경상남도 "; break; 
+				default : break;
 			}
+			
 			if(!city.equals(null)) { b_Inform[2] += city + " ";}
 			b_Inform[2] += town + " " + street_add + " " + option_add;
 			b_Inform[3] = postcode;
 			b_Inform[4] = name;
 			
 			int point = 0;
-			
-			point = Integer.parseInt(inform.get("h_f_point"));
+			point = Integer.parseInt(request.getParameter("h_f_point"));			
 			
 			InformVO s_inform = new InformVO(tel, email, name, point, postcode, state, city, town, street_add, option_add);
 			session.setAttribute("Inform", s_inform);
@@ -122,7 +137,7 @@ public class PayController {
 			for(CartVO p_product : product) { product_price += p_product.getPrice();}
 			
 			point = 0;
-			if(!inform.get("h_point").isEmpty()) {point = Integer.parseInt(inform.get("h_point")); 	mav.addObject("point",point); }	
+			if(!request.getParameter("h_point").isEmpty()) {point = Integer.parseInt(request.getParameter("h_point")); 	mav.addObject("point",point); }	
 			
 			if(s_inform.getState().equals("제주특별자치도")) { shipping_price = 5000;}
 			
