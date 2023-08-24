@@ -180,7 +180,13 @@
 				</div>
 			</div>
 		</div>
-
+		
+			<div class="border border-4 weatherdiv table-responsive">
+				주간날씨
+				<table id="weather" class="weathertb">
+				</table>
+			</div>
+		
 		<div class="col-lg-6" style="height: 450px">
 			<div class="border border-4 div3" style="float: right;">
 				<b style="color: #FFDAB9">달력은 현재 달에서 +1달 까지만 조회하실 수 있습니다.</b>
@@ -230,12 +236,6 @@
 				<button type="button" class="orange-button"
 					onclick="return goReservation2();">Next></button>
 			</div>
-		</div>
-
-		<div class="border border-4 weatherdiv table-responsive">
-			주간날씨
-			<table id="weather" class="weathertb">
-			</table>
 		</div>
 	</div>
 	<%@ include file="../common/footer.jsp"%>

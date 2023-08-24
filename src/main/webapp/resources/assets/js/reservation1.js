@@ -156,8 +156,8 @@
 				if(i >= currentHour){ //현재 시간보다 이후의 시간이면 (아직 지나지 않은 시간이면) 클릭 이벤트 연결
 	            	button.classList.add('btn-h');
 	            	button.onclick = function(){
-						timeMinute(); //시간 클릭 시 분 선택 버튼 생성
 						selectedHour = this.getAttribute('id');
+						timeMinute(selectedHour); //시간 클릭 시 분 선택 버튼 생성
 						
 						if(selectedHour == 9){
 							selectedHour = "0" + selectedHour;
@@ -176,7 +176,6 @@
 			}else{ //사용자가 선택한 날이 오늘이 아니면 시간대는 신경 안써도 되므로
 				button.classList.add('btn-h');
 				button.onclick = function(){
-					timeMinute();
 					selectedHour = this.getAttribute('id');
 					if(selectedHour == 9){
 						selectedHour = "0" + selectedHour;
@@ -198,9 +197,8 @@
     	}
 	}
     
-    
 	//분 선택 버튼 만들기
-    function timeMinute(){
+    function timeMinute(compareHour){
 		removeAllChildren(minuteContainer);
     	for(i=0 ; i<=30 ; i+=30){
     		var button = document.createElement('button');
@@ -212,27 +210,51 @@
             	button.innerHTML = i;
             }
             button.setAttribute('id',i);
-			button.classList.add('btn-h');
-			    	
-		    button.onclick = function() {
-			    selectedMinute = this.getAttribute('id');
-			    if(selectedMinute == 0){
-			    	selectedMinute = "0" + selectedMinute;
-			    }
-			            	
-			    //버튼 클릭 시 색상 변경
-			    if(selectedbtn_M != null){
-			    	selectedbtn_M.classList.remove('btn-click');
-			    }
-			    selectedbtn_M = this;
-			    this.classList.add('btn-click');
-			        		
-			    selectedHM = selectedHour + ":" + selectedMinute;
-			    document.getElementById("btn-time").value = selectedHM;
-			    var btn = document.getElementById('btn-time');
-			    btn.innerHTML = selectedHM;
-		    };
-	            
+            if(compareHour == currentHour){
+				if(i < currentMinute){
+					button.classList.add('btn-disabled');
+				}else{
+					button.classList.add('btn-h');
+					button.onclick = function() {
+					    selectedMinute = this.getAttribute('id');
+					    if(selectedMinute == 0){
+					    	selectedMinute = "0" + selectedMinute;
+					    }
+					            	
+					    //버튼 클릭 시 색상 변경
+					    if(selectedbtn_M != null){
+					    	selectedbtn_M.classList.remove('btn-click');
+					    }
+					    selectedbtn_M = this;
+					    this.classList.add('btn-click');
+					        		
+					    selectedHM = selectedHour + ":" + selectedMinute;
+					    document.getElementById("btn-time").value = selectedHM;
+					    var btn = document.getElementById('btn-time');
+					    btn.innerHTML = selectedHM;
+				    };
+				}
+			}else{
+				button.classList.add('btn-h');
+				button.onclick = function() {
+					selectedMinute = this.getAttribute('id');
+					if(selectedMinute == 0){
+					    selectedMinute = "0" + selectedMinute;
+					}
+					            	
+					//버튼 클릭 시 색상 변경
+					if(selectedbtn_M != null){
+					   	selectedbtn_M.classList.remove('btn-click');
+					}
+					selectedbtn_M = this;
+					this.classList.add('btn-click');
+					        		
+					selectedHM = selectedHour + ":" + selectedMinute;
+					document.getElementById("btn-time").value = selectedHM;
+					var btn = document.getElementById('btn-time');
+					btn.innerHTML = selectedHM;
+				};
+			}
             minuteContainer.appendChild(button);
     	}
     }
