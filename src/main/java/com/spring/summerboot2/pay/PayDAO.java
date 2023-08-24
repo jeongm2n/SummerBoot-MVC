@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.spring.summerboot2.DBconn;
+import com.spring.summerboot2.cart.CartVO;
 
 public class PayDAO {
 	
@@ -91,7 +92,7 @@ public class PayDAO {
 		
 	}
 
-	public void pay_after(int point, String merchant_uid, String id, ArrayList<ProductVO> product, InformVO inform) {
+	public void pay_after(int point, String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform) {
 		try {
 			conn = DBconn.getDBCP();
 			LocalDate now = LocalDate.now();
@@ -99,7 +100,7 @@ public class PayDAO {
 			String address = inform.getPostcode() + inform.getState() + inform.getCity() + inform.getTown() + inform.getStreet_add() + inform.getOption_add();
 			String sql;
 			
-			for(ProductVO i_product : product) {
+			for(CartVO i_product : product) {
 				sql = "insert into sb_purchase (order_num, member_id, product_id, mount, address) values (?, ?, ?, ?, ?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, merchant_uid);

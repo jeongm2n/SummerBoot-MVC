@@ -7,7 +7,7 @@ public class CartVO {
 	private int price;
 	private String img;
 	
-	CartVO(int product_id, String name, int quantity, int price, String img) {
+	public CartVO(int product_id, String name, int quantity, int price, String img) {
 		this.product_id = product_id;
 		this.name = name;
 		this.quantity = quantity;

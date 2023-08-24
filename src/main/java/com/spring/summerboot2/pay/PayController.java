@@ -41,9 +41,9 @@ public class PayController {
 		ModelAndView mav = new ModelAndView();
 		
 		InformVO inform = null;
-		ArrayList<ProductVO> product = new ArrayList<ProductVO>();
+		ArrayList<CartVO> product = new ArrayList<CartVO>();
 		
-		for(int i = 0; i < product_id.length; i++) { product.add(new ProductVO(Integer.parseInt(product_id[i]), name[i], Integer.parseInt(quantity[i]), Integer.parseInt(price[i]), img[i]));}
+		for(int i = 0; i < product_id.length; i++) { product.add(new CartVO(Integer.parseInt(product_id[i]), name[i], Integer.parseInt(quantity[i]), Integer.parseInt(price[i]), img[i]));}
 		
 		int product_price = 0;
 		for(String p_price : price) { product_price += Integer.parseInt(p_price);}
@@ -114,12 +114,12 @@ public class PayController {
 			
 			if(session.getAttribute("user_id") != null && save_add.equals("동의")) { payService.Save_Inform((String)session.getAttribute("user_id"), snssts, state, postcode, city, town, street_add, option_add, save_add);}
 			
-			ArrayList<ProductVO> product = (ArrayList<ProductVO>) session.getAttribute("Product");
+			ArrayList<CartVO> product = (ArrayList<CartVO>) session.getAttribute("Product");
 			
 			int product_price = 0;
 			int shipping_price = 3000;
 			
-			for(ProductVO p_product : product) { product_price += p_product.getPrice();}
+			for(CartVO p_product : product) { product_price += p_product.getPrice();}
 			
 			point = 0;
 			if(!inform.get("h_point").isEmpty()) {point = Integer.parseInt(inform.get("h_point")); 	mav.addObject("point",point); }	
@@ -152,10 +152,10 @@ public class PayController {
 		
 		if(session.getAttribute("Product") != null) {
 			InformVO inform = null;
-			ArrayList<ProductVO> product = (ArrayList<ProductVO>) session.getAttribute("Product");
+			ArrayList<CartVO> product = (ArrayList<CartVO>) session.getAttribute("Product");
 			
 			int product_price = 0;
-			for(ProductVO p_product : product) {
+			for(CartVO p_product : product) {
 				product_price += p_product.getPrice();
 			}
 			
@@ -198,7 +198,7 @@ public class PayController {
 		ModelAndView mav = new ModelAndView();
 		
 		String user_id = (String)session.getAttribute("user_id");
-		ArrayList<ProductVO> product = (ArrayList<ProductVO>) session.getAttribute("Product");
+		ArrayList<CartVO> product = (ArrayList<CartVO>) session.getAttribute("Product");
 		InformVO inform = (InformVO)session.getAttribute("Inform");
 		
 		int point = 0;

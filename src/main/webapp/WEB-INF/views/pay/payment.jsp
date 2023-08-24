@@ -189,10 +189,10 @@
     		  	    <label class="tab_item" style="border-top-left-radius: 10px;" for="card">카드로 결제</label>
     		  	    <input id="vbank" type="radio" name="tab_item">
     		  	    <label class="tab_item" style="border-top-right-radius: 10px;" for="vbank">무통장 입금</label>
-    		  	    <div class="tab_content" id="all_content">
+    		  	    <div class="tab_content" id="card_content">
         	  	      "결제하기"를 클릭하면 안전하게 구매를 완료할 수 있도록 카드결제 창으로 이동합니다.
     		  	    </div>
-    		  	    <div class="tab_content" id="programming_content">
+    		  	    <div class="tab_content" id="vbank_content">
         	  	  	  "결제하기"를 클릭하면 안전하게 구매를 완료할 수 있도록 무통장 입금 창으로 이동합니다.
 			  	    </div>
 			  	  </div>
@@ -233,7 +233,6 @@
     </div>
     
 <!-- 	백엔드 제작 중 -->
-	
 	
 	
 <!-- 	푸터 -->

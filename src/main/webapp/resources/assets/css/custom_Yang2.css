@@ -112,9 +112,8 @@ input[name="tab_item"] {
 	overflow: hidden;
 }
 
-#all:checked ~ #all_content,
-#programming:checked ~ #programming_content,
-#design:checked ~ #design_content {
+#card:checked ~ #card_content,
+#vbank:checked ~ #vbank_content {
   	display: block;
 }
 
