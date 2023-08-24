@@ -15,4 +15,10 @@ public class ShopServiceimpl implements ShopService{
 		ShopDAO shopdao = new ShopDAO();
 		return shopdao.Load_Category();
 	}
+	
+	public ProductVO Load_Product(String product_id) {
+		ShopDAO shopdao = new ShopDAO();
+		return shopdao.Load_Product(product_id);
+	}
+	
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -50,9 +51,23 @@ public class ShopController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/product")
-	public String product() {
-		return "shop/product";
+	@RequestMapping(value = "/product/{product_id}")
+	public ModelAndView main(HttpServletRequest request, HttpServletResponse response
+			 ,@PathVariable(value= "product_id") String product_id) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		HttpSession session = request.getSession();
+		ModelAndView mav = new ModelAndView();
+		
+		ProductVO product = shopService.Load_Product(product_id);
+		
+		
+		mav.addObject("id", session.getAttribute("user_id"));
+		mav.addObject("product",product);
+		mav.setViewName("shop/product");
+		return mav;
 	}
 	
 }

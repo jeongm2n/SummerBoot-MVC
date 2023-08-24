@@ -22,6 +22,16 @@ public class ProductVO {
 		this.rating = rating;
 	}
 	
+	public ProductVO(int product_id, String name, int price, int amount, String img, String category, int rating) {
+		this.product_id = product_id;
+		this.name = name;
+		this.price = price;
+		this.amount = amount;
+		this.img = img;
+		this.category = category;
+		this.rating = rating;
+	}
+	
 	public int getProduct_id() {return product_id;}
 	public void setProduct_id(int product_id) {this.product_id = product_id;}
 	

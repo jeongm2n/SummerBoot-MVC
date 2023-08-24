@@ -94,19 +94,26 @@
 										<img src="${path}/resources/assets/img/${product.img}">
 									</div>
 									<div class="product-body">
-										<h3 class="product-name"><a href="../shop/product/${product.product_id}">${product.name}</a></h3>
+										<h3 class="product-name"><a href="../product/${product.product_id}">${product.name}</a></h3>
+										<c:if test="${product.amount == 0}">
+											<h4 class="product-price">품절<br><del class="product-old-price">₩${product.price}</del></h4>
+										</c:if>
+										<c:if test="${product.amount != 0}">
 											<h4 class="product-price">₩${product.price}</h4>
+										</c:if>
 										<div class="product-rating">
 										<c:if test="${product.rating != 0}">
-											<c:forEach var="i" items="${productVO}" begin = "1" end="${product.rating}">
+											<c:forEach var="i" begin = "1" end="${product.rating}">
 												<i class="fa fa-star"></i>
 											</c:forEach>
 										</c:if>
 										</div>
 									</div>
+									<c:if test="${product.amount != 0}">
 									<div class="add-to-cart">
 										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 카트에 추가</button>
 									</div>
+									</c:if>
 								</div>
 							</div>						
 							<!-- /product -->

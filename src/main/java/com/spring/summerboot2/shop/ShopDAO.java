@@ -43,7 +43,6 @@ public class ShopDAO {
 			int amount;
 			String img;
 			String p_category;
-			String description;
 			int rating;
 			
 			while(rs.next()) {
@@ -53,10 +52,9 @@ public class ShopDAO {
 				amount = rs.getInt("amount");
 				img = rs.getString("img");
 				p_category = rs.getString("category");
-				description = rs.getString("description");
 				rating = rs.getInt("rating");
 				
-				productVO.add(new ProductVO(product_id, name, price, amount, img, p_category, description, rating));
+				productVO.add(new ProductVO(product_id, name, price, amount, img, p_category, rating));
 			}
 						
 			rs.close();
@@ -96,5 +94,69 @@ public class ShopDAO {
 		
 		return null;
 		}
+	
+	public ProductVO Load_Product(String product_id) {
+		try {
+			conn = DBconn.getDBCP();
+			
+			ProductVO product = null;
+			
+			String sql = "SELECT * from sb_product where product_id = '" + product_id + "'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(sql);
+
+			String name;
+			int price;
+			int amount;
+			String img;
+			String description;
+			String category;
+			int rating;
+			
+			while(rs.next()) {
+				name = rs.getString("name");
+				price = rs.getInt("price");
+				amount = rs.getInt("amount");
+				img = rs.getString("img");
+				description = rs.getString("description");
+				category = rs.getString("category");
+				rating = rs.getInt("rating");
+				
+				product = new ProductVO(Integer.parseInt(product_id), name, price, amount, img, category, description, rating);
+			}
+					
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+			return product;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public void Add_Review(int product_id, String id, int point, String content) {
+		try {
+			conn = DBconn.getDBCP();
+			
+			ProductVO product = null;
+			
+			String sql = "insert into sb_reviews (id, member_id, point, contents) values (?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product_id);
+			pstmt.setString(2, id);
+			pstmt.setInt(3, point);
+			pstmt.setString(4, content);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 }

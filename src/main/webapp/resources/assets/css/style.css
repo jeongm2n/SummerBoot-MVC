@@ -269,7 +269,8 @@ span:after{
 
 .product .product-body .product-price{
     color:#fd8008;
-    font-size:18px
+    font-size:18px;
+    height: 37px;
 }
 
 .product .product-body .product-price .product-old-price{
@@ -300,7 +301,7 @@ span:after{
 .product .product-body .product-rating:after{
     content:"";
     position:absolute;
-    top:65%;
+    top:25px;
     left:0;
     right:0;
     -webkit-transform:translateY(-50%);
@@ -415,7 +416,7 @@ span:after{
 
 .product-widget .product-body .product-price{
     font-size:14px;
-    color:#fd8008
+    color:#fd8008;
 }
 .product-widget .product-body .product-price .product-old-price{
     font-size:70%;
@@ -537,9 +538,6 @@ span:after{
     [class*=col-xs]{width:100%}.store-pagination{float:none;margin-top:10px}
 }
 
-@media only screen and (min-width:765px){
-    .rating-tab{max-width : 215px!important}
-}
 /*=========================================================
 	08 -> PRODUCT DETAILS PAGE
 ===========================================================*/
@@ -664,6 +662,14 @@ span:after{
   font-weight: 700;
   margin-left: 30px;
   color: #fd8008;
+}
+
+.product-details .product-unavailable {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-left: 30px;
+  color: #8d99ae;
 }
 
 .product-details .product-options {
@@ -992,7 +998,7 @@ span:after{
   cursor: pointer;
   padding: 0px 3px;
   margin: 0px;
-}
+/*}*/
 
 .review-form .input-rating .stars>label:before {
   content: "\f006";
