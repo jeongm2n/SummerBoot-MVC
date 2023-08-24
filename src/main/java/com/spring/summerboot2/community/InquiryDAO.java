@@ -58,9 +58,11 @@ public class InquiryDAO {
 				String content = rs.getString("content");
 				String secret = rs.getString("secret");
 				Timestamp ins_date = rs.getTimestamp("ins_date");
+				String answer = rs.getString("answer");
+				Timestamp answer_date = rs.getTimestamp("answer_date");
 				String state = rs.getString("state");
 				
-				InquiryVO vo = new InquiryVO(q_no, writer, category, title, content, secret, ins_date, state);
+				InquiryVO vo = new InquiryVO(q_no, writer, category, title, content, secret, ins_date, answer, answer_date, state);
 				list.add(vo);
 			}
 			rs.close();

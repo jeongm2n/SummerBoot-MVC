@@ -28,7 +28,7 @@
 			</div>
 		
 			<div class="pb-5 ch">
-				<p class="h4 mt-4 text-center" style="text-decoration: underline;text-underline-position: under;">Q&A</p>
+				<p class="h4 mt-4 text-center disabled">Q&A</p>
 			</div>
 		</div>
 		
@@ -37,25 +37,40 @@
 		</div>
 		
 		<div>
-			<table class="table">
+			<table class="table inquiryT">
 				<thead>
 					<tr>
-						<th style="width:5%;">#</th>
-						<th style="width:50%;">제목</th>
-						<th style="width:15%;">작성자</th>
-						<th style="width:15%;">작성시간</th>
-						<th style="width:15%;">답변상태</th>
+						<th width="5%">#</th>
+						<th width="50%">제목</th>
+						<th width="15%">작성자</th>
+						<th width="15%">작성시간</th>
+						<th width="15%">답변상태</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="inquiryTB">
 					<c:forEach var="list" items="${inquiryList }" varStatus="status">
 						<c:set var="count" value="${count + 1}" />
-						<tr>
-							<th>${count }</th>
-							<td>${list.title }</td>
-							<td>${list.writer }</td>
+						<tr class="inquiryTr">
+							<td>${count }</td>
+							<td><c:if test="${list.secret eq 'Y'}"><i class="fa fa-lock"></i></c:if>${list.title }</td>
+							<td class="writer">${list.writer }</td>
 							<td><fmt:formatDate value="${list.ins_date }" pattern="YYYY/MM/dd" /></td>
 							<td>${list.state }</td>
+							<td class="secret" style="display:none;">${list.secret }</td>
+						</tr>
+						<tr class="store-hide">
+							<td colspan="7">  
+			                    <div class="card-body-inquiry">
+					            	<div class="inquiry-answer">
+					            		<div class="h1" style="font-weight: bolder !important">Q</div>
+					            		<div class="h4" style="padding-top:2%;">${list.content }</div>
+					                </div>
+					                <div class="inquiry-answer">
+					                    <div class="h1" style="font-weight: bolder !important">A</div>
+					            		<div class="h4" style="padding-top:2%;">${list.answer }</div>
+					                </div>
+				                </div>
+							</td>  
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -64,9 +79,10 @@
 		
 		<div class="row">
 			<ul class="pagination pagination-lg justify-content-center">
+				<c:set var="current" value="${page }"/>
 				<c:forEach var="page" begin="1" end="${pages }" step="1">
 					<li class="page-item">
-						<a class="page-link rounded-0 mr-3 border-top-0 border-left-0" href="${path}/community/qna?page=${page}">${page}</a>
+						<a class='page-link rounded-0 mr-3 border-top-0 border-left-0 <c:if test="${page eq current}">disabled</c:if>' href="${path}/community/qna?page=${page}">${page}</a>
 					</li>
 				</c:forEach>
 			</ul>
@@ -79,13 +95,20 @@
 </html>
 
 <style>
-	.choose {
-		justify-content: center;
+    .choose {
+        justify-content: center;
+    }
+    
+    .ch {
+        width : 10%;
+    }
+	.h4 {
+		font-size : 1.5rem !important;
 	}
-	
-	.ch {
-		width : 10%;
-	}
+	tr {
+		cursor: default;
+    }
+    
 </style>
 
 <script>
@@ -102,5 +125,31 @@
 
 	$(document).on('click', '#write', function() {
 		location.href = "${path}/community/qnaWrite"
+	});
+	
+	$(document).on('click', '#qna', function() {
+		location.href = "${path}/community/qna"
+	})
+	
+	$(function(){
+		var article = (".inquiryTB .store-show");
+		var user_id = "<%=user_id%>";
+		
+		$(".inquiryTB .inquiryTr").click(function() {  
+			var td=$(this).children();
+			var writer = td.eq(2).text();
+			var secret = td.eq(5).text();
+			if(user_id == writer || secret == "N") {
+				var myArticle =$(this).next("tr");  
+				if($(myArticle).hasClass('store-hide')) {
+					$(article).removeClass('store-show').addClass('store-hide');  
+					$(myArticle).removeClass('store-hide').addClass('store-show');  
+				} else {  
+					$(myArticle).addClass('store-hide').removeClass('store-show');  
+				}  
+			} else {
+				alert("작성자만 볼 수 있는 글입니다.");
+			}
+		});  
 	});
 </script>
