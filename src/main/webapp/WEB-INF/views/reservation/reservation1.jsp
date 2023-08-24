@@ -17,8 +17,7 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <%@ include file="../common/header.jsp"%>
-<link rel="stylesheet"
-	href="${path}/resources/assets/css/custom_seo.css">
+<link rel="stylesheet" href="${path}/resources/assets/css/custom_seo.css">
 <script>
 	// 지점선택 시 아래에 선택한 지점이 뜨도록 
 	const shops = [ '서울본점', '경기군포점', '경기평택점', '대구점' ];

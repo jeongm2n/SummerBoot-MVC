@@ -6,6 +6,7 @@
 <head>
 	<%@ include file="./common/head.jsp"%>
     <title>주문관리</title>
+    <link rel="stylesheet" href="${path}/resources/assets/css/admin_seo.css">
 </head>
 
 <body id="page-top">
@@ -27,11 +28,26 @@
                             <h6 class="m-0 font-weight-bold text-washboot">주문리스트</h6>
                         </div>
                         <div class="card-body">
+                        	<div style="margin-bottom:20px">
+                        		<form action="${path }/admin/order/searchOrder" method="POST">
+                        		<table style="width:300px">
+                        		<tr><td style="width:80px;text-align:center;"><select name="column" style="font-size:10pt;width:79px;height:40px">
+                        		<option value="order_num">주문번호</option>
+                        		<option value="member_id">주문자</option>
+                        		<option value="pur_date">주문일자</option></select></td>
+                        		<td style="width:165px"><input style="width:100%;height:40px" type="text" name="str"></td>
+                        		<td style="width:54px"><input type="submit" class="btn btn-primary" style="width:100%" value="검색"></td>
+                        		</tr>
+                        		</table>
+                        		</form>
+                        		<span style="float:right"><a href="${path}/admin/order/orderList">
+                        		<b class="text-secondary">전체보기</b></a></span>
+                        	</div>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>주문번호</th>
+                                            <th>주문정보</th>
                                             <th>주문상품</th>
                                             <th>수량</th>
                                             <th>금액</th>
@@ -39,7 +55,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>주문번호</th>
+                                            <th>주문정보</th>
                                             <th>주문상품</th>
                                             <th>수량</th>
                                             <th>금액</th>
@@ -54,9 +70,9 @@
 	                                    	</c:when>
 	                                    	<c:when test="${!empty orderList }">
 				                            		<c:forEach var="list" items="${orderList }">
-				                                        <tr>
+				                                        <tr class="order">
 				                                            <td class="order_num">
-				                                            	${list.order_num }<br>
+				                                            	<b>주문번호 : ${list.order_num }</b><br>
 				                                            	주문 날짜 : ${list.pur_date }<br>
 				                                            	주문자 : ${list.member_id }
 				                                            </td>

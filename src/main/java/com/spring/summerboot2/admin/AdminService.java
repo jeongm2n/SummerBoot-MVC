@@ -78,4 +78,9 @@ public class AdminService {
 		OrderDAO orderdao = new OrderDAO();
 		return orderdao.orderList();
 	}
+	
+	public List<OrderVO> filterOrderList(String column, String str){
+		OrderDAO orderdao = new OrderDAO();
+		return orderdao.filterOrderList(column,str);
+	}
 }
