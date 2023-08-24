@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.summerboot2.branch.WashlistDAO;
 import com.spring.summerboot2.branch.WashlistVO;
+import com.spring.summerboot2.community.InquiryVO;
 import com.spring.summerboot2.member.MemberDAO;
 import com.spring.summerboot2.member.MemberVO;
 import com.spring.summerboot2.product.ProductVO;
@@ -77,5 +78,20 @@ public class AdminService {
 	public List<OrderVO> orderList(){
 		OrderDAO orderdao = new OrderDAO();
 		return orderdao.orderList();
+	}
+	
+	public List<InquiryVO> inquiryList() {
+		AdminCommunityDAO dao = new AdminCommunityDAO();
+		return dao.inquiryList();
+	}
+	
+	public int deleteInquiry(int q_no) {
+		AdminCommunityDAO dao = new AdminCommunityDAO();
+		return dao.deleteInquiry(q_no);
+	}
+	
+	public int update(InquiryVO vo) {
+		AdminCommunityDAO dao = new AdminCommunityDAO();
+		return dao.update(vo);
 	}
 }

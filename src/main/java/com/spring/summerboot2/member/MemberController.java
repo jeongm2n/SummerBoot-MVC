@@ -76,9 +76,11 @@ public class MemberController {
 		String pwd = mem.get("pwd");
 		String name = mem.get("name");
 		String tel = mem.get("tel1") + "-" + mem.get("tel2") + "-" + mem.get("tel3");
+		String email = mem.get("email1") + "@" + mem.get("email2");
+		String email_yn = mem.get("email_yn") != null ? mem.get("email_yn") : "N";
 		String address = mem.get("zipcode") + "/" + mem.get("road_addr") + "/" + mem.get("rest_addr");
 		
-		MemberVO vo = new MemberVO(id, pwd, name, tel, address);
+		MemberVO vo = new MemberVO(id, pwd, name, tel, email, email_yn, address);
 		System.err.println("controller");
 		memberService.regist(vo);
 		
@@ -131,16 +133,11 @@ public class MemberController {
 	
 		if(change) {
 			mav.addObject("msg", 999);
-			mav.setViewName("/member/my_info");
-			
-			return mav;
 		} else {
 			mav.addObject("msg", 4);
-			mav.setViewName("member/pwd_change");
-			
-			return mav;
 		}
-		
+		mav.setViewName("member/pwd_change");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/info_update", method = RequestMethod.POST)
@@ -151,8 +148,10 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("user_id");
 		String tel =  mem.get("tel1") + "-" + mem.get("tel2") + "-" + mem.get("tel3");
+		String email = mem.get("email1") + "@" + mem.get("email2");
+		String email_yn = mem.get("email_yn") != null ? mem.get("email_yn") : "N";
 		String address = mem.get("zipcode") + "/" + mem.get("road_addr") + "/" + mem.get("rest_addr");
-		boolean change = memberService.update(user_id, tel, address);
+		boolean change = memberService.update(user_id, tel, address, email, email_yn);
 		
 		ModelAndView mav = new ModelAndView();
 	

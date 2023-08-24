@@ -53,7 +53,7 @@
                             <a class="nav-link" href="${path}/pay/inform">세차용품</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${path}/community/qna">커뮤니티</a>
+                            <a class="nav-link" href="${path}/community/faq">커뮤니티</a>
                         </li>
                     </ul>
                 </div>

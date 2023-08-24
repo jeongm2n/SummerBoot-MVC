@@ -180,7 +180,6 @@ i {
 .card-body-inquiry {
 	display: grid;
     padding : 1rem 2rem;
-    height:400px;
 }
 .inquiry-answer {
 	display : grid;
@@ -274,7 +273,7 @@ i {
 	border: 0.3em solid #FD8008;
 }
 
-[type="checkbox"] {
+[type="checkbox"]:checked {
 	accent-color: #FD8008;
 	width: 1em;
 	height: 1em;

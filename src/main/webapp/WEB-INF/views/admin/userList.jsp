@@ -34,6 +34,8 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Phone</th>
+                                            <th>Email</th>
+                                            <th>Email_YN</th>
                                             <th>Address</th>
                                             <th>Point</th>
                                             <th>탈퇴</th>
@@ -44,6 +46,8 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Phone</th>
+                                            <th>Email</th>
+                                            <th>Email_YN</th>
                                             <th>Address</th>
                                             <th>Point</th>
                                             <th>탈퇴</th>
@@ -63,9 +67,11 @@
 			                                            <td>${list.id }</td>
 			                                            <td>${list.mem_name }</td>
 			                                            <td>${list.tel }</td>
+			                                            <td>${list.email }</td>
+			                                            <td width="5%">${list.email_yn }</td>
 			                                            <td>${address[0]} ${address[1]} ${address[2]}</td>
-			                                            <td>${list.point }</td>
-			                                            <td onclick="user_delete('${list.id}')" style="cursor:pointer;">탈퇴</td>
+			                                            <td align="right" width="5%"><fmt:formatNumber value="${list.point }" pattern="#,###" /></td>
+			                                            <td onclick="user_delete('${list.id}')" style="cursor:pointer; text-decoration:underline;">탈퇴</td>
 			                                        </tr>
 				                            	</c:forEach>
 			                            	</c:when>
@@ -96,11 +102,14 @@
 				dataType:"text",
 				data: {user_id : id},
 				success:function (data){
-					alert(id + "님의 탈퇴처리가 완료되었습니다.");
-					document.location.reload();
+					if(data=='delete') {
+						alert(id + "님의 탈퇴처리가 완료되었습니다.");
+						document.location.reload();
+					} else if(data=='fail') {
+						alert("오류로 탈퇴처리에 실패했습니다");
+					}
 				},
 				error:function(request, error){
-					alert("에러가 발생했습니다.");
 					console.log("code : " + request.status + "\n" + "message : " + request.responseText +"\n" + "error : " + error	);
 				}
 			});

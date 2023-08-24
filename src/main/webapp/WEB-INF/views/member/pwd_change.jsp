@@ -11,7 +11,7 @@
 <title>내 정보</title>
 
 <% request.setCharacterEncoding("utf-8"); %>
-<%@ include file="../common/header.jsp" %>
+<jsp:include page="/WEB-INF/common.jsp" />
 <link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -53,6 +53,10 @@
         var message = "${msg}";
         if(message == 4){
        		alert("기존 비밀번호가 일치하지않습니다.");
+        } else if(message == 999){
+        	alert("비밀번호 수정이 완료되었습니다.");
+	        window.close();
+			opener.location.href="${path }/summerboot2/member/my_info";
         }
     });
 </script>
@@ -77,7 +81,7 @@
                     <label for="inputemail" class="title">새 비밀번호 확인</label>
                     <input type="password" class="form-control mt-1" id="new_pwd_check" name="new_pwd_check" placeholder="NEW PASSWORD CHECK" oninput="isSame();">
                 </div>
-                <div class="mb-3 hidden" style="display : none; padding-left:30%;"> <!-- 비밀번호확인 일치 여부 알림 표시 -->
+                <div class="mb-3 hidden" style="display : none; padding-left:35%;"> <!-- 비밀번호확인 일치 여부 알림 표시 -->
                 	<label></label>
                 	<span id="notice"></span>
                 </div>
@@ -91,7 +95,7 @@
         </div>
     </div>
     
-    <%@ include file="../common/footer.jsp" %>
+    <%-- <%@ include file="../common/footer.jsp" %> --%>
 </body>
 </html>
 
