@@ -70,5 +70,9 @@ public class CommunityController {
 		mav.setViewName("community/inquiry");
 		return mav;
 	}
-
+    
+    @RequestMapping(value = "/faq", method = RequestMethod.GET)
+    public String faq() {
+        return "community/FAQ";
+    }
 }

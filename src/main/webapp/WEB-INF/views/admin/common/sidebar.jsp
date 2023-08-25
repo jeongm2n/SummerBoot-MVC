@@ -33,7 +33,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="${path}/admin/userList">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>회원리스트</span></a>
+                    <span>회원리스트</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -132,35 +133,18 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCarInquery"
-                    aria-expanded="true" aria-controls="collapseCarInquery">
-                    <i class="fas fa-fw fa-car"></i>
-                    <span>세차</span>
+			<li class="nav-item">
+                <a class="nav-link" href="${path}/admin/community/inquiry">
+                    <i class="fas fa-fw fa-comments"></i>
+                    <span>문의</span>
                 </a>
-                <div id="collapseCarInquery" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">문의</a>
-                        <a class="collapse-item" href="#">리뷰</a>
-                    </div>
-                </div>
             </li>
-
-              <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ShopInquery"
-                    aria-expanded="true" aria-controls="ShopInquery">
-                    <i class="fas fa-fw fa-store"></i>
-                    <span>쇼핑</span>
+			<li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-fw fa-comment"></i>
+                    <span>리뷰</span>
                 </a>
-                <div id="ShopInquery" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">문의</a>
-                        <a class="collapse-item" href="#">리뷰</a>
-                    </div>
-                </div>
             </li>
-
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

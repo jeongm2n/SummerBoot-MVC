@@ -17,13 +17,15 @@ public class MemberDAO {
 		try {
 			con = DBconn.getDBCP();
 			
-			String sql = "INSERT INTO sb_member(id, pwd, mem_name, tel, address) VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO sb_member(id, pwd, mem_name, tel, email, email_yn, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPwd());
 			pstmt.setString(3, vo.getMem_name());
 			pstmt.setString(4, vo.getTel());
-			pstmt.setString(5, vo.getAddress());
+			pstmt.setString(5, vo.getEmail());
+			pstmt.setString(6, vo.getEmail_yn());
+			pstmt.setString(7, vo.getAddress());
 			
 			System.out.println("prepareStatement : " + sql);
 			pstmt.executeUpdate();
@@ -113,6 +115,8 @@ public class MemberDAO {
 				String pwd = rs.getString("pwd");
 				String name = rs.getString("mem_name");
 				String tel = rs.getString("tel");
+				String email = rs.getString("email");
+				String email_yn = rs.getString("email_yn");
 				String address = rs.getString("address");
 				int point = rs.getInt("point");
 				
@@ -120,9 +124,11 @@ public class MemberDAO {
 				System.out.println(pwd);
 				System.out.println(name);
 				System.out.println(tel);
+				System.out.println(email);
+				System.out.println(email_yn);
 				System.out.println(point);
 				
-				MemberVO vo = new MemberVO(id, pwd, name, tel, address, point);
+				MemberVO vo = new MemberVO(id, pwd, name, tel, email, email_yn, address, point);
 				list.add(vo);
 			}
 			rs.close();
@@ -174,19 +180,21 @@ public class MemberDAO {
 		return change;
 	}
 	
-	public boolean update(String user_id, String tel, String address) {
+	public boolean update(String user_id, String tel, String address, String email, String email_yn) {
 		boolean change = false;
 		try {
 			con = DBconn.getDBCP();
 			
 			String sql = "UPDATE sb_member";
-			sql += " SET tel=?, address=? WHERE id = ?";
+			sql += " SET tel=?, address=?, email=?, email_yn=? WHERE id = ?";
 			System.out.println("prepareStatement : " + sql);
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, tel);
 			pstmt.setString(2, address);
-			pstmt.setString(3, user_id);
+			pstmt.setString(3, email);
+			pstmt.setString(4, email_yn);
+			pstmt.setString(5, user_id);
 
 			pstmt.executeUpdate();
 			pstmt.close();
@@ -215,8 +223,10 @@ public class MemberDAO {
 				String tel = rs.getString("tel");
 				String address = rs.getString("address");
 				int point = rs.getInt("point");
+				String email = rs.getString("email");
+				String email_yn = rs.getString("email_yn");
 				
-				MemberVO vo = new MemberVO(id, name, tel, address, point);
+				MemberVO vo = new MemberVO(id, name, tel, address, point, email, email_yn);
 				list.add(vo);
 			}
 			rs.close();

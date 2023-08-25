@@ -56,6 +56,9 @@
 		if($("#id").val().length == 0){
 	   		alert("아이디를 입력하세요.");
 	   		return;
+	   	} else if($("#overlap_check").val() == "false"){
+	   		alert("아이디 중복확인을 하세요.");
+	   		return;
 	   	} else if($("#pwd").val().length == 0) {
 	   		alert("비밀번호를 입력하세요.");
 	   		return;
@@ -68,11 +71,13 @@
 	   	} else if($("#tel1").val().length != 3 || $("#tel2").val().length != 4 || $("#tel3").val().length != 4){
 	   		alert("올바른 휴대폰 번호를 입력하세요.");
 	   		return;
-	   	} else if($("#overlap_check").val() == "false"){
-	   		alert("아이디 중복확인을 하세요.");
+	   	} else if($("#email1").val().length == 0 || $("#email2").val().length == 0){
+	   		alert("이메일을 입력하세요.");
+	   		return;
+	   	} else if($("#zipcode").val().length == 0 || $("#road_addr").val().length == 0){
+	   		alert("이메일을 입력하세요.");
 	   		return;
 	   	} else {
-	   		alert($("#name").val());
 			document.getElementById("joinForm").submit();
 	   	}
 	});
@@ -97,6 +102,7 @@
 		$("#overlap_check").val("false");
 		document.getElementById('notice_id').style.display = 'none';
 	}
+	
 </script>
 
 </head>
@@ -141,6 +147,19 @@
                     <input type="text" class="form-control mt-1 tel2 col-md-2" id="tel2" name="tel2" placeholder="PHONE" value="1111">
                     <span style="padding:2%">-</span>
                     <input type="text" class="form-control mt-1 tel2 col-md-2" id="tel3" name="tel3" placeholder="PHONE" value="1111">
+                </div>
+                <div class="input-group mb-3">
+                    <label for="inputsubject" class="title">이메일</label>
+                    <input type = "text" class="form-control mt-1" name="email1" id="email1" value = "aaa">
+                    <span style="padding:8px;">@</span>
+                    <input type = "text" class="form-control mt-1" name="email2" id="email2" value = "naver.com">
+                </div>
+                <div class="input-group mb-3">
+                    <label for="inputsubject" class="title">이메일 수신 여부</label>
+                    <div id="chb">
+	                    <input type = "checkbox" name="email_yn" id="email_yn" style="width:1.5em;height:1.5em;vertical-align:middle;" value="Y">
+	                    <label for="email_yn" style="padding-left: 3px;">WashBoot에서 발송하는 e-mail을 수신합니다.</label>
+                    </div>
                 </div>
                 
                 <div class="input-group mb-3">
@@ -190,5 +209,9 @@
 
 .search {
 	border-radius : 0;
+}
+#chb{
+	padding-top:2%;
+    margin-left: 2%;
 }
 </style>

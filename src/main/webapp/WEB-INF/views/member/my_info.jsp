@@ -18,16 +18,19 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호검색 -->
 	<script src="${path}/resources/assets/js/daumPostcode.js"></script>
 	
-	<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+	<c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 	
 	<script>
 		function pwd_change(){
-			location.href="${contextPath}/member/pwd_change"
+			window.open("${contextPath}/member/pwd_change", "name(about:blank)", "width=600, height=600");
 	 	}
 		
 		$(document).on('click', '#update' , function() {
 		    if($("#tel1").val().length != 3 || $("#tel2").val().length != 4 || $("#tel3").val().length != 4){
 		   		alert("올바른 휴대폰 번호를 입력하세요.");
+		   		return;
+		    } else if($("#email1").val().length == 0 || $("#email2").val().length == 0){
+		   		alert("이메일을 입력하세요.");
 		   		return;
 		   	} else {
 		   		alert("업데이트!!");
@@ -54,10 +57,7 @@
 		
 		$(document).ready(function() {
 	        var message = "${msg}";
-	        if (message == 999) {
-	            alert("비밀번호 수정이 완료되었습니다.");
-	            location.href="${path }/member/my_info";
-	        } else if (message == 888) {
+        	if (message == 888) {
 	        	alert("정보 수정이 완료되었습니다.");
 	            location.href="${path }/member/my_info";
 	        } else if (message == 4) {
@@ -85,7 +85,7 @@
 	                <div class="input-group mb-3">
 	                    <label for="inputname" class="title">비밀번호</label>
 	                    <input type="password" class="form-control mt-1" id="pwd" name="pwd" placeholder="PASSWORD" disabled>
-	                    <div class="input-group-text btn-washboot mt-1" id="pwd_change" onclick="pwd_change();">변경</div>
+	                    <div class="input-group-text btn-washboot mt-1" id="pwd_change" onclick="pwd_change();" style="cursor:pointer;">변경</div>
 	                </div>
 	                
 	                <div class="input-group mb-3">
@@ -101,6 +101,21 @@
 	                    <input type="text" class="form-control mt-1 tel col-md-1" id="tel2" name="tel2" value="${phone[1] }">
                     	<span style="padding:2%">-</span>
 	                    <input type="text" class="form-control mt-1 tel col-md-1" id="tel3" name="tel3" value="${phone[2] }">
+	                </div>
+	                
+	                <c:set var="email" value="${fn:split(my_info.email,'@')}" />
+	                <div class="input-group mb-3">
+	                    <label for="inputsubject" class="title">이메일</label>
+	                    <input type = "text" class="form-control mt-1" name="email1" id="email1" value = "${email[0] }">
+	                    <span style="padding:8px;">@</span>
+	                    <input type = "text" class="form-control mt-1" name="email2" id="email2" value = "${email[1] }">
+	                </div>
+	                <div class="input-group mb-3">
+	                    <label for="inputsubject" class="title">이메일 수신 여부</label>
+	                    <div id="chb">
+		                    <input type = "checkbox" name="email_yn" id="email_yn" style="width:1.5em;height:1.5em;vertical-align:middle;" value="Y" <c:if test="${my_info.email_yn eq 'Y' }">checked</c:if>>
+		                    <label for="email_yn" style="padding-left: 3px;">WashBoot에서 발송하는 e-mail을 수신합니다.</label>
+	                    </div>
 	                </div>
 	                
 	                <c:set var="addr" value="${fn:split(my_info.address,'/')}" />
@@ -157,5 +172,9 @@
 
 .search {
 	border-radius : 0;
+}
+#chb{
+	padding-top:2%;
+    margin-left: 2%;
 }
 </style>

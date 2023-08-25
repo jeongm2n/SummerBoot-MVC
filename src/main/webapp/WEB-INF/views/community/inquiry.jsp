@@ -20,17 +20,14 @@
 		
 		<div class="row choose">
 			<div class="pb-5 ch">
-				<p class="h4 mt-4 text-center">Notice</p>
+				<a class="h4 mt-4" href="${path}/community/faq">FAQ</a>
 			</div>
 		
 			<div class="pb-5 ch">
-				<p class="h4 mt-4 text-center">FAQ</p>
-			</div>
-		
-			<div class="pb-5 ch">
-				<p class="h4 mt-4 text-center disabled">Q&A</p>
+				<a class="h4 mt-4 disabled" href="${path}/community/qna">Q&A</a>
 			</div>
 		</div>
+		
 		
 		<div class="row" style="justify-content: flex-end;margin-bottom:1%;">
 			<input type="button" class="btn btn-join" id="write" value="글쓰기" style="width:7%;">
@@ -41,38 +38,49 @@
 				<thead>
 					<tr>
 						<th width="5%">#</th>
-						<th width="50%">제목</th>
+						<th width="8%">상담구분</th>
+						<th width="42%">제목</th>
 						<th width="15%">작성자</th>
 						<th width="15%">작성시간</th>
 						<th width="15%">답변상태</th>
 					</tr>
 				</thead>
 				<tbody class="inquiryTB">
-					<c:forEach var="list" items="${inquiryList }" varStatus="status">
-						<c:set var="count" value="${count + 1}" />
-						<tr class="inquiryTr">
-							<td>${count }</td>
-							<td><c:if test="${list.secret eq 'Y'}"><i class="fa fa-lock"></i></c:if>${list.title }</td>
-							<td class="writer">${list.writer }</td>
-							<td><fmt:formatDate value="${list.ins_date }" pattern="YYYY/MM/dd" /></td>
-							<td>${list.state }</td>
-							<td class="secret" style="display:none;">${list.secret }</td>
-						</tr>
-						<tr class="store-hide">
-							<td colspan="7">  
-			                    <div class="card-body-inquiry">
-					            	<div class="inquiry-answer">
-					            		<div class="h1" style="font-weight: bolder !important">Q</div>
-					            		<div class="h4" style="padding-top:2%;">${list.content }</div>
-					                </div>
-					                <div class="inquiry-answer">
-					                    <div class="h1" style="font-weight: bolder !important">A</div>
-					            		<div class="h4" style="padding-top:2%;">${list.answer }</div>
-					                </div>
-				                </div>
-							</td>  
-						</tr>
-					</c:forEach>
+					<c:choose>
+						<c:when test="${empty inquiryList }">
+							<tr>
+								<td colspan="6" style="text-align:center;">등록된 문의가 없습니다.</td>
+							</tr>
+						</c:when>
+						<c:when test="${!empty inquiryList }">
+							<c:forEach var="list" items="${inquiryList }" varStatus="status">
+								<c:set var="count" value="${count + 1}" />
+								<tr class="inquiryTr">
+									<td>${count }</td>
+									<td>${list.category }</td>
+									<td><c:if test="${list.secret eq 'Y'}"><i class="fa fa-lock"></i></c:if>${list.title }</td>
+									<td class="writer">${list.writer }</td>
+									<td><fmt:formatDate value="${list.ins_date }" pattern="YYYY/MM/dd" /></td>
+									<td>${list.state }</td>
+									<td class="secret" style="display:none;">${list.secret }</td>
+								</tr>
+								<tr class="store-hide">
+									<td colspan="7">  
+					                    <div class="card-body-inquiry">
+							            	<div class="inquiry-answer" style="margin-bottom:3%;">
+							            		<div class="h1" style="font-weight: bolder !important">Q</div>
+							            		<div class="h4" style="padding-top:2%;">${list.content }</div>
+							                </div>
+							                <div class="inquiry-answer" <c:if test="${list.state eq '답변대기'}" >style="display:none;"</c:if>>
+							                    <div class="h1" style="font-weight: bolder !important">A</div>
+							            		<div class="h4" style="padding-top:2%;">${list.answer }</div>
+							                </div>
+						                </div>
+									</td>  
+								</tr>
+							</c:forEach>
+						</c:when>
+					</c:choose>
 				</tbody>
 			</table>
 		</div>
@@ -97,6 +105,7 @@
 <style>
     .choose {
         justify-content: center;
+        text-align:center;
     }
     
     .ch {
@@ -108,7 +117,10 @@
 	tr {
 		cursor: default;
     }
-    
+    .inquiry-select {
+    	display : grid;
+    	grid-template-columns:1fr;
+    }
 </style>
 
 <script>
@@ -137,8 +149,8 @@
 		
 		$(".inquiryTB .inquiryTr").click(function() {  
 			var td=$(this).children();
-			var writer = td.eq(2).text();
-			var secret = td.eq(5).text();
+			var writer = td.eq(3).text();
+			var secret = td.eq(6).text();
 			if(user_id == writer || secret == "N") {
 				var myArticle =$(this).next("tr");  
 				if($(myArticle).hasClass('store-hide')) {
