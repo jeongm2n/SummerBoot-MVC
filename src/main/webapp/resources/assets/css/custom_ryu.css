@@ -13,14 +13,6 @@ a {
     color: black;
 }
 
-.card-body {
-    height: 400px;
-}
-
-.table>:not(caption)>*>* {
-    padding: 0.5rem 6.5rem;
-}
-
 .table {
     --bs-table-hover-bg: #FFDAB9 !important;
 }

@@ -172,25 +172,25 @@
         </div>
 
         <div class="collapse show" id="res_seoul">
-            <div class="card card-body overflow-auto">
+            <div class="card card-body overflow-auto" style="height: 400px">
                 서울 본점 예약현황<br>
                 <div id="resList1"></div>
             </div>
         </div>
         <div class="collapse" id="res_gunpo">
-            <div class="card card-body overflow-auto">
+            <div class="card card-body overflow-auto" style="height: 400px">
                 경기 군포점 예약현황
                 <div id="resList2"></div>
             </div>
         </div>
         <div class="collapse" id="res_pyeongtaek">
-            <div class="card card-body overflow-auto">
+            <div class="card card-body overflow-auto" style="height: 400px">
                 경기 평택점 예약현황
                 <div id="resList3"></div>
             </div>
         </div>
         <div class="collapse" id="res_daegu">
-            <div class="card card-body overflow-auto">
+            <div class="card card-body overflow-auto" style="height: 400px">
                 대구점 예약현황
                 <div id="resList4"></div>
             </div>
@@ -221,7 +221,7 @@
 <!-- End 세차가이드 -->
 
 <script>
-    <!-- 예약현황 : 지점 클릭시 다른지점 섹션닫기-->
+    <!-- 예약현황 : 지점 클릭시 다른지점 섹션닫기 -->
     document.getElementById("res_seoul").addEventListener("show.bs.collapse", function () {
         $("#res_gunpo, #res_pyeongtaek, #res_daegu").collapse("hide");
     });
@@ -246,17 +246,18 @@
             type   : "GET",
             url    : "${path}/getTodayResList?todayres=" + todayres, //파라미터 넘기는 방식과 컨트롤러에서 받는 방법
             success: function (data) {
+
                 console.log(data)
                 $(`#resList\${todayres}`).html('') // 템플릿 문자열, Jquery 사용방법
 
                 let baseTable = `
                                  <table class="table table-hover">
                     <thead>
-                    <tr style="text-align: center">
-                        <th scope="col">날씨</th>
-                        <th scope="col">시간</th>
-                        <th scope="col">예약현황<br>(예약건수/총자리수)</th>
-                        <th scope="col">예약바로가기</th>
+                    <tr style="text-align: center" >
+                        <th scope="col" style="padding: 0.5rem 6.5rem">날씨</th>
+                        <th scope="col" style="padding: 0.5rem 6.5rem">시간</th>
+                        <th scope="col" style="padding: 0.5rem 6.5rem">예약현황<br>(예약건수/총자리수)</th>
+                        <th scope="col" style="padding: 0.5rem 6.5rem">예약바로가기</th>
                     </tr>
                     </thead>
                     <tbody >`
@@ -264,15 +265,22 @@
                     baseTable += `<tr> <td colspan="4" style="text-align: center">오늘 예약이 없습니다.</td> </tr>`;
                 } else {
                     for (let i = 9; i < 24; i++) {
+                        let hour = data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length
+                        let fullRes = data[0].sites;
                         baseTable += `
                             <tr style="text-align: center">
                             <td></td>
                             <td>\${i}:00</td>
-                            <td> \${data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length} / \${data[0].sites}</td>
-                            <td><input type="button" id="res_ch" value="예약"></td> </tr>
+                            <td><span class="res_cnt">\${data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length}</span>
+                                <span class="slash"> / </span>
+                                <span class="no_total">\${data[0].sites}</span>
+                            </td>
+                            <td><button id="res_ch" onclick="goReservation1()" \${fullRes == hour? 'disabled' : ''} >예약</button></td>
+                            </tr>
                         `;
                     }
                 }
+
                 baseTable += `</tbody>
                 </table>`
 
@@ -292,6 +300,11 @@
         }
         return null; // 기호가 없는 경우
     }
+
+    function goReservation1() {
+        window.location.href = "reservation/reservation1"
+    }
+
 
     <!-- 세차가이드 : 모달팝업창으로 유튜브영상 보여주기 -->
     $(".popupModalVideo a").click(function () {
