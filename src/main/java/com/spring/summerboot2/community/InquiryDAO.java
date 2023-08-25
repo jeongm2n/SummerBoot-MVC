@@ -38,13 +38,44 @@ public class InquiryDAO {
 		return false;
 	}
 	
-	public List<InquiryVO> inquiryList(int start) {
+	public List<InquiryVO> inquiryList(int start, String cate, String searchCon, String search, String stateCon) {
 		List<InquiryVO> list= new ArrayList<InquiryVO>();
 		try {
 			con = DBconn.getDBCP();
 			
-			String sql = "SELECT * FROM sb_inquiry ORDER BY ins_date";
-			sql += " LIMIT " + start + ", 10";
+			String sql = "SELECT * FROM sb_inquiry WHERE 1=1";
+			
+			if(!cate.equals("0")) {
+				if(cate.equals("shop")) {
+					sql += " AND category like '쇼핑%'";
+				} else if(cate.equals("car")) {
+					sql += " AND category like '세차%'";
+				} else if(cate.equals("etc")) {
+					sql += " AND category like '기타%'";
+				}
+			}
+			
+			if(!search.equals("none")) {
+				if(!searchCon.equals("0")) {
+					if(searchCon.equals("title")) {
+						sql += " AND title like '%"+search+"%'";
+					} else if(searchCon.equals("writer")) {
+						sql += " AND writer like '%"+search+"%'";
+					}
+				} else {
+					sql += " AND (writer like '%"+search+"%' OR title like '%" + search + "%')";
+				}
+			}
+			
+			if(!stateCon.equals("0")) {
+				if(stateCon.equals("wait")) {
+					sql += " AND state='답변대기'";
+				} else {
+					sql += " AND state='답변완료'";
+				}
+			}
+			
+			sql += " ORDER BY ins_date LIMIT " + start + ", 10";
 			System.out.println("prepareStatement : " + sql);
 			
 			pstmt = con.prepareStatement(sql);
@@ -74,12 +105,43 @@ public class InquiryDAO {
 		return list;
 	}
 	
-	public int InquiryCount() {
+	public int InquiryCount(String category, String searchCon, String search, String stateCon) {
 		int count = 0; 
 		try {
 			con = DBconn.getDBCP();
 			
-			String sql = "SELECT count(*) as cnt FROM sb_inquiry";
+			String sql = "SELECT count(*) as cnt FROM sb_inquiry WHERE 1=1";
+			
+			if(!category.equals("0")) {
+				if(category.equals("shop")) {
+					sql += " AND category like '쇼핑%'";
+				} else if(category.equals("car")) {
+					sql += " AND category like '세차%'";
+				} else if(category.equals("etc")) {
+					sql += " AND category like '기타%'";
+				}
+			}
+			
+			if(!search.equals("none")) {
+				if(!searchCon.equals("0")) {
+					if(searchCon.equals("title")) {
+						sql += " AND title like '%"+search+"%'";
+					} else if(searchCon.equals("writer")) {
+						sql += " AND writer like '%"+search+"%'";
+					}
+				} else {
+					sql += " AND (writer like '%"+search+"%' OR title like '%" + search + "%')";
+				}
+			}
+			
+			if(!stateCon.equals("0")) {
+				if(stateCon.equals("wait")) {
+					sql += " AND state='답변대기'";
+				} else {
+					sql += " AND state='답변완료'";
+				}
+			}
+			
 			System.out.println("preparedStatement : " + sql);
 			
 			pstmt = con.prepareStatement(sql);
