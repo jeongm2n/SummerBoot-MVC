@@ -32,6 +32,8 @@
     var use = [];
     
     var n;
+    var a;
+    var maxtime = 23;
         
     var weather = new Array();
     
@@ -100,7 +102,9 @@
 				            	clickedMonth = selectedMonth >= 10 ? selectedMonth : '0' + selectedMonth;
 				            	clickedMD = clickedMonth + "-" + clickedDate; //"08-11" 의 형태로 만듬
 			            		
-			            		getDB(); //DB에서 해당 지점의 선택한 날짜의 예약 정보를 가져오기 위한 함수 실행			
+			            		getDB(); //DB에서 해당 지점의 선택한 날짜의 예약 정보를 가져오기 위한 함수 실행
+			            		removeAllChildren(minuteContainer);		
+			            		timeHour(start,use);	
 			            		document.getElementById("btn-date").value = clickedMD;
 			            		var btn = document.getElementById('btn-date');
 			                	btn.innerHTML = clickedMD; //아래쪽에 사용자가 선택한 날짜를 띄우기 위한 코드
@@ -135,7 +139,7 @@
 		
 	    var line = 0; //한 줄에 5개만 있도록 갯수 설정하는 변수 
 	   	
-	    for(i=9 ; i<24 ; i++){ //9시~23시까지 예약가능하도록 버튼 생성
+	    for(i=9 ; i<=maxtime ; i++){ //9시~23시까지 예약가능하도록 버튼 생성
 	    	if(line!=0 && line%5==0){
 				const br = document.createElement('br');
             	hourContainer.appendChild(br); 
@@ -157,7 +161,7 @@
 	            	button.classList.add('btn-h');
 	            	button.onclick = function(){
 						selectedHour = this.getAttribute('id');
-						timeMinute(selectedHour); //시간 클릭 시 분 선택 버튼 생성
+						timeMinute(selectedHour,1); //시간 클릭 시 분 선택 버튼 생성
 						
 						if(selectedHour == 9){
 							selectedHour = "0" + selectedHour;
@@ -177,6 +181,7 @@
 				button.classList.add('btn-h');
 				button.onclick = function(){
 					selectedHour = this.getAttribute('id');
+					timeMinute(selectedHour,0);
 					if(selectedHour == 9){
 						selectedHour = "0" + selectedHour;
 					}
@@ -198,7 +203,7 @@
 	}
     
 	//분 선택 버튼 만들기
-    function timeMinute(compareHour){
+    function timeMinute(compareHour, istoday){
 		removeAllChildren(minuteContainer);
     	for(i=0 ; i<=30 ; i+=30){
     		var button = document.createElement('button');
@@ -210,51 +215,59 @@
             	button.innerHTML = i;
             }
             button.setAttribute('id',i);
-            if(compareHour == currentHour){
-				if(i < currentMinute){
-					button.classList.add('btn-disabled');
-				}else{
+            
+			if (a == 119 && compareHour == 22 && i == 30) {
+				button.classList.add('btn-disabled');
+			} else if (a == 59 && compareHour == 23 && i == 30) {
+				button.classList.add('btn-disabled');
+			} else {
+				if (compareHour == currentHour && istoday==1) {
+					if (i < currentMinute) {
+						button.classList.add('btn-disabled');
+					} else {
+						button.classList.add('btn-h');
+						button.onclick = function() {
+							selectedMinute = this.getAttribute('id');
+							if (selectedMinute == 0) {
+								selectedMinute = "0" + selectedMinute;
+							}
+
+							//버튼 클릭 시 색상 변경
+							if (selectedbtn_M != null) {
+								selectedbtn_M.classList.remove('btn-click');
+							}
+							selectedbtn_M = this;
+							this.classList.add('btn-click');
+
+							selectedHM = selectedHour + ":" + selectedMinute;
+							document.getElementById("btn-time").value = selectedHM;
+							var btn = document.getElementById('btn-time');
+							btn.innerHTML = selectedHM;
+						};
+					}
+				} else {
 					button.classList.add('btn-h');
 					button.onclick = function() {
-					    selectedMinute = this.getAttribute('id');
-					    if(selectedMinute == 0){
-					    	selectedMinute = "0" + selectedMinute;
-					    }
-					            	
-					    //버튼 클릭 시 색상 변경
-					    if(selectedbtn_M != null){
-					    	selectedbtn_M.classList.remove('btn-click');
-					    }
-					    selectedbtn_M = this;
-					    this.classList.add('btn-click');
-					        		
-					    selectedHM = selectedHour + ":" + selectedMinute;
-					    document.getElementById("btn-time").value = selectedHM;
-					    var btn = document.getElementById('btn-time');
-					    btn.innerHTML = selectedHM;
-				    };
+						selectedMinute = this.getAttribute('id');
+						if (selectedMinute == 0) {
+							selectedMinute = "0" + selectedMinute;
+						}
+
+						//버튼 클릭 시 색상 변경
+						if (selectedbtn_M != null) {
+							selectedbtn_M.classList.remove('btn-click');
+						}
+						selectedbtn_M = this;
+						this.classList.add('btn-click');
+
+						selectedHM = selectedHour + ":" + selectedMinute;
+						document.getElementById("btn-time").value = selectedHM;
+						var btn = document.getElementById('btn-time');
+						btn.innerHTML = selectedHM;
+					};
 				}
-			}else{
-				button.classList.add('btn-h');
-				button.onclick = function() {
-					selectedMinute = this.getAttribute('id');
-					if(selectedMinute == 0){
-					    selectedMinute = "0" + selectedMinute;
-					}
-					            	
-					//버튼 클릭 시 색상 변경
-					if(selectedbtn_M != null){
-					   	selectedbtn_M.classList.remove('btn-click');
-					}
-					selectedbtn_M = this;
-					this.classList.add('btn-click');
-					        		
-					selectedHM = selectedHour + ":" + selectedMinute;
-					document.getElementById("btn-time").value = selectedHM;
-					var btn = document.getElementById('btn-time');
-					btn.innerHTML = selectedHM;
-				};
 			}
+            
             minuteContainer.appendChild(button);
     	}
     }

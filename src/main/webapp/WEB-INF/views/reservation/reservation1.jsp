@@ -22,7 +22,6 @@
 	// 지점선택 시 아래에 선택한 지점이 뜨도록 
 	const shops = [ '서울본점', '경기군포점', '경기평택점', '대구점' ];
 	$(document).ready(function() {
-		console.log("Document ready. Starting execution...");
 		$("input:radio[name='shops']").click(function() {
 			$("#div_load").show();
 			n = $("input[name='shops']:checked").val();
@@ -44,7 +43,6 @@
 			var btn = document.getElementById('btn-shop');
 			btn.innerHTML = shopName;
 		});
-		console.log("Execution complete.");
 	});
 
 	$(document).ready(function() {
@@ -63,6 +61,23 @@
 		$('label[for="200"]').click(function() {
 			$('#m_200').prop('checked', true);
 			$('#200').prop('checked', true);
+		});
+		
+		$("input:radio[name='p_options']").click(function() {
+			a = $("input[name='p_options']:checked").val();
+			switch(a){
+				case "29" : 
+					maxtime = 23; 
+					break;
+				case "59" :
+					maxtime = 23;
+					break;
+				case "89" :
+					maxtime = 22;
+					break;
+				case "119" :
+					maxtime = 22;
+			}
 		});
 
 	});
@@ -268,7 +283,6 @@
 							console.log("Start Time:", start[i]);
 							console.log("Use Time:", use[i]);
 						}
-						timeHour(start, use);
 					} catch (error) {
 						console.error("Error in success callback:", error);
 					}
