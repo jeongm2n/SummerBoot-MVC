@@ -47,10 +47,10 @@ public class ReservationDAO {
 		return forres1;
 	}
 	
-	public List<Integer> chkSite(int no, String date, String startTime){
+	public List<Integer> chkSite(int no, String date, String startTime, int useTime){
 		PreparedStatement pstmt;
 
-		List<Integer> sites = new ArrayList();
+		List<Integer> sites = new ArrayList<>();
 		sites.add(2);
 		for (int i = 1; i < 9; i++) {
             sites.add(0);
@@ -59,8 +59,9 @@ public class ReservationDAO {
 		try {
 			conn = DBconn.getDBCP();
 	
-			String sql = "SELECT site FROM sb_reservation WHERE no="+no+" AND res_date='"+date+"' AND startTime='"+startTime+"'"
-					+ " ORDER BY site ASC";
+			String sql = "select distinct site from sb_reservation where no=1 and res_date='"+date+"' and (startTime between time_format('"+startTime+"','%T') "
+					+ "and (SEC_TO_TIME(TIME_TO_SEC('"+startTime+"') + (118 * "+useTime+"))) "
+					+ "or date_add(startTime, interval useTime minute) between time_format('"+startTime+"','%T') and SEC_TO_TIME(TIME_TO_SEC('"+startTime+"') + (118 * "+useTime+")))";
 
 			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
@@ -70,8 +71,9 @@ public class ReservationDAO {
 			while(rs.next()) {
 				int rs_site = rs.getInt("site");
 				sites.set(rs_site,1);
-				System.out.println(rs_site);
+				System.out.print(rs_site+", ");
 			}
+			System.out.println("");
 			rs.close();
 			pstmt.close();
 			conn.close();

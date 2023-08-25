@@ -33,7 +33,6 @@
     
     var n;
     var a;
-    var maxtime = 23;
         
     var weather = new Array();
     
@@ -139,7 +138,7 @@
 		
 	    var line = 0; //한 줄에 5개만 있도록 갯수 설정하는 변수 
 	   	
-	    for(i=9 ; i<=maxtime ; i++){ //9시~23시까지 예약가능하도록 버튼 생성
+	    for(i=9 ; i<24 ; i++){ //9시~23시까지 예약가능하도록 버튼 생성
 	    	if(line!=0 && line%5==0){
 				const br = document.createElement('br');
             	hourContainer.appendChild(br); 
@@ -155,18 +154,39 @@
 	        
 	        button.setAttribute('id',i); //각 버튼의 아이디는 각 버튼의 시간으로 설정
 	        
-			
-		    if(currentMD == clickedMD){ //사용자가 선택한 날짜가 오늘이면
-				if(i >= currentHour){ //현재 시간보다 이후의 시간이면 (아직 지나지 않은 시간이면) 클릭 이벤트 연결
-	            	button.classList.add('btn-h');
-	            	button.onclick = function(){
-						selectedHour = this.getAttribute('id');
-						timeMinute(selectedHour,1); //시간 클릭 시 분 선택 버튼 생성
+			if(a>=89 && i==23){
+				button.classList.add('btn-disabled');
+			}else{
+				if(currentMD == clickedMD){ //사용자가 선택한 날짜가 오늘이면
+					if(i >= currentHour){ //현재 시간보다 이후의 시간이면 (아직 지나지 않은 시간이면) 클릭 이벤트 연결
+	            		button.classList.add('btn-h');
+	            		button.onclick = function(){
+							selectedHour = this.getAttribute('id');
+							timeMinute(selectedHour,1); //시간 클릭 시 분 선택 버튼 생성
 						
+							if(selectedHour == 9){
+								selectedHour = "0" + selectedHour;
+							}
+								            	
+							//버튼 클릭 시 색상 변경
+							if(selectedbtn_H != null){
+								selectedbtn_H.classList.remove('btn-click');
+							}
+							selectedbtn_H = this;
+							this.classList.add('btn-click');
+						};
+	            	}else{ //현재 시간보다 이전 시간은 선택못하게 (이미 지난 시간은 선택 못하게)
+						button.classList.add('btn-disabled');
+					}
+				}else{ //사용자가 선택한 날이 오늘이 아니면 시간대는 신경 안써도 되므로
+					button.classList.add('btn-h');
+					button.onclick = function(){
+						selectedHour = this.getAttribute('id');
+						timeMinute(selectedHour,0);
 						if(selectedHour == 9){
 							selectedHour = "0" + selectedHour;
 						}
-								            	
+									            	
 						//버튼 클릭 시 색상 변경
 						if(selectedbtn_H != null){
 							selectedbtn_H.classList.remove('btn-click');
@@ -174,30 +194,10 @@
 						selectedbtn_H = this;
 						this.classList.add('btn-click');
 					};
-	            }else{ //현재 시간보다 이전 시간은 선택못하게 (이미 지난 시간은 선택 못하게)
-					button.classList.add('btn-disabled');
 				}
-			}else{ //사용자가 선택한 날이 오늘이 아니면 시간대는 신경 안써도 되므로
-				button.classList.add('btn-h');
-				button.onclick = function(){
-					selectedHour = this.getAttribute('id');
-					timeMinute(selectedHour,0);
-					if(selectedHour == 9){
-						selectedHour = "0" + selectedHour;
-					}
-								            	
-					//버튼 클릭 시 색상 변경
-					if(selectedbtn_H != null){
-						selectedbtn_H.classList.remove('btn-click');
-					}
-					selectedbtn_H = this;
-					this.classList.add('btn-click');
-				};
 			}
-         	
-        	
+			
         	hourContainer.appendChild(button);
-            
         	line++;
     	}
 	}
@@ -311,13 +311,11 @@
     
 	//Next>버튼 클릭 시 예약페이지2로 이동
     function goReservation2(){
-    	var radiobtn = document.querySelector('input[type=radio][name=p_options]:checked');
-    	var useTime = radiobtn.value;
     	if(clickedMD==null || selectedHM==null ||shopName==null){
     		alert("지점, 날짜, 시간을 확인해주세요");
     		return false;
     	}else{
-    		window.location.href = "./reservation2?shopName="+shopName+"&no="+n+"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+useTime;
+    		window.location.href = "./reservation2?shopName="+shopName+"&no="+n+"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+a;
     		//reservation2로 지점 이름, 세차장 고유번호, 선택날짜, 선택한 시작시간, 사용시간에 대한 정보를 넘김
     		return true;
     	}

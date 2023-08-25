@@ -65,19 +65,6 @@
 		
 		$("input:radio[name='p_options']").click(function() {
 			a = $("input[name='p_options']:checked").val();
-			switch(a){
-				case "29" : 
-					maxtime = 23; 
-					break;
-				case "59" :
-					maxtime = 23;
-					break;
-				case "89" :
-					maxtime = 22;
-					break;
-				case "119" :
-					maxtime = 22;
-			}
 		});
 
 	});
@@ -241,14 +228,10 @@
 			</div>
 			<div
 				style="width: 400px; height: 50px; margin-top: 15px; float: right">
-				<button id="btn-shop" type="button" class="orange-button btn-time"
-					style="margin-right: 5px" disabled></button>
-				<button id="btn-date" type="button" class="orange-button btn-time"
-					style="margin-right: 5px" disabled></button>
-				<button id="btn-time" type="button" class="orange-button btn-time"
-					style="margin-right: 5px" disabled></button>
-				<button type="button" class="orange-button"
-					onclick="return goReservation2();">Next></button>
+				<button id="btn-shop" class="orange-button btn-time" style="margin-right:5px" disabled></button>
+				<button id="btn-date" class="orange-button btn-time" style="margin-right:5px" disabled></button>
+				<button id="btn-time" class="orange-button btn-time" style="margin-right:5px" disabled></button>
+				<button type="button" class="orange-button" onclick="return goReservation2();">Next></button>
 			</div>
 		</div>
 	</div>

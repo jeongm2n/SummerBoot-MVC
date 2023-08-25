@@ -42,14 +42,11 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value = "/reservation2", method = RequestMethod.GET)
-	public ModelAndView reservation2(@RequestParam("no") int no, @RequestParam("date") String date, @RequestParam("startTime") String startTime,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+	public ModelAndView reservation2(@RequestParam("no") int no, @RequestParam("date") String date, 
+			@RequestParam("startTime") String startTime,@RequestParam("useTime") int useTime) {
 		
 		//예약된 세차 구역의 정보를 가져옴
-		List<Integer> sites = rsDAO.chkSite(no, date, startTime);
+		List<Integer> sites = rsDAO.chkSite(no, date, startTime, useTime);
 		int i = 0;
 		
 		for (int site : sites) {

@@ -16,7 +16,7 @@
 <body>
  <%
  	int no = Integer.parseInt(request.getParameter("no"));
- 	String shopName = (String)request.getParameter("no");
+ 	String shopName = (String)request.getParameter("shopName");
     String date = (String)request.getParameter("date");
     String startTime = (String)request.getParameter("startTime");
     String useTime = (String)request.getParameter("useTime");
