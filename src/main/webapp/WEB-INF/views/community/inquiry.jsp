@@ -37,7 +37,7 @@
 				</select>
 			</div>
 			<div class="input-group">
-				<input type="text" class="form-control" id="inputMobileSearch" placeholder="Search" name="search" <c:if test="${search ne 'none'}"> value="${search }</c:if>">
+				<input type="text" class="form-control" id="inputMobileSearch" placeholder="Search" name="search" <c:if test="${search ne 'none'}"> value="${search }"</c:if>>
 				<div class="input-group-text" id="search">
 					<i class="fa fa-fw fa-search"></i>
 				</div>
@@ -168,7 +168,12 @@
 	});
 
 	$(document).on('click', '#write', function() {
-		location.href = "${path}/community/qnaWrite"
+		var user_id = "<%=user_id %>";
+		if(user_id == "null") {
+			alert("로그인 후 이용해주세요.");
+		} else {
+			location.href = "${path}/community/qnaWrite"
+		}
 	});
 	
 	$(document).on('click', '#qna', function() {
@@ -227,7 +232,8 @@
 		location.href=path;
 	});
 	
-	$(document).on('click', '#search', function() {
+		
+	$(document).on('click', '#search', function search() {
 		var searchCon = $("#searchCon").val();
 		var search = $("#inputMobileSearch").val();
 		var category = $("#category").val();
@@ -242,4 +248,11 @@
 		}
 		location.href=path;
 	});
+	
+	
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+			search();
+		}
+	}
 </script>
