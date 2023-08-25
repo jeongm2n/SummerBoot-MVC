@@ -86,7 +86,7 @@
 						<!-- /store top filter -->
 						<!-- store products -->
 						<div class="row">
-						<c:forEach var="product" items="${productVO}" begin = "${b_page}"  end="${e_page}">
+						<c:forEach var="product" items="${productVO}">
 							<!-- product -->
 							<div class="col-md-4 col-xs-6" style="min-width:280px;">
 								<div class="product">
@@ -111,7 +111,7 @@
 									</div>
 									<c:if test="${product.amount != 0}">
 									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 카트에 추가</button>
+										<button class="add-to-cart-btn" onclick="add_cart(${product.product_id}, ${product.amount})"><i class="fa fa-shopping-cart"></i> 카트에 추가</button>
 									</div>
 									</c:if>
 								</div>
@@ -142,7 +142,30 @@
 		<!-- /SECTION -->
 
 	<%@ include file="../common/footer.jsp"%>
-
+	
+		<script>
+	function add_cart(product_id, quantity){
+		$.ajax({
+			type:"get",
+			async:false,  
+			url:"${contextPath}/shop/add_cart",
+			dataType:"text",
+			data: {
+				product_id:product_id,
+				quantity:quantity,
+				amount:1
+			},
+			success:function (){
+				alert("장바구니에 추가되었습니다!");
+			},
+			error:function(request, error){
+				alert("에러가 발생했습니다.");
+			},
+			complete:function(){
+			}
+		});
+	}
+	</script>
 
 	</body>
 </html>

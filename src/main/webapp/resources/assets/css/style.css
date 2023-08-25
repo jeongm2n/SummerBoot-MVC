@@ -954,6 +954,7 @@ span:after{
   text-align: center;
   background-color: #FFF;
   border: 1px solid #E4E7ED;
+  border-radius: 5px;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
@@ -1015,4 +1016,6 @@ span:after{
 .review-form .input-rating .stars>input:checked label:before, .review-form .input-rating .stars>input:checked~label:before {
   content: "\f005";
   color: #fd8008;
+}
+
 }
