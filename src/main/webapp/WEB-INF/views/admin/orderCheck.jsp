@@ -70,7 +70,7 @@
 	                                    	</c:when>
 	                                    	<c:when test="${!empty orderList }">
 				                            		<c:forEach var="list" items="${orderList }">
-				                                        <tr class="order">
+				                                        <tr>
 				                                            <td class="order_num">
 				                                            	<b>주문번호 : ${list.order_num }</b><br>
 				                                            	주문 날짜 : ${list.pur_date }<br>
@@ -102,7 +102,7 @@
 	function rowspan(order_num) {
 		var rows;
 		$("." + order_num).each(function () {
-			var rows = $("." + order_num + ":contains('" + $(this).text() + "')");
+			rows = $("." + order_num + ":contains('" + $(this).text() + "')");
 	        if (rows.length > 1) {
 	            rows.eq(0).attr("rowspan", rows.length);
 	            rows.not(":eq(0)").remove();

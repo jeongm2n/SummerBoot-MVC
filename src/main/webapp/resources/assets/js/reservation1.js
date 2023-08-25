@@ -32,7 +32,7 @@
     var use = [];
     
     var n;
-    var a;
+    var a=29;
         
     var weather = new Array();
     

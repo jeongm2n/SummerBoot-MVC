@@ -82,7 +82,7 @@
 			integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 			crossorigin="anonymous"></script>
 
-		<%--나중에 지점 리스트 페이지에서 넘어오는 지점 정보가 있을때와 네비바의 예약을 눌러서 들어왔을 때 다르게 뜨도록 수정해야함!! --%>
+		
 		<div class="col-lg-6" style="padding-right: 80px; height: 250px">
 			<div class="col border border-4 div1" style="float: right">
 				지점 선택
