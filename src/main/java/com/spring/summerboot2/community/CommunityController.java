@@ -21,18 +21,28 @@ public class CommunityController {
 	CommunityService communityService;
 	
 	@RequestMapping(value = "/qna", method = RequestMethod.GET)
-    public ModelAndView inquiry(@RequestParam(value="page", defaultValue="1") int page) {
+    public ModelAndView inquiry(@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="category", defaultValue="0") String category, @RequestParam(value="searchCon", defaultValue="0") String searchCon, @RequestParam(value="search", defaultValue="none") String search, @RequestParam(value="state", defaultValue="0") String state) {
 		ModelAndView mav = new ModelAndView();
 		int start = 0;
 		if(page >= 2) {
 			start = (page-1)*10;
 		}
 		List<InquiryVO> inquiryList;
-		inquiryList = communityService.inquiryList(start);
+		inquiryList = communityService.inquiryList(start, category, searchCon, search, state);
 		mav.addObject("inquiryList", inquiryList);
 		
-		int count = communityService.inquiryCount();
-		int pages = (count/10) + 1;
+		int count = communityService.inquiryCount(category, searchCon, search, state);
+		int pages = 0;
+		if(count%10 == 0) {
+			pages = (count/10);
+		} else {
+			pages = (count/10) + 1;
+		}
+		
+		mav.addObject("category", category);
+		mav.addObject("searchCon", searchCon);
+		mav.addObject("search", search);
+		mav.addObject("state", state);
 		mav.addObject("page", page);
 		mav.addObject("count", start);
 		mav.addObject("pages", pages);
@@ -75,4 +85,5 @@ public class CommunityController {
     public String faq() {
         return "community/FAQ";
     }
+    
 }

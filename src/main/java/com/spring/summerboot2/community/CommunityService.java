@@ -11,11 +11,11 @@ public class CommunityService {
 		return dao.insert_inquiry(vo);
 	}
 	
-	public List<InquiryVO> inquiryList(int start) {
-		return dao.inquiryList(start);
+	public List<InquiryVO> inquiryList(int start, String category, String searchCon, String search, String stateCon) {
+		return dao.inquiryList(start, category, searchCon, search, stateCon);
 	}
 	
-	public int inquiryCount() {
-		return dao.InquiryCount();
+	public int inquiryCount(String category, String searchCon, String search, String stateCon) {
+		return dao.InquiryCount(category, searchCon, search, stateCon);
 	}
 }

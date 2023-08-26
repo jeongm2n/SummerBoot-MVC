@@ -28,6 +28,21 @@
 			</div>
 		</div>
 		
+		<div class="flex-sm-fill col-7 mx-auto searchG">
+			<div style="margin-right:10px;">
+				<select class="form-control" id="searchCon" name="searchCon" style="height:40px">
+					<option value="0">검색조건</option>
+					<option value="title" <c:if test="${searchCon eq 'title'}">selected</c:if>>제목</option>
+					<option value="writer" <c:if test="${searchCon eq 'writer'}">selected</c:if>>작성자</option>
+				</select>
+			</div>
+			<div class="input-group">
+				<input type="text" class="form-control" id="inputMobileSearch" placeholder="Search" name="search" <c:if test="${search ne 'none'}"> value="${search }"</c:if>>
+				<div class="input-group-text" id="search">
+					<i class="fa fa-fw fa-search"></i>
+				</div>
+			</div>
+		</div>
 		
 		<div class="row" style="justify-content: flex-end;margin-bottom:1%;">
 			<input type="button" class="btn btn-join" id="write" value="글쓰기" style="width:7%;">
@@ -38,11 +53,24 @@
 				<thead>
 					<tr>
 						<th width="5%">#</th>
-						<th width="8%">상담구분</th>
+						<th width="8%">
+							<select id="category" name="category" style="padding:0;border:none;font-size:18px;font-weight:bolder;">
+								<option value="0">상담구분</option>
+								<option value="car" <c:if test="${category eq 'car'}">selected</c:if>>세차문의</option>
+								<option value="shop" <c:if test="${category eq 'shop'}">selected</c:if>>쇼핑문의</option>
+								<option value="etc" <c:if test="${category eq 'etc'}">selected</c:if>>기타문의</option>
+							</select>
+						</th>
 						<th width="42%">제목</th>
 						<th width="15%">작성자</th>
 						<th width="15%">작성시간</th>
-						<th width="15%">답변상태</th>
+						<th width="15%">
+							<select id="state" name="state" style="padding:0;border:none;font-size:18px;font-weight:bolder;">
+								<option value="0">답변상태</option>
+								<option value="wait" <c:if test="${state eq 'wait'}">selected</c:if>>답변대기</option>
+								<option value="complete" <c:if test="${state eq 'complete'}">selected</c:if>>답변완료</option>
+							</select>
+						</th>
 					</tr>
 				</thead>
 				<tbody class="inquiryTB">
@@ -121,6 +149,10 @@
     	display : grid;
     	grid-template-columns:1fr;
     }
+    .searchG {
+    	display : grid;
+    	grid-template-columns : 0.5fr 1.5fr;
+    }
 </style>
 
 <script>
@@ -136,12 +168,17 @@
 	});
 
 	$(document).on('click', '#write', function() {
-		location.href = "${path}/community/qnaWrite"
+		var user_id = "<%=user_id %>";
+		if(user_id == "null") {
+			alert("로그인 후 이용해주세요.");
+		} else {
+			location.href = "${path}/community/qnaWrite"
+		}
 	});
 	
 	$(document).on('click', '#qna', function() {
 		location.href = "${path}/community/qna"
-	})
+	});
 	
 	$(function(){
 		var article = (".inquiryTB .store-show");
@@ -164,4 +201,58 @@
 			}
 		});  
 	});
+	
+	$(document).on('change', '#category', function() {
+		var category = $("#category").val();
+		var search = $("#inputMobileSearch").val();
+		var searchCon = $("#searchCon").val();
+		var state = $("#state").val();
+		var path = "${path }/community/qna?category="+category;
+		if(search.length > 0) {
+			path += "&search=" + search + "&searchCon=" + searchCon;
+		}
+		if(state!=0) {
+			path += "&state=" + state;
+		}
+		location.href=path;
+	});
+	
+	$(document).on('change', '#state', function() {
+		var category = $("#category").val();
+		var search = $("#inputMobileSearch").val();
+		var searchCon = $("#searchCon").val();
+		var state = $("#state").val();
+		var path = "${path }/community/qna?category="+category;
+		if(search.length > 0) {
+			path += "&search=" + search + "&searchCon=" + searchCon;
+		}
+		if(state!=0) {
+			path += "&state=" + state;
+		}
+		location.href=path;
+	});
+	
+		
+	$(document).on('click', '#search', function search() {
+		var searchCon = $("#searchCon").val();
+		var search = $("#inputMobileSearch").val();
+		var category = $("#category").val();
+		var state = $("#state").val();
+		
+		var path = "${path}/community/qna?search="+search + "&searchCon=" + searchCon;
+		if(category!=0) {
+			path += "&category=" + category;
+		}
+		if(state!=0) {
+			path += "&state=" + state;
+		}
+		location.href=path;
+	});
+	
+	
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+			search();
+		}
+	}
 </script>
