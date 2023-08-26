@@ -22,6 +22,21 @@
 		if (input.value <= 0) input.value = 1;
 		if (input.value > ${product.amount}) input.value = ${product.amount};
 	}
+ 	
+ 	$(document).ready( function perChange(){
+ 			var five = ${s_review_count[4]} / ${review_count} * 100;
+ 			var four = ${s_review_count[3]} / ${review_count} * 100;
+ 			var three = ${s_review_count[2]} / ${review_count} * 100;
+ 			var two = ${s_review_count[1]} / ${review_count} * 100;
+ 			var one = ${s_review_count[0]} / ${review_count} * 100;
+ 			
+  			document.getElementById("five").style = " width:" + five +"%";
+ 			document.getElementById("four").style = " width:" + four +"%";
+ 			document.getElementById("three").style = " width:" + three +"%";
+ 			document.getElementById("two").style = " width:" + two +"%";
+ 			document.getElementById("one").style = " width:" + one +"%";
+ 			
+ 		});
  	</script>
 </head>
 
@@ -56,7 +71,7 @@
 			</div>
 			<!-- /Product thumb imgs -->
 			<!-- Product main img -->
-			<div class="col-md-5 col-md-push-2">
+			<div class="col-md-5 col-md-push-2" style="margin-bottom : 10px;">
 				<div id="product-main-img">
 					<div class="product-preview">
 						<img src="${path}/resources/assets/img/${product.img}">
@@ -90,7 +105,7 @@
 								</c:forEach>
 							</c:if>
 						</div>
-						<a class="review-link">10 Review(s)</a>
+						<a class="review-link">${review_count} Review(s)</a>
 					</div>
 					<div>
 						<c:if test="${product.amount != 0}">
@@ -109,12 +124,12 @@
 						<div class="qty-label">
 							수량
 							<div class="input-number">
-								<input type="number" value="1" onchange="limiter(this);">
+								<input type="number" id = "amount" value="1" onchange="limiter(this);">
 								<span class="qty-up">+</span>
 								<span class="qty-down">-</span>
 							</div>
 						</div>
-						<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 카트에 추가</button>
+						<button class="add-to-cart-btn" onclick="add_cart(${product.product_id}, ${product.amount})"><i class="fa fa-shopping-cart"></i> 카트에 추가</button>
 					</div>
 					</c:if>
 					
@@ -144,8 +159,9 @@
 						<!-- /tab1  -->
 						
 					    <div class="tab-label">
-							리뷰
+							최근 리뷰
 					    </div>
+					    <c:if test="${review_count != 0}">
 						<!-- tab2  -->
 						<div id="tab2">
 							<div class="row">
@@ -153,13 +169,13 @@
 								<div class="col-md-4 rating-tab">
 									<div id="rating">
 										<div class="rating-avg">
-											<span>4.5</span>
+											<span>${product.rating}</span>
 											<div class="rating-stars">
+											<c:if test="${product.rating != 0}">
+											<c:forEach var="i" begin = "1" end="${product.rating}">
 												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star-o"></i>
+											</c:forEach>
+											</c:if>
 											</div>
 										</div>
 										<ul class="rating">
@@ -170,9 +186,9 @@
 													</c:forEach>
 												</div>
 												<div class="rating-progress">
-													<div style="width: 80%;"></div>
+													<div id="five"></div>
 												</div>
-												<span class="sum">3</span>
+												<span class="sum">${s_review_count[4]}</span>
 											</li>
 											<li>
 												<div class="rating-stars">
@@ -181,9 +197,9 @@
 													</c:forEach>
 												</div>
 												<div class="rating-progress">
-													<div style="width: 60%;"></div>
+													<div id="four"></div>
 												</div>
-												<span class="sum">2</span>
+												<span class="sum">${s_review_count[3]}</span>
 											</li>
 											<li>
 												<div class="rating-stars">
@@ -192,9 +208,9 @@
 													</c:forEach>
 												</div>
 												<div class="rating-progress">
-													<div></div>
+													<div id="three"></div>
 												</div>
-												<span class="sum">0</span>
+												<span class="sum">${s_review_count[2]}</span>
 											</li>
 											<li>
 												<div class="rating-stars">
@@ -203,9 +219,9 @@
 													</c:forEach>
 												</div>
 												<div class="rating-progress">
-													<div></div>
+													<div id="two"></div>
 												</div>
-												<span class="sum">0</span>
+												<span class="sum">${s_review_count[1]}</span>
 											</li>
 											<li>
 												<div class="rating-stars">
@@ -214,74 +230,41 @@
 													</c:forEach>
 												</div>
 												<div class="rating-progress">
-													<div></div>
+													<div id="one"></div>
 												</div>
-												<span class="sum">0</span>
+												<span class="sum">${s_review_count[0]}</span>
 											</li>
 										</ul>
 									</div>
 								</div>
 								<!-- /Rating -->
-
+								</c:if>
 								<!-- Reviews -->
+								<c:if test="${review_count eq 0}">
+									<h5 style ="text-align:center;"> 리뷰가 없습니다. </h5>
+								</c:if>
 								<div class="col-md-8">
 									<div id="reviews">
 										<ul class="reviews">
+										<c:forEach var="review" items="${review}" begin="0" end="3">
 											<li>
 												<div class="review-heading">
-													<h5 class="name">양지민</h5>
-													<p class="date">2023/08/24</p>
+													<h5 class="name">${review.member_id}</h5>
+													<p class="date">${review.date}</p>
 													<div class="review-rating">
+														<c:forEach var="i" begin = "1" end="${review.point}">
 														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
+														</c:forEach>
 													</div>
 												</div>
 												<div class="review-body">
 													<p>제품이 참 좋아요!</p>
-													<img src="${path}/resources/assets/img/${product.img}" style="width:100px; height:100px;">
+													<c:if test="!${review.img eq null}">
+													<img src="${path}/resources/assets/img/${review.img}" style="width:100px; height:100px;">
+													</c:if>
 												</div>
 											</li>
-											<li>
-												<div class="review-heading">
-													<h5 class="name">양지민</h5>
-													<p class="date">2023/08/24</p>
-													<div class="review-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
-													</div>
-												</div>
-												<div class="review-body">
-													<p>제품이 참 별로네요~</p>
-													<img src="${path}/resources/assets/img/${product.img}" style="width:100px; height:100px;">
-												</div>
-											</li>
-											<li>
-												<div class="review-heading">
-													<h5 class="name">양지민</h5>
-													<p class="date">2023/08/24</p>
-													<div class="review-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
-													</div>
-												</div>
-												<div class="review-body">
-													<p>제품이 참 적당해요</p>
-													<img src="${path}/resources/assets/img/${product.img}" style="width:100px; height:100px;">
-												</div>
-											</li>
-										</ul>
-										<ul class="reviews-pagination">
-											<li class="active">1</li>
-											<li><a href="#">2</a></li>
+										</c:forEach>
 										</ul>
 									</div>
 								</div>
@@ -311,5 +294,31 @@
 	<script src="${path}/resources/assets/js/shop/jquery.zoom.min.js"></script>
 	<script src="${path}/resources/assets/js/shop/main.js"></script>
 
+
+	<script>
+	function add_cart(product_id, quantity){
+		let amount = document.getElementById('amount').value;
+		$.ajax({
+			type:"get",
+			async:false,  
+			url:"${contextPath}/shop/add_cart",
+			dataType:"text",
+			data: {
+				product_id:product_id,
+				quantity:quantity,
+				amount:amount
+			},
+			success:function (){
+				alert("장바구니에 추가되었습니다!");
+			},
+			error:function(request, error){
+				alert("에러가 발생했습니다.");
+			},
+			complete:function(){
+			}
+		});
+	}
+	</script>
+	
 	</body>
 </html>
