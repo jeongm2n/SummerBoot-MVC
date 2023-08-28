@@ -70,7 +70,7 @@
 	});
 </script>
 
-<script>
+<!-- <script>
     weather = [
         <c:forEach items="${weathers}" var="data" varStatus="loop">
             {
@@ -85,7 +85,7 @@
 
     // 이후에 JavaScript 코드에서 weatherArray를 활용할 수 있음
     console.log(weatherArray);
-</script>
+</script> -->
 
 </head>
 
