@@ -33,7 +33,7 @@
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand logo medium align-self-center" href="${path}">
-            <img src="${path}/resources/assets/img/Logo.png" style="width:300px;height:100px"></a>
+            <img src="${path}/resources/assets/img/Logo5.png" style="width:300px;height:100px"></a>
             
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
