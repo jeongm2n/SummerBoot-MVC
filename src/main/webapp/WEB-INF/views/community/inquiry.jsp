@@ -95,12 +95,12 @@
 								<tr class="store-hide">
 									<td colspan="7">  
 					                    <div class="card-body-inquiry">
-							            	<div class="inquiry-answer" style="margin-bottom:3%;">
-							            		<div class="h1" style="font-weight: bolder !important">Q</div>
+							            	<div class="inquiry-answer">
+							            		<div class="h1">Q.</div>
 							            		<div class="h4" style="padding-top:2%;">${list.content }</div>
 							                </div>
 							                <div class="inquiry-answer" <c:if test="${list.state eq '답변대기'}" >style="display:none;"</c:if>>
-							                    <div class="h1" style="font-weight: bolder !important">A</div>
+							                    <div class="h1">A.</div>
 							            		<div class="h4" style="padding-top:2%;">${list.answer }</div>
 							                </div>
 						                </div>
@@ -140,7 +140,7 @@
         width : 10%;
     }
 	.h4 {
-		font-size : 1.5rem !important;
+		font-size : 1rem !important;
 	}
 	tr {
 		cursor: default;
@@ -152,6 +152,9 @@
     .searchG {
     	display : grid;
     	grid-template-columns : 0.5fr 1.5fr;
+    }
+    .h1 {
+    	font-weight:700 !important;
     }
 </style>
 
@@ -171,6 +174,7 @@
 		var user_id = "<%=user_id %>";
 		if(user_id == "null") {
 			alert("로그인 후 이용해주세요.");
+			location.href = "${path}/member/login"
 		} else {
 			location.href = "${path}/community/qnaWrite"
 		}

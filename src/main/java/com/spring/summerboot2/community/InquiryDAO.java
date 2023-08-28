@@ -145,7 +145,7 @@ public class InquiryDAO {
 			System.out.println("preparedStatement : " + sql);
 			
 			pstmt = con.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery(sql);
+			rs = pstmt.executeQuery(sql);
 			while(rs.next()) {
 				count = rs.getInt("cnt");
 			}
@@ -159,4 +159,5 @@ public class InquiryDAO {
 		
 		return count;
 	}
+	
 }

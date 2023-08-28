@@ -1,6 +1,7 @@
 package com.spring.summerboot2.admin;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -85,9 +86,30 @@ public class AdminService {
 		return orderdao.filterOrderList(column,str);
 	}
 
-	public List<InquiryVO> inquiryList() {
+	public Map<String, Object> inquiry(int q_no) {
 		AdminCommunityDAO dao = new AdminCommunityDAO();
-		return dao.inquiryList();
+		System.out.println("service == " + q_no);
+		return dao.qna(q_no);
+	}
+	
+	public List<InquiryVO> inquiryMain() {
+		AdminCommunityDAO dao = new AdminCommunityDAO();
+		return dao.inquiryMain();
+	}
+	
+	public int inquiryCount() {
+		AdminCommunityDAO dao = new AdminCommunityDAO();
+		return dao.InquiryCount();
+	}
+
+	public List<InquiryVO> inquiryList(int start, String category, String searchCon, String search, String stateCon) {
+		AdminCommunityDAO dao = new AdminCommunityDAO();
+		return dao.inquiryList(start, category, searchCon, search, stateCon);
+	}
+	
+	public int inquiryCount(String category, String searchCon, String search, String stateCon) {
+		AdminCommunityDAO dao = new AdminCommunityDAO();
+		return dao.InquiryCount(category, searchCon, search, stateCon);
 	}
 	
 	public int deleteInquiry(int q_no) {

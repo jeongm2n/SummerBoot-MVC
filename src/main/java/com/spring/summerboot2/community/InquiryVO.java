@@ -36,10 +36,24 @@ public class InquiryVO {
 		this.state = state;
 	}
 	
+	public InquiryVO(String category, String title, Timestamp ins_date) {
+		this.category = category;
+		this.title = title;
+		this.ins_date = ins_date;
+	}
+	
 	public InquiryVO(int q_no, String answer, String state) {
 		this.q_no = q_no;
 		this.answer = answer;
 		this.state = state;
+	}
+	
+	public InquiryVO(String writer, String category, String title, String content, Timestamp ins_date) {
+		this.writer = writer;
+		this.category = category;
+		this.title = title;
+		this.content = content;
+		this.ins_date = ins_date;
 	}
 	
 	public int getQ_no() {

@@ -23,7 +23,7 @@ public class WashlistDAO {
 			
 			pstmt = con.prepareStatement(sql);
 			
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int no = rs.getInt("no");
 				String name = rs.getString("name");
@@ -32,6 +32,8 @@ public class WashlistDAO {
 				String tel = rs.getString("tel");
 				String time = rs.getString("time");
 				String img = rs.getString("img");
+				String lat = rs.getString("lat");
+				String lon = rs.getString("lon");
 				
 				System.out.println(no);
 				System.out.println(name);
@@ -39,7 +41,7 @@ public class WashlistDAO {
 				System.out.println(sites);
 				System.out.println(time);
 				
-				WashlistVO vo = new WashlistVO(no, name, address, sites, tel, time, img);
+				WashlistVO vo = new WashlistVO(no, name, address, sites, tel, time, img, lat, lon);
 				list.add(vo);
 			}
 			rs.close();

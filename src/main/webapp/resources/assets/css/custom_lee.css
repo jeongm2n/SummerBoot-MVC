@@ -183,7 +183,8 @@ i {
 }
 .inquiry-answer {
 	display : grid;
-	grid-template-columns: 0.5fr 5fr;
+	grid-template-columns: 0.3fr 5fr;
+	padding: 1%;
 }
 .inquiryTr:hover {
 	background-color : rgba(255, 214, 165, 0.2);
