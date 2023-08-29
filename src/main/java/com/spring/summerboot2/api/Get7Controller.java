@@ -24,8 +24,8 @@ public class Get7Controller {
 		
 		WeatherDAO wdao = new WeatherDAO();
 		
-		List<WeatherVO> weather3 = wdao.get3Days(today, nx, ny);  //오늘~3일까지의 날씨정보를 weather3 리스트에 받아옴
-		List<WeatherVO> weather4 = wdao.get4Days(today, location); //4일~7일까지의 날씨정보를 weather4 리스트에 받아옴
+		List<WeatherVO> weather3 = wdao.get3Days(today);  //오늘~3일까지의 날씨정보를 weather3 리스트에 받아옴
+		List<WeatherVO> weather4 = wdao.get4Days(today); //4일~7일까지의 날씨정보를 weather4 리스트에 받아옴
 		
 		List<WeatherVO> weekWeather = new ArrayList<>();
 		weekWeather.addAll(weather3);

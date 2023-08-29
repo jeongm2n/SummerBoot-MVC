@@ -28,9 +28,6 @@
     var selectedHour = null;
     var selectedMinute = null;
     
-    var start = [];
-    var use = [];
-    
     var n;
     var a=29;
         
@@ -101,9 +98,8 @@
 				            	clickedMonth = selectedMonth >= 10 ? selectedMonth : '0' + selectedMonth;
 				            	clickedMD = clickedMonth + "-" + clickedDate; //"08-11" 의 형태로 만듬
 			            		
-			            		getDB(); //DB에서 해당 지점의 선택한 날짜의 예약 정보를 가져오기 위한 함수 실행
 			            		removeAllChildren(minuteContainer);		
-			            		timeHour(start,use);	
+			            		timeHour();	
 			            		document.getElementById("btn-date").value = clickedMD;
 			            		var btn = document.getElementById('btn-date');
 			                	btn.innerHTML = clickedMD; //아래쪽에 사용자가 선택한 날짜를 띄우기 위한 코드
@@ -132,7 +128,7 @@
 	  	}
 	}
     
-    function timeHour(start, use){ //예약 가능 시간대 버튼 만드는 함수
+    function timeHour(){ //예약 가능 시간대 버튼 만드는 함수
     
 		removeAllChildren(hourContainer); //이 함수가 실행될 때마다 시간대 버튼을 다 지웠다가 다시 만들기 위함
 		
@@ -353,7 +349,9 @@
 	
 	//주간날씨 채우는 함수
 	function makeWeather(){
+		
 		weathertable.innerHTML='';
+		//plusDate();
 		
 		const week = document.createElement('tr');
 		const weathers = document.createElement('tr');

@@ -25,42 +25,27 @@ public class ReservationController {
 	ReservationDAO rsDAO = new ReservationDAO();
 	
 
+//	 @RequestMapping(value = "/reservation1", method = RequestMethod.GET) 
+//	 public String reservation1() { return "reservation/reservation1"; }
+	
 	 @RequestMapping(value = "/reservation1", method = RequestMethod.GET) 
-	 public String reservation1() { return "reservation/reservation1"; }
-	
-//	 @RequestMapping(value = "/reservation1", method = RequestMethod.POST) 
-//	 public ModelAndView goreservation1(@RequestParam("no") int no,@RequestParam("today") String today,
-//			 @RequestParam("nx") String nx, @RequestParam("ny") String ny, @RequestParam("location") String location) throws IOException,ParseException {
-//	 
-//		 ModelAndView mav = new ModelAndView();
-//		 
-//		 WeatherDAO wdao = new WeatherDAO();
-//		  
-//		 List<WeatherVO> weather3 = wdao.get3Days(today, nx, ny); //오늘~3일까지의 날씨정보를weather3 리스트에 받아옴 
-//		 List<WeatherVO> weather4 = wdao.get4Days(today, location); //4일~7일까지의 날씨정보를 weather4 리스트에 받아옴 
-//		 
-//		 List<WeatherVO> weekWeather = new ArrayList<>();
-//		 weekWeather.addAll(weather3); weekWeather.addAll(weather4);
-//		 
-//		 mav.addObject("weathers",weekWeather);
-//		 mav.setViewName("reservation/reservation1");
-//	 
-//		 return mav; 
-//	 }
-
-	
-	@RequestMapping(value = "/chkReservation1.do", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody
-	public List<ReservationVO> chkReservation(@RequestParam("no") int no, @RequestParam("date") String date) throws Exception {
-		List<ReservationVO> forres1 = rsDAO.chkReservation1(no, date);
-		for (ReservationVO resVO : forres1) {
-		    String startTime = resVO.getStartTime();
-		    String useTime = resVO.getUseTime();
-		    //해당 날짜의 예약된 정보를 가져옴
-		    System.out.println("StartTime: " + startTime + ", UseTime: " + useTime);
-		}
-		return forres1;
-	}
+	 public ModelAndView goreservation1(@RequestParam("no") int no,@RequestParam("today") String today) throws IOException,ParseException {
+	 
+		 ModelAndView mav = new ModelAndView();
+		 
+		 WeatherDAO wdao = new WeatherDAO();
+		  
+		 List<WeatherVO> weather3 = wdao.get3Days(today); //오늘~3일까지의 날씨정보를weather3 리스트에 받아옴 
+		 List<WeatherVO> weather4 = wdao.get4Days(today); //4일~7일까지의 날씨정보를 weather4 리스트에 받아옴 
+		 
+		 List<WeatherVO> weekWeather = new ArrayList<>();
+		 weekWeather.addAll(weather3); weekWeather.addAll(weather4);
+		 
+		 mav.addObject("weathers",weekWeather);
+		 mav.setViewName("reservation/reservation1");
+	 
+		 return mav; 
+	 }
 	
 	@RequestMapping(value = "/reservation2", method = RequestMethod.GET)
 	public ModelAndView reservation2(@RequestParam("no") int no, @RequestParam("date") String date, 

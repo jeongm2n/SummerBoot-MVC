@@ -18,32 +18,36 @@
 	crossorigin="anonymous">
 <%@ include file="../common/header.jsp"%>
 <link rel="stylesheet" href="${path}/resources/assets/css/custom_seo.css">
+<%
+	int no = Integer.parseInt(request.getParameter("no"));
+%>
 <script>
 	// 지점선택 시 아래에 선택한 지점이 뜨도록 
-	const shops = [ '서울본점', '경기군포점', '경기평택점', '대구점' ];
-	$(document).ready(function() {
-		$("input:radio[name='shops']").click(function() {
-			$("#div_load").show();
-			n = $("input[name='shops']:checked").val();
-			switch (n) {
-			case "1":
-				getAPI("66", "126", "11B10101");
-				break;
-			case "2":
-				getAPI("59", "122", "11B20610");
-				break;
-			case "3":
-				getAPI("62", "114", "11B20606");
-				break;
-			case "4":
-				getAPI("89", "91", "11H10701");
-				break;
-			}
-			shopName = shops[n - 1];
-			var btn = document.getElementById('btn-shop');
-			btn.innerHTML = shopName;
-		});
-	});
+	const shops = [ '양평로점', '경인로점', '천왕점', '가제1동점', '강동성안점', '성동마장점', '성북종암점', '은평갈현점', '관악봉천점', '용문점' ];
+	shopName = shops[<%=no %>-1];
+// 	$(document).ready(function() {
+// 		$("input:radio[name='shops']").click(function() {
+// 			$("#div_load").show();
+// 			n = $("input[name='shops']:checked").val();
+// 			switch (n) {
+// 			case "1":
+// 				getAPI("66", "126", "11B10101");
+// 				break;
+// 			case "2":
+// 				getAPI("59", "122", "11B20610");
+// 				break;
+// 			case "3":
+// 				getAPI("62", "114", "11B20606");
+// 				break;
+// 			case "4":
+// 				getAPI("89", "91", "11H10701");
+// 				break;
+// 			}
+// 			shopName = shops[n - 1];
+// 			var btn = document.getElementById('btn-shop');
+// 			btn.innerHTML = shopName;
+// 		});
+// 	});
 
 	$(document).ready(function() {
 		$('label[for="30"]').click(function() {
@@ -70,7 +74,7 @@
 	});
 </script>
 
-<!-- <script>
+<script>
     weather = [
         <c:forEach items="${weathers}" var="data" varStatus="loop">
             {
@@ -84,8 +88,8 @@
     ];
 
     // 이후에 JavaScript 코드에서 weatherArray를 활용할 수 있음
-    console.log(weatherArray);
-</script> -->
+    console.log(weather);
+</script>
 
 </head>
 
@@ -101,50 +105,50 @@
 			crossorigin="anonymous"></script>
 
 		
-		<div class="col-lg-6" style="padding-right: 80px; height: 250px">
-			<div class="col border border-4 div1" style="float: right">
-				지점 선택
-				<div class="container text-center">
-					<div class="row row-cols-2">
-						<div class="col" style="padding-bottom: 10px">
-							<input type="radio" class="btn-check shops" name="shops"
-								id="shop1" value=1 autocomplete="off"> <label
-								class="btn btn-secondary shops" for="shop1">서울&nbsp;&nbsp;본점</label>
-							<div class="addr">
-								<font style="font-size: 12pt">서울 광진구 능동로 209</font>
-							</div>
-						</div>
-						<div class="col" style="padding-bottom: 10px">
-							<input type="radio" class="btn-check shops" name="shops"
-								id="shop2" value=2 autocomplete="off"> <label
-								class="btn btn-secondary shops" for="shop2">경기군포점</label>
-							<div class="addr">
-								<font style="font-size: 12pt">경기 군포시 청백리길 6</font>
-							</div>
-						</div>
-						<div class="col" style="padding-bottom: 10px">
-							<input type="radio" class="btn-check shops" name="shops"
-								id="shop3" value=3 autocomplete="off"> <label
-								class="btn btn-secondary shops" for="shop3">경기평택점</label>
-							<div class="addr">
-								<font style="font-size: 12pt">경기 평택시<br> 경기대로 245</font>
-							</div>
-						</div>
-						<div class="col" style="padding-bottom: 10px">
-							<input type="radio" class="btn-check shops" name="shops"
-								id="shop4" value=4 autocomplete="off"> <label
-								class="btn btn-secondary shops" for="shop4">대&nbsp;&nbsp;구&nbsp;&nbsp;점</label>
-							<div class="addr">
-								<font style="font-size: 12pt">대구 중구 공평로 88</font>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<!-- 		<div class="col-lg-6" style="padding-right: 80px; height: 250px"> -->
+<!-- 			<div class="col border border-4 div1" style="float: right"> -->
+<!-- 				지점 선택 -->
+<!-- 				<div class="container text-center"> -->
+<!-- 					<div class="row row-cols-2"> -->
+<!-- 						<div class="col" style="padding-bottom: 10px"> -->
+<!-- 							<input type="radio" class="btn-check shops" name="shops" -->
+<!-- 								id="shop1" value=1 autocomplete="off"> <label -->
+<!-- 								class="btn btn-secondary shops" for="shop1">서울&nbsp;&nbsp;본점</label> -->
+<!-- 							<div class="addr"> -->
+<!-- 								<font style="font-size: 12pt">서울 광진구 능동로 209</font> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col" style="padding-bottom: 10px"> -->
+<!-- 							<input type="radio" class="btn-check shops" name="shops" -->
+<!-- 								id="shop2" value=2 autocomplete="off"> <label -->
+<!-- 								class="btn btn-secondary shops" for="shop2">경기군포점</label> -->
+<!-- 							<div class="addr"> -->
+<!-- 								<font style="font-size: 12pt">경기 군포시 청백리길 6</font> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col" style="padding-bottom: 10px"> -->
+<!-- 							<input type="radio" class="btn-check shops" name="shops" -->
+<!-- 								id="shop3" value=3 autocomplete="off"> <label -->
+<!-- 								class="btn btn-secondary shops" for="shop3">경기평택점</label> -->
+<!-- 							<div class="addr"> -->
+<!-- 								<font style="font-size: 12pt">경기 평택시<br> 경기대로 245</font> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col" style="padding-bottom: 10px"> -->
+<!-- 							<input type="radio" class="btn-check shops" name="shops" -->
+<!-- 								id="shop4" value=4 autocomplete="off"> <label -->
+<!-- 								class="btn btn-secondary shops" for="shop4">대&nbsp;&nbsp;구&nbsp;&nbsp;점</label> -->
+<!-- 							<div class="addr"> -->
+<!-- 								<font style="font-size: 12pt">대구 중구 공평로 88</font> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 		<!--     	이 부분도 위에 지점선택처럼 바꾸고 싶었으나 그건 너무 많이 만지는거 같아서 나중에 원하시면 말해주세요 제가 수정할께요! -->
-		<div class="col-lg-6 p_time">
+		<div class="col-lg-8 p_time">
 			<div class="border border-4 div2" style="text-align: center;">
 
 				<span
@@ -168,7 +172,7 @@
 			</div>
 		</div>
 
-		<div class="col-lg-6 m_time">
+		<div class="col-lg-8 m_time">
 			<div class="col border border-4 div2">
 				<div style="width: 100%; text-align: center;">
 					<a class="title">사용 시간</a><br>
@@ -258,92 +262,51 @@
 	<%--script 따로 빼놓은 파일 연동 --%>
 	<script src="../resources/assets/js/reservation1.js"></script>
 	<script>
-		function getDB() {
-			//페이지 전환 없이 DB의 값을 가져오기 위함
-			//원하는 예약 날짜를 선택 시 컨트롤러의 chkReservation1.do 액션이 실행됨
-			//json형태로 컨트롤러에 데이터를 보내면 쿼리문을 실행하여 결과값을 다시 json으로 받아옴
-			$.ajax({
-				url : "chkReservation1.do",
-				type : "get",
-				data : {
-					no : n,
-					date : clickedMD
-				},
-				async : false,
-				dataType : "json",
-				success : function(data) {
-					try {
-						// 데이터가 제대로 전달되었는지 확인
-						console.log(data);
-						var start = [];
-						var use = [];
-						// 데이터 처리 로직
-						for (var i = 0; i < data.length; i++) {
-							start[i] = data[i].startTime;
-							use[i] = data[i].useTime;
-							console.log("Start Time:", start[i]);
-							console.log("Use Time:", use[i]);
-						}
-					} catch (error) {
-						console.error("Error in success callback:", error);
-					}
-				},
-				error : function(xhr, status, error) {
-					console.log("AJAX Error:", xhr.responseText);
-					console.log("Status:", status);
-					console.log("Error:", error);
-				},
-				headers : {
-					"Accept" : "application/json"
-				}
-			});
-		}
+// 		function getAPI(nx, ny, location) {//3일간의 날씨정보 API 담아오기!!
+// 			$.ajax({
+// 				url : "${path}/api/weekweather.do",
+// 				type : "post",
+// 				data : {
+// 					today : currentYMD,
+// 					nx : nx,
+// 					ny : ny,
+// 					location : location
+// 				},
+// 				async : true,
+// 				dataType : "json",
+// 				success : function(data) {
+// 					try {
+// 						// 데이터가 제대로 전달되었는지 확인
+// 						console.log(data);
+// 						for (i = 0; i < data.length; i++) {
+// 							const item = data[i];
 
-		function getAPI(nx, ny, location) {//3일간의 날씨정보 API 담아오기!!
-			$.ajax({
-				url : "${path}/api/weekweather.do",
-				type : "post",
-				data : {
-					today : currentYMD,
-					nx : nx,
-					ny : ny,
-					location : location
-				},
-				async : true,
-				dataType : "json",
-				success : function(data) {
-					try {
-						// 데이터가 제대로 전달되었는지 확인
-						console.log(data);
-						for (i = 0; i < data.length; i++) {
-							const item = data[i];
+// 							console.log("fcstDate : " + item.date);
+// 							console.log("ampop : " + item.ampop);
+// 							console.log("pmpop : " + item.pmpop);
+// 							console.log("tmx : " + item.tmx);
+// 							console.log("tmn : " + item.tmn);
 
-							console.log("fcstDate : " + item.date);
-							console.log("ampop : " + item.ampop);
-							console.log("pmpop : " + item.pmpop);
-							console.log("tmx : " + item.tmx);
-							console.log("tmn : " + item.tmn);
-
-							weather[i] = data[i];
-						}
-						plusDate();
-						makeWeather();
-						$("#div_load").hide();
-					} catch (error) {
-						console.error("Error in success callback:", error);
-					}
-				},
-				error : function(xhr, status, error) {
-					console.log("AJAX Error:", xhr.responseText);
-					console.log("Status:", status);
-					console.log("Error:", error);
-					$("#div_load").hide();
-				},
-				headers : {
-					"Accept" : "application/json"
-				}
-			});
-		}
+// 							weather[i] = data[i];
+// 						}
+// 						plusDate();
+// 						makeWeather();
+// 						$("#div_load").hide();
+// 					} catch (error) {
+// 						console.error("Error in success callback:", error);
+// 					}
+// 				},
+// 				error : function(xhr, status, error) {
+// 					console.log("AJAX Error:", xhr.responseText);
+// 					console.log("Status:", status);
+// 					console.log("Error:", error);
+// 					$("#div_load").hide();
+// 				},
+// 				headers : {
+// 					"Accept" : "application/json"
+// 				}
+// 			});
+// 		}
 	</script>
 </body>
 </html>
