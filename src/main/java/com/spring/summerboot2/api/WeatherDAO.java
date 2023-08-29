@@ -178,6 +178,7 @@ public class WeatherDAO {
 		    	//20230817의 날씨 예보 정보를 List인 days3에 저장 
 		    	//(계속 반복하면서 3일 동안의 예보날짜,오전,오후강수확률,최고,최저온도 정보를 저장!!)
 		    	WeatherVO weather = new WeatherVO(fcstDate, ampop, pmpop, tmx, tmn);
+		    	//list = [{date: , ampop: , pmpop: , tmx: , tmn: }]형태로 만들기 위함
 		    	days3.add(weather);
 		    	
 		    	fcstDate = str1;
@@ -187,7 +188,7 @@ public class WeatherDAO {
 		return days3;
 	}
 	
-	public List<WeatherVO> get4Days(String today) throws IOException, ParseException{
+	public List<WeatherVO> get4Days(String today) throws IOException, ParseException{//4~7일까지의 날씨 정보를 가져오기 위한 함수
 		
 		StringBuilder urlBuilder1 = new StringBuilder("http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst"); /*중기육상정보조회URL*/
         urlBuilder1.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+skey); /*Service Key*/
@@ -253,8 +254,8 @@ public class WeatherDAO {
 		
 		JSONObject data = (JSONObject)item.get(0);
 		for(int i=0; i<4; i++) {
-			Long rnStAm = (Long)data.get("rnSt" + (i + 4) + "Am");
-		    Long rnStPm = (Long)data.get("rnSt" + (i + 4) + "Pm");
+			Long rnStAm = (Long)data.get("rnSt" + (i + 4) + "Am"); //오전의 강수확률 ex)40.0 형태라서 정수형으로 변환
+		    Long rnStPm = (Long)data.get("rnSt" + (i + 4) + "Pm"); //오후의 강수확률
 		    
 		    // 숫자 값을 문자열로 변환 후 저장
 		    ampop[i] = rnStAm.toString();
@@ -272,8 +273,8 @@ public class WeatherDAO {
 		
 		data = (JSONObject)item.get(0);
 		for(int i=0; i<4; i++) {
-			Long taMin = (Long)data.get("taMin"+(i+4));
-			Long taMax = (Long)data.get("taMax"+(i+4));
+			Long taMin = (Long)data.get("taMin"+(i+4)); //최저온도 ex)21.0 형태라서 정수형으로 변환
+			Long taMax = (Long)data.get("taMax"+(i+4)); //최고온도
 			
 			tmn[i] = taMin.toString();
 			tmx[i] = taMax.toString();

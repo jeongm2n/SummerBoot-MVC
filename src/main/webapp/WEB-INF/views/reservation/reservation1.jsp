@@ -85,59 +85,18 @@
 </head>
 
 <body>
-	<div id="div_load" style="display:none">
-		<img id="loading_img"
-			src="${path }/resources/assets/img/apiLoading.gif">
-	</div>
+<!-- 	<div id="div_load" style="display:none"> -->
+<!-- 		<img id="loading_img" -->
+<%-- 			src="${path }/resources/assets/img/apiLoading.gif"> --%>
+<!-- 	</div> -->
 	<div id="wrapper" class="row">
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 			crossorigin="anonymous"></script>
 
-		
-<!-- 		<div class="col-lg-6" style="padding-right: 80px; height: 250px"> -->
-<!-- 			<div class="col border border-4 div1" style="float: right"> -->
-<!-- 				지점 선택 -->
-<!-- 				<div class="container text-center"> -->
-<!-- 					<div class="row row-cols-2"> -->
-<!-- 						<div class="col" style="padding-bottom: 10px"> -->
-<!-- 							<input type="radio" class="btn-check shops" name="shops" -->
-<!-- 								id="shop1" value=1 autocomplete="off"> <label -->
-<!-- 								class="btn btn-secondary shops" for="shop1">서울&nbsp;&nbsp;본점</label> -->
-<!-- 							<div class="addr"> -->
-<!-- 								<font style="font-size: 12pt">서울 광진구 능동로 209</font> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col" style="padding-bottom: 10px"> -->
-<!-- 							<input type="radio" class="btn-check shops" name="shops" -->
-<!-- 								id="shop2" value=2 autocomplete="off"> <label -->
-<!-- 								class="btn btn-secondary shops" for="shop2">경기군포점</label> -->
-<!-- 							<div class="addr"> -->
-<!-- 								<font style="font-size: 12pt">경기 군포시 청백리길 6</font> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col" style="padding-bottom: 10px"> -->
-<!-- 							<input type="radio" class="btn-check shops" name="shops" -->
-<!-- 								id="shop3" value=3 autocomplete="off"> <label -->
-<!-- 								class="btn btn-secondary shops" for="shop3">경기평택점</label> -->
-<!-- 							<div class="addr"> -->
-<!-- 								<font style="font-size: 12pt">경기 평택시<br> 경기대로 245</font> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col" style="padding-bottom: 10px"> -->
-<!-- 							<input type="radio" class="btn-check shops" name="shops" -->
-<!-- 								id="shop4" value=4 autocomplete="off"> <label -->
-<!-- 								class="btn btn-secondary shops" for="shop4">대&nbsp;&nbsp;구&nbsp;&nbsp;점</label> -->
-<!-- 							<div class="addr"> -->
-<!-- 								<font style="font-size: 12pt">대구 중구 공평로 88</font> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-
+		<div class="col-lg-3">
+		</div>
 		<!--     	이 부분도 위에 지점선택처럼 바꾸고 싶었으나 그건 너무 많이 만지는거 같아서 나중에 원하시면 말해주세요 제가 수정할께요! -->
 		<div class="col-lg-8 p_time">
 			<div class="border border-4 div2" style="text-align: center;">
@@ -194,6 +153,8 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-lg-1">
+		</div>
 		
 			<div class="border border-4 weatherdiv table-responsive">
 				주간날씨
@@ -202,7 +163,7 @@
 			</div>
 		
 		<div class="col-lg-6" style="height: 450px">
-			<div class="border border-4 div3" style="float: right;">
+			<div class="border border-4 div3" style="float:right;">
 				<b style="color: #FFDAB9">달력은 현재 달에서 +1달 까지만 조회하실 수 있습니다.</b>
 				<table class="calendartb" id="calendar">
 					<thead style="border-bottom: 1px solid #000;">

@@ -353,7 +353,7 @@
 			
 			const temp = document.createElement('td');
 			temp.colSpan = 2;
-			temp.innerText = weather[i].tmn + "/" + weather[i].tmx;
+			temp.innerText = weather[i].tmn + String.fromCharCode(176) + "C / " + weather[i].tmx + String.fromCharCode(176) + "C";
 			temp.classList.add('weathertd');
 			temps.appendChild(temp);
 		}
