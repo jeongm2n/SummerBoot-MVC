@@ -212,7 +212,7 @@ public class PayController {
 	}
 	 
 	 @ResponseBody
-	 @RequestMapping(value="/resevation_pay/{no},{date},{startTime},{useTime},{site},{u_point}")
+	 @RequestMapping(value="/reservation_pay/{no},{date},{startTime},{useTime},{site},{u_point}")
 	 public ModelAndView resevation_pay(HttpServletRequest request, HttpServletResponse response
 			 ,@PathVariable(value= "no") String no ,@PathVariable(value= "date") String date
 			 ,@PathVariable(value= "startTime") String startTime ,@PathVariable(value= "useTime") String useTime

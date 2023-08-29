@@ -163,7 +163,7 @@
 						</div>
 						<div class="list-regist">
 							<div><p class="text-muted pt-4">Reviews (24)</p></div>
-							<div><input type="button" class="btn-join" value="예약하기" onclick="reservation(${list.no });"></div>
+							<div><input type="button" class="btn-join" value="예약하기" onclick="return reservation(${list.no });"></div>
 						</div>
 					</div>
 				</div>
@@ -508,17 +508,25 @@
 	});
 	
 	function reservation(no) {
-		var date = new Date();
-		const realMonth = date.getMonth()+1; 
-		const realToDay = date.getDate();
-		const realYear = date.getFullYear();
+		const user_id = '<%=user_id %>';
+		if(user_id=='null'){
+			alert('로그인을 먼저 해주세요!');
+			return false;
+		}
+		else{
+			var date = new Date();
+			const realMonth = date.getMonth()+1; 
+			const realToDay = date.getDate();
+			const realYear = date.getFullYear();
 
-		var currentMonth = realMonth >= 10 ? realMonth : "0" + realMonth;
-		var currentDate = date.getDate() >= 10 ? date.getDate() : "0" +date.getDate();
+			var currentMonth = realMonth >= 10 ? realMonth : "0" + realMonth;
+			var currentDate = date.getDate() >= 10 ? date.getDate() : "0" +date.getDate();
 
-		var currentYMD = realYear + currentMonth + currentDate;
-		
-		location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD;
+			var currentYMD = realYear + currentMonth + currentDate;
+			
+			location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD;
+			return true;
+		}
 	}
 </script>
 
