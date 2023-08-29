@@ -143,7 +143,7 @@
 
 	<%@ include file="../common/footer.jsp"%>
 	
-		<script>
+	<script>
 	function add_cart(product_id, quantity){
 		$.ajax({
 			type:"get",

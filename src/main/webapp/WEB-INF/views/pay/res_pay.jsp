@@ -79,12 +79,24 @@
         });
     }
     
+	function limiter(input){
+		if (input.value < 0) input.value = 0;
+		if (input.value > ${inform.point}) input.value = ${inform.point};
+	}
+	
     $(function(){
-    	if(${point eq null}){
+    	if(${u_point eq 0}){
     		document.getElementById("m_point_price").style.display = "none";
     		document.getElementById("p_point_price").style.display = "none";
+    		document.getElementById("m_total_price").style.display = "none";
+    		document.getElementById("p_total_price").style.display = "none";
     	}
     })
+    
+    function point(){
+    	var u_point = document.getElementById("m_point_price");
+    	window.location.href = "pay/resevation_pay/${ReservationVO.no},${ReservationVO.date},${ReservationVO.startTime},${ReservationVO.useTime},${ReservationVO.site}," + u_point;
+	}
     
     </script>
     
@@ -112,12 +124,12 @@
             <label class="Label">포인트 사용</label>
             <a>보유포인트 : ${point}pt</a>
             <input type="number" name="m_point" id="m_point" class="point_input" placeholder="포인트 사용" onchange="limiter(this);" required>
-           	<button type="button" class="btn" onclick="">포인트 사용</button><br>
+           	<button type="button" class="btn" onclick="point()">포인트 사용</button><br>
           </div>
           <div class="total">
           	<a class="price">예약 가격 : + ${price}원</a><br>
-			<a class="point_price" id="m_point_price">포인트 : - ${point}원</a><br>
-            <a class="total_price">총 : ${total_price}원</a>
+			<a class="point_price" id="m_point_price">포인트 : - ${u_point}원</a><br>
+            <a class="total_price" id="p_total_price">총 : ${total_price}원</a>
           </div>
         </div>
       </div>
@@ -218,19 +230,17 @@
           </div>
           <div class="total">
           	<a class="price">물품 가격 : + ${product_price}원</a><br>
-			<a class="point_price" id="p_point_price">포인트 : - ${point}원</a><br>
-            <a class="total_price">총 : ${total_price}원</a>
+			<a class="point_price" id="p_point_price">포인트 : - ${u_point}원</a><br>
+            <a class="total_price" id="p_total_price">총 : ${total_price}원</a>
           </div>
         </div>
       </div>
     </div>
     
-<!-- 	백엔드 제작 중 -->
 	
 	
 <!-- 	푸터 -->
 	<%@ include file="../common/footer.jsp"%>
-    
     
 </body>
 </html>
