@@ -49,7 +49,7 @@
     </c:forEach>
     productname = productname.slice(0, -1);
     
-    let total_price = ${price};;
+    let total_price = ${price};
     let u_point = 0;
     
     function requestPay() {
@@ -73,7 +73,7 @@
             }).done(function(data) {
                 if(res.paid_amount == data.response.amount){
                     alert("결제 및 결제검증완료");
-//                     let link = '/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}';
+                    let link = '/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}';
                     location.href = link;
                 } else {
                     alert("결제 실패");
@@ -88,9 +88,12 @@
 	}
 	
     $(function(){
-		  const element = document.getElementById('total_price');
-		  element.innerText = total_price;
-    	if(${u_point eq 0}){
+		  const element1 = document.getElementById('ms_total_price');
+	      const element2 = document.getElementById('ps_total_price');
+
+		  element1.innerText = total_price;
+		  element2.innerText = total_price;
+		if(${u_point == 0}){
     		document.getElementById("m_point_price").style.display = "none";
     		document.getElementById("p_point_price").style.display = "none";
     		document.getElementById("m_total_price").style.display = "none";
@@ -99,15 +102,15 @@
     })
     
     function point(){
-    	u_point = document.getElementById("p_point_price");
-    	const element1 = document.getElementById('m_point');
-    	const element2 = document.getElementById('p_point');
-    	const element3 = document.getElementById('m_total_price');
-    	const element4 = document.getElementById('p_total_price');
+    	u_point = document.getElementById("p_point").value;
+    	const element1 = document.getElementById('ms_point');
+    	const element2 = document.getElementById('ps_point');
+    	const element3 = document.getElementById('ms_total_price');
+    	const element4 = document.getElementById('ps_total_price');
     	element1.innerHTML = u_point;
     	element2.innerHTML = u_point;
-    	element3.innerText = total_price - u_point;
-    	element4.innerText = total_price - u_point;
+    	element3.innerText = "총 : " + (total_price - u_point) + "원";
+    	element4.innerText = "총 : " + (total_price - u_point) + "원";
 	}
     
     
@@ -130,7 +133,7 @@
 		  	<img src="${path}/resources/assets/img/${img}" class="img" >
 		  	<div style="float:right;">
 		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">${name}/${reservation.res_date}/${reservation.site}번자리/${reservation.startTime} ~ ${reservation.endTime}</a>
+		  	    <a class="name">${name}<br>${f_date[0]}월 ${f_date[1]}일<br>${reservation.site}번자리<br>${reservation.startTime} ~ ${reservation.endTime}</a>
 		  	  </div>
 		  	</div>
           </div>
@@ -138,12 +141,12 @@
             <label class="Label">포인트 사용</label>
             <a>보유포인트 : ${point}pt</a>
             <input type="number" name="m_point" id="m_point" class="point_input" placeholder="포인트 사용" onchange="limiter(this);" required>
-           	<button type="button" class="btn" onclick="point()">포인트 사용</button><br>
+           	<button type="button" class="btn" onclick="point();">포인트 사용</button><br>
           </div>
           <div class="total">
           	<a class="price">예약 가격 : + ${price}원</a><br>
-			<a class="point_price" id="m_point_price">포인트 : - <div id="m_point">원</a><br>
-            <a class="total_price" id="p_total_price">총 : <div id="m_total_price"></div>원</a>
+			<a class="point_price" id="m_point_price">포인트 : - <div id="ms_point"></div>원</a><br>
+            <a class="total_price" id="ms_total_price"><div id="ms_total_price"></div></a>
           </div>
         </div>
       </div>
@@ -178,9 +181,6 @@
 			        <div class="detail">
 			          <span class="text">${B_Inform[1]}</span>
 			        </div>
-			        <div class="c_btn">
-			      	  <a class="btn_text" href="back_inform">변경</a>
-			        </div>
 			      </div>
 			    </div>
 			    <div class="inform">
@@ -190,9 +190,6 @@
 			        </div>
 			        <div class="detail">
 			          <span class="text">${B_Inform[2]}</span>
-			        </div>
-			        <div class="c_btn">
-			      	  <a class="btn_text" href="back_inform">변경</a>
 			        </div>
 			      </div>
 			    </div>
@@ -224,13 +221,10 @@
       <div class="pc_pro_inform col col-lg-5">
         <div class="container">
 		  <div class="product">
-		  	<img src="${path}/resources/assets/img/${product.img}" class="img">
+		  	<img src="${path}/resources/assets/img/${img}" class="img" >
 		  	<div style="float:right;">
 		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">${product.name}</a>
-		  	  </div>
-		  	  <div class="text_box">
-		  	    <a class="price">${product.price}원</a>
+		  	    <a class="name">${name}<br>${f_date[0]}월 ${f_date[1]}일<br>${reservation.site}번자리<br>${reservation.startTime} ~ ${reservation.endTime}</a>
 		  	  </div>
 		  	</div>
           </div>
@@ -238,12 +232,12 @@
             <label class="Label">포인트 사용</label>
             <a>보유포인트 : ${point}pt</a>
             <input type="number" name="p_point" id="p_point" class="point_input" placeholder="포인트 사용" onchange="limiter(this);" required>
-           	<button type="button" class="btn" onclick="point()">포인트 사용</button><br>
+           	<button type="button" class="btn" onclick="point();">포인트 사용</button><br>
           </div>
           <div class="total">
           	<a class="price">물품 가격 : + ${product_price}원</a><br>
-			<a class="point_price" id="p_point_price">포인트 : - <div id="p_point">원</a><br>
-            <a class="total_price" id="p_total_price">총 : <div id="p_total_price">원</a>
+			<a class="point_price" id="p_point_price">포인트 : - <div id="ps_point">원</a><br>
+            <a class="total_price" id="p_total_price"><div id="ps_total_price"></div></a>
           </div>
         </div>
       </div>

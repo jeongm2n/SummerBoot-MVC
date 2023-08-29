@@ -203,6 +203,7 @@ input:-ms-input-placeholder {color:#FD8008;}
 	.pc_pro_inform {
 		display:none !important;
 	}
+	
 	.add_inform .container {
 		margin-left: auto !important;
 		margin-right: auto !important;		
@@ -213,9 +214,11 @@ input:-ms-input-placeholder {color:#FD8008;}
 	.mobile_pro_inform {
 		display:none !important;
 	}
+	
 	.add_inform {
 		border-right: 2px solid #adb5bd;
 	}
+	
 	.add_inform .container {
 		margin-left: auto !important;	
 		margin-right: max(10%, 30px) !important;
