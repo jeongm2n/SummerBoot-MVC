@@ -24,30 +24,6 @@
 <script>
 	// 지점선택 시 아래에 선택한 지점이 뜨도록 
 	const shops = [ '양평로점', '경인로점', '천왕점', '가제1동점', '강동성안점', '성동마장점', '성북종암점', '은평갈현점', '관악봉천점', '용문점' ];
-	shopName = shops[<%=no %>-1];
-// 	$(document).ready(function() {
-// 		$("input:radio[name='shops']").click(function() {
-// 			$("#div_load").show();
-// 			n = $("input[name='shops']:checked").val();
-// 			switch (n) {
-// 			case "1":
-// 				getAPI("66", "126", "11B10101");
-// 				break;
-// 			case "2":
-// 				getAPI("59", "122", "11B20610");
-// 				break;
-// 			case "3":
-// 				getAPI("62", "114", "11B20606");
-// 				break;
-// 			case "4":
-// 				getAPI("89", "91", "11H10701");
-// 				break;
-// 			}
-// 			shopName = shops[n - 1];
-// 			var btn = document.getElementById('btn-shop');
-// 			btn.innerHTML = shopName;
-// 		});
-// 	});
 
 	$(document).ready(function() {
 		$('label[for="30"]').click(function() {
@@ -70,12 +46,27 @@
 		$("input:radio[name='p_options']").click(function() {
 			a = $("input[name='p_options']:checked").val();
 		});
-
+		
+		shopName = shops[<%=no %>-1];
+		var btn = document.getElementById('btn-shop');
+		btn.innerHTML = shopName;
 	});
+	
+	//Next>버튼 클릭 시 예약페이지2로 이동
+    function goReservation2(){
+    	if(clickedMD==null || selectedHM==null ||shopName==null){
+    		alert("날짜, 시간을 확인해주세요");
+    		return false;
+    	}else{
+    		window.location.href = "./reservation2?shopName="+shopName+"&no="+<%=no %>+"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+a;
+    		//reservation2로 지점 이름, 세차장 고유번호, 선택날짜, 선택한 시작시간, 사용시간에 대한 정보를 넘김
+    		return true;
+    	}
+    }
 </script>
 
 <script>
-    weather = [
+    var weather = [
         <c:forEach items="${weathers}" var="data" varStatus="loop">
             {
                 date: "${data.date}",
@@ -261,52 +252,5 @@
 
 	<%--script 따로 빼놓은 파일 연동 --%>
 	<script src="../resources/assets/js/reservation1.js"></script>
-	<script>
-// 		function getAPI(nx, ny, location) {//3일간의 날씨정보 API 담아오기!!
-// 			$.ajax({
-// 				url : "${path}/api/weekweather.do",
-// 				type : "post",
-// 				data : {
-// 					today : currentYMD,
-// 					nx : nx,
-// 					ny : ny,
-// 					location : location
-// 				},
-// 				async : true,
-// 				dataType : "json",
-// 				success : function(data) {
-// 					try {
-// 						// 데이터가 제대로 전달되었는지 확인
-// 						console.log(data);
-// 						for (i = 0; i < data.length; i++) {
-// 							const item = data[i];
-
-// 							console.log("fcstDate : " + item.date);
-// 							console.log("ampop : " + item.ampop);
-// 							console.log("pmpop : " + item.pmpop);
-// 							console.log("tmx : " + item.tmx);
-// 							console.log("tmn : " + item.tmn);
-
-// 							weather[i] = data[i];
-// 						}
-// 						plusDate();
-// 						makeWeather();
-// 						$("#div_load").hide();
-// 					} catch (error) {
-// 						console.error("Error in success callback:", error);
-// 					}
-// 				},
-// 				error : function(xhr, status, error) {
-// 					console.log("AJAX Error:", xhr.responseText);
-// 					console.log("Status:", status);
-// 					console.log("Error:", error);
-// 					$("#div_load").hide();
-// 				},
-// 				headers : {
-// 					"Accept" : "application/json"
-// 				}
-// 			});
-// 		}
-	</script>
 </body>
 </html>

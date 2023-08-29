@@ -30,8 +30,6 @@
     
     var n;
     var a=29;
-        
-    var weather = new Array();
     
     //8월 28~9월3일처럼 일주일안에 다음달로 넘어가는 기간이 있을 수 있으니 크기가 7인 배열 days와 months에 같은 인덱스에 일, 월의 정보를 넣어둠
     var days = [];
@@ -305,33 +303,6 @@
   		}
     }
     
-	//Next>버튼 클릭 시 예약페이지2로 이동
-    function goReservation2(){
-    	if(clickedMD==null || selectedHM==null ||shopName==null){
-    		alert("지점, 날짜, 시간을 확인해주세요");
-    		return false;
-    	}else{
-    		window.location.href = "./reservation2?shopName="+shopName+"&no="+n+"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+a;
-    		//reservation2로 지점 이름, 세차장 고유번호, 선택날짜, 선택한 시작시간, 사용시간에 대한 정보를 넘김
-    		return true;
-    	}
-    }
-    
-    function plusDate(){
-		var plusdate = new Date();
-		var plusMonth;
-		var plusDate;
-		var plusfullYear;
-		
-		for(i=3; i<7; i++){
-			plusdate.setDate(date.getDate()+i);
-			plusfullYear = plusdate.getFullYear();
-			plusMonth = (plusdate.getMonth()+1) >= 10 ? (plusdate.getMonth()+1) : "0" + (plusdate.getMonth()+1);
-    		plusDate = plusdate.getDate() >= 10 ? plusdate.getDate() : "0" + plusdate.getDate();
-    		weather[i].date = plusfullYear + plusMonth + plusDate;
-		}
-	}
-	
 	function judgeweather(pop){
 		const img = new Image();
 		if(pop<30){
@@ -349,9 +320,6 @@
 	
 	//주간날씨 채우는 함수
 	function makeWeather(){
-		
-		weathertable.innerHTML='';
-		//plusDate();
 		
 		const week = document.createElement('tr');
 		const weathers = document.createElement('tr');
@@ -395,4 +363,5 @@
 		weathertable.appendChild(temps);
 	}
     
+    makeWeather();
     calendar.appendChild(buildCalendar(now));

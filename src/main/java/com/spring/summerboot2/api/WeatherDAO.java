@@ -4,6 +4,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.io.BufferedReader;
 import java.io.IOException;
 
@@ -13,6 +16,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class WeatherDAO {
@@ -275,9 +279,19 @@ public class WeatherDAO {
 			tmx[i] = taMax.toString();
 		}
 		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        LocalDate date = LocalDate.parse(today, formatter);
+        
+        
+		
 		List<WeatherVO> days4 = new ArrayList<>();
 		for(int i=0; i<4; i++) {
-			WeatherVO weather = new WeatherVO(Integer.toString(i+4),ampop[i],pmpop[i],tmx[i],tmn[i]);
+			Period periodToAdd = Period.ofYears(0).plusMonths(0).plusDays(i+3);
+	        LocalDate newDate = date.plus(periodToAdd);
+	        
+	        String formattedNewDate = newDate.format(formatter);
+	        
+			WeatherVO weather = new WeatherVO(formattedNewDate,ampop[i],pmpop[i],tmx[i],tmn[i]);
 			days4.add(weather);
 		}
         

@@ -1,9 +1,5 @@
 package com.spring.summerboot2.reservation;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +26,7 @@ public class ReservationController {
 //	 public String reservation1() { return "reservation/reservation1"; }
 	
 	 @RequestMapping(value = "/reservation1", method = RequestMethod.GET) 
-	 public ModelAndView goreservation1(@RequestParam("no") int no,@RequestParam("today") String today) throws IOException,ParseException {
+	 public ModelAndView goreservation1(@RequestParam("no") int no,@RequestParam("date") String today) throws IOException,ParseException {
 	 
 		 ModelAndView mav = new ModelAndView();
 		 
