@@ -84,7 +84,7 @@
     
 	function limiter(input){
 		if (input.value < 0) input.value = 0;
-		if (input.value > ${inform.point}) input.value = ${inform.point};
+		if (input.value > ${point}) input.value = ${point};
 	}
 	
     $(function(){
@@ -130,7 +130,7 @@
 		  	<img src="${path}/resources/assets/img/${img}" class="img" >
 		  	<div style="float:right;">
 		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">${name}/${reservation.date}/${reservation.site}번자리/${reservation.startTime} ~ ${reservation.endTime}</a>
+		  	    <a class="name">${name}/${reservation.res_date}/${reservation.site}번자리/${reservation.startTime} ~ ${reservation.endTime}</a>
 		  	  </div>
 		  	</div>
           </div>
