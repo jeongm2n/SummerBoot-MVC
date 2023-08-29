@@ -58,6 +58,10 @@ public class ReservationController {
 		}
 		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("no",no);
+		mav.addObject("date",date);
+		mav.addObject("startTime",startTime);
+		mav.addObject("useTime",useTime);
 		mav.addObject("sites",sites);
 		mav.setViewName("reservation/reservation2");
 		return mav;

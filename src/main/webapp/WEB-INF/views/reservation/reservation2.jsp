@@ -2,6 +2,9 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
     
 <%@ page import="java.util.List" %>
+<%
+ 	String shopName = (String)request.getParameter("shopName");
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,15 +15,13 @@
    	<%@ include file="../common/header.jsp" %>
     <link rel="stylesheet" href="../resources/assets/css/custom_seo.css">
 <title>자리선택</title>
+<script>
+	function goRes_pay(site){
+		location.href="${path}/pay/reservation_pay/${no},${date},${startTime},${useTime},"+site;
+	}
+</script>
 </head>
 <body>
- <%
- 	int no = Integer.parseInt(request.getParameter("no"));
- 	String shopName = (String)request.getParameter("shopName");
-    String date = (String)request.getParameter("date");
-    String startTime = (String)request.getParameter("startTime");
-    String useTime = (String)request.getParameter("useTime");
-%>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> 
 <div id="wrapper" style="text-align:center;">
@@ -29,7 +30,7 @@
 		<div class="border border-4 div-margin">
 	    	<table class="table table-borderless" style="text-align:center;width:100%;heigth:100px">
 	    	<tr><th>지점명</th><th>선택날짜</th><th>예약시간</th><th>이용시간</th></tr>
-	    	<tr><td><%=shopName %></td><td><%=date %></td><td><%=startTime %></td><td><%=useTime %></td></tr>
+	    	<tr><td><%=shopName %></td><td>${date}</td><td>${startTime}</td><td>${useTime}</td></tr>
 	    	</table>
 	    </div>
 	</div>
@@ -51,10 +52,10 @@
 			<div style="width:200px;height:100%;float:left">
 			<c:forEach var="site" items="${sites }" begin="1" end="4" varStatus="status">
 				<div class="float-start" style="width:200px">
-				<c:if test="${site eq 0}">
-				<img src="${path}/resources/assets/img/car_white.png" style="width:100%">site ${status.index }
+				<c:if test="${site==0}">
+				<img src="${path}/resources/assets/img/car_white.png" style="width:100%" onclick="goRes_pay(${status.index})">site ${status.index }
 				</c:if>
-				<c:if test="${site eq 1}">
+				<c:if test="${site==1}">
 				<img src="${path}/resources/assets/img/car_orange.png" style="width:100%">site ${status.index }
 				</c:if>
 				</div>
@@ -67,7 +68,7 @@
 			<c:forEach var="site" items="${sites }" begin="5" end="8" varStatus="status">
 				<div style="width:200px">
 				<c:if test="${site==0}">
-				<img src="${path}/resources/assets/img/car_white.png" style="width:100%">site ${status.index }
+				<img src="${path}/resources/assets/img/car_white.png" style="width:100%" onclick="goRes_pay(${status.index})">site ${status.index }
 				</c:if>
 				<c:if test="${site==1}">
 				<img src="${path}/resources/assets/img/car_orange.png" style="width:100%">site ${status.index }
