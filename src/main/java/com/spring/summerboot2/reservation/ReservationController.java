@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.summerboot2.api.WeatherDAO;
 import com.spring.summerboot2.api.WeatherVO;
 
+import java.io.PrintWriter;
 import java.util.List;
 import com.spring.summerboot2.api.*;
 
@@ -59,5 +60,6 @@ public class ReservationController {
 		mav.setViewName("reservation/reservation2");
 		return mav;
 	}
+	
 }
 
