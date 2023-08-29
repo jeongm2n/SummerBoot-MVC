@@ -2,8 +2,11 @@ package com.spring.summerboot2.pay;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.spring.summerboot2.cart.CartVO;
+import com.spring.summerboot2.reservation.ReservationVO;
 
 @Controller
 @RequestMapping("/pay")
@@ -43,7 +47,8 @@ public class PayController {
 		InformVO inform = null;
 		ArrayList<CartVO> product = new ArrayList<CartVO>();
 		
-		boolean p_view;
+		String user_id = (String)session.getAttribute("user_id");
+		
 		int product_price = 0;
 		
 		for(int i = 0; i < product_id.length; i++) { product.add(new CartVO(Integer.parseInt(product_id[i]), name[i], Integer.parseInt(quantity[i]), Integer.parseInt(price[i]), img[i]));}
@@ -52,22 +57,11 @@ public class PayController {
 		
 		session.setAttribute("Product", product);
 		
-		if(session.getAttribute("user_id") == null) {
-			p_view = false;
-			if(session.getAttribute("Inform") != null) { inform = (InformVO)session.getAttribute("Inform");}
-		}
-		else {
-			p_view = true;
-			String user_id = (String)session.getAttribute("user_id");
-			if(session.getAttribute("Inform") == null) {inform = payService.Load_Inform(user_id, false);}	
-			else { 
-				inform = (InformVO)session.getAttribute("Inform");
-			}
-		}
+		if(session.getAttribute("Inform") != null) { inform = (InformVO)session.getAttribute("Inform"); inform.setPoint(payService.Load_Point(user_id));}
+		else { inform = payService.Load_Inform(user_id);}
 		
 		mav.addObject("product_price",product_price);
 		mav.addObject("product",product);
-		mav.addObject("p_view",p_view);
 		mav.addObject("inform",inform);
 		mav.setViewName("pay/inform");
 		return mav;
@@ -175,17 +169,9 @@ public class PayController {
 			}
 			
 			inform = (InformVO)session.getAttribute("Inform");
-			
-			boolean p_view;
-			if(inform.getPoint() == 0) { p_view = false;}
-			else { p_view = true;}
-			
-			session.setAttribute("Product", product);
-			
-			
+						
 			mav.addObject("product_price",product_price);
 			mav.addObject("product",product);
-			mav.addObject("p_view",p_view);
 			mav.addObject("inform",inform);
 			mav.setViewName("pay/inform");
 		}
@@ -196,10 +182,6 @@ public class PayController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/go_back")
-	public String go_back(){
-		return "../cart/my_cart";
-	}
 	
 	 @ResponseBody
 	 @RequestMapping(value="/pay_after/{merchant_uid},{point}")
@@ -228,5 +210,60 @@ public class PayController {
 		mav.setViewName("pay/Complate");
 		return mav;
 	}
-	
+	 
+	 @ResponseBody
+	 @RequestMapping(value="/resevation_pay/{no},{date},{startTime},{useTime},{site}")
+	 public ModelAndView resevation_pay(HttpServletRequest request, HttpServletResponse response
+			 ,@PathVariable(value= "no") String no ,@PathVariable(value= "date") String date
+			 ,@PathVariable(value= "startTime") String startTime ,@PathVariable(value= "useTime") String useTime
+			 ,@PathVariable(value= "site") String site) throws Exception
+	{
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		HttpSession session = request.getSession();
+		ModelAndView mav = new ModelAndView();
+		
+		String id = (String)session.getAttribute("user_id");
+		
+		int point = payService.Load_Point(id);
+		InformVO inform = payService.Load_Inform(id);
+		String[] b_Inform = new String[5];
+		String[] address = payService.Load_address(id).split("/");
+		
+		b_Inform[0] = inform.getTel();
+		b_Inform[1] = inform.getEmail();
+		b_Inform[2] = address[1];
+		b_Inform[3] = address[0];
+		b_Inform[4] = inform.getName();
+		
+		String[] carwash = payService.Load_CarWash(no);
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		Date date1 = sdf.parse(startTime);
+		
+	    Calendar cal = Calendar.getInstance();
+	    cal.setTime(date1);
+	    cal.add(Calendar.MINUTE, Integer.parseInt(useTime));
+	    
+	    String endTime = sdf.format(cal.getTime());  
+	    
+		ReservationVO reservation = new ReservationVO(Integer.parseInt(no), date, Integer.parseInt(site), startTime, useTime, endTime);
+		
+		int price = 0;
+		
+		if(useTime == "29") {price = 2500;}
+		else if(useTime == "59") {price = 5000;}
+		else if(useTime == "89") {price = 7500;}
+		else if(useTime == "119") {price = 10000;}
+		
+		
+		mav.addObject("price",price);
+		mav.addObject("point",point);
+		mav.addObject("name",carwash[0]);
+		mav.addObject("img", carwash[1]);
+		mav.addObject("B_Inform", b_Inform);
+		mav.addObject("reservation",reservation);
+		mav.setViewName("pay/res_pay");
+		return mav;
+	}
 }

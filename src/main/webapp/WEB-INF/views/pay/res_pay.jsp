@@ -53,6 +53,7 @@
         IMP.request_pay({
             pg : 'INIpayTest',
             pay_method : type,
+            //무통장!  vbank 
             merchant_uid: "WB" + makeMerchantUid, 
      	    name : productname,
             amount : ${total_price},
@@ -99,25 +100,22 @@
         <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a>${total_price}₩</a></button>
         <div class="content">
         <div class="container">
-        <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
-		  	<img src="${path}/resources/assets/img/${product.img}" class="img" >
+		  	<img src="${path}/resources/assets/img/${img}" class="img" >
 		  	<div style="float:right;">
-		  	  <div class="text_box">
-		  	    <a class="amount">x ${product.quantity}</a>
-		  	  </div>
 		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">${product.name}</a>
-		  	  </div>
-		  	  <div class="text_box">
-		  	    <a class="price">${product.price}원</a>
+		  	    <a class="name">${name}/${reservation.date}/${reservation.site}번자리/${reservation.startTime} ~ ${reservation.endTime}</a>
 		  	  </div>
 		  	</div>
           </div>
-        </c:forEach>
+          <div class="point" id="M_point">
+            <label class="Label">포인트 사용</label>
+            <a>보유포인트 : ${point}pt</a>
+            <input type="number" name="m_point" id="m_point" class="point_input" placeholder="포인트 사용" onchange="limiter(this);" required>
+           	<button type="button" class="btn" onclick="">포인트 사용</button><br>
+          </div>
           <div class="total">
-          	<a class="price">물품 가격 : + ${product_price}원</a><br>
-			<a class="price">배송비 : + ${shipping_price}원</a><br>
+          	<a class="price">예약 가격 : + ${price}원</a><br>
 			<a class="point_price" id="m_point_price">포인트 : - ${point}원</a><br>
             <a class="total_price">총 : ${total_price}원</a>
           </div>
@@ -128,8 +126,7 @@
         <div class="container">
           <div>
             <nav>
-              <li class="head"><a href="../cart/my_cart">장바구니</a></li>
-    	      <li class="head"><a href="back_inform">&nbsp;>&nbsp;<b>정보</b></a>&nbsp;>&nbsp;</li>
+    	      <li class="head"><a href="back_inform"><b>예약 선택</b></a>&nbsp;>&nbsp;</li>
     	      <li class="head">결제</li>
             </nav>
           </div>
@@ -202,13 +199,9 @@
       <!--       pc or 큰화면에서 보일 제품 정보 -->
       <div class="pc_pro_inform col col-lg-5">
         <div class="container">
-        <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
 		  	<img src="${path}/resources/assets/img/${product.img}" class="img">
 		  	<div style="float:right;">
-		  	  <div class="text_box">
-		  	    <a class="amount">x ${product.quantity}</a>
-		  	  </div>
 		  	  <div class="text_box" style="text-align: center;">
 		  	    <a class="name">${product.name}</a>
 		  	  </div>
@@ -217,10 +210,14 @@
 		  	  </div>
 		  	</div>
           </div>
-        </c:forEach>
+          <div class="point" id="P_point">
+            <label class="Label">포인트 사용</label>
+            <a>보유포인트 : ${point}pt</a>
+            <input type="number" name="p_point" id="p_point" class="point_input" placeholder="포인트 사용" onchange="limiter(this);" required>
+           	<button type="button" class="btn" onclick="">포인트 사용</button><br>
+          </div>
           <div class="total">
           	<a class="price">물품 가격 : + ${product_price}원</a><br>
-			<a class="price">배송비 : + ${shipping_price}원</a><br>
 			<a class="point_price" id="p_point_price">포인트 : - ${point}원</a><br>
             <a class="total_price">총 : ${total_price}원</a>
           </div>
