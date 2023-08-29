@@ -240,6 +240,9 @@ public class PayController {
 		String[] carwash = payService.Load_CarWash(no);
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		Date date1 = sdf.parse(startTime);
+		String[] f_date = date.split("-");
+		
+		if(f_date[0].charAt(0) == '0') { f_date[0] = f_date[0].substring(1);}
 		
 	    Calendar cal = Calendar.getInstance();
 	    cal.setTime(date1);
@@ -256,8 +259,10 @@ public class PayController {
 		else if(useTime == "89") {price = 7500;}
 		else if(useTime == "119") {price = 10000;}
 		
+		
 		mav.addObject("price",price);
 		mav.addObject("point",point);
+		mav.addObject("f_date",f_date);
 		mav.addObject("name",carwash[0]);
 		mav.addObject("img", carwash[1]);
 		mav.addObject("B_Inform", b_Inform);
