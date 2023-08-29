@@ -212,7 +212,7 @@ public class PayController {
 	}
 	 
 	 @ResponseBody
-	 @RequestMapping(value="/resevation_pay/{no},{date},{startTime},{useTime},{site},{u_point}")
+	 @RequestMapping(value="/reservation_pay/{no},{date},{startTime},{useTime},{site}")
 	 public ModelAndView resevation_pay(HttpServletRequest request, HttpServletResponse response
 			 ,@PathVariable(value= "no") String no ,@PathVariable(value= "date") String date
 			 ,@PathVariable(value= "startTime") String startTime ,@PathVariable(value= "useTime") String useTime
@@ -256,12 +256,7 @@ public class PayController {
 		else if(useTime == "89") {price = 7500;}
 		else if(useTime == "119") {price = 10000;}
 		
-		int total_price = price + u_point;
-		
-		
 		mav.addObject("price",price);
-		mav.addObject("u_point",u_point);
-		mav.addObject("total_price",total_price);
 		mav.addObject("point",point);
 		mav.addObject("name",carwash[0]);
 		mav.addObject("img", carwash[1]);

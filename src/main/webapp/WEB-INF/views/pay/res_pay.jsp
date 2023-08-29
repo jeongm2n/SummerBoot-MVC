@@ -49,6 +49,9 @@
     </c:forEach>
     productname = productname.slice(0, -1);
     
+    let total_price = ${price};;
+    let u_point = 0;
+    
     function requestPay() {
         IMP.request_pay({
             pg : 'INIpayTest',
@@ -56,7 +59,7 @@
             //무통장!  vbank 
             merchant_uid: "WB" + makeMerchantUid, 
      	    name : productname,
-            amount : ${total_price},
+            amount : total_price - u_point,
             buyer_tel : '${B_Inform[0]}',
             buyer_email : '${B_Inform[1]}',
             buyer_addr : '${B_Inform[2]}',
@@ -70,7 +73,7 @@
             }).done(function(data) {
                 if(res.paid_amount == data.response.amount){
                     alert("결제 및 결제검증완료");
-                    let link = '/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}';
+//                     let link = '/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}';
                     location.href = link;
                 } else {
                     alert("결제 실패");
@@ -85,6 +88,8 @@
 	}
 	
     $(function(){
+		  const element = document.getElementById('total_price');
+		  element.innerText = total_price;
     	if(${u_point eq 0}){
     		document.getElementById("m_point_price").style.display = "none";
     		document.getElementById("p_point_price").style.display = "none";
@@ -94,9 +99,18 @@
     })
     
     function point(){
-    	var u_point = document.getElementById("m_point_price");
-    	window.location.href = "pay/resevation_pay/${ReservationVO.no},${ReservationVO.date},${ReservationVO.startTime},${ReservationVO.useTime},${ReservationVO.site}," + u_point;
+    	u_point = document.getElementById("p_point_price");
+    	const element1 = document.getElementById('m_point');
+    	const element2 = document.getElementById('p_point');
+    	const element3 = document.getElementById('m_total_price');
+    	const element4 = document.getElementById('p_total_price');
+    	element1.innerHTML = u_point;
+    	element2.innerHTML = u_point;
+    	element3.innerText = total_price - u_point;
+    	element4.innerText = total_price - u_point;
 	}
+    
+    
     
     </script>
     
@@ -128,8 +142,8 @@
           </div>
           <div class="total">
           	<a class="price">예약 가격 : + ${price}원</a><br>
-			<a class="point_price" id="m_point_price">포인트 : - ${u_point}원</a><br>
-            <a class="total_price" id="p_total_price">총 : ${total_price}원</a>
+			<a class="point_price" id="m_point_price">포인트 : - <div id="m_point">원</a><br>
+            <a class="total_price" id="p_total_price">총 : <div id="m_total_price"></div>원</a>
           </div>
         </div>
       </div>
@@ -153,9 +167,7 @@
 			        <div class="detail">
 			          <span class="text">${B_Inform[0]}</span>
 			        </div>
-			        <div class="c_btn">
-			       	  <a class="btn_text" href="back_inform">변경</a>
-			        </div>
+
 			      </div>
 			    </div>
 			    <div class="inform" style="border-bottom: 1px solid #adb5bd;">
@@ -226,12 +238,12 @@
             <label class="Label">포인트 사용</label>
             <a>보유포인트 : ${point}pt</a>
             <input type="number" name="p_point" id="p_point" class="point_input" placeholder="포인트 사용" onchange="limiter(this);" required>
-           	<button type="button" class="btn" onclick="">포인트 사용</button><br>
+           	<button type="button" class="btn" onclick="point()">포인트 사용</button><br>
           </div>
           <div class="total">
           	<a class="price">물품 가격 : + ${product_price}원</a><br>
-			<a class="point_price" id="p_point_price">포인트 : - ${u_point}원</a><br>
-            <a class="total_price" id="p_total_price">총 : ${total_price}원</a>
+			<a class="point_price" id="p_point_price">포인트 : - <div id="p_point">원</a><br>
+            <a class="total_price" id="p_total_price">총 : <div id="p_total_price">원</a>
           </div>
         </div>
       </div>
