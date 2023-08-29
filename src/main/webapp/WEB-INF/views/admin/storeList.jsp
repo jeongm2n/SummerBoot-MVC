@@ -208,25 +208,6 @@
 	}
 
 	function update(no) {
-		/* var queryString = $("#storeForm" + no).serialize(); */
-		/* var form = $("#storeForm" + no)[0];
-		var formData = new FormData(form); */
-		
-		/* $.ajax({
-	       type:"post",
-	       url:"${path}/admin/store/updateStore",
-	       dataType:"json",
-	       data:queryString,
-	       contentType:false,
-	       processData:false,
-	       success:function (data){
-	       	  alert("수정");
-	       },
-	       error:function(request, error){
-				alert("에러가 발생했습니다.");
-				console.log("code : " + request.status + "\n" + "message : " + request.responseText +"\n" + "error : " + error	);
-			}
-	    }); */
 		var storeForm = $("#storeForm" + no);
 		storeForm.attr("action", "updateStore");
 		storeForm.submit(	);

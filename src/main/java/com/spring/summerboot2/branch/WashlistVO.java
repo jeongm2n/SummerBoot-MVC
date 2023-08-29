@@ -8,9 +8,11 @@ public class WashlistVO {
 	private String tel;
 	private String time;
 	private String img;
+	private String lat;
+	private String lon;
 	
 
-	public WashlistVO(int no, String name, String address, int sites, String tel, String time, String img) {
+	public WashlistVO(int no, String name, String address, int sites, String tel, String time, String img, String lat, String lon) {
 		this.no = no;
 		this.name = name;
 		this.address = address;
@@ -18,6 +20,8 @@ public class WashlistVO {
 		this.tel = tel;
 		this.time = time;
 		this.img = img;
+		this.lat = lat;
+		this.lon = lon;
 	}
 	
 	public WashlistVO(int no, String address, int sites, String tel, String time, String img) {
@@ -99,6 +103,22 @@ public class WashlistVO {
 	}
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+
+	public String getLon() {
+		return lon;
+	}
+
+	public void setLon(String lon) {
+		this.lon = lon;
 	}
 	
 }

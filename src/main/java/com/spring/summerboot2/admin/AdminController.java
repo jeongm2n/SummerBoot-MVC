@@ -6,9 +6,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.summerboot2.branch.WashlistVO;
+import com.spring.summerboot2.community.InquiryVO;
 import com.spring.summerboot2.member.MemberVO;
 import com.spring.summerboot2.product.ProductVO;
-import com.spring.summerboot2.reservation.ReservationDAO;
 import com.spring.summerboot2.reservation.ReservationVO;
 
 @Controller
@@ -33,8 +30,16 @@ public class AdminController {
 	AdminService adminService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-    public String admin() {
-        return "admin/main";
+    public ModelAndView admin() {
+		List<InquiryVO> inquiry;
+		inquiry = adminService.inquiryMain();
+		int count = adminService.inquiryCount();
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("count", count);
+		mav.addObject("inquiry", inquiry);
+		mav.setViewName("admin/main");
+        return mav;
     }
 	
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)

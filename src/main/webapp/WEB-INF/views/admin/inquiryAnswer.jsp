@@ -8,34 +8,74 @@
 	<jsp:include page="/WEB-INF/common.jsp" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<link rel="stylesheet" href="${path}/summerboot2/resources/assets/css/custom_lee.css">
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
+	<script>
+		$(document).ready(function() {
+		    var message = "${msg}";
+		    if(message == 999){
+		   		alert("답변 완료");
+		        window.close();
+				opener.location.href="${path }/summerboot2/admin/community/inquiry";
+		    } else if(message == 4){
+		    	alert("답변 실패");
+		    }
+		});
+		
+		function validate() {
+			var content = $("#content").val();
+			if(!content.length > 0) {
+				alert("답변을 입력해주세요");
+				return false;
+			}
+			return true;
+		}
+	</script>
+	
 </head>
 <body>
 	<section class="container py-5">
-		<form name="answerForm" method="post" action="registAnswer">
-			<div class="qna qna-t">
-				<div class="qna-title"><h1>답변</h1></div>
-				<div class="qna-input qna-text">
-					<textarea class="form-control mt-1" id="content" name="content" placeholder="내용을 입력하세요" rows="8">게시판 번호 : ${q_no }</textarea>
+		<c:choose>
+			<c:when test="${!empty inquiry }">
+				<c:set target="${inquiry }"/>
+				<div class="ans-qna">
+					<div>
+						<span class="h1" style="font-weight:400 !important;">Q. </span>
+						<span style="font-size:30px;">${inquiry.title }</span>
+					</div>
+					<div style="width:90%;margin:2% auto;">
+						<div class="qna-input qna-text" style="padding-bottom: 2%; border-bottom: 1px solid black;width: 35%;">
+							<span>작성자 : ${inquiry.writer}</span>
+						</div>
+						<div class="qna-input qna-text" style="padding-top:2%;">
+							<span>${inquiry.content }</span>
+						</div>
+					</div>
 				</div>
-				<input type="hidden" name="q_no" value="${q_no }">
-			</div>
-			<div id="write">
-				<input type="submit" id="regist" class="btn btn-join" value="답변달기">
-			</div>
-		</form>
+				<form name="answerForm" method="post" action="registAnswer">
+					<div class="ans-qna">
+						<span class="h1" style="font-weight:400 !important;">A. </span>
+						<div style="width:100%;">
+							<textarea class="form-control mt-1" id="content" name="content" rows="8" placeholder="답변 입력"></textarea>
+						</div>
+						<input type="hidden" name="q_no" value="${q_no }">
+					</div>
+					<div id="write">
+						<input type="submit" id="regist" class="btn btn-join" value="답변달기" onclick="return validate();">
+					</div>
+				</form>
+			</c:when>
+		</c:choose>
+		
+		
 	</section>
 </body>
 </html>
-
-<script>
-	$(document).ready(function() {
-	    var message = "${msg}";
-	    if(message == 999){
-	   		alert("답변 완료");
-	        window.close();
-			opener.location.href="${path }/summerboot2/admin/community/inquiry";
-	    } else if(message == 4){
-	    	alert("답변 실패");
-	    }
-	});
-</script>
+<style>
+	.ans-qna {
+		display : grid;
+		grid-template-columns : 1fr;
+	    justify-items: start;
+	    margin:2% 4%;
+	}
+</style>

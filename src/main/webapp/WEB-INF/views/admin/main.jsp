@@ -246,20 +246,28 @@
 
                             <!-- Illustrations -->
                             <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                                <div class="card-header py-3" style="display:grid;grid-template-columns:1fr 1fr;">
+                                    <h6 class="m-0 font-weight-bold text-primary">문의</h6>
+                                    <h6 class="m-0" style="text-align:end;">답변대기 : ${count }</h6>
                                 </div>
+                                
                                 <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
+	                                <c:choose>
+										<c:when test="${empty inquiry }">
+		                                	<div>답변 대기중의 문의가 없습니다.</div>
+										</c:when>
+										<c:when test="${!empty inquiry }">
+											<c:forEach var="list" items="${inquiry }">
+												<c:set var="cnt" value="${cnt+1 }"/>
+				                                <div class="AM-inquiry">
+				                                	<div>${list.category }</div>
+				                                	<div>${list.title }</div>
+				                                	<div><fmt:formatDate value="${list.ins_date }" pattern="YYYY/MM/dd HH:mm:ss"/></div>
+				                                </div>
+			                                </c:forEach>
+										</c:when>
+									</c:choose>
+									<c:if test="${count > 5}"><div style="text-align:center;"><span id="moreIn">더보기</span></div></c:if>
                                 </div>
                             </div>
 
@@ -323,3 +331,23 @@
 </body>
 
 </html>
+
+<style>
+	.AM-inquiry {
+		display:grid;
+		grid-template-columns:0.5fr 2fr 1fr;
+	    padding-bottom: 1%;
+	}
+	
+	#moreIn{
+		cursor:pointer;
+		text-decoration:underline;
+	}
+</style>
+
+<script>
+	$(document).on('click', '#moreIn', function() {
+		alert();
+		location.href="${path}/admin/community/inquiry?state=wait"
+	});
+</script>

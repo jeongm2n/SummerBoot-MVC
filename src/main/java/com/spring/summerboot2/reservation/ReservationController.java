@@ -17,6 +17,7 @@ import com.spring.summerboot2.api.WeatherVO;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
@@ -65,5 +66,6 @@ public class ReservationController {
 		mav.setViewName("reservation/reservation2");
 		return mav;
 	}
+	
 }
 
