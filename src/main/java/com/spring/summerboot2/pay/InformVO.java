@@ -14,8 +14,9 @@ public class InformVO {
 	private String street_add;
 	private String option_add;
 	
-	public InformVO(String tel, String name, int point) {
+	public InformVO(String tel, String email, String name, int point) {
 		this.tel = tel;
+		this.email = email;
 		this.name = name;
 		this.point = point;
 	}

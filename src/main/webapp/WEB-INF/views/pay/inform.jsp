@@ -16,14 +16,6 @@
     <script src="${path}/resources/assets/js/pay/input.js"></script>
     
 	<script>
-	$(function(){
-		if(!${p_view}){
-			document.getElementById("M_point").style.display = "none";
-			document.getElementById("P_point").style.display = "none";
-			document.getElementById("s_chkbox").style.display = "none";
-			document.getElementById("a_chkbox").style.display = "none";
-		}
-	})
 	
 	$(document).ready( function propChange(){
 	$("#state").val("${inform.state}").prop("selected", true);

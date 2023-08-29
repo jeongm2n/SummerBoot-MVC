@@ -15,37 +15,24 @@ public class PayDAO {
 	private Connection conn;
 	private ResultSet rs;
 	
-	public InformVO Load_Inform(String id, boolean s_inform) {
+	public InformVO Load_Inform(String id) {
 		try {
 			InformVO inform = null;
 			conn = DBconn.getDBCP();
 
-			if(!s_inform) {
-				String sql = "SELECT tel, mem_name, delivery_addr, point from sb_member where id='" + id + "'";
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery(sql);
-				rs.next();
-				
-				String u_name = rs.getString("mem_name");
-				String u_tel = rs.getString("tel").replace("-", "");
-				int point = rs.getInt("point");
-				String d_address = rs.getString("delivery_addr");
-				if(rs.wasNull()) {
-					inform = new InformVO(u_tel, u_name, point);
-				}
-				else {
-					String[] address = d_address.split("/");
-					inform = new InformVO(u_tel, u_name, point, address[0], address[1], address[2], address[3], address[4], address[5]);
-				}
+			String sql = "SELECT tel, email, mem_name, delivery_addr, point from sb_member where id='" + id + "'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(sql);
+			rs.next();
+			
+			String email = rs.getString("email"); String u_name = rs.getString("mem_name"); String u_tel = rs.getString("tel").replace("-", "");
+			int point = rs.getInt("point");	String d_address = rs.getString("delivery_addr");
+			if(rs.wasNull()) {
+				inform = new InformVO(u_tel, email, u_name, point);
 			}
 			else {
-				String sql = "SELECT point from sb_member where id='" + id + "'";
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery(sql);
-				rs.next();
-				int point = rs.getInt("point");
-			
-				inform.setPoint(point);
+				String[] address = d_address.split("/");
+				inform = new InformVO(u_tel, email, u_name, point, address[0], address[1], address[2], address[3], address[4], address[5]);
 			}
 			
 			rs.close();
@@ -53,6 +40,74 @@ public class PayDAO {
 			conn.close();
 			
 			return inform;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String Load_address(String id) {
+		try {
+			InformVO inform = null;
+			conn = DBconn.getDBCP();
+
+			String sql = "SELECT address from sb_member where id='" + id + "'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(sql);
+			rs.next();
+			
+			String address = rs.getString("address");
+
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+			return address;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int Load_Point(String id) {
+		try {
+			conn = DBconn.getDBCP();
+
+			String sql = "SELECT point from sb_member where id='" + id + "'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(sql);
+			rs.next();
+			int point = rs.getInt("point");
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+			return point;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public String[] Load_CarWash(String no) {
+		try {
+			conn = DBconn.getDBCP();
+
+			String sql = "SELECT name, img from sb_carwash where no='" + no + "'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(sql);
+			rs.next();
+			String[] carwash = new String[2];
+			
+			carwash[0] = rs.getString("name");
+			carwash[1] = rs.getString("img");
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+			return carwash;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -87,8 +142,6 @@ public class PayDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		
 	}
 

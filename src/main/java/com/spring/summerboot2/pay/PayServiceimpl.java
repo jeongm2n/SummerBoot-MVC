@@ -9,9 +9,24 @@ import com.spring.summerboot2.cart.CartVO;
 @Service
 public class PayServiceimpl implements PayService{
 	
-	public InformVO Load_Inform(String id,  boolean s_inform) {
+	public InformVO Load_Inform(String id) {
 		PayDAO paydao = new PayDAO();
-		return paydao.Load_Inform(id, s_inform);
+		return paydao.Load_Inform(id);
+	}
+	
+	public int Load_Point(String id) {
+		PayDAO paydao = new PayDAO();
+		return paydao.Load_Point(id);
+	}
+	
+	public String Load_address(String id) {
+		PayDAO paydao = new PayDAO();
+		return paydao.Load_address(id);
+	}
+	
+	public String[] Load_CarWash(String no) {
+		PayDAO paydao = new PayDAO();
+		return paydao.Load_CarWash(no);
 	}
 	
 	public void Save_Inform(String id, String snssts, String state, String postcode, String city, String town,
