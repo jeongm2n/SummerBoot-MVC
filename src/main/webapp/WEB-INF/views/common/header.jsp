@@ -44,10 +44,10 @@
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-							<a class="nav-link" href="${path}/branch/list">지점</a>
+<%-- 							<a class="nav-link" href="${path}/branch/list">지점</a> --%>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${path}/reservation/reservation1">예약</a>
+<%--                             <a class="nav-link" href="${path}/reservation/reservation1">예약</a> --%>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="${path}/shop/main/전체,1,0">세차용품</a>
