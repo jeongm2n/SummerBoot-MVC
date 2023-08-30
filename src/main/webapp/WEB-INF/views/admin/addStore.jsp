@@ -10,7 +10,7 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${path}/resources/assets/js/daumPostcode.js"></script>
 	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
-    
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06a1b9ec0da85dcbc94968ce7bd3be22&libraries=services"></script>
     <script>
 	    $(document).ready(function() {
 	        var message = "${msg}";
@@ -87,6 +87,8 @@
 				                </div>
 				                <div class="row">
 				                    <div class="col text-center mt-2">
+				                    	<input type="text" name="lat" id="lat" style="display:none;">
+				                    	<input type="text" name="lon" id="lon" style="display:none;">
 				                        <button type="button" class="btn btn-washboot btn-lg px-3" id="add">지점등록</button>
 				                    </div>
 				                </div>
@@ -98,6 +100,7 @@
 			</div>
 		</div>
 	</div>
+	<div id="map" style="width:100%;height:350px;display:none;"></div>
 	<%@ include file="./common/footer.jsp" %>
 </body>
 </html>
@@ -167,9 +170,23 @@
 	   		alert("운영종료시간을 입력하세요.");
 	   		return;
 	   	} else {
-	   		alert(">>>>>");
-			document.getElementById("storeForm").submit();
+	   		var geocoder = new kakao.maps.services.Geocoder();
+			var address = $("#road_addr").val() + " " + $("#rest_addr");
+			
+			geocoder.addressSearch(address, function(result, status) { // 입력한 주소의 좌표를 구하기
+		
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === kakao.maps.services.Status.OK) {
+		
+			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			        var lat = result[0].y;
+					var lon = result[0].x;
+					
+					$("#lat").val(lat);
+					$("#lon").val(lon);
+			    } 
+		   		document.getElementById("storeForm").submit();
+			});
 	   	}
 	});
-	
 </script>

@@ -15,9 +15,9 @@ import com.spring.summerboot2.reservation.*;
 
 @Service
 public class AdminService {
-	public List<MemberVO> userList() {
+	public List<MemberVO> userList(String searchCon, String search) {
 		MemberDAO member = new MemberDAO();
-		return member.userList();
+		return member.userList(searchCon, search);
 	}
 	
 	public List<WashlistVO> washList() {

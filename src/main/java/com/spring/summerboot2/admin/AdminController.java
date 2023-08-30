@@ -43,11 +43,13 @@ public class AdminController {
     }
 	
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
-    public ModelAndView userList() {
+    public ModelAndView userList(@RequestParam(value="searchCon", defaultValue="0") String searchCon, @RequestParam(value="search", defaultValue="none") String search) throws Exception {
 		List<MemberVO> userList;
-		userList = adminService.userList();
+		userList = adminService.userList(searchCon, search);
 		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("searchCon", searchCon);
+		mav.addObject("search", search);
 		mav.addObject("users", userList);
 		mav.setViewName("admin/userList");
         return mav;

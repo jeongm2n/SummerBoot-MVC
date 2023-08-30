@@ -40,6 +40,7 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", id);
 			session.removeAttribute("Inform");
+			model.addAttribute("msg", "login");
 			return "home";
 		} else {
 			model.addAttribute("msg", "아이디와 비밀번호가 일치하지 않습니다.");

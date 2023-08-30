@@ -5,6 +5,7 @@
 
 <head>
 	<%@ include file="./common/head.jsp"%>
+	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
     <title>회원리스트</title>
 </head>
 
@@ -27,6 +28,22 @@
                             <h6 class="m-0 font-weight-bold text-washboot">회원리스트</h6>
                         </div>
                         <div class="card-body">
+                        	<div class="flex-sm-fill searchG" style="margin-bottom:2%;width:35%;">
+								<div style="margin-right:10px;">
+									<select class="form-control" id="searchCon" name="searchCon" style="height:40px;">
+										<option value="0">검색조건</option>
+										<option value="id" <c:if test="${searchCon eq 'id'}">selected</c:if>>아이디</option>
+										<option value="name" <c:if test="${searchCon eq 'name'}">selected</c:if>>이름</option>
+										<option value="addr" <c:if test="${searchCon eq 'addr'}">selected</c:if>>주소</option>
+									</select>
+								</div>
+								<div class="input-group">
+									<input type="text" class="form-control" id="inputMobileSearch" placeholder="Search" name="search" <c:if test="${search ne 'none'}"> value="${search }"</c:if>>
+									<div class="input-group-text" id="search">
+										<i class="fa fa-fw fa-search"></i>
+									</div>
+								</div>
+							</div>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -117,4 +134,12 @@
 			return;
 		}
 	}
+	
+	$(document).on('click', '#search', function search() {
+		var searchCon = $("#searchCon").val();
+		var search = $("#inputMobileSearch").val();
+		
+		var path = "${path}/admin/userList?search="+search + "&searchCon=" + searchCon;
+		location.href=path;
+	});
 </script>

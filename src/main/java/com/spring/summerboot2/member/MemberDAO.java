@@ -206,12 +206,28 @@ public class MemberDAO {
 		return change;
 	}
 	
-	public List<MemberVO> userList() {
+	public List<MemberVO> userList(String searchCon, String search) {
 		List<MemberVO> list= new ArrayList<MemberVO>();
 		try {
 			con = DBconn.getDBCP();
 			
-			String sql = "SELECT * FROM sb_member ORDER BY id";
+			String sql = "SELECT * FROM sb_member WHERE 1=1";
+			
+			if(!search.equals("none")) {
+				if(!searchCon.equals("0")) {
+					if(searchCon.equals("id")) {
+						sql += " AND id like '%"+search+"%'";
+					} else if(searchCon.equals("name")) {
+						sql += " AND mem_name like '%"+search+"%'";
+					} else if(searchCon.equals("addr")) {
+						sql += " AND address like '%"+search+"%'";
+					}
+				} else {
+					sql += " AND (id like '%"+search+"%' OR mem_name like '%" + search + "%' OR address like '%" + search + "%')";
+				}
+			}
+			
+			sql += " ORDER BY id";
 			System.out.println("prepareStatement : " + sql);
 			
 			pstmt = con.prepareStatement(sql);

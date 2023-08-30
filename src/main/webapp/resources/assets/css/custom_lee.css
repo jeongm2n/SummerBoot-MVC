@@ -155,7 +155,14 @@ i {
 .store-update, .store-delete {
 	cursor:pointer;
 }
-
+.inquiry-select {
+	display : grid;
+	grid-template-columns:1fr;
+}
+.searchG {
+	display : grid;
+	grid-template-columns : 0.5fr 1.5fr;
+}
 
 
 /* Q&A */

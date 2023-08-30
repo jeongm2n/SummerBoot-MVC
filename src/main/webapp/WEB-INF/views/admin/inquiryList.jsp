@@ -157,15 +157,6 @@
 		padding:0 8%;
 		cursor:pointer;
 	}
-	
-	.inquiry-select {
-    	display : grid;
-    	grid-template-columns:1fr;
-    }
-    .searchG {
-    	display : grid;
-    	grid-template-columns : 0.5fr 1.5fr;
-    }
     .h1{
     	font-weight:600 !important;
 	}

@@ -44,19 +44,22 @@ public class StoreController {
     }
 	
 	@RequestMapping(value = "/addStore", method = RequestMethod.POST)
-	public ModelAndView addStore(@RequestParam MultipartFile file, @RequestParam Map<String, String> store, HttpSession session) throws IOException {
+	public ModelAndView addStore(@RequestParam MultipartFile file, @RequestParam Map<String, Object> store, HttpSession session) throws IOException {
 		String path = session.getServletContext().getRealPath("/");
 		System.out.println("path : " + path);
 		String uploadPath = path + "resources\\assets\\img\\";
 		System.out.println("uploadpath : " + uploadPath);
 		
-		String name = store.get("name");
-		String road_addr = store.get("road_addr");
-		String rest_addr = store.get("rest_addr");
-		int sites =Integer.parseInt(store.get("sites"));
-		String tel = store.get("tel");
-		String open_time = store.get("open_time");
-		String end_time = store.get("end_time");
+		System.err.println("store   >>>>  "+ store);
+		String name = store.get("name").toString();
+		String road_addr = store.get("road_addr").toString();
+		String rest_addr = store.get("rest_addr").toString();
+		int sites =Integer.parseInt(store.get("sites").toString());
+		String tel = store.get("tel").toString();
+		String open_time = store.get("open_time").toString();
+		String end_time = store.get("end_time").toString();
+		String lat = store.get("lat").toString();
+		String lon = store.get("lon").toString();
 		
 		String address = road_addr + " " + rest_addr;
 		String time = open_time + "~" + end_time;
@@ -68,6 +71,8 @@ public class StoreController {
 		System.out.println("open_time : " + open_time);
 		System.out.println("end_time : " + end_time);
 		System.out.println("time : " + time);
+		System.out.println("lat : " + lat);
+		System.out.println("lon : " + lon);
 		
 		String saveName="";
 		if(!file.isEmpty()) {
@@ -81,10 +86,9 @@ public class StoreController {
 			String fullPath = uploadPath + saveName; //파일이름을 지점명으로 변경
 			file.transferTo(new File(fullPath)); //파일 저장
 		}
-		
 		ModelAndView mav = new ModelAndView();
 		  
-		WashlistVO vo = new WashlistVO(name, address, sites, tel, time, saveName);
+		WashlistVO vo = new WashlistVO(name, address, sites, tel, time, saveName, lat, lon);
 		if(adminService.addStore(vo)) {
 			mav.addObject("msg", 888);
 		} else {

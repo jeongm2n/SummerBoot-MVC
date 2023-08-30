@@ -10,12 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Wash Boot</title>
-    <jsp:include page="/WEB-INF/common.jsp"/>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_ryu.css">
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06a1b9ec0da85dcbc94968ce7bd3be22&libraries=services"></script>
     <script src="//code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06a1b9ec0da85dcbc94968ce7bd3be22&libraries=services"></script>
 </head>
 <body>
 
@@ -297,6 +296,10 @@
     //메인페이지 로드되면 서울지점(1) 함수실행
     $( document ).ready(function() {
         getTodayResList('1');
+        var message = "${msg}";
+		if ("${msg}" == 'login') { // 로그인이 되면 url 메인으로 변경
+		    location.href="${path}"
+		}
     });
     function getTodayResList(todayres) {
         //비동기
@@ -375,22 +378,11 @@
         $(".video_modal_popup").removeClass("reveal")
      });
     
-   function washList() {
-	   <c:forEach var="list" items="${washList }" varStatus="i">
-		{
-	        title: "${list.name}", 
-	        latlng: new kakao.maps.LatLng("${list.lat}", "${list.lon}"),
-	        eventHandler: function() {
-	            infoShow("${list.no}");
-        	}
-	    }<c:if test="${!i.last}">,</c:if>
-		</c:forEach>
-   }
 </script>
 </body>
 </html>
-
 <script>
+
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
 	    center: new kakao.maps.LatLng(37.55060510552442, 127.07425954802976), // 지도의 중심좌표
@@ -526,7 +518,6 @@
 		<%}%>
 	}
 </script>
-
 <style>
 	.close{
 		cursor:pointer;

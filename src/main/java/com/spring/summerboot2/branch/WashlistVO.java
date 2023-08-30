@@ -50,13 +50,15 @@ public class WashlistVO {
 		this.time = time;
 	}
 	
-	public WashlistVO(String name, String address, int sites, String tel, String time, String img) {
+	public WashlistVO(String name, String address, int sites, String tel, String time, String img, String lat, String lon) {
 		this.name = name;
 		this.address = address;
 		this.sites = sites;
 		this.tel = tel;
 		this.time = time;
 		this.img = img;
+		this.lat = lat;
+		this.lon = lon;
 	}
 	
 	public int getNo() {

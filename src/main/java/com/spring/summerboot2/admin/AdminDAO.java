@@ -77,7 +77,7 @@ public class AdminDAO {
 		try {
 			con = DBconn.getDBCP();
 			
-			String sql = "INSERT INTO sb_carwash(name, address, sites, tel, time, img) VALUES (?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO sb_carwash(name, address, sites, tel, time, img, lat, lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getAddress());
@@ -85,6 +85,8 @@ public class AdminDAO {
 			pstmt.setString(4, vo.getTel());
 			pstmt.setString(5, vo.getTime());
 			pstmt.setString(6, vo.getImg());
+			pstmt.setString(7, vo.getLat());
+			pstmt.setString(8, vo.getLon());
 			
 			System.out.println("prepareStatement : " + sql);
 			pstmt.executeUpdate();
