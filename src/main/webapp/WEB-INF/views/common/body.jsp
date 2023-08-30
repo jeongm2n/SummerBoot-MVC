@@ -17,6 +17,9 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06a1b9ec0da85dcbc94968ce7bd3be22&libraries=services"></script>
 </head>
 <body>
+<div id="div_load" style="display:none">
+      <img id="loading_img" src="${path }/resources/assets/img/apiLoading.gif">
+</div>
 
 <!-- start 세차장 배너 -->
 <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -162,7 +165,7 @@
 						</div>
 						<div class="list-regist">
 							<div><p class="text-muted pt-4">Reviews (24)</p></div>
-							<div><input type="button" class="btn-join" value="예약하기" onclick="reservation(${list.no });"></div>
+							<div><input type="button" id="btn_res" class="btn-join" value="예약하기" onclick="reservation(${list.no });"></div>
 						</div>
 					</div>
 				</div>
@@ -499,6 +502,13 @@
 		$(".infoHidden").hide();
 	});
 	
+	window.onbeforeunload = function () { $('#div_load').show(); }  //현재 페이지에서 다른 페이지로 넘어갈 때 표시해주는 기능
+    window.load = function () {  $('#div_load').hide(); }; //페이지가 로드 되면 로딩 화면을 없애주는 것
+	
+    $(document).ready(function() {
+    	$('#div_load').hide();
+    });
+	
 	function reservation(no) {
 		<%if(user_id==null){%>
 			alert('로그인을 먼저 해주세요!');
@@ -514,7 +524,7 @@
 
 			var currentYMD = realYear + currentMonth + currentDate;
 			
-			location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD;
+			location.replace("${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD);
 		<%}%>
 	}
 </script>

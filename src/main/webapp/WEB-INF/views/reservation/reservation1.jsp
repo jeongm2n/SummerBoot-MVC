@@ -24,7 +24,7 @@
 <script>
 	// 지점선택 시 아래에 선택한 지점이 뜨도록 
 	const shops = [ '양평로점', '경인로점', '천왕점', '가제1동점', '강동성안점', '성동마장점', '성북종암점', '은평갈현점', '관악봉천점', '용문점' ];
-
+	
 	$(document).ready(function() {
 		$('label[for="30"]').click(function() {
 			$('#m_30').prop('checked', true);
@@ -78,17 +78,13 @@
         </c:forEach>
     ];
 
-    // 이후에 JavaScript 코드에서 weatherArray를 활용할 수 있음
     console.log(weather);
 </script>
 
 </head>
 
 <body>
-<!-- 	<div id="div_load" style="display:none"> -->
-<!-- 		<img id="loading_img" -->
-<%-- 			src="${path }/resources/assets/img/apiLoading.gif"> --%>
-<!-- 	</div> -->
+
 	<div id="wrapper" class="row">
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
