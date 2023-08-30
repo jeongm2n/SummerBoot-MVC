@@ -145,25 +145,30 @@
 	
 	<script>
 	function add_cart(product_id, quantity){
-		$.ajax({
-			type:"get",
-			async:false,  
-			url:"${contextPath}/shop/add_cart",
-			dataType:"text",
-			data: {
-				product_id:product_id,
-				quantity:quantity,
-				amount:1
-			},
-			success:function (){
-				alert("장바구니에 추가되었습니다!");
-			},
-			error:function(request, error){
-				alert("에러가 발생했습니다.");
-			},
-			complete:function(){
-			}
-		});
+		if(${id} == false){
+			alert('로그인을 먼저 해주세요!');
+		}
+		else{
+			$.ajax({
+				type:"get",
+				async:false,  
+				url:"${contextPath}/shop/add_cart",
+				dataType:"text",
+				data: {
+					product_id:product_id,
+					quantity:quantity,
+					amount:1
+				},
+				success:function (){
+					alert("장바구니에 추가되었습니다!");
+				},
+				error:function(request, error){
+					alert("에러가 발생했습니다.");
+				},
+				complete:function(){
+				}
+			});
+		}
 	}
 	</script>
 

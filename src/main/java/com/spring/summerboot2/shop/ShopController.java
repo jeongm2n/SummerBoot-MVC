@@ -39,8 +39,13 @@ public class ShopController {
 		if(page % 9 > 0) {page = page/9 + 1;}
 		else {page = page/9;}
 		
+		HttpSession session = request.getSession();
+		boolean id = true;
+		if(session.getAttribute("user_id") == null) { id = false;}
+
 		System.out.println(page);
 		
+		mav.addObject("id",id);
 		mav.addObject("sort", sort);
 		mav.addObject("type_category", type_category);
 		mav.addObject("n_category", n_category);
@@ -79,7 +84,10 @@ public class ShopController {
 			}
 		}
 		
-		mav.addObject("id", session.getAttribute("user_id"));
+		boolean id = true;
+		if(session.getAttribute("user_id") == null) { id = false;}
+		
+		mav.addObject("id",id);
 		mav.addObject("review",review);
 		mav.addObject("review_count",review_count);
 		mav.addObject("s_review_count",s_review_count);
@@ -102,5 +110,16 @@ public class ShopController {
 		
 	}
 	
+	@RequestMapping(value = "/review")
+	public ModelAndView review(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("shop/review");
+		return mav;
+	}
 	
 }
