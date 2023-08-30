@@ -254,10 +254,10 @@ public class PayController {
 		
 		int price = 0;
 		
-		if(useTime == "29") {price = 2500;}
-		else if(useTime == "59") {price = 5000;}
-		else if(useTime == "89") {price = 7500;}
-		else if(useTime == "119") {price = 10000;}
+		if(useTime.equals("29")) {price = 2500;}
+		else if(useTime.equals("59")) {price = 5000;}
+		else if(useTime.equals("89")) {price = 7500;}
+		else if(useTime.equals("119")) {price = 10000;}
 		
 		
 		mav.addObject("price",price);
