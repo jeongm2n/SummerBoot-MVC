@@ -228,4 +228,34 @@ public class AdminDAO {
 		}
 		return change;
 	}
+	
+	public List<Integer> reserCount() {
+		List<Integer> list= new ArrayList<Integer>();
+		int count=0;
+		String[] month = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+		try {
+			con = DBconn.getDBCP();
+			String sql="";
+			for(int i =0; i < month.length; i++) {
+				sql = "SELECT count(*) as cnt FROM sb_reservation WHERE res_date like '" + month[i] + "%'";
+				System.out.println("prepareStatement : " + sql);
+				
+				pstmt = con.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					count = rs.getInt("cnt");
+					System.out.println(i + ">>" + count);
+				}
+				
+				list.add(count);
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

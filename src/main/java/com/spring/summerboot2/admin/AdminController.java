@@ -35,7 +35,11 @@ public class AdminController {
 		inquiry = adminService.inquiryMain();
 		int count = adminService.inquiryCount();
 		
+		List<Integer> reserCount;
+		reserCount = adminService.reserCount();
+		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("reserCount", reserCount);
 		mav.addObject("count", count);
 		mav.addObject("inquiry", inquiry);
 		mav.setViewName("admin/main");

@@ -148,7 +148,7 @@
 						</ul>
 						<div class="list">
 							 <i class="fa fa-map-marker-alt"></i>
-							 <span class="card-text h3 list-addr" onclick = "map('${list.no }');">${list.address } </span>
+							 <span class="card-text h3">${list.address }</span>
 						</div>
 						<div class="list">
 							<i class="fa fa-clock"></i>
@@ -386,7 +386,7 @@
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
 	    center: new kakao.maps.LatLng(37.55060510552442, 127.07425954802976), // 지도의 중심좌표
-	    level: 5 // 지도의 확대 레벨
+	    level: 7 // 지도의 확대 레벨
 	};  
 
 	// 지도를 생성합니다    
@@ -403,7 +403,7 @@
 		ps.keywordSearch(want, placesSearchCB);
 	}   
 
-	function mark(){ //각 세차장에 마크 생성
+	function mark() { //각 세차장에 마크 생성
 		var positions = [
 			<c:forEach var="list" items="${washList }" varStatus="i">
 				{
