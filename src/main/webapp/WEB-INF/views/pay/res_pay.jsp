@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_Yang2.css">
     
     <script src="${path}/resources/assets/js/pay/collapse.js"></script> 
+    
 	<!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<!-- iamport.payment.js -->
@@ -43,12 +44,6 @@
     
     let makeMerchantUid = year + month + date + hours +  minutes + seconds + milliseconds;
     
-    let productname = "";
-    <c:forEach var="product" items="${product}" varStatus="status">
-    	productname += "${product.name}" + ",";
-    </c:forEach>
-    productname = productname.slice(0, -1);
-    
     let total_price = ${price};
     let u_point = 0;
     
@@ -58,7 +53,7 @@
             pay_method : type,
             //무통장!  vbank 
             merchant_uid: "WB" + makeMerchantUid, 
-     	    name : productname,
+     	    name : "${name}${f_date[0]}월${f_date[1]}일${reservation.site}번자리${reservation.startTime}~${reservation.endTime}",
             amount : total_price - u_point,
             buyer_tel : '${B_Inform[0]}',
             buyer_email : '${B_Inform[1]}',
@@ -76,7 +71,9 @@
                     let link = '/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}';
                     location.href = link;
                 } else {
-                    alert("결제 실패");
+                	var msg = '결제에 실패하였습니다.';
+                    msg += '에러내용 : ' + res.error_msg;
+                    alert(msg);
                 }
             });
         });
@@ -88,32 +85,41 @@
 	}
 	
     $(function(){
-		  const element1 = document.getElementById('ms_total_price');
-	      const element2 = document.getElementById('ps_total_price');
-
-		  element1.innerText = total_price;
-		  element2.innerText = total_price;
-		if(${u_point == 0}){
-    		document.getElementById("m_point_price").style.display = "none";
-    		document.getElementById("p_point_price").style.display = "none";
-    		document.getElementById("m_total_price").style.display = "none";
-    		document.getElementById("p_total_price").style.display = "none";
-    	}
+		  const element1 = document.getElementById('m_total_price');
+	      const element2 = document.getElementById('p_total_price');
+	      const element3 = document.getElementById('m_total');
+		  element1.innerText = "총 : " + total_price + "원";
+		  element2.innerText = "총 : " + total_price + "원";
+		  element3.innerText = total_price + "₩";
     })
     
     function point(){
     	u_point = document.getElementById("p_point").value;
-    	const element1 = document.getElementById('ms_point');
-    	const element2 = document.getElementById('ps_point');
-    	const element3 = document.getElementById('ms_total_price');
-    	const element4 = document.getElementById('ps_total_price');
-    	element1.innerHTML = u_point;
-    	element2.innerHTML = u_point;
+    	const element1 = document.getElementById('m_point_price');
+    	const element2 = document.getElementById('p_point_price');
+    	const element3 = document.getElementById('m_total_price');
+    	const element4 = document.getElementById('p_total_price');
+    	const element5 = document.getElementById('m_total');
+    	element1.innerHTML = "포인트 : -" + u_point + "원";;;
+    	element2.innerText = "포인트 : -" + u_point + "원";;
     	element3.innerText = "총 : " + (total_price - u_point) + "원";
     	element4.innerText = "총 : " + (total_price - u_point) + "원";
+    	element5.innerText = (total_price - u_point) + "₩";
 	}
     
-    
+    function reservation(no) {
+    	var date = new Date();
+		const realMonth = date.getMonth()+1; 
+		const realToDay = date.getDate();
+		const realYear = date.getFullYear();
+
+		var currentMonth = realMonth >= 10 ? realMonth : "0" + realMonth;
+		var currentDate = date.getDate() >= 10 ? date.getDate() : "0" +date.getDate();
+
+		var currentYMD = realYear + currentMonth + currentDate;
+		
+		location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD;
+    }
     
     </script>
     
@@ -126,7 +132,7 @@
 	<div class="main row justify-content-md-center">
 	<!--     모바일화면에서 or 작은 화면에서 보일 상품 정보 -->
       <div class="mobile_pro_inform col col-lg-5">
-        <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a>${total_price}₩</a></button>
+        <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a id="m_total">계산중</a></button>
         <div class="content">
         <div class="container">
 		  <div class="product">
@@ -145,8 +151,8 @@
           </div>
           <div class="total">
           	<a class="price">예약 가격 : + ${price}원</a><br>
-			<a class="point_price" id="m_point_price">포인트 : - <div id="ms_point"></div>원</a><br>
-            <a class="total_price" id="ms_total_price"><div id="ms_total_price"></div></a>
+			<a class="point_price" id="m_point_price"></a><br>
+            <a class="total_price" id="m_total_price"></a>
           </div>
         </div>
       </div>
@@ -155,7 +161,7 @@
         <div class="container">
           <div>
             <nav>
-    	      <li class="head"><a href="back_inform"><b>예약 선택</b></a>&nbsp;>&nbsp;</li>
+    	      <li class="head"><a href="#" onclick="reservation(${reservation.no})"><b>예약 선택</b></a>&nbsp;>&nbsp;</li>
     	      <li class="head">결제</li>
             </nav>
           </div>
@@ -235,9 +241,9 @@
            	<button type="button" class="btn" onclick="point();">포인트 사용</button><br>
           </div>
           <div class="total">
-          	<a class="price">물품 가격 : + ${product_price}원</a><br>
-			<a class="point_price" id="p_point_price">포인트 : - <div id="ps_point">원</a><br>
-            <a class="total_price" id="p_total_price"><div id="ps_total_price"></div></a>
+          	<a class="price">예약 가격 : + ${price}원</a><br>
+			<a class="point_price" id="p_point_price"></a><br>
+            <a class="total_price" id="p_total_price"></a>
           </div>
         </div>
       </div>
@@ -247,6 +253,13 @@
 	
 <!-- 	푸터 -->
 	<%@ include file="../common/footer.jsp"%>
+    
+    <script>
+    $("#p_point").keydown(function(){ $('#m_point').val($(this).val()); });
+    $("#p_point").change(function(){ $('#m_point').val($(this).val()); });
+    $("#m_point").keydown(function(){ $('#p_point').val($(this).val()); });
+    $("#m_point").change(function(){ $('#p_point').val($(this).val()); });
+	</script>
     
 </body>
 </html>
