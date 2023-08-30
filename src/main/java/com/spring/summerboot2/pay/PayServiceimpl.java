@@ -35,9 +35,18 @@ public class PayServiceimpl implements PayService{
 		paydao.Save_Inform(id, snssts, state, postcode, city, town, street_add, option_add, save_add);
 	}
 	
-	public void pay_after(int point, String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform) {
+	public void pay_point(int point, int u_point, String id) {
 		PayDAO paydao = new PayDAO();
-		paydao.pay_after(point, merchant_uid, id, product, inform);
+		paydao.pay_point(point, u_point, id);
+	}
+	
+	public void pay_after(String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform) {
+		PayDAO paydao = new PayDAO();
+		paydao.pay_after(merchant_uid, id, product, inform);
 	}
 
+	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site) {
+		PayDAO paydao = new PayDAO();
+		paydao.reservation_after(merchant_uid, id, no, date, startTime, useTime, site);
+	}
 }
