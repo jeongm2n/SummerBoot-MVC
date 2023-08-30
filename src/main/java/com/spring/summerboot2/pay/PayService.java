@@ -14,7 +14,9 @@ public interface PayService {
 	public String[] Load_CarWash(String no);
 	public void Save_Inform(String id, String snssts, String state, String postcode, String city, String town,
 			String street_add, String option_add, String save_add);
-	public void pay_after(int point, String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform);
+	public void pay_point(int point, int u_point, String id);
+	public void pay_after(String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform);
+	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site);
 	
 }
 	

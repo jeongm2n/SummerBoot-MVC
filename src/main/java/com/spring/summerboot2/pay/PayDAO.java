@@ -145,13 +145,30 @@ public class PayDAO {
 		
 	}
 
-	public void pay_after(int point, String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform) {
+	public void pay_point(int point, int u_point, String id) {
 		try {
 			conn = DBconn.getDBCP();
-			LocalDate now = LocalDate.now();
+			
+			String sql = "update sb_member set point = ? where id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, point - u_point);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void pay_after(String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform) {
+		try {
+			conn = DBconn.getDBCP();
 			
 			String address = inform.getPostcode() + inform.getState() + inform.getCity() + inform.getTown() + inform.getStreet_add() + inform.getOption_add();
-			String sql;
+			String sql;	
 			
 			for(CartVO i_product : product) {
 				sql = "insert into sb_purchase (order_num, member_id, product_id, mount, address) values (?, ?, ?, ?, ?)";
@@ -169,13 +186,29 @@ public class PayDAO {
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
 			
-			if(point != 0) {
-				sql = "update sb_member set point = ? where id = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, inform.getPoint() - point);
-				pstmt.setString(2, id);
-				pstmt.executeUpdate();
-			}
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site) {
+		try {
+			conn = DBconn.getDBCP();
+			
+			String sql = "insert into sb_reservation (no, member_id, res_date, site, startTime, useTime, qr_img, order_num) values (?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(no));
+			pstmt.setString(2, id);
+			pstmt.setString(3, date);
+			pstmt.setInt(4, Integer.parseInt(site));
+			pstmt.setString(5, startTime);
+			pstmt.setInt(6, Integer.parseInt(useTime));
+			pstmt.setString(7, "1");
+			pstmt.setString(8, merchant_uid);
+			pstmt.executeUpdate();
 			
 			pstmt.close();
 			conn.close();
@@ -183,7 +216,6 @@ public class PayDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
+
 }
