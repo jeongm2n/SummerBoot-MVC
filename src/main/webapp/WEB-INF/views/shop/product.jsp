@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
     
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/slick.css"/>
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/slick-theme.css"/>
@@ -39,12 +39,12 @@
  		}
  	});
  	
-	function add_review(id,name,img){
-		let popUrl = "/shop/review/" id + "/" + name + "/" + img;
-		let popOption = "width = 450px, height=600px, top=300px, left=300px, scrollbars=yes";
-		
- 		window.open(popUrl,"리뷰 작성",popOption);	
-	}
+ 	function add_review(id, name, img) {
+ 	    let popUrl = "/shop/review/" + id + "/" + name + "/" + img;
+ 	    let popOption = "width=450px,height=600px,top=300px,left=300px,scrollbars=yes";
+ 	    
+ 	    window.open(popUrl, "리뷰 작성", popOption);	
+ 	}
  	</script>
 </head>
 
@@ -165,7 +165,7 @@
 							</div>
 						</div>
 						<!-- /tab1  --><a></a>
-					    <button type="button" style="float:right;" onclick="add_review(${product.product_id}, ${product.name}, ${product.img})">리뷰 작성</button>
+					    <button type="button" style="float:right;" onclick="add_review('${product.product_id}', '${product.name}', '${product.img}')">리뷰 작성</button>
 					    <div class="tab-label">
 							최근 리뷰
 					    </div>

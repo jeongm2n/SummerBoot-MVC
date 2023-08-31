@@ -1,6 +1,6 @@
 package com.spring.summerboot2.shop;
 
-import java.io.UnsupportedEncodingException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -110,16 +111,40 @@ public class ShopController {
 		
 	}
 	
-	@RequestMapping(value = "/review")
-	public ModelAndView review(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+	@RequestMapping(value = "/review/{id}/{name}/{img}")
+	public ModelAndView review(@PathVariable(value= "id") String id  ,@PathVariable(value= "name") String name  ,@PathVariable(value= "img") String img 
+			,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
 		ModelAndView mav = new ModelAndView();
-
+		
+		mav.addObject("id", id);
+		mav.addObject("name", name);
+		mav.addObject("img", img);
 		mav.setViewName("shop/review");
 		return mav;
+	}
+	
+	@RequestMapping(value = "/add_review", method = RequestMethod.POST)
+	public void add_review(HttpServletRequest request, HttpServletResponse response
+			,@RequestParam("product_id") String product_id  ,@RequestParam("rating") int rating
+			,@RequestParam("content") String content  ,@RequestParam("img") MultipartFile img) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		HttpSession session = request.getSession();
+		
+		String path = session.getServletContext().getRealPath("/");
+		String id =	(String)session.getAttribute("user_id");
+		
+		String imgFileName = img.getOriginalFilename();
+		if(!img.isEmpty()) {
+			File saveFile = new File("C:\\JavaProgram\\SummerBoot\\src\\main\\webapp\\resources\\assets\\img", imgFileName);
+			img.transferTo(saveFile);
+		}
+		
+		shopService.Add_review(id, Integer.parseInt(product_id), content, rating, imgFileName);
 	}
 	
 }

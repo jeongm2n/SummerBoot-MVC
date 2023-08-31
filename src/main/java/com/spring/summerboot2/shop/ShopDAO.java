@@ -235,4 +235,30 @@ public class ShopDAO {
 		
 		return null;	
 	}
+	
+	public void Add_review(String id, int product_id, String contents, int rating, String img) {
+		try {
+			conn = DBconn.getDBCP();
+			
+			ArrayList<ReviewVO> review = new ArrayList<ReviewVO>();
+			
+			String sql = "insert into sb_reviews (member_id, point, img, contents, product_id) values (?, ?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, rating);
+			pstmt.setString(3, img);
+			pstmt.setString(4, contents);
+			pstmt.setInt(5, product_id);
+			pstmt.executeUpdate();
+					
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+	}
+	
 }
