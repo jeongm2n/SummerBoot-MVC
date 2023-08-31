@@ -24,19 +24,20 @@
 	}
  	
  	$(document).ready( function perChange(){
+ 		if(!${review_count} == 0){
  			var five = ${s_review_count[4]} / ${review_count} * 100;
  			var four = ${s_review_count[3]} / ${review_count} * 100;
  			var three = ${s_review_count[2]} / ${review_count} * 100;
  			var two = ${s_review_count[1]} / ${review_count} * 100;
  			var one = ${s_review_count[0]} / ${review_count} * 100;
  			
-  			document.getElementById("five").style = " width:" + five +"%";
- 			document.getElementById("four").style = " width:" + four +"%";
- 			document.getElementById("three").style = " width:" + three +"%";
- 			document.getElementById("two").style = " width:" + two +"%";
- 			document.getElementById("one").style = " width:" + one +"%";
- 			
- 		});
+            document.getElementById("five").style.width = five + "%";
+            document.getElementById("four").style.width = four + "%";
+            document.getElementById("three").style.width = three + "%";
+            document.getElementById("two").style.width = two + "%";
+            document.getElementById("one").style.width = one + "%";
+ 		}
+ 	});
  	</script>
 </head>
 
@@ -129,7 +130,7 @@
 								<span class="qty-down">-</span>
 							</div>
 						</div>
-						<button class="add-to-cart-btn" onclick="add_cart(${product.product_id}, ${product.amount})"><i class="fa fa-shopping-cart"></i> 카트에 추가</button>
+						<button class="add-to-cart-btn" onclick="add_cart(${product.product_id}, ${product.amount});"><i class="fa fa-shopping-cart"></i> 카트에 추가</button>
 					</div>
 					</c:if>
 					
@@ -156,8 +157,8 @@
 								</div>
 							</div>
 						</div>
-						<!-- /tab1  -->
-						
+						<!-- /tab1  --><a></a>
+					    <button type="button" style="float:right;" onclick="">리뷰 작성</button>
 					    <div class="tab-label">
 							최근 리뷰
 					    </div>
@@ -168,15 +169,15 @@
 								<!-- Rating -->
 								<div class="col-md-4 rating-tab">
 									<div id="rating">
-										<div class="rating-avg">
-											<span>${product.rating}</span>
-											<div class="rating-stars">
-											<c:if test="${product.rating != 0}">
-											<c:forEach var="i" begin = "1" end="${product.rating}">
-												<i class="fa fa-star"></i>
-											</c:forEach>
-											</c:if>
+										<div class="rating-avg"">
+											<div class="rating-stars" style="margin-left:32px !important; width:auto !important">
+												<c:if test="${product.rating != 0}">
+												<c:forEach var="i" begin = "1" end="${product.rating}">
+													<i class="fa fa-star"></i>
+												</c:forEach>
+												</c:if>
 											</div>
+											<span>${product.rating}</span>
 										</div>
 										<ul class="rating">
 											<li>
@@ -246,6 +247,7 @@
 								<div class="col-md-8">
 									<div id="reviews">
 										<ul class="reviews">
+										<c:if test="!${review_count eq 0}">
 										<c:forEach var="review" items="${review}" begin="0" end="3">
 											<li>
 												<div class="review-heading">
@@ -265,6 +267,7 @@
 												</div>
 											</li>
 										</c:forEach>
+										</c:if>
 										</ul>
 									</div>
 								</div>
@@ -297,26 +300,31 @@
 
 	<script>
 	function add_cart(product_id, quantity){
-		let amount = document.getElementById('amount').value;
-		$.ajax({
-			type:"get",
-			async:false,  
-			url:"${contextPath}/shop/add_cart",
-			dataType:"text",
-			data: {
-				product_id:product_id,
-				quantity:quantity,
-				amount:amount
-			},
-			success:function (){
-				alert("장바구니에 추가되었습니다!");
-			},
-			error:function(request, error){
-				alert("에러가 발생했습니다.");
-			},
-			complete:function(){
-			}
-		});
+		if(${id} == false){
+			alert('로그인을 먼저 해주세요!');
+		}
+		else{
+			let amount = document.getElementById('amount').value;
+			$.ajax({
+				type:"get",
+				async:false,  
+				url:"${contextPath}/shop/add_cart",
+				dataType:"text",
+				data: {
+					product_id:product_id,
+					quantity:quantity,
+					amount:amount
+				},
+				success:function (){
+					alert("장바구니에 추가되었습니다!");
+				},
+				error:function(request, error){
+					alert("에러가 발생했습니다.");
+				},
+				complete:function(){
+				}
+			});
+		}
 	}
 	</script>
 	
