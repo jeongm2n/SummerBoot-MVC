@@ -152,7 +152,7 @@
 			$.ajax({
 				type:"get",
 				async:false,  
-				url:"${contextPath}/shop/add_cart",
+				url:"${Path}/shop/add_cart",
 				dataType:"text",
 				data: {
 					product_id:product_id,
