@@ -11,18 +11,6 @@
 	<script src="${path}/resources/assets/js/daumPostcode.js"></script>
 	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06a1b9ec0da85dcbc94968ce7bd3be22&libraries=services"></script>
-    <script>
-	    $(document).ready(function() {
-	        var message = "${msg}";
-	        if (message == 4) {
-	        	alert("오류로 지점 등록에 실패하였습니다.");
-	        }else if (message == 888) {
-	        	alert("새 지점이 등록되었습니다.");
-	            location.href="${path }/admin/store/storeList";
-	        }
-	    });
-	    
-    </script>
 </head>
 
 <body id="page-top">
@@ -106,6 +94,16 @@
 </html>
 
 <script>
+	$(document).ready(function() {
+	    var message = "${msg}";
+	    if (message == 4) {
+	    	alert("오류로 지점 등록에 실패하였습니다.");
+	    }else if (message == 888) {
+	    	alert("새 지점이 등록되었습니다.");
+	        location.href="${path }/admin/store/storeList";
+	    }
+	});
+
 	function loadFile(input) {
 		var file = input.files[0];
 		$('#imgTag').show();

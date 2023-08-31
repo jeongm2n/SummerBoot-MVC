@@ -121,4 +121,9 @@ public class AdminService {
 		AdminCommunityDAO dao = new AdminCommunityDAO();
 		return dao.update(vo);
 	}
+	
+	public List<Integer> reserCount() {
+		AdminDAO dao = new AdminDAO();
+		return dao.reserCount();
+	}
 }

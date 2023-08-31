@@ -11,6 +11,4 @@
 <!-- Page level plugins -->
 <script src="${path}/resources/assets/js/Chart.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="${path}/resources/assets/js/chart-area-demo.js"></script>
-<script src="${path}/resources/assets/js/chart-pie-demo.js"></script>
+
