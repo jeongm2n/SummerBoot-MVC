@@ -10,11 +10,11 @@
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
-                            본점 서울특별시 광진구 능동로 209
+                            서울특별시 영등포구 양평로22마길 28
                         </li>
                         <li>
                             <i class="fa fa-phone fa-fw"></i>
-                            <a class="text-decoration-none" href="tel:02-2205-0109">02-2205-0109</a>
+                            <a class="text-decoration-none" href="tel:02-2205-0110">02-2205-0110</a>
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
@@ -25,18 +25,24 @@
 
                 <div class="text-center col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Location</h2>
-                    <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="${path}/branch/list">서울 본점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">경기군포점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">경기평택점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">대구점</a></li>
+                    <ul class="list-unstyled text-light footer-link-list" id="loc">
+                        <li><a class="text-decoration-none" href="${path}/branch/list">양평로점</a></li>
+                        <li><a class="text-decoration-none" href="${path}/branch/list">경인로점</a></li>
+                        <li><a class="text-decoration-none" href="${path}/branch/list">천왕점</a></li>
+                        <li><a class="text-decoration-none" href="${path}/branch/list">가제1동점</a></li>
+                        <li><a class="text-decoration-none" href="${path}/branch/list">강동성안점</a></li>
+                        <li><a class="text-decoration-none" href="${path}/branch/list">성동마장점</a></li>
+                        <li><a class="text-decoration-none" href="${path}/branch/list">성북종암점</a></li>
+                        <li><a class="text-decoration-none" href="${path}/branch/list">은평갈현점</a></li>
+                        <li><a class="text-decoration-none" href="${path}/branch/list">관악봉천점</a></li>
+                        <li><a class="text-decoration-none" href="${path}/branch/list">용문점</a></li>
                     </ul>
                 </div>
 
                 <div class="text-center col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Service</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">상담전화 02-2205-0109</a></li>
+                        <li><a class="text-decoration-none" href="#">상담전화 02-2205-0110</a></li>
                         <li><a class="text-decoration-none" href="#">CS운영시간 09:00~23:30</a></li>
                     </ul>
                 </div>

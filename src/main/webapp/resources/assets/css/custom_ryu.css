@@ -17,6 +17,20 @@ a {
     --bs-table-hover-bg: #FFDAB9 !important;
 }
 
+.pb-5 {
+    padding-bottom: 2rem;
+}
+
+.col-lg-3 {
+    width: 20%;
+}
+
+.btn-join:disabled {
+    background: #f1f3f5;
+    color: #6e707e;
+    border: 1px solid #6e707e;
+}
+
 /*세차가이드*/
 .video_modal_popup.reveal {
     display: flex;
@@ -78,3 +92,12 @@ a {
 	z-index:100;
 	transform : translate(-50%, -50%);
 }
+
+/*footer location*/
+#loc {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
