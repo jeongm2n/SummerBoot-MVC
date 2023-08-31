@@ -5,10 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<jsp:include page="/WEB-INF/common.jsp" />
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<%@ include file="../common.jsp"%>
 	<link rel="stylesheet" href="${path}/summerboot2/resources/assets/css/custom_lee.css">
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
 	<script>
 		$(document).ready(function() {
@@ -16,7 +14,7 @@
 		    if(message == 999){
 		   		alert("답변 완료");
 		        window.close();
-				opener.location.href="${path }/summerboot2/admin/community/inquiry";
+				opener.location.href="${path }/admin/community/inquiry";
 		    } else if(message == 4){
 		    	alert("답변 실패");
 		    }

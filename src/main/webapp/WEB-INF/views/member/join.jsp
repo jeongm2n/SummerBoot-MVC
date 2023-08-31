@@ -1,22 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    isELIgnored="false"
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-
+<%@ include file="../common.jsp"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ include file="../common/header.jsp" %>
 <link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호검색 -->
 <script src="${path}/resources/assets/js/daumPostcode.js"></script>
-
-<c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 
 <script>
 	function fn_overlapped(){

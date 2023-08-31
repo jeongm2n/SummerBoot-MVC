@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -10,10 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Wash Boot</title>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_ryu.css">
-    <script src="//code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06a1b9ec0da85dcbc94968ce7bd3be22&libraries=services"></script>
 </head>
 <body>
@@ -303,6 +299,7 @@
 		if ("${msg}" == 'login') { // 로그인이 되면 url 메인으로 변경
 		    location.href="${path}"
 		}
+		$("#1").show();
     });
     function getTodayResList(todayres) {
         //비동기
@@ -388,8 +385,8 @@
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
-	    center: new kakao.maps.LatLng(37.55060510552442, 127.07425954802976), // 지도의 중심좌표
-	    level: 7 // 지도의 확대 레벨
+	    center: new kakao.maps.LatLng(37.56669040096864, 127.01172652194761), // 지도의 중심좌표
+	    level: 8 // 지도의 확대 레벨
 	};  
 
 	// 지도를 생성합니다    
@@ -399,7 +396,7 @@
 	var ps = new kakao.maps.services.Places();
 
 	mark();
-	myLocation();
+	/* myLocation(); */
 
 	function inputSearch() {
 		var want = document.getElementById("search").value;
@@ -446,7 +443,8 @@
 	}
 
 	function myLocation() { // 내 현위치 찾는 함수
-		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+		$(".infoHidden").hide();
 		if (navigator.geolocation) {
 		    
 			// GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -461,9 +459,10 @@
 			});
 		    
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-			var locPosition = new kakao.maps.LatLng(37.55060510552442, 127.07425954802976);
+			var locPosition = new kakao.maps.LatLng(37.56669040096864, 127.01172652194761);
 			displayMarker(locPosition);
 		}
+	
 	}
 
 	function displayMarker(locPosition) { // 지도 중심좌표를 접속위치로 변경합니다
@@ -472,6 +471,7 @@
 
 	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 	function placesSearchCB(data, status, pagination) {
+		$(".infoHidden").hide();
 		if (status === kakao.maps.services.Status.OK) {
 	
 	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -512,6 +512,7 @@
 	function reservation(no) {
 		<%if(user_id==null){%>
 			alert('로그인을 먼저 해주세요!');
+			location.href = "${path}/member/login";
 		<%}
 		else{%>
 			var date = new Date();

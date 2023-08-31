@@ -108,7 +108,7 @@ public class AdminCommunityDAO {
 				}
 			}
 			
-			sql += " ORDER BY ins_date LIMIT " + start + ", 20";
+			sql += " ORDER BY ins_date DESC LIMIT " + start + ", 20";
 			System.out.println("prepareStatement : " + sql);
 			
 			pstmt = con.prepareStatement(sql);

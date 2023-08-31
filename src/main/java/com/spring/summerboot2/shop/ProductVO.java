@@ -11,6 +11,15 @@ public class ProductVO {
 	private String description;
 	private int rating;
 	
+	public ProductVO(int product_id, String name, int amount, int price, String img, String category) {
+		this.product_id = product_id;
+		this.name = name;
+		this.amount = amount;
+		this.price = price;
+		this.img = img;
+		this.category = category;
+	}
+	
 	public ProductVO(int product_id, String name, int price, int amount, String img, String category, String description, int rating) {
 		this.product_id = product_id;
 		this.name = name;

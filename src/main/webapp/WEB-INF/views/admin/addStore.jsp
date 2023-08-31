@@ -6,7 +6,6 @@
 <head>
 	<%@ include file="./common/head.jsp"%>
     <title>상품등록</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${path}/resources/assets/js/daumPostcode.js"></script>
 	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">

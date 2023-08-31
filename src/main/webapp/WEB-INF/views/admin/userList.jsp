@@ -39,7 +39,7 @@
 								</div>
 								<div class="input-group">
 									<input type="text" class="form-control" id="inputMobileSearch" placeholder="Search" name="search" <c:if test="${search ne 'none'}"> value="${search }"</c:if>>
-									<div class="input-group-text" id="search">
+									<div class="input-group-text" id="search" style="cursor:pointer;">
 										<i class="fa fa-fw fa-search"></i>
 									</div>
 								</div>
@@ -52,7 +52,13 @@
                                             <th>Name</th>
                                             <th>Phone</th>
                                             <th>Email</th>
-                                            <th>Email_YN</th>
+                                            <th>
+	                                            <select id="E_YN" name="E_YN" style="padding:0;border:none;color: #858796;font-weight: bolder;">
+													<option value="0">Email_YN</option>
+													<option value="Y" <c:if test="${E_YN eq Y}">selected</c:if>>Email_Y</option>
+													<option value="N" <c:if test="${E_YN eq N}">selected</c:if>>Email_N</option>
+												</select>
+                                            </th>
                                             <th>Address</th>
                                             <th>Point</th>
                                             <th>탈퇴</th>
@@ -97,8 +103,19 @@
                                 </table>
                             </div>
                         </div>
+                        
+                        <div class="row">
+							<ul class="pagination pagination-lg justify-content-center">
+								<c:set var="current" value="${page }"/>
+								<c:forEach var="page" begin="1" end="${pages }" step="1">
+									<li class="page-item">
+										<a class='page-link rounded-0 mr-3 border-top-0 border-left-0 <c:if test="${page eq current}">disabled</c:if>' onclick="page(${page});">${page}</a>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
+						
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 			</div>
@@ -107,7 +124,11 @@
 	<%@ include file="./common/footer.jsp" %>
 </body>
 </html>
-
+<style>
+	.row {
+		justify-content: center;
+	}
+</style>
 <script>
 	function user_delete(id) {
 		alert(id);
@@ -136,10 +157,42 @@
 	}
 	
 	$(document).on('click', '#search', function search() {
+		var E_YN = $("#E_YN").val();
+		var searchCon = $("#searchCon").val();
+		var search = $("#inputMobileSearch").val();
+		var path = "${path}/admin/userList?search="+search + "&searchCon=" + searchCon;
+		
+		if(E_YN != 0) {
+			path += "&E_YN=" + E_YN;
+		}
+		
+		location.href=path;
+	});
+	
+	$(document).on('change', '#E_YN', function() {
+		var E_YN = $("#E_YN").val();
 		var searchCon = $("#searchCon").val();
 		var search = $("#inputMobileSearch").val();
 		
-		var path = "${path}/admin/userList?search="+search + "&searchCon=" + searchCon;
+		var path = "${path}/admin/userList?E_YN=" + E_YN;
+		if(search.length > 0) {
+			path += "&search=" + search + "&searchCon=" + searchCon;
+		}
 		location.href=path;
 	});
+	
+	function page(page) {
+		var E_YN = $("#E_YN").val();
+		var searchCon = $("#searchCon").val();
+		var search = $("#inputMobileSearch").val();
+		
+		var path = "${path}/admin/userList?page=" + page;
+		if(search.length > 0) {
+			path += "&search=" + search + "&searchCon=" + searchCon;
+		}
+		if(E_YN != 0) {
+			path += "&E_YN=" + E_YN;
+		}
+		location.href=path;
+	}
 </script>

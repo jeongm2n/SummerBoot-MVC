@@ -1,28 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    isELIgnored="false"
 %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
+	<%@ include file="../common.jsp"%>
 	<meta charset="UTF-8">
 	<title>내 정보</title>
 	
 	<% request.setCharacterEncoding("utf-8"); %>
 	<%@ include file="../common/header.jsp" %>
 	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호검색 -->
 	<script src="${path}/resources/assets/js/daumPostcode.js"></script>
 	
-	<c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 	
 	<script>
 		function pwd_change(){
-			window.open("${contextPath}/member/pwd_change", "name(about:blank)", "width=600, height=600");
+			window.open("${path}/member/pwd_change", "name(about:blank)", "width=600, height=600");
 	 	}
 		
 		$(document).on('click', '#update' , function() {

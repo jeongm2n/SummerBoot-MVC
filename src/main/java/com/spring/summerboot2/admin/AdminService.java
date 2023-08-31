@@ -10,14 +10,19 @@ import com.spring.summerboot2.branch.WashlistVO;
 import com.spring.summerboot2.community.InquiryVO;
 import com.spring.summerboot2.member.MemberDAO;
 import com.spring.summerboot2.member.MemberVO;
-import com.spring.summerboot2.product.ProductVO;
+import com.spring.summerboot2.shop.ProductVO;
 import com.spring.summerboot2.reservation.*;
 
 @Service
 public class AdminService {
-	public List<MemberVO> userList(String searchCon, String search) {
+	public List<MemberVO> userList(String searchCon, String search, String E_YN, int start) {
 		MemberDAO member = new MemberDAO();
-		return member.userList(searchCon, search);
+		return member.userList(searchCon, search, E_YN, start);
+	}
+	
+	public int userCnt(String searchCon, String search, String E_YN) {
+		MemberDAO member = new MemberDAO();
+		return member.userCnt(searchCon, search, E_YN);
 	}
 	
 	public List<WashlistVO> washList() {

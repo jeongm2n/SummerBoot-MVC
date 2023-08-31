@@ -27,14 +27,14 @@ public class ShopDAO {
 			
 			if(category.equals("전체")) {
 				if(sort == 1) {sql = "SELECT * from sb_product order by name asc limit " + f_page + "," + b_page + "";}
-				else if(sort == 2) {sql = "SELECT * from sb_product order by price asc limit " + f_page + "," + b_page + "";}
-				else if(sort == 3) {sql = "SELECT * from sb_product order by price desc limit " + f_page + "," + b_page + "";}
+				else if(sort == 2) {sql = "SELECT * from sb_product order by price desc limit " + f_page + "," + b_page + "";}
+				else if(sort == 3) {sql = "SELECT * from sb_product order by price asc limit " + f_page + "," + b_page + "";}
 				else {sql = "SELECT * from sb_product  limit " + f_page + "," + b_page + "";}
 			}
 			else{
 				if(sort == 1) {sql = "SELECT * from sb_product where category = '" + category + "' order by name asc limit " + f_page + "," + b_page + "";}
-				else if(sort == 2) {sql = "SELECT * from sb_product where category = '" + category + "' order by price asc limit " + f_page + "," + b_page + "";}
-				else if(sort == 3) {sql = "SELECT * from sb_product where category = '" + category + "' order by price desc limit " + f_page + "," + b_page + "";}
+				else if(sort == 2) {sql = "SELECT * from sb_product where category = '" + category + "' order by price desc limit " + f_page + "," + b_page + "";}
+				else if(sort == 3) {sql = "SELECT * from sb_product where category = '" + category + "' order by price asc limit " + f_page + "," + b_page + "";}
 				else {sql = "SELECT * from sb_product where category = '" + category + "' limit " + f_page +"," + b_page + "";}
 			}
 					

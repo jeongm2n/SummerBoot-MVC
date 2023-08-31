@@ -5,9 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>WASHBOOT 지점</title>
+	<%@ include file="../common.jsp"%>
 	<%@ include file="../common/header.jsp" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
 </head>
 <body>

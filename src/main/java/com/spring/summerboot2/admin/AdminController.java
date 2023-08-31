@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.summerboot2.community.InquiryVO;
 import com.spring.summerboot2.member.MemberVO;
-import com.spring.summerboot2.product.ProductVO;
+import com.spring.summerboot2.shop.ProductVO;
 import com.spring.summerboot2.reservation.ReservationVO;
 
 @Controller
@@ -47,13 +48,29 @@ public class AdminController {
     }
 	
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
-    public ModelAndView userList(@RequestParam(value="searchCon", defaultValue="0") String searchCon, @RequestParam(value="search", defaultValue="none") String search) throws Exception {
+    public ModelAndView userList(@RequestParam(value="searchCon", defaultValue="0") String searchCon,
+    		@RequestParam(value="search", defaultValue="none") String search,
+    		@RequestParam(value="E_YN", defaultValue="0") String E_YN,
+    		@RequestParam(value="page", defaultValue="1") int page) throws Exception {
+		
 		List<MemberVO> userList;
-		userList = adminService.userList(searchCon, search);
+		int start = (page-1)*15;
+		
+		userList = adminService.userList(searchCon, search, E_YN, start);
+		int cnt = adminService.userCnt(searchCon, search, E_YN);
+		int pages = 0;
+		if(cnt%15 ==0) {
+			pages = cnt/15;
+		} else {
+			pages = cnt/15 + 1;
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("searchCon", searchCon);
 		mav.addObject("search", search);
+		mav.addObject("E_YN", E_YN);
+		mav.addObject("page", page);
+		mav.addObject("pages", pages);
 		mav.addObject("users", userList);
 		mav.setViewName("admin/userList");
         return mav;
@@ -77,10 +94,13 @@ public class AdminController {
     }
 	
 	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
-	public ModelAndView addProduct(@RequestParam MultipartFile file, @RequestParam Map<String, String> product) throws IOException {
-		String uploadPath = "C:/ThisIsJava/workspace/SummerBoot-MVC/src/main/webapp/resources/assets/img/";
+	public ModelAndView addProduct(@RequestParam MultipartFile file, @RequestParam Map<String, String> product, HttpSession session) throws IOException {
+		String path = session.getServletContext().getRealPath("/");
+		System.out.println("path : " + path);
+		String uploadPath = path + "resources\\assets\\img\\";
 		
 		int product_id = Integer.parseInt(product.get("product_id"));
+		String category = product.get("category");
 		String name = product.get("name");
 		int amount =Integer.parseInt(product.get("amount"));
 		int price =Integer.parseInt(product.get("price"));
@@ -105,7 +125,7 @@ public class AdminController {
 		 
 		ModelAndView mav = new ModelAndView();
 		 
-		ProductVO vo = new ProductVO(product_id, name, amount, price, saveName);
+		ProductVO vo = new ProductVO(product_id, name, amount, price, saveName, category);
 		if (adminService.addProduct(vo)) {
 			mav.addObject("msg", 888);
 		} else {

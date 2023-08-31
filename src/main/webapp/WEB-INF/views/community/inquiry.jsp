@@ -5,9 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>WASHBOOT 지점</title>
+	<%@ include file="../common.jsp"%>
 	<%@ include file="../common/header.jsp" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
 </head>
 <body>
@@ -118,7 +117,7 @@
 				<c:set var="current" value="${page }"/>
 				<c:forEach var="page" begin="1" end="${pages }" step="1">
 					<li class="page-item">
-						<a class='page-link rounded-0 mr-3 border-top-0 border-left-0 <c:if test="${page eq current}">disabled</c:if>' href="${path}/community/qna?page=${page}">${page}</a>
+						<a class='page-link rounded-0 mr-3 border-top-0 border-left-0 <c:if test="${page eq current}">disabled</c:if>' onclick="page(${page});">${page}</a>
 					</li>
 				</c:forEach>
 			</ul>
@@ -253,6 +252,24 @@
 		location.href=path;
 	});
 	
+	function page(page) {
+		var searchCon = $("#searchCon").val();
+		var search = $("#inputMobileSearch").val();
+		var category = $("#category").val();
+		var state = $("#state").val();
+		
+		var path = "${path}/community/qna?page=" + page;
+		if(search.length > 0) {
+			path += "&search=" + search + "&searchCon=" + searchCon;
+		}
+		if(category!=0) {
+			path += "&category=" + category;
+		}
+		if(state!=0) {
+			path += "&state=" + state;
+		}
+		location.href=path;
+	}
 	
 	function enterkey() {
 		if (window.event.keyCode == 13) {

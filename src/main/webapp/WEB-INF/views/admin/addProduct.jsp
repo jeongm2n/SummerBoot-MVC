@@ -6,7 +6,6 @@
 <head>
 	<%@ include file="./common/head.jsp"%>
     <title>상품등록</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
 	    $(document).ready(function() {
 	        var message = "${msg}";
@@ -44,6 +43,17 @@
 					                <label for="inputsubject" class="title">상품 사진</label>
 					                <div id="imgTag" style="height: 100px; width: 100px; display:none; margin-right:2%"></div>
 				                    <input type="file" class="form-control mt-1" id="file" name="file" onchange="loadFile(this)">
+				                </div>
+				            	<div class="input-group mb-3">
+					                <label for="inputsubject" class="title">상품 코드</label>
+				                    <div style="margin-right:10px;">
+										<select class="form-control" id="category" name="category" style="height:40px;">
+											<option value="0">카테고리</option>
+											<option value="실내">실내</option>
+											<option value="외장">외장</option>
+											<option value="차량관리">차량관리</option>
+										</select>
+									</div>
 				                </div>
 				            	<div class="input-group mb-3">
 					                <label for="inputsubject" class="title">상품 코드</label>
@@ -100,6 +110,9 @@
 	   		return;
 	   	} else if($("#price").val().length == 0) {
 	   		alert("가격을 입력하세요.");
+	   		return;
+	   	} else if($("#category").val() == 0) {
+	   		alert("카테고리를 선택하세요.");
 	   		return;
 	   	} else {
 			document.getElementById("productForm").submit();

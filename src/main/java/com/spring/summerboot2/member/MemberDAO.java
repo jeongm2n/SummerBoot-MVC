@@ -206,7 +206,7 @@ public class MemberDAO {
 		return change;
 	}
 	
-	public List<MemberVO> userList(String searchCon, String search) {
+	public List<MemberVO> userList(String searchCon, String search, String E_YN, int start) {
 		List<MemberVO> list= new ArrayList<MemberVO>();
 		try {
 			con = DBconn.getDBCP();
@@ -227,7 +227,15 @@ public class MemberDAO {
 				}
 			}
 			
-			sql += " ORDER BY id";
+			if(!E_YN.equals("0")) {
+				if(E_YN.equals("Y")) {
+					sql += " AND email_yn = 'Y'";
+				} else {
+					sql += " AND email_yn = 'N'";
+				}
+			}
+			
+			sql += " ORDER BY id LIMIT " + start + ", 15";
 			System.out.println("prepareStatement : " + sql);
 			
 			pstmt = con.prepareStatement(sql);
@@ -252,5 +260,51 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public int userCnt(String searchCon, String search, String E_YN) {
+		int count = 0;
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "SELECT count(*) as cnt FROM sb_member WHERE 1=1";
+			
+			if(!search.equals("none")) {
+				if(!searchCon.equals("0")) {
+					if(searchCon.equals("id")) {
+						sql += " AND id like '%"+search+"%'";
+					} else if(searchCon.equals("name")) {
+						sql += " AND mem_name like '%"+search+"%'";
+					} else if(searchCon.equals("addr")) {
+						sql += " AND address like '%"+search+"%'";
+					}
+				} else {
+					sql += " AND (id like '%"+search+"%' OR mem_name like '%" + search + "%' OR address like '%" + search + "%')";
+				}
+			}
+			
+			if(!E_YN.equals("0")) {
+				if(E_YN.equals("Y")) {
+					sql += " AND email_yn = 'Y'";
+				} else {
+					sql += " AND email_yn = 'N'";
+				}
+			}
+			
+			System.out.println("prepareStatement : " + sql);
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt("cnt");
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 }

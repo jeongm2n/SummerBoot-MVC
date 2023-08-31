@@ -343,6 +343,13 @@
 </style>
 
 <script>
+	$( document ).ready(function() {
+	    var message = "${msg}";
+		if ("${msg}" == 'admin') { // 로그인이 되면 url 메인으로 변경
+		    location.href="${path}/admin/"
+		}
+	});
+
 	$(document).on('click', '#moreIn', function() {
 		alert();
 		location.href="${path}/admin/community/inquiry?state=wait"

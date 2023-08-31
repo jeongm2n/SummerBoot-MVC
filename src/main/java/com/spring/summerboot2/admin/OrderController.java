@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.summerboot2.product.ProductVO;
+import com.spring.summerboot2.shop.ProductVO;
 
 @Controller
 @RequestMapping("/admin/order")
