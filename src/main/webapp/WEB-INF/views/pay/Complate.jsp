@@ -18,6 +18,7 @@
     	<div style="height: 500px; width:1000px; position: relative; margin: auto;">
     		<div style=" width: 100%; position: absolute; top: 45%; text-align: center;">
     			<h1>주문 ${merchant_uid}이 결제 완료되었습니다.</h1>
+    			<img src="${path }/resources/asstes/img/qr/${qrCode}"><br>
     			<input type=button value="메인페이지로" onclick="location.href = '../'" >
     		</div>
     	</div>
@@ -38,7 +39,7 @@
 	}
 	document.onkeydown = noEvent;
 
-    history.pushState(null, null, "http://localhost:8060/pay/pay_after");
+    history.pushState(null, null, "http://localhost:8060/summerboot2/pay/pay_after");
     
     window.onpopstate = function(event) {
     history.go(1);

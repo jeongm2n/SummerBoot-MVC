@@ -64,11 +64,11 @@
             // 결제검증
             $.ajax({
                 type : "POST",
-                url : "/verifyIamport/" + res.imp_uid
+                url : "${path}/verifyIamport/" + res.imp_uid
             }).done(function(data) {
                 if(res.paid_amount == data.response.amount){
                     alert("결제 및 결제검증완료");
-                    let link = '/../pay/reservation_after/' + "WB" + makeMerchantUid  + ",${point},${reservation.no},${reservation.res_date},${reservation.startTime},${reservation.useTime},${reservation.site}";
+                    let link = '${path}/pay/reservation_after/' + "WB" + makeMerchantUid  + ",${point},${reservation.no},${reservation.res_date},${reservation.startTime},${reservation.useTime},${reservation.site}";
                     location.href = link;
                 } else {
                 	var msg = '결제에 실패하였습니다.';

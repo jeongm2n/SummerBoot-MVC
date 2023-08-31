@@ -194,7 +194,7 @@ public class PayDAO {
 		}
 	}
 	
-	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site) {
+	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site, String qrCode) {
 		try {
 			conn = DBconn.getDBCP();
 			
@@ -206,7 +206,7 @@ public class PayDAO {
 			pstmt.setInt(4, Integer.parseInt(site));
 			pstmt.setString(5, startTime);
 			pstmt.setInt(6, Integer.parseInt(useTime));
-			pstmt.setString(7, "1");
+			pstmt.setString(7, qrCode);
 			pstmt.setString(8, merchant_uid);
 			pstmt.executeUpdate();
 			

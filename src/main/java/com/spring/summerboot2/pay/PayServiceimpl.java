@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
+import com.spring.summerboot2.api.QRcodeDAO;
 import com.spring.summerboot2.cart.CartVO;
 
 @Service
@@ -45,8 +46,13 @@ public class PayServiceimpl implements PayService{
 		paydao.pay_after(merchant_uid, id, product, inform);
 	}
 
-	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site) {
+	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site, String qrCode) {
 		PayDAO paydao = new PayDAO();
-		paydao.reservation_after(merchant_uid, id, no, date, startTime, useTime, site);
+		paydao.reservation_after(merchant_uid, id, no, date, startTime, useTime, site, qrCode);
+	}
+	
+	public String makeQRcode(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site, String savePath) {
+		QRcodeDAO qrDAO = new QRcodeDAO();
+		return qrDAO.makeQR(merchant_uid, id, no, date, startTime, useTime, site, savePath);
 	}
 }

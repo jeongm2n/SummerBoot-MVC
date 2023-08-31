@@ -178,6 +178,17 @@
 		    <artifactId>iamport-rest-client-java</artifactId>
 		    <version>0.2.14</version>
 		</dependency>	
+		
+		<dependency>
+		    <groupId>com.google.zxing</groupId>
+		    <artifactId>core</artifactId>
+		    <version>3.5.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.google.zxing</groupId>
+		    <artifactId>javase</artifactId>
+		    <version>3.5.2</version>
+		</dependency>
 </dependencies>
 <!-- 아임포트 REST API연동 모듈 -->
 <repositories>

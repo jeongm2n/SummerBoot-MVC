@@ -16,7 +16,8 @@ public interface PayService {
 			String street_add, String option_add, String save_add);
 	public void pay_point(int point, int u_point, String id);
 	public void pay_after(String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform);
-	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site);
+	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site, String qrCode);
 	
+	public String makeQRcode(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site, String savePath);
 }
 	

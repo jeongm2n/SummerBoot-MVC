@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,6 +34,7 @@ public class PayController {
 	@Autowired
 	private PayService payService;
 
+	
 	
 	@RequestMapping(value = "/inform", method = RequestMethod.GET)
 	public ModelAndView inform(@RequestParam("product_id") String[] product_id, @RequestParam("product_name") String[] name, 
@@ -270,6 +272,14 @@ public class PayController {
 		return mav;
 	}
 	 
+	 
+	 private final ServletContext servletContext;
+
+	 @Autowired
+	 public PayController(ServletContext servletContext) {
+		 this.servletContext = servletContext;
+	 }
+	    
 	 @ResponseBody
 	 @RequestMapping(value="/reservation_after/{merchant_uid},{point},{no},{date},{startTime},{useTime},{site}")
 	 public ModelAndView reservation_after(HttpServletRequest request, HttpServletResponse response
@@ -286,10 +296,19 @@ public class PayController {
 		
 		String user_id = (String)session.getAttribute("user_id");
 		payService.pay_point(payService.Load_Point(user_id), s_point, user_id);
-		payService.reservation_after(merchant_uid, user_id, no, date, startTime, useTime, site);
+		
+		//String savePath = servletContext.getRealPath("resources/assets/img/qr/");
+		String savePath = request.getSession().getServletContext().getRealPath("resources/assets/img/qr/");
+		System.out.println(savePath);
+		
+		String qrCode = payService.makeQRcode(merchant_uid, user_id, no, date, startTime, useTime, site, savePath);
+		
+		payService.reservation_after(merchant_uid, user_id, no, date, startTime, useTime, site, qrCode);
+		
 		
 		
 		mav.addObject("merchant_uid", merchant_uid);
+		mav.addObject("qrCode", qrCode);
 		mav.setViewName("pay/Complate");
 		return mav;
 	}
