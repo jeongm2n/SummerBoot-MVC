@@ -38,7 +38,7 @@ public class ReservationVO {
 	
 	
 
-	public ReservationVO(String order_num, String shop, String res_date, int site, String startTime, String useTime, String endTime) {
+	public ReservationVO(String order_num, String shop, String res_date, int site, String startTime, String useTime, String endTime, String qr_img) {
 		super();
 		this.order_num = order_num;
 		this.shop = shop;
@@ -47,6 +47,7 @@ public class ReservationVO {
 		this.startTime = startTime;
 		this.useTime = useTime;
 		this.endTime = endTime;
+		this.qr_img = qr_img;
 	}
 
 	public int getRes_no() {

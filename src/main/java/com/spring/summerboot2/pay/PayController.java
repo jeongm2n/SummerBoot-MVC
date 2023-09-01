@@ -271,14 +271,6 @@ public class PayController {
 		mav.setViewName("pay/res_pay");
 		return mav;
 	}
-	 
-	 
-	 private final ServletContext servletContext;
-
-	 @Autowired
-	 public PayController(ServletContext servletContext) {
-		 this.servletContext = servletContext;
-	 }
 	    
 	 @ResponseBody
 	 @RequestMapping(value="/reservation_after/{merchant_uid},{point},{no},{date},{startTime},{useTime},{site}")
