@@ -57,3 +57,18 @@
 	border-radius: 5px;
 }
 
+#submitBtn{
+	font-size: 10px;
+	display: inline-block;
+	background-color: #FD8008;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 5px 15px;
+	margin-top: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+#submitBtn:hover {
+	background-color: rgb(255, 128, 0);
+}
