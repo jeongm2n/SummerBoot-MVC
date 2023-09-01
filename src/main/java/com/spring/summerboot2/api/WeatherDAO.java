@@ -1,5 +1,12 @@
 package com.spring.summerboot2.api;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -7,24 +14,15 @@ import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.io.BufferedReader;
-import java.io.IOException;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class WeatherDAO {
 	
 	String skey = "f4CnjhqW4Ekv2mXBwujW%2BT%2BZBT9yOjcJxhMTlSaJ0VpqbC8exBnefo%2BJ2OtUbw0wjzVqiJs8jrdH2Afj75PDzg%3D%3D";
-	
+
 	//당일 날씨 정보 가져오기
-	public List<WeatherVO> get1Day(String today, String nx, String ny) throws IOException, ParseException{
+	public List<WeatherVO> getOneday(String today, String nx, String ny) throws IOException, ParseException{
 		//today는 20230817과 같은 형태로, nx, ny는 좌표 정보입니다!!
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /*단기예보조회 URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+skey); /*Service Key*/
@@ -63,38 +61,25 @@ public class WeatherDAO {
 		JSONArray item = (JSONArray)items.get("item");
 		
 		String fcstDate = today;
-		String ampop = ""; //오전의 강수확률
-		String pmpop = ""; //오후의 강수확률
-		String tmn = ""; //최저기온
-		String tmx = ""; //최고기온 
+		String pop = ""; //시간별 강수형태 출력
 		
 		for(int i=0; i<item.size(); i++) {
 			JSONObject data = (JSONObject)item.get(i);
-			if(((String)data.get("fcstDate")).equals(fcstDate)) {
-				if(((String)data.get("fcstTime")).equals("0600")) { 
-		    		//최저온도인 TMN은 0600에만 발표되기때문에 편의성을 위해 0600에 최저온도, 강수확률(POP)까지 같이 뽑아옴
-		    		if(((String)data.get("category")).equals("POP")) {
-		    			ampop = (String)data.get("fcstValue"); //예보시간이 0600이기 때문에 오전의 강수확률을 ampop에 저장
-		    			System.out.println("ampop : "+ampop);
-		    		}else if(((String)data.get("category")).equals("TMN")) { 
-		    			tmn = (String)data.get("fcstValue"); //최저온도를 TMN에 저장
-		    			System.out.println("tmn : "+tmn);
-		    		}
-		    	}else if(((String)data.get("fcstTime")).equals("1500")) { 
-		    		//최고온도인 TMX는 1500에만 발표되기때문에 편의성을 위해 1500에 최고온도, 강수확률(POP)까지 같이 뽑아옴
-		    		if(((String)data.get("category")).equals("POP")) {
-		    			pmpop = (String)data.get("fcstValue"); //오후의 강수확률을 pmpop에 저장
-		    			System.out.println("pmpop : "+pmpop);
-		    		}else if(((String)data.get("category")).equals("TMX")) { 
-		    			tmx = (String)data.get("fcstValue"); //최고온도를 tmx에 저장
-		    			System.out.println("tmx : "+tmx);
-		    		}
-		    	}
-			}else {break;}
+			if(((String)data.get("fcstDate")).equals(fcstDate)) { //날짜가 오늘날짜일때
+				for (int a = 9; a <= 23; a++) {
+					String onTime = String.format("%02d", a) + "00";
+					if (((String) data.get("fcstTime")).equals(onTime)) { //9시~23시 정각시간
+						if (((String) data.get("category")).equals("POP")) { //카테고리가 PTY(강수형태)
+							pop = (String) data.get("fcstValue");
+							System.out.println("pop : " + pop);
+						}
+					}
+				}
+			} else {break;}
 		}
 		
 		List<WeatherVO> oneday = new ArrayList<>();
-		WeatherVO weather = new WeatherVO(fcstDate, ampop, pmpop, tmx, tmn);
+		WeatherVO weather = new WeatherVO(pop);
 		oneday.add(weather);
 		
 		return oneday;
