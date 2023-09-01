@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../common.jsp"%>
 <meta charset="UTF-8">
 <title>나의 예약정보</title>
 <%@ include file="../common/header.jsp" %>
@@ -11,7 +12,7 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-bottom:30px">
 	<div class="card">
 	<h1>나의 예약현황</h1>
 		<div class="card">사용 전
@@ -41,6 +42,6 @@
 		</div>
 	</div>
 </div>
-
+<%@ include file="../common/footer.jsp"%>
 </body>
 </html>
