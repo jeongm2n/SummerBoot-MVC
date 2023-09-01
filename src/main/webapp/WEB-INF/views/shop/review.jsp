@@ -42,15 +42,15 @@
           <fieldset>
           <label class="review_label">별점을 입력해주세요</label><br>
           <div class="star_input">
-			<input id="star1" name="rating" value="1" type="radio"><label for="star1">⭐</label>
-			<input id="star2" name="rating" value="2" type="radio"><label for="star2">⭐</label>
-			<input id="star3" name="rating" value="3" type="radio"><label for="star3">⭐</label>
-			<input id="star4" name="rating" value="4" type="radio"><label for="star4">⭐</label>
 			<input id="star5" name="rating" value="5" type="radio"><label for="star5">⭐</label>
+			<input id="star4" name="rating" value="4" type="radio"><label for="star4">⭐</label>
+			<input id="star3" name="rating" value="3" type="radio"><label for="star3">⭐</label>
+			<input id="star2" name="rating" value="2" type="radio"><label for="star2">⭐</label>
+			<input id="star1" name="rating" value="1" type="radio"><label for="star1">⭐</label>
           </div>
 		  </fieldset><br>
 	      <label for="content" class="review_label">어떤 점이 좋았나요?</label><br>
-          <textarea name="content" id="content" class="input_text" placeholder="리뷰 내용을 작성해주세요!" required></textarea><br>
+          <textarea name="content" id="content" class="input_text" placeholder="리뷰 내용을 작성해주세요!"></textarea><br>
 		  <label class="label">제품 사진</label><br>
 		  <label for="obj_img" class="filelabel">사진 업로드</label>
 		  <input type="file" id="obj_img" name="img" accept="image/*" required onchange="handleFileInput(this);">
@@ -65,33 +65,47 @@
 <script>
 	$(document).ready(function() {
 	    $("#submitBtn").click(function() {
-	      submitReview();
+	        if (validateForm()) {
+	            submitReview();
+	        }
 	    });
-	  });
+	});
+	
+	function validateForm() {
+	    const rating = $("input[name='rating']:checked").val();
+	    const content = $("#content").val();
+	
+	    if (!rating) {
+	        alert("별점을 선택해주세요.");
+	        return false;
+	    }
+	
+	    if (!content) {
+	        alert("리뷰 내용을 입력해주세요.");
+	        return false;
+	    }
+	
+	    return true;
+	}
 
 	function submitReview() {
-		if(${id} == false){
-			alert('로그인을 먼저 해주세요!');
-		}
-		else{
-		    let formData = new FormData($("#reviewForm")[0]);
+		let formData = new FormData($("#reviewForm")[0]);
 			
-		 	$.ajax({
-		    	type: "POST",
-		    	url: "${path}/shop/add_review",
-		    	data: formData,
-			    processData: false,
-			    contentType: false,
-		        success: function(response) {
-		            console.log("리뷰 작성이 완료되었습니다.");
-		            window.close();
-		        },
-		        error: function(xhr) {
-		            console.log("에러가 발생했습니다: " + xhr.responseText);
-		            alert("에러가 발생했습니다: " + xhr.responseText);
-		        }
-	    	});
-		}
+		$.ajax({
+			type: "POST",
+			url: "${path}/shop/add_review",
+			data: formData,
+		 	processData: false,
+		 	contentType: false,
+			success: function(response) {
+			    console.log("리뷰 작성이 완료되었습니다.");
+			    window.close();
+			    },
+			error: function(xhr) {
+			    console.log("에러가 발생했습니다: " + xhr.responseText);
+			    alert("에러가 발생했습니다: " + xhr.responseText);
+			}
+		});
 	}
 
 </script>

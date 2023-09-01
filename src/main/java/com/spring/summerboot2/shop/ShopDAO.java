@@ -204,7 +204,7 @@ public class ShopDAO {
 			
 			ArrayList<ReviewVO> review = new ArrayList<ReviewVO>();
 			
-			String sql = "SELECT * from sb_reviews where product_id = '" + product_id + "'";
+			String sql = "SELECT * from sb_reviews where product_id = '" + product_id + "' order by rev_date desc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
 
@@ -239,9 +239,7 @@ public class ShopDAO {
 	public void Add_review(String id, int product_id, String contents, int rating, String img) {
 		try {
 			conn = DBconn.getDBCP();
-			
-			ArrayList<ReviewVO> review = new ArrayList<ReviewVO>();
-			
+					
 			String sql = "insert into sb_reviews (member_id, point, img, contents, product_id) values (?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -251,7 +249,6 @@ public class ShopDAO {
 			pstmt.setInt(5, product_id);
 			pstmt.executeUpdate();
 					
-			rs.close();
 			pstmt.close();
 			conn.close();
 			
@@ -259,6 +256,24 @@ public class ShopDAO {
 			e.printStackTrace();
 		}
 			
+	}
+	
+	public void Update_rating(int product_id, int rating) {
+		try {
+			conn = DBconn.getDBCP();
+			
+			String sql = "update sb_product set rating = ? where product_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rating);
+			pstmt.setInt(2, product_id);
+			pstmt.executeUpdate();
+					
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

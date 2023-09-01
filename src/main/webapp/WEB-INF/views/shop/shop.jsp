@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
     
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/slick.css"/>
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/slick-theme.css"/>
@@ -152,7 +152,7 @@
 			$.ajax({
 				type:"get",
 				async:false,  
-				url:"${Path}/shop/add_cart",
+				url:"/shop/add_cart",
 				dataType:"text",
 				data: {
 					product_id:product_id,

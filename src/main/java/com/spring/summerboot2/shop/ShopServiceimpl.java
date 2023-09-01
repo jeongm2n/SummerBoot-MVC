@@ -41,4 +41,9 @@ public class ShopServiceimpl implements ShopService{
 		shopdao.Add_review(id, product_id, contents, rating, img);
 	}
 	
+	public void Update_rating(int product_id, int rating) {
+		ShopDAO shopdao = new ShopDAO();
+		shopdao.Update_rating(product_id, rating);
+	}
+	
 }

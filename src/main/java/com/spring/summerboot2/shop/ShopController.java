@@ -138,13 +138,20 @@ public class ShopController {
 		String path = session.getServletContext().getRealPath("/");
 		String id =	(String)session.getAttribute("user_id");
 		
-		String imgFileName = img.getOriginalFilename();
 		if(!img.isEmpty()) {
+			String imgFileName = img.getOriginalFilename();
 			File saveFile = new File("C:\\JavaProgram\\SummerBoot\\src\\main\\webapp\\resources\\assets\\img", imgFileName);
 			img.transferTo(saveFile);
+			shopService.Add_review(id, Integer.parseInt(product_id), content, rating, imgFileName);
 		}
+		else { shopService.Add_review(id, Integer.parseInt(product_id), content, rating, null);}
+		ArrayList<ReviewVO> review = shopService.Load_Review(product_id);
 		
-		shopService.Add_review(id, Integer.parseInt(product_id), content, rating, imgFileName);
+		int point = 0;
+		for(ReviewVO f_review : review) { point += f_review.getPoint();}
+		
+		shopService.Update_rating(Integer.parseInt(product_id), point / review.size());
+		
 	}
 	
 }

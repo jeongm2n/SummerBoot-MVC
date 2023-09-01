@@ -40,10 +40,15 @@
  	});
  	
  	function add_review(id, name, img) {
- 	    let popUrl = "/shop/review/" + id + "/" + name + "/" + img;
- 	    let popOption = "width=450px,height=600px,top=300px,left=300px,scrollbars=yes";
- 	    
- 	    window.open(popUrl, "리뷰 작성", popOption);	
+ 		if(${id} == false){
+			alert('로그인을 먼저 해주세요!');
+		}
+ 		else{
+	 	    let popUrl = "/shop/review/" + id + "/" + name + "/" + img;
+	 	    let popOption = "width=450px,height=600px,top=300px,left=300px,scrollbars=yes";
+	 	    
+	 	    window.open(popUrl, "리뷰 작성", popOption);	
+ 		}
  	}
  	</script>
 </head>
@@ -254,22 +259,22 @@
 								<div class="col-md-8">
 									<div id="reviews">
 										<ul class="reviews">
-										<c:if test="!${review_count eq 0}">
-										<c:forEach var="review" items="${review}" begin="0" end="3">
+										<c:if test="${review_count != 0}">
+										<c:forEach var="review" items="${review}" begin="0" end="2">
 											<li>
 												<div class="review-heading">
 													<h5 class="name">${review.member_id}</h5>
 													<p class="date">${review.date}</p>
-													<div class="review-rating">
+													<div class="review-rating" style="width:150px;">
 														<c:forEach var="i" begin = "1" end="${review.point}">
 														<i class="fa fa-star"></i>
 														</c:forEach>
 													</div>
 												</div>
 												<div class="review-body">
-													<p>제품이 참 좋아요!</p>
-													<c:if test="!${review.img eq null}">
-													<img src="${path}/resources/assets/img/${review.img}" style="width:100px; height:100px;">
+													<p>${review.contents}</p>
+													<c:if test="${review.img != null}">
+													<img src="${path}/resources/assets/img/${review.img}" style="width:75px; height:75px; border-radius:15px;">
 													</c:if>
 												</div>
 											</li>
