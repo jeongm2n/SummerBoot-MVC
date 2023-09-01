@@ -44,7 +44,7 @@
 			alert('로그인을 먼저 해주세요!');
 		}
  		else{
-	 	    let popUrl = "/shop/review/" + id + "/" + name + "/" + img;
+	 	    let popUrl = "${path}/shop/review/" + id + "/" + name + "/" + img;
 	 	    let popOption = "width=450px,height=600px,top=300px,left=300px,scrollbars=yes";
 	 	    
 	 	    window.open(popUrl, "리뷰 작성", popOption);	
