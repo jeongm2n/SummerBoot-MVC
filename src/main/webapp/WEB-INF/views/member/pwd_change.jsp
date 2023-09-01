@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    isELIgnored="false"
 %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +8,8 @@
 <title>내 정보</title>
 
 <% request.setCharacterEncoding("utf-8"); %>
-<jsp:include page="/WEB-INF/common.jsp" />
+<%@ include file="../common.jsp"%>
 <link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 <script>
 	$(document).on('click', '#update' , function() {
@@ -56,7 +50,7 @@
         } else if(message == 999){
         	alert("비밀번호 수정이 완료되었습니다.");
 	        window.close();
-			opener.location.href="${path }/summerboot2/member/my_info";
+			opener.location.href="${path }	/member/my_info";
         }
     });
 </script>

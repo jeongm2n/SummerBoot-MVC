@@ -75,7 +75,7 @@ public class InquiryDAO {
 				}
 			}
 			
-			sql += " ORDER BY ins_date LIMIT " + start + ", 10";
+			sql += " ORDER BY ins_date DESC LIMIT " + start + ", 10";
 			System.out.println("prepareStatement : " + sql);
 			
 			pstmt = con.prepareStatement(sql);

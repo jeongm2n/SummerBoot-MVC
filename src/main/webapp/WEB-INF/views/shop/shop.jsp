@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
+	<%@ include file="../common.jsp"%>
 	<title>Shop</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/slick.css"/>
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/slick-theme.css"/>
@@ -30,7 +27,7 @@
 	$(document).ready( function (){
 		$("#sort").change(function(){
 			let sort = $(this).val();
-			location.href="/shop/main/${category},1," + sort;
+			location.href="${path }/shop/main/${category},1," + sort;
 		})
 	});
 	
@@ -56,9 +53,9 @@
 							<h3 class="aside-title" style="font-weight:600;">카테고리</h3>
 							<div class="category_menu">
 								<ul>
-								  <li><a id="전체" href="/shop/main/전체,1,${sort}">전체</a></li>
+								  <li><a id="전체" href="${path }/shop/main/전체,1,${sort}">전체</a></li>
 								<c:forEach var="category" items="${type_category}">
-								  <li><a id="${category}" href="/shop/main/${category},1,${sort}">${category}</a></li>
+								  <li><a id="${category}" href="${path }/shop/main/${category},1,${sort}">${category}</a></li>
 								</c:forEach>
 								</ul>
 							</div>
@@ -127,7 +124,7 @@
 							<span class="store-qty">Showing 9 products</span>
 							<ul class="store-pagination">
 								<c:forEach var="i" begin = "1" end="${page}">
-								<li id="${i}"><a href="/shop/main/${category},${i},1">${i}</a></li>
+								<li id="${i}"><a href="${path }/shop/main/${category},${i},1">${i}</a></li>
 								</c:forEach>
 							</ul>
 						</div>
@@ -164,6 +161,7 @@
 				},
 				error:function(request, error){
 					alert("에러가 발생했습니다.");
+					console.log("code : " + request.status + "\n" + "message : " + request.responseText +"\n" + "error : " + error	);
 				},
 				complete:function(){
 				}

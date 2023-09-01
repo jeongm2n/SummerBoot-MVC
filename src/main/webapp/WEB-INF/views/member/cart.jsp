@@ -5,15 +5,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>장바구니</title>
-	
+	<%@ include file="../common.jsp"%>
 	<% request.setCharacterEncoding("utf-8"); %>
 	<%@ include file="../common/header.jsp" %>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 
 	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 	<script type="text/javascript" src="${path}/resources/assets/js/cart.js"></script>
-	<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 </head>
 
 <body>
@@ -127,7 +125,7 @@
 		$.ajax({
 			type:"post",
 			async:false,  
-			url:"${contextPath}/cart/quantity",
+			url:"${path}/cart/quantity",
 			dataType:"text",
 			data: {
 				p_id:p_id,
@@ -148,11 +146,11 @@
 		$.ajax({
 			type:"post",
 			async:false,  
-			url:"${contextPath}/cart/delete",
+			url:"${path}/cart/delete",
 			dataType:"text",
 			data: {p_id:p_id},
 			success:function (){
-				$("#cart").load("${contextPath}/cart/my_cart #cart", function(){total();});
+				$("#cart").load("${path}/cart/my_cart #cart", function(){total();});
 			},
 			error:function(request, error){
 				alert("에러가 발생했습니다.");

@@ -6,7 +6,6 @@
 <head>
 	<%@ include file="./common/head.jsp"%>
     <title>상품리스트</title>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 </head>
 
 <body id="page-top">

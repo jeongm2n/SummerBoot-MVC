@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    isELIgnored="false"
 %>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../common.jsp"%>
 <meta charset="UTF-8">
 <title>로그인</title>
 
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 <link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
 
 <script>

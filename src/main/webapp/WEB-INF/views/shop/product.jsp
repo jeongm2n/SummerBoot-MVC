@@ -1,19 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
+	<%@ include file="../common.jsp"%>
 	<title>Shop</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/slick.css"/>
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/slick-theme.css"/>
 
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/nouislider.min.css"/>
-
 
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/style.css"/>
  	

@@ -100,7 +100,6 @@ public class ShopController {
 	public void add_cart(HttpServletRequest request, HttpServletResponse response
 			 ,@RequestParam(value= "product_id") String product_id  ,@RequestParam(value= "quantity") String quantity 
 			 ,@RequestParam(value= "amount") String amount) throws Exception {
-		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		

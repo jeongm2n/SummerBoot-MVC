@@ -138,7 +138,7 @@
 								<c:set var="current" value="${page }"/>
 								<c:forEach var="page" begin="1" end="${pages }" step="1">
 									<li class="page-item">
-										<a class='page-link rounded-0 mr-3 border-top-0 border-left-0 <c:if test="${page eq current}">disabled</c:if>' href="${path}/community/qna?page=${page}">${page}</a>
+										<a class='page-link rounded-0 mr-3 border-top-0 border-left-0 <c:if test="${page eq current}">disabled</c:if>' onclick="page(${page});">${page}</a>
 									</li>
 								</c:forEach>
 							</ul>
@@ -256,4 +256,23 @@
 		}
 		location.href=path;
 	});
+	
+	function page(page) {
+		var searchCon = $("#searchCon").val();
+		var search = $("#inputMobileSearch").val();
+		var category = $("#category").val();
+		var state = $("#state").val();
+		
+		var path = "${path}/admin/community/inquiry?page=" + page;
+		if(search.length > 0) {
+			path += "&search=" + search + "&searchCon=" + searchCon;
+		}
+		if(category!=0) {
+			path += "&category=" + category;
+		}
+		if(state!=0) {
+			path += "&state=" + state;
+		}
+		location.href=path;
+	}
 </script>
