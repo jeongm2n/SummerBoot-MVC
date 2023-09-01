@@ -305,8 +305,6 @@ public class PayController {
 		
 		payService.reservation_after(merchant_uid, user_id, no, date, startTime, useTime, site, qrCode);
 		
-		
-		
 		mav.addObject("merchant_uid", merchant_uid);
 		mav.addObject("qrCode", qrCode);
 		mav.setViewName("pay/Complate");

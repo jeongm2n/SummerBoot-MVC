@@ -13,9 +13,28 @@
     <jsp:include page="/WEB-INF/common.jsp" />
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_ryu.css">
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
+    <% String user_id = (String)session.getAttribute("user_id"); %>
+    <script>
+    	function gomyres(){
+    		const date = new Date();
+			const realMonth = date.getMonth()+1; 
+			const realToDay = date.getDate();
+
+			const currentMonth = realMonth >= 10 ? realMonth : "0" + realMonth;
+			const currentDate = date.getDate() >= 10 ? date.getDate() : "0" +date.getDate();
+			
+			const nowdate = currentMonth + "-" + currentDate;
+			
+			const hour = String(date.getHours()).padStart(2,"0");
+			const minutes = String(date.getMinutes()).padStart(2,"0");
+			
+			const nowtime = hour + ":" + minutes;
+			
+    		location.href="${path }/reservation/chkmyres?user_id=<%=user_id%>&date="+nowdate+"&nowtime="+nowtime;
+    	}
+    </script>
 </head>
 
-	<% String user_id = (String)session.getAttribute("user_id"); %>
     <!--Start Top -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
         <div class="container text-light">
@@ -76,7 +95,7 @@
 						      <a href="${path}/member/my_info" class="d-flex align-items-center gap-2 dropdown-item">
 						        <i class="fa fa-user fs-6"></i><span>내 정보</span>
 						      </a>
-						      <a href="#" class="d-flex align-items-center gap-2 dropdown-item">
+						      <a href="#" onclick="gomyres();" class="d-flex align-items-center gap-2 dropdown-item">
 						        <i class="fa fa-calendar-check fs-6"></i><span>예약확인</span>
 						      </a>
 						      <a href="#" class="d-flex align-items-center gap-2 dropdown-item">

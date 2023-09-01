@@ -192,3 +192,29 @@ td {
 	.m_div {text-align: left;}
 	.m_time { display: none;}
 } 
+
+.beforecard{
+	margin-bottom : 50px;	
+}
+
+.beforediv{
+	width : 100%;
+	height : 300px;
+	overflow-x : hidden;
+	padding-top : 100px
+}
+
+.afterdiv{
+	width : 100%;
+	height : 600px;
+	overflow-x : hidden;
+	padding-top : 100px
+}
+
+.card{
+	margin-top : 50px;
+}
+
+.restbody{
+	background-color: lightgray;
+}

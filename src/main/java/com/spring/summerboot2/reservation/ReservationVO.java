@@ -10,6 +10,8 @@ public class ReservationVO {
 	private String useTime;
 	private String qr_img;
 	private String endTime;
+	private String order_num;
+	private String shop;
 
 	public ReservationVO(String startTime, String useTime) {
 		this.startTime=startTime;
@@ -31,6 +33,19 @@ public class ReservationVO {
 		this.member_id = member_id;
 		this.site = site;
 		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+	
+	
+
+	public ReservationVO(String order_num, String shop, String res_date, int site, String startTime, String useTime, String endTime) {
+		super();
+		this.order_num = order_num;
+		this.shop = shop;
+		this.res_date = res_date;
+		this.site = site;
+		this.startTime = startTime;
+		this.useTime = useTime;
 		this.endTime = endTime;
 	}
 
@@ -104,5 +119,21 @@ public class ReservationVO {
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	public String getOrder_num() {
+		return order_num;
+	}
+
+	public void setOrder_num(String order_num) {
+		this.order_num = order_num;
+	}
+
+	public String getShop() {
+		return shop;
+	}
+
+	public void setShop(String shop) {
+		this.shop = shop;
 	}
 }

@@ -35,7 +35,7 @@ public class ReservationController {
 		 List<WeatherVO> weather3 = wdao.get3Days(today); //오늘~3일까지의 날씨정보를weather3 리스트에 받아옴 
 		 List<WeatherVO> weather4 = wdao.get4Days(today); //4일~7일까지의 날씨정보를 weather4 리스트에 받아옴 
 		 
-		 List<WeatherVO> weekWeather = new ArrayList<>();
+		 List<WeatherVO> weekWeather = new ArrayList();
 		 weekWeather.addAll(weather3); weekWeather.addAll(weather4);
 		 
 		 mav.addObject("weathers",weekWeather);
@@ -67,5 +67,29 @@ public class ReservationController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/chkmyres", method = RequestMethod.GET)
+	public ModelAndView chkmyreservation(@RequestParam("user_id") String user_id, @RequestParam("date") String date,
+			@RequestParam("nowtime") String nowtime){
+		List<ReservationVO> myres = rsDAO.myres(user_id);
+		List<ReservationVO> beforeres = new ArrayList();
+		List<ReservationVO> afterres = new ArrayList();
+		
+		for(ReservationVO res : myres) {
+			if(date.compareTo(res.getRes_date())==0 && nowtime.compareTo(res.getEndTime())>0) {
+				afterres.add(res);
+			}
+			else if(date.compareTo(res.getRes_date())>0) {
+				afterres.add(res);
+			}else if(date.compareTo(res.getRes_date())==0 && nowtime.compareTo(res.getStartTime())>=0 && nowtime.compareTo(res.getEndTime())<=0){
+				beforeres.add(res);
+			}else {beforeres.add(res);}
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("beforeres",beforeres);
+		mav.addObject("afterres",afterres);
+		mav.setViewName("member/chkMyres");
+		return mav;
+	}
 }
 
