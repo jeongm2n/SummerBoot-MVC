@@ -5,7 +5,7 @@
 	<title>Shop</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/slick.css"/>
  	<link type="text/css" rel="stylesheet" href="${path}/resources/assets/css/slick-theme.css"/>
 
