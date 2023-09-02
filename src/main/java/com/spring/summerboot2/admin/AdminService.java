@@ -131,4 +131,24 @@ public class AdminService {
 		AdminDAO dao = new AdminDAO();
 		return dao.reserCount();
 	}
+	
+	public List<Integer> orderMonthSum() {
+		AdminDAO dao = new AdminDAO();
+		return dao.orderMonthSum();
+	}
+	
+	public Map<String, Integer> storePerRes() {
+		AdminDAO dao = new AdminDAO();
+		return dao.storePerRes();
+	}
+	
+	public List<String> storeName() {
+		AdminDAO dao = new AdminDAO();
+		return dao.storeName();
+	}
+	
+	public List<Integer> inquiryCnt() {
+		AdminDAO dao = new AdminDAO();
+		return dao.inquiryCnt();
+	}
 }

@@ -3,8 +3,12 @@ package com.spring.summerboot2.admin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.spring.summerboot2.DBconn;
 import com.spring.summerboot2.branch.WashlistVO;
@@ -258,6 +262,123 @@ public class AdminDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		return list;
+	}
+	
+	public List<Integer> orderMonthSum() {
+		List<Integer> list= new ArrayList<Integer>();
+		int sum = 0;
+		String[] month = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+		try {
+			con = DBconn.getDBCP();
+			String sql="";
+			for(int i =0; i < month.length; i++) {
+				sql = "SELECT sum(pur.mount * pro.price) as sum FROM sb_purchase as pur INNER JOIN sb_product as pro ON pur.product_id = pro.product_id WHERE year(pur_date)=year(now()) AND month(pur_date)='" + month[i] + "'";
+				System.out.println("prepareStatement : " + sql);
+				
+				pstmt = con.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					sum = rs.getInt("sum");
+					System.out.println(i + ">>" + sum);
+				}
+				
+				list.add(sum);
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public Map<String, Integer> storePerRes() {
+		Map<String, Integer> list= new HashMap<String, Integer>();
+		String name;
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM");
+		String formatedMonth = now.format(formatter);
+		int count = 0;
+		try {
+			con = DBconn.getDBCP();
+			String sql="";
+			sql = "SELECT name, count(res.res_no) as cnt from sb_reservation as res inner join sb_carwash as car on res.no = car.no where res.res_date like '" + formatedMonth + "%' group by res.no order by res.no";
+			System.out.println("prepareStatement : " + sql);
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				name = rs.getString("name");
+				count = rs.getInt("cnt");
+				System.out.println(name + ">>" + count);
+				list.put(name, count);
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<String> storeName() {
+		List<String> list= new ArrayList<String>();
+		String name;
+		try {
+			con = DBconn.getDBCP();
+			String sql="SELECT name FROM sb_carwash";
+			System.out.println("prepareStatement : " + sql);
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				name = rs.getString("name");
+				list.add(name);
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<Integer> inquiryCnt() {
+		List<Integer> list = new ArrayList();
+		int cnt = 0;
+		String[] category = {"세차", "쇼핑", "기타"};
+		try {
+			con = DBconn.getDBCP();
+			for(int i = 0; i < category.length; i++) {
+				String sql = "SELECT count(*) as cnt FROM sb_inquiry WHERE category like '" + category[i] + "%'";
+				System.out.println("prepareStatement : " + sql);
+				
+				pstmt = con.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					cnt = rs.getInt("cnt");
+					System.out.println(category[i] + ">>>" + cnt);
+					list.add(cnt);
+				}
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return list;
 	}
 }
