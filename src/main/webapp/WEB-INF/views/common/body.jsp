@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Wash Boot</title>
-    
+
     <link rel="stylesheet" href="${path}/resources/assets/css/custom_ryu.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06a1b9ec0da85dcbc94968ce7bd3be22&libraries=services"></script>
 </head>
@@ -421,62 +421,62 @@
                 </div>
 
                 <div class="collapse show" id="res_YangPyeong">
-                    <div class="card card-body overflow-auto" style="height: 400px">
-                        양평로점 예약현황<br>
+                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
+                        <h2 align="center">양평로점 예약현황</h2><br>
                         <div id="resList1"></div>
                     </div>
                 </div>
                 <div class="collapse" id="res_gyeonginro">
-                    <div class="card card-body overflow-auto" style="height: 400px">
-                        경인로점 예약현황
+                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
+                        <h2 align="center">경인로점 예약현황</h2>
                         <div id="resList2"></div>
                     </div>
                 </div>
                 <div class="collapse" id="res_cheonwang">
-                    <div class="card card-body overflow-auto" style="height: 400px">
-                        천왕점 예약현황
+                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
+                        <h2 align="center">천왕점 예약현황</h2>
                         <div id="resList3"></div>
                     </div>
                 </div>
                 <div class="collapse" id="res_gaje1dong">
-                    <div class="card card-body overflow-auto" style="height: 400px">
-                        가제1동점 예약현황
+                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
+                        <h2 align="center">가제1동점 예약현황</h2>
                         <div id="resList4"></div>
                     </div>
                 </div>
                 <div class="collapse" id="res_kangdongseongan">
-                    <div class="card card-body overflow-auto" style="height: 400px">
-                        강동성안점 예약현황
+                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
+                        <h2 align="center">강동성안점 예약현황</h2>
                         <div id="resList5"></div>
                     </div>
                 </div>
                 <div class="collapse" id="res_majang">
-                    <div class="card card-body overflow-auto" style="height: 400px">
-                        성동마장점 예약현황
+                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
+                        <h2 align="center">성동마장점 예약현황</h2>
                         <div id="resList6"></div>
                     </div>
                 </div>
                 <div class="collapse" id="res_jongam">
-                    <div class="card card-body overflow-auto" style="height: 400px">
-                        성북종암점 예약현황
+                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
+                        <h2 align="center">성북종암점 예약현황</h2>
                         <div id="resList7"></div>
                     </div>
                 </div>
                 <div class="collapse" id="res_galhyeon">
-                    <div class="card card-body overflow-auto" style="height: 400px">
-                        은평갈현점 예약현황
+                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
+                        <h2 align="center">은평갈현점 예약현황</h2>
                         <div id="resList8"></div>
                     </div>
                 </div>
                 <div class="collapse" id="res_bongcheon">
-                    <div class="card card-body overflow-auto" style="height: 400px">
-                        관악봉천점 예약현황
+                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
+                        <h2 align="center">관악봉천점 예약현황</h2>
                         <div id="resList9"></div>
                     </div>
                 </div>
                 <div class="collapse" id="res_yongmoon">
-                    <div class="card card-body overflow-auto" style="height: 400px">
-                        용문점 예약현황
+                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
+                        <h2 align="center">용문점 예약현황</h2>
                         <div id="resList10"></div>
                     </div>
                 </div>
@@ -537,7 +537,7 @@
                 $("#res_gyeonginro, #res_cheonwang, #res_YangPyeong, #res_kangdongseongan, #res_majang, #res_jongam, #res_galhyeon, #res_bongcheon, #res_gaje1dong").collapse("hide");
             });
 
-            
+
     <!-- 예약현황 : 오늘의 예약현황 보여주기 -->
     //메인페이지 로드되면 서울지점(1) 함수실행
     $( document ).ready(function() {
@@ -548,25 +548,22 @@
 		}
 		$("#1").show();
     });
- 	
+
     window.onpageshow = function(event) {
     	if(event.persisted) { // 뒤로가기로 페이지로드시
     		$('#div_load').hide(); // 로딩 화면을 없애주는 것
     	}
     }
-    
-            var siteNo = '1';
 
-            function getTodayResList(todayres) {
+            var siteNo = '1';
+            function getTodayResList(todayres) { //오늘의 예약현황
                 siteNo = todayres;
-                //비동기
                 $.ajax({
                     type   : "GET",
-                    url    : "${path}/getTodayResList?todayres=" + todayres, //파라미터 넘기는 방식과 컨트롤러에서 받는 방법
+                    url    : "${path}/getTodayResList?todayres=" + todayres,
                     success: function (data) {
-
                         console.log(data)
-                        $(`#resList\${todayres}`).html('') // 템플릿 문자열, Jquery 사용방법
+                        $(`#resList\${todayres}`).html('')
 
                         let baseTable = `
                                  <table class="table table-hover">
@@ -583,11 +580,12 @@
                             baseTable += `<tr> <td colspan="4" style="text-align: center">오늘 예약이 없습니다.</td> </tr>`;
                         } else {
                             for (let i = 9; i < 24; i++) {
-                                let hour    = data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length
-                                let fullRes = data[0].sites;
+                                let hour        = data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length //시간대의 예약건수
+                                let fullRes     = data[0].sites; //full예약
+                                let weatherIcon = getWeatherIcon(i) //날씨
                                 baseTable += `
                             <tr style="text-align: center">
-                            <td></td>
+                            <td><img src="\${weatherIcon}" alt="날씨이미지" width="50px" height="50px"></td>
                             <td>\${i}:00</td>
                             <td>\${data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length} / \${data[0].sites}
                             </td>
@@ -617,20 +615,47 @@
                 return null; // 기호가 없는 경우
             }
 
-            function goReservation1() {
-                <%if (user_id==null) {%>
-                alert('로그인을 먼저 해주세요!');
-                <%}
-                else{%>
-                // 오늘 날짜 객체 생성
-                var today = new Date();
+            //날씨데이터
+            var weather1 = [
+                <c:forEach items="${weather1}" var="data">
+                {
+                    time: "${data.time}",
+                    pop : "${data.pop}"
+                },
+                </c:forEach>
+            ];
 
-                // 년, 월, 일 정보 가져오기
-                var year  = today.getFullYear();
-                var month = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줌
-                var day   = today.getDate();
+            //날씨아이콘 출력
+            function getWeatherIcon(time) {
+                time = time < 10 ? '0' + time + "00" : '' + time + "00"; //time이 '10'미만이면 '0time00' 그렇지않으면 'time00'
+                for (let i = 0; i < weather1.length; i++) {
+                    if (time === weather1[i].time) { //시간 비교하여 같으면
+                        if (weather1[i].pop < 30) { //30미만 sun
+                            return '${path}/resources/assets/img/sun.png';
+                        } else if (weather1[i].pop < 50) { //50미만 cloudy
+                            return '${path}/resources/assets/img/cloudy.png';
+                        } else { //50이상 rain
+                            return '${path}/resources/assets/img/rain.png';
+                        }
+                    }
+                }
+            }
 
-                var formattedDate = year + (month < 10 ? '0' : '') + month + (day < 10 ? '0' : '') + day;
+                function goReservation1() {
+                    <%if (user_id==null) {%>
+                    alert('로그인을 먼저 해주세요!');
+                    <%}
+                    else{%>
+                    // 오늘 날짜 객체 생성
+                    var today = new Date();
+
+                    // 년, 월, 일 정보 가져오기
+                    var year  = today.getFullYear();
+                    var month = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줌
+                    var day   = today.getDate();
+
+                    //20230831 형식으로
+                    var formattedDate = year + (month < 10 ? '0' : '') + month + (day < 10 ? '0' : '') + day;
 
                 window.location.href = `reservation/reservation1?no=\${siteNo}&date=\${formattedDate}`
 
@@ -657,20 +682,20 @@
     var weather = [
         <c:forEach items="${weathers}" var="data" varStatus="loop">
         {
-            date: "${data.date}",
+            date : "${data.date}",
             ampop: "${data.ampop}",
             pmpop: "${data.pmpop}",
-            tmx: "${data.tmx}",
-            tmn: "${data.tmn}"
-        }<c:if test="${!loop.last}">,</c:if>
+            tmx  : "${data.tmx}",
+            tmn  : "${data.tmn}"
+        }<c:if test="${!loop.last}">, </c:if>
         </c:forEach>
     ];
 
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	mapOption = {
 	    center: new kakao.maps.LatLng(37.56669040096864, 127.01172652194761), // 지도의 중심좌표
 	    level: 8 // 지도의 확대 레벨
-	};  
+	};
 
     // 지도를 생성합니다
     var map = new kakao.maps.Map(mapContainer, mapOption);
@@ -702,7 +727,7 @@
     	var imageSize = new kakao.maps.Size(53, 52);
         // 마커 이미지를 생성합니다
    		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-        
+
    		for (var i = 0; i < positions.length; i++) {
         // 마커를 생성합니다
 	        var marker = new kakao.maps.Marker({
@@ -719,37 +744,37 @@
 	        })(marker, positions[i].content, positions[i].eventHandler);
     	}
 	}
-    
+
 	function myLocation() { // 내 현위치 찾는 함수
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
 		$(".infoHidden").hide();
 		if (navigator.geolocation) {
-		    
+
 			// GeoLocation을 이용해서 접속 위치를 얻어옵니다
 			navigator.geolocation.getCurrentPosition(function(position) {
 				var lat = position.coords.latitude, // 위도
 				    lon = position.coords.longitude; // 경도
-				
+
 				var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-				
+
 				// 마커와 인포윈도우를 표시합니다
 				displayMarker(locPosition);
 				map.setLevel(5);
 			});
-		    
+
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			var locPosition = new kakao.maps.LatLng(37.56669040096864, 127.01172652194761);
 			displayMarker(locPosition);
 		}
-	
+
 	}
-        
+
 
 	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 	function placesSearchCB(data, status, pagination) {
 		$(".infoHidden").hide();
 		if (status === kakao.maps.services.Status.OK) {
-	
+
 	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 	        // LatLngBounds 객체에 좌표를 추가합니다
 	        var bounds = new kakao.maps.LatLngBounds();
@@ -757,12 +782,12 @@
 	        for (var i=0; i<data.length; i++) {
 	            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
 	        }
-	       
+
 	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 	        map.setBounds(bounds);
 	        map.setLevel(6);
 	        mark();
-	    } 
+	    }
 	}
 
     function displayMarker(locPosition) { // 지도 중심좌표를 접속위치로 변경합니다
