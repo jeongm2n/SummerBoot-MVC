@@ -33,7 +33,7 @@
 
 	<div class="review">
 	  <div class="product_inform">
-	    <img src="${path}/resources/assets/img/${img}.jpg" style="width:50px; height:50px;"><br>
+	    <img src="${path}/resources/assets/product/${img}.jpg" style="width:50px; height:50px;"><br>
 		<h2>${name}</h2>
 	  </div>
 	  <div class="review_input">

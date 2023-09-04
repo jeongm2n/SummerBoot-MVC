@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<c:set var="file_repo" value="/summerboot2/resources/assets/img/"/>
+	<c:set var="file_repo" value="/summerboot2/resources/assets/product/"/>
 	<section class="bg-light">
 		<div class="container py-5">
 			<div class="col-lg-12 align-items-stretch" id="cart" >
