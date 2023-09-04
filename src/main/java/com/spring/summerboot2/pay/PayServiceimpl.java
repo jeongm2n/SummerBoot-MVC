@@ -40,13 +40,13 @@ public class PayServiceimpl implements PayService{
 		paydao.pay_point(point, u_point, id);
 	}
 	
-	public void pay_after(String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform) {
+	public void pay_after(String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform, String imp_uid) {
 		PayDAO paydao = new PayDAO();
-		paydao.pay_after(merchant_uid, id, product, inform);
+		paydao.pay_after(merchant_uid, id, product, inform, imp_uid);
 	}
 
-	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site) {
+	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site, String imp_uid) {
 		PayDAO paydao = new PayDAO();
-		paydao.reservation_after(merchant_uid, id, no, date, startTime, useTime, site);
+		paydao.reservation_after(merchant_uid, id, no, date, startTime, useTime, site, imp_uid);
 	}
 }

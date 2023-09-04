@@ -37,13 +37,15 @@
     let year = today.getFullYear().toString().substr(2, 2); // 년도
     let month = today.getMonth() + 1;  // 월
     let date = today.getDate();  // 날짜
+    let tomorrow = ('0' + (today.getDate() + 3)).slice(-2); // 3일뒤
     let hours = today.getHours(); // 시
     let minutes = today.getMinutes();  // 분
     let seconds = today.getSeconds();  // 초
     let milliseconds = today.getMilliseconds(); //밀리세컨
     
     let makeMerchantUid = year + month + date + hours +  minutes + seconds + milliseconds;
-    
+    let makeDue = today.getFullYear() + ('0' + (today.getMonth() + 1)).slice(-2) + tomorrow;
+
     let total_price = ${price};
     let u_point = 0;
     
@@ -51,7 +53,6 @@
         IMP.request_pay({
             pg : 'INIpayTest',
             pay_method : type,
-            //무통장!  vbank 
             merchant_uid: "WB" + makeMerchantUid, 
      	    name : "${name}${f_date[0]}월${f_date[1]}일${reservation.site}번자리${reservation.startTime}~${reservation.endTime}",
             amount : total_price - u_point,
@@ -59,7 +60,8 @@
             buyer_email : '${B_Inform[1]}',
             buyer_addr : '${B_Inform[2]}',
             buyer_postcode : '${B_Inform[3]}',
-            buyer_name : '${B_Inform[4]}'
+            buyer_name : '${B_Inform[4]}',
+            vbank_due : makeDue
         }, function(res) {
             // 결제검증
             $.ajax({
