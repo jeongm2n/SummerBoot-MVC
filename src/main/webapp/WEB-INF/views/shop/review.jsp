@@ -99,6 +99,7 @@
 		 	contentType: false,
 			success: function(response) {
 			    console.log("리뷰 작성이 완료되었습니다.");
+			    opener.parent.location.reload();
 			    window.close();
 			    },
 			error: function(xhr) {

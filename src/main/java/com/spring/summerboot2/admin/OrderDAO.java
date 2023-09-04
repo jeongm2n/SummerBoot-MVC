@@ -19,7 +19,8 @@ public class OrderDAO {
 		try {
 			con = DBconn.getDBCP();
 			
-			String sql = "SELECT pur.order_num, pur.member_id, pur.product_id, p.name, p.price, pur.mount, pur.pur_date, pur.address FROM sb_purchase as pur INNER JOIN sb_product as p on pur.product_id = p.product_id ORDER BY pur.pur_date AND pur.order_num ASC";
+//			추가로 만든 칼럼들도 조회 할 수 있게
+			String sql = "SELECT pur.order_num, pur.member_id, pur.product_id, p.name, p.price, pur.mount, pur.pur_date, pur.address, tracking, status, imp_uid FROM sb_purchase as pur INNER JOIN sb_product as p on pur.product_id = p.product_id ORDER BY pur.pur_date, pur.order_num ASC";
 			System.out.println("prepareStatement : " + sql);
 			
 			pstmt = con.prepareStatement(sql);
@@ -34,15 +35,21 @@ public class OrderDAO {
 				int mount = rs.getInt("mount");
 				Date pur_date = rs.getDate("pur_date");
 				String address = rs.getString("address");
+				int tracking = rs.getInt("tracking");
+				String status = rs.getString("status");
+				String imp_uid = rs.getString("imp_uid");
 				
-				System.out.println(order_num);
+				System.out.println(order_num); 
 				System.out.println(member_id);
 				System.out.println(product_id);
 				System.out.println(mount);
 				System.out.println(pur_date);
 				System.out.println(address);
+				System.out.println(tracking);
+				System.out.println(status);
+				System.out.println(imp_uid);
 				
-				OrderVO vo = new OrderVO(order_num, member_id, product_id, product_name, price, mount, pur_date, address);
+				OrderVO vo = new OrderVO(order_num, member_id, product_id, product_name, price, mount, pur_date, address, tracking, status, imp_uid);
 				list.add(vo);
 			}
 			rs.close();
