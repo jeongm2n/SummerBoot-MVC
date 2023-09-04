@@ -48,6 +48,7 @@
                                     <thead>
                                         <tr>
                                             <th>주문정보</th>
+                                            <th>배송지</th>
                                             <th>주문상품</th>
                                             <th>수량</th>
                                             <th>금액</th>
@@ -56,6 +57,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>주문정보</th>
+                                            <th>배송지</th>
                                             <th>주문상품</th>
                                             <th>수량</th>
                                             <th>금액</th>
@@ -70,20 +72,23 @@
 	                                    	</c:when>
 	                                    	<c:when test="${!empty orderList }">
 				                            		<c:forEach var="list" items="${orderList }">
-				                                        <tr>
-				                                            <td class="order_num">
-				                                            	<b>주문번호 : ${list.order_num }</b><br>
-				                                            	주문 날짜 : ${list.pur_date }<br>
-				                                            	주문자 : ${list.member_id }
-				                                            </td>
-				                                            <td>${list.product_id }(${list.product_name })</td>
-				                                            <td>${list.mount}</td>
-				                                            <td>${list.mount*list.price}</td>
-				                                        </tr>
+				                                    <tr>
+				                                    	<td class="order_num align-middle">
+				                                        	<b>주문번호 : ${list.order_num }</b><br>
+				                                            주문 날짜 : ${list.pur_date }<br>
+				                                            주문자 : ${list.member_id }</td>
+				                                        <td class="align-middle">
+				                                        	우편번호 : ${list.post }<br>
+				                                        	<b>주소</b> : ${list.addr1 }<br>
+				                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${list.addr2 }</td>
+				                                        <td class="align-middle">${list.product_id }(${list.product_name })</td>
+				                                        <td class="align-middle">${list.mount}</td>
+				                                        <td class="align-middle">${list.mount*list.price}</td>
+				                                    </tr>
 					                            	</c:forEach>
 			                            	</c:when>
                                     	</c:choose>
-                                    </tbody>
+                                   	</tbody>
                                 </table>
                             </div>
                         </div>
@@ -109,7 +114,7 @@
 	        }
 		});
 	}
-	
+
 	$(document).ready(function() {
 		rowspan("order_num");
 	});

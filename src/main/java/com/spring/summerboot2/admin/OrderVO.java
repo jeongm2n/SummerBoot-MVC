@@ -11,8 +11,13 @@ public class OrderVO {
 	private int mount;
 	private Date pur_date;
 	private String address;
+	private String post;
+	private String addr1;
+	private String addr2;
 	
-	OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount, Date pur_date, String address) {
+	public OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount,
+			Date pur_date, String address) {
+		super();
 		this.order_num = order_num;
 		this.member_id = member_id;
 		this.product_id = product_id;
@@ -21,6 +26,21 @@ public class OrderVO {
 		this.mount = mount;
 		this.pur_date = pur_date;
 		this.address = address;
+	}
+
+	public OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount,
+			Date pur_date, String post, String addr1, String addr2) {
+		super();
+		this.order_num = order_num;
+		this.member_id = member_id;
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.price = price;
+		this.mount = mount;
+		this.pur_date = pur_date;
+		this.post = post;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
 	}
 
 	public String getOrder_num() {
@@ -85,5 +105,29 @@ public class OrderVO {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getPost() {
+		return post;
+	}
+
+	public void setPost(String post) {
+		this.post = post;
+	}
+
+	public String getAddr1() {
+		return addr1;
+	}
+
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+
+	public String getAddr2() {
+		return addr2;
+	}
+
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
 	}
 }
