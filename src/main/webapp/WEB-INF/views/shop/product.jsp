@@ -61,19 +61,19 @@
 			<div class="col-md-2  col-md-pull-5">
 				<div id="product-imgs">
 					<div class="product-preview">
-						<img src="${path}/resources/assets/img/${product.img}">
+						<img src="${path}/resources/assets/product/${product.img}">
 					</div>
 
 					<div class="product-preview">
-						<img src="${path}/resources/assets/img/${product.img}">
+						<img src="${path}/resources/assets/product/${product.img}">
 					</div>
 
 					<div class="product-preview">
-						<img src="${path}/resources/assets/img/${product.img}">
+						<img src="${path}/resources/assets/product/${product.img}">
 					</div>
 
 					<div class="product-preview">
-						<img src="${path}/resources/assets/img/${product.img}">
+						<img src="${path}/resources/assets/product/${product.img}">
 					</div>
 				</div>
 			</div>

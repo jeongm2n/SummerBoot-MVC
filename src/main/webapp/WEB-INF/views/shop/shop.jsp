@@ -88,7 +88,7 @@
 							<div class="col-md-4 col-xs-6" style="min-width:280px;">
 								<div class="product">
 									<div class="product-img">
-										<img src="${path}/resources/assets/img/${product.img}">
+										<img src="${path}/resources/assets/product/${product.img}">
 									</div>
 									<div class="product-body">
 										<h3 class="product-name"><a href="../product/${product.product_id}">${product.name}</a></h3>

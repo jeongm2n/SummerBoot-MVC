@@ -27,9 +27,10 @@ public class ReservationVO {
 		this.endTime=endTime;
 	}
 	
-	public ReservationVO(int res_no, String member_id, int site, String startTime, String endTime) {
+	public ReservationVO(int res_no,String order_num, String member_id, int site, String startTime, String endTime) {
 		super();
 		this.res_no = res_no;
+		this.order_num = order_num;
 		this.member_id = member_id;
 		this.site = site;
 		this.startTime = startTime;

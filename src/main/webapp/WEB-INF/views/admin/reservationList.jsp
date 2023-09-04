@@ -84,12 +84,12 @@
 		                            </c:when>
 		                            <c:when test="${!empty resList }">
 		                            <thead>
-		                            <tr><th>예약번호</th><th>예약자 ID</th><th>세차구역</th><th>시작시간</th><th>종료시간</th><th></th></tr>
+		                            <tr><th></th><th>예약번호</th><th>예약자 ID</th><th>세차구역</th><th>시작시간</th><th>종료시간</th><th></th></tr>
 		                            </thead>
 		                            <c:forEach var="data" items="${resList }">
 		                            <tbody>
 		                            	<tr>
-		                            		<td>${data.res_no }</td><td>${data.member_id }</td><td>${data.site }</td>
+		                            		<td>${data.res_no }</td><td>${data.order_num }</td><td>${data.member_id }</td><td>${data.site }</td>
 		                            		<td>${data.startTime }</td><td>${data.endTime }</td>
 		                      				<th><a href="#" onclick="return deleteres(${data.res_no });">삭제</a></th>
 		                            	</tr>

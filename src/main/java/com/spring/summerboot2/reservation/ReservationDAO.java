@@ -105,7 +105,7 @@ public class ReservationDAO {
 		try {
 			conn = DBconn.getDBCP();
 			
-			String sql = "SELECT res_no, member_id, site, startTime, useTime FROM sb_reservation WHERE no="+no
+			String sql = "SELECT res_no, order_num, member_id, site, startTime, useTime FROM sb_reservation WHERE no="+no
 					+ " AND res_date='"+res_date+"' ORDER BY startTime,site ASC";
 			
 			System.out.println("sql : " + sql);
@@ -115,13 +115,14 @@ public class ReservationDAO {
 			
 			while(rs.next()) {
 				int res_no = rs.getInt("res_no");
+				String order_num = rs.getString("order_num");
 				String member_id = rs.getString("member_id");
 				int site = rs.getInt("site");
 				String startTime = rs.getString("startTime").substring(0,5);
 				int useTime = rs.getInt("useTime");
 				
 				String endTime = timeCal(startTime,useTime);
-				vo = new ReservationVO(res_no,member_id,site,startTime,endTime);
+				vo = new ReservationVO(res_no,order_num,member_id,site,startTime,endTime);
 				resVO.add(vo);
 			}
 			rs.close();
