@@ -19,7 +19,9 @@ public class OrderDAO {
 		try {
 			con = DBconn.getDBCP();
 			
-			String sql = "SELECT pur.order_num, pur.member_id, pur.product_id, p.name, p.price, pur.mount, pur.pur_date, pur.address FROM sb_purchase as pur INNER JOIN sb_product as p on pur.product_id = p.product_id ORDER BY pur.pur_date, pur.order_num ASC";
+//			추가로 만든 칼럼들도 조회 할 수 있게
+			String sql = "SELECT pur.order_num, pur.member_id, pur.product_id, p.name, p.price, pur.mount, pur.pur_date, pur.address, tracking, status, imp_uid FROM sb_purchase as pur INNER JOIN sb_product as p on pur.product_id = p.product_id ORDER BY pur.pur_date, pur.order_num ASC";
+
 			System.out.println("prepareStatement : " + sql);
 			
 			pstmt = con.prepareStatement(sql);
@@ -42,10 +44,13 @@ public class OrderDAO {
 				if(address.length==6) {
 					str2 += address[5];
 				}
+
+				int tracking = rs.getInt("tracking");
+				String status = rs.getString("status");
+				String imp_uid = rs.getString("imp_uid");
+				System.out.println(order_num+","+ member_id+","+product_id+","+mount+","+pur_date+","+address+","+tracking+","+status+","+imp_uid);
 				
-				System.out.println(order_num+","+ member_id+","+product_id+","+mount+","+pur_date+","+address);
-				
-				OrderVO vo = new OrderVO(order_num, member_id, product_id, product_name, price, mount, pur_date, post, str1, str2);
+				OrderVO vo = new OrderVO(order_num, member_id, product_id, product_name, price, mount, pur_date, post, str1, str2, tracking, status, imp_uid);
 				list.add(vo);
 			}
 			rs.close();
@@ -66,11 +71,11 @@ public class OrderDAO {
 			if(column.equals("pur_date")) {
 				String str1 = str + " 00:00:00";
 				String str2 = str + " 23:59:59";
-				sql = "SELECT pur.order_num, pur.member_id, pur.product_id, p.name, p.price, pur.mount, pur.pur_date, pur.address FROM sb_purchase as pur INNER JOIN sb_product as p on pur.product_id = p.product_id "
+				sql = "SELECT pur.order_num, pur.member_id, pur.product_id, p.name, p.price, pur.mount, pur.pur_date, pur.address tracking, status, imp_uid FROM sb_purchase as pur INNER JOIN sb_product as p on pur.product_id = p.product_id "
 						+ "WHERE "+column+" BETWEEN '"+str1+"' AND '"+str2+"' ORDER BY pur.pur_date,pur.order_num ASC";
 			}
 			else{
-				sql = "SELECT pur.order_num, pur.member_id, pur.product_id, p.name, p.price, pur.mount, pur.pur_date, pur.address FROM sb_purchase as pur INNER JOIN sb_product as p on pur.product_id = p.product_id "
+				sql = "SELECT pur.order_num, pur.member_id, pur.product_id, p.name, p.price, pur.mount, pur.pur_date, pur.address tracking, status, imp_uid FROM sb_purchase as pur INNER JOIN sb_product as p on pur.product_id = p.product_id "
 						+ "WHERE "+column+"='"+str+"' ORDER BY pur.pur_date,pur.order_num ASC";
 			}
 					
@@ -97,9 +102,12 @@ public class OrderDAO {
 					str2 += address[5];
 				}
 				
-				System.out.println(order_num+","+ member_id+","+product_id+","+mount+","+pur_date+","+address);
+				int tracking = rs.getInt("tracking");
+				String status = rs.getString("status");
+				String imp_uid = rs.getString("imp_uid");
+				System.out.println(order_num+","+ member_id+","+product_id+","+mount+","+pur_date+","+address+","+tracking+","+status+","+imp_uid);
 				
-				OrderVO vo = new OrderVO(order_num, member_id, product_id, product_name, price, mount, pur_date, post, str1, str2);
+				OrderVO vo = new OrderVO(order_num, member_id, product_id, product_name, price, mount, pur_date, post, str1, str2, tracking, status, imp_uid);
 				list.add(vo);
 			}
 			rs.close();

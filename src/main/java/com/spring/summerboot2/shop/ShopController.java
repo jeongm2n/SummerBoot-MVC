@@ -129,6 +129,7 @@ public class ShopController {
 	public void add_review(HttpServletRequest request, HttpServletResponse response
 			,@RequestParam("product_id") String product_id  ,@RequestParam("rating") int rating
 			,@RequestParam("content") String content  ,@RequestParam("img") MultipartFile img) throws Exception {
+		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		

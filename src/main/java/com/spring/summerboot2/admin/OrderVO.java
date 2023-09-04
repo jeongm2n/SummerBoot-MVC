@@ -14,6 +14,16 @@ public class OrderVO {
 	private String post;
 	private String addr1;
 	private String addr2;
+
+//	결제 내역 연동을 위해 추가한 변수
+	private int tracking;
+	private String status;
+	private String imp_uid;
+	private String pay_method;
+	private String vbank_name;
+	private String vbank_num;
+	private String vbank_due;
+	
 	
 	public OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount,
 			Date pur_date, String address) {
@@ -27,10 +37,9 @@ public class OrderVO {
 		this.pur_date = pur_date;
 		this.address = address;
 	}
-
-	public OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount,
-			Date pur_date, String post, String addr1, String addr2) {
-		super();
+	
+//	결제내역 추가를 위해 만든 생성자
+	OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount, Date pur_date,String post, String addr1, String addr2, int tracking, String status, String imp_uid) {
 		this.order_num = order_num;
 		this.member_id = member_id;
 		this.product_id = product_id;
@@ -41,6 +50,9 @@ public class OrderVO {
 		this.post = post;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
+		this.tracking = tracking;
+		this.status = status;
+		this.imp_uid = imp_uid;
 	}
 
 	public String getOrder_num() {
@@ -129,5 +141,49 @@ public class OrderVO {
 
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
+	}
+	
+	public int getTracking() {
+		return tracking;
+	}
+	public void setTracking(int tracking) {
+		this.tracking = tracking;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getImp_uid() {
+		return imp_uid;
+	}
+	public void setImp_uid(String imp_uid) {
+		this.imp_uid = imp_uid;
+	}
+	public String getPay_method() {
+		return pay_method;
+	}
+	public void setPay_method(String pay_method) {
+		this.pay_method = pay_method;
+	}
+	public String getVbank_name() {
+		return vbank_name;
+	}
+	public void setVbank_name(String vbank_name) {
+		this.vbank_name = vbank_name;
+	}
+	public String getVbank_num() {
+		return vbank_num;
+	}
+	public void setVbank_num(String vbank_num) {
+		this.vbank_num = vbank_num;
+	}
+	
+	public String getVbank_due() {
+		return vbank_due;
+	}
+	public void setVbank_due(String vbank_due) {
+		this.vbank_due = vbank_due;
 	}
 }

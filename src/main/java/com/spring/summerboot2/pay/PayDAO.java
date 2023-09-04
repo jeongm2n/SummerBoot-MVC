@@ -163,21 +163,22 @@ public class PayDAO {
 		}
 	}
 	
-	public void pay_after(String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform) {
+	public void pay_after(String merchant_uid, String id, ArrayList<CartVO> product, InformVO inform, String imp_uid) {
 		try {
 			conn = DBconn.getDBCP();
 			
-			String address = inform.getPostcode() + inform.getState() + inform.getCity() + inform.getTown() + inform.getStreet_add() + inform.getOption_add();
+			String address = inform.getPostcode() + "/" + inform.getState() + "/" + inform.getCity() + "/" + inform.getTown() + "/" + inform.getStreet_add() + "/" + inform.getOption_add();
 			String sql;	
 			
 			for(CartVO i_product : product) {
-				sql = "insert into sb_purchase (order_num, member_id, product_id, mount, address) values (?, ?, ?, ?, ?)";
+				sql = "insert into sb_purchase (order_num, member_id, product_id, mount, address, imp_uid) values (?, ?, ?, ?, ?, ?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, merchant_uid);
 				pstmt.setString(2, id);
 				pstmt.setInt(3, i_product.getProduct_id());
 				pstmt.setInt(4, i_product.getQuantity());
 				pstmt.setString(5, address);
+				pstmt.setString(6, imp_uid);
 				pstmt.executeUpdate();
 			}
 			
@@ -194,11 +195,11 @@ public class PayDAO {
 		}
 	}
 	
-	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site, String qrCode) {
+	public void reservation_after(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site, String qrCode, String imp_uid) {
 		try {
 			conn = DBconn.getDBCP();
 			
-			String sql = "insert into sb_reservation (no, member_id, res_date, site, startTime, useTime, qr_img, order_num) values (?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into sb_reservation (no, member_id, res_date, site, startTime, useTime, qr_img, order_num, imp_uid) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(no));
 			pstmt.setString(2, id);
@@ -208,6 +209,7 @@ public class PayDAO {
 			pstmt.setInt(6, Integer.parseInt(useTime));
 			pstmt.setString(7, qrCode);
 			pstmt.setString(8, merchant_uid);
+			pstmt.setString(9, imp_uid);
 			pstmt.executeUpdate();
 			
 			pstmt.close();

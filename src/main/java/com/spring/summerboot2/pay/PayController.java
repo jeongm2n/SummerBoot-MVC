@@ -185,9 +185,10 @@ public class PayController {
 	}
 	
 	 @ResponseBody
-	 @RequestMapping(value="/pay_after/{merchant_uid},{point}")
+	 @RequestMapping(value="/pay_after/{merchant_uid},{point},{imp_uid}")
 	 public ModelAndView pay_after(HttpServletRequest request, HttpServletResponse response
-			 ,@PathVariable(value= "merchant_uid") String merchant_uid ,@PathVariable(value= "point") String s_point) throws Exception
+			 ,@PathVariable(value= "merchant_uid") String merchant_uid ,@PathVariable(value= "point") String s_point
+			 ,@PathVariable(value= "imp_uid") String imp_uid) throws Exception
 	{
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -202,7 +203,7 @@ public class PayController {
 		int point = 0;
 		if(!s_point.equals("")) { point = Integer.parseInt(s_point);}
 		payService.pay_point(inform.getPoint(), point, user_id);
-		payService.pay_after(merchant_uid, user_id, product, inform);
+		payService.pay_after(merchant_uid, user_id, product, inform, imp_uid);
 		
 		session.removeAttribute("Product");
 		session.removeAttribute("Inform");
@@ -273,12 +274,12 @@ public class PayController {
 	}
 	    
 	 @ResponseBody
-	 @RequestMapping(value="/reservation_after/{merchant_uid},{point},{no},{date},{startTime},{useTime},{site}")
+	 @RequestMapping(value="/reservation_after/{merchant_uid},{point},{no},{date},{startTime},{useTime},{site},{imp_uid}")
 	 public ModelAndView reservation_after(HttpServletRequest request, HttpServletResponse response
 			 ,@PathVariable(value= "merchant_uid") String merchant_uid ,@PathVariable(value= "point") int s_point
 			 ,@PathVariable(value= "no") String no ,@PathVariable(value= "date") String date
 			 ,@PathVariable(value= "startTime") String startTime ,@PathVariable(value= "useTime") String useTime
-			 ,@PathVariable(value= "site") String site) throws Exception
+			 ,@PathVariable(value= "site") String site, @PathVariable(value= "imp_uid") String imp_uid ) throws Exception
 	{
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -295,7 +296,7 @@ public class PayController {
 		
 		String qrCode = payService.makeQRcode(merchant_uid, user_id, no, date, startTime, useTime, site, savePath);
 		
-		payService.reservation_after(merchant_uid, user_id, no, date, startTime, useTime, site, qrCode);
+		payService.reservation_after(merchant_uid, user_id, no, date, startTime, useTime, site, qrCode, imp_uid);
 		
 		mav.addObject("merchant_uid", merchant_uid);
 		mav.addObject("qrCode", qrCode);

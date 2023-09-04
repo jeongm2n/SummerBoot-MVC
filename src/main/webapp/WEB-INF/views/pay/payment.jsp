@@ -33,12 +33,14 @@
     let year = today.getFullYear().toString().substr(2, 2); // 년도
     let month = today.getMonth() + 1;  // 월
     let date = today.getDate();  // 날짜
+    let tomorrow = ('0' + (today.getDate() + 3)).slice(-2); // 3일뒤
     let hours = today.getHours(); // 시
     let minutes = today.getMinutes();  // 분
     let seconds = today.getSeconds();  // 초
     let milliseconds = today.getMilliseconds(); //밀리세컨
     
     let makeMerchantUid = year + month + date + hours +  minutes + seconds + milliseconds;
+    let makeDue = today.getFullYear() + ('0' + (today.getMonth() + 1)).slice(-2) + tomorrow;
     
     let productname = "";
     <c:forEach var="product" items="${product}" varStatus="status">
@@ -57,7 +59,8 @@
             buyer_email : '${B_Inform[1]}',
             buyer_addr : '${B_Inform[2]}',
             buyer_postcode : '${B_Inform[3]}',
-            buyer_name : '${B_Inform[4]}'
+            buyer_name : '${B_Inform[4]}',
+            vbank_due : makeDue
         }, function(res) {
             // 결제검증
             $.ajax({
@@ -66,7 +69,7 @@
             }).done(function(data) {
                 if(res.paid_amount == data.response.amount){
                     alert("결제 및 결제검증완료");
-                    let link = '${path}/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}';
+                    let link = '${path}/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}' + "," + res.imp_uid;
                     location.href = link;
                 } else {
                     alert("결제 실패");
