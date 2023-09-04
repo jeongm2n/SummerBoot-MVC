@@ -29,27 +29,22 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Area Chart Example
 
-function dataInsert(list) {
-	var ctx = document.getElementById("myAreaChart");
-	const purearray = list.slice(1, -1).split(",");
-	var myLineChart = new Chart(ctx, {
+function orderMonthInsert(list) {
+	var ctx = document.getElementById("shopChart");
+	var shopLineChart = new Chart(ctx, {
 	  type: 'line',
 	  data: {
 	    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 	    datasets: [{
-	      label: "예약자수",
+	      label: "주문금액",
 	      lineTension: 0.3,
-	      backgroundColor: "rgba(78, 115, 223, 0.05)",
-	      borderColor: "rgba(78, 115, 223, 1)",
+	      backgroundColor: "rgba(253, 141, 20, 0.05)",
+	      borderColor: "rgba(253, 141, 20, 1)",
 	      pointRadius: 3,
-	      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-	      pointBorderColor: "rgba(78, 115, 223, 1)",
-	      pointHoverRadius: 3,
-	      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-	      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-	      pointHitRadius: 10,
-	      pointBorderWidth: 2,
-	      data: purearray
+	      pointBackgroundColor: "rgba(253, 141, 20, 1)",
+	      pointBorderColor: "rgba(253, 141, 20, 1)",
+	      pointHoverRadius: 5,
+	      data: list
 	    }],
 	  },
 	  options: {
@@ -71,7 +66,7 @@ function dataInsert(list) {
 		    },
 		    ticks: {
 		      maxTicksLimit: 12, // 최대 표시할 월 수 (12개월)
-		      callback: function(value, index, values) {
+		      callback: function(value) {
 		        return value; // 월 값에 '월'을 추가하여 표시
 		      }
 		    }
@@ -80,8 +75,8 @@ function dataInsert(list) {
 		    ticks: {
 		      maxTicksLimit: 5,
 		      padding: 10,
-		      callback: function(value, index, values) {
-		        return number_format(value) + "명";
+		      callback: function(value) {
+		        return "￦" + number_format(value);
 		      }
 		    },
 		    gridLines: {
@@ -113,7 +108,7 @@ function dataInsert(list) {
 	      callbacks: {
 	        label: function(tooltipItem, chart) {
 	          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-	          return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '명';
+	          return datasetLabel + ': ￦' + number_format(tooltipItem.yLabel);
 	        }
 	      }
 	    }

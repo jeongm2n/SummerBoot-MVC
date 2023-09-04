@@ -249,8 +249,8 @@
                     <c:set var="time" value="${fn:split(list.time,'~')}"/>
                     <fmt:parseDate var="open_time" value="${time[0]}" pattern="HH:mm"/>
                     <fmt:parseDate var="end_time" value="${time[1]}" pattern="HH:mm"/>
-                    <div class="col-12 col-md-5 infoHidden"
-                         style="position:absolute;left:58.5%;z-index:1000;height:100%;display:none;" id="${list.no }">
+
+                    <div class="col-12 col-md-5 infoHidden" id="${list.no }">
                         <div class="card h-100">
                             <div style="text-align:end;margin:0.5% 2%;"><span class="close">X</span></div>
                             <div style="width:100%;height:43%;">
@@ -543,12 +543,18 @@
     $( document ).ready(function() {
         getTodayResList('1');
         var message = "${msg}";
-		if ("${msg}" == 'login') { // 로그인이 되면 url 메인으로 변경
+		if (window.location.pathname != '/summerboot2/') { // 로그인이 되면 url 메인으로 변경
 		    location.href="${path}"
 		}
 		$("#1").show();
     });
- 
+ 	
+    window.onpageshow = function(event) {
+    	if(event.persisted) { // 뒤로가기로 페이지로드시
+    		$('#div_load').hide(); // 로딩 화면을 없애주는 것
+    	}
+    }
+    
             var siteNo = '1';
 
             function getTodayResList(todayres) {
@@ -627,6 +633,8 @@
                 var formattedDate = year + (month < 10 ? '0' : '') + month + (day < 10 ? '0' : '') + day;
 
                 window.location.href = `reservation/reservation1?no=\${siteNo}&date=\${formattedDate}`
+
+            	$('#div_load').show();
                 <%}%>
             }
 
@@ -671,7 +679,6 @@
     var ps = new kakao.maps.services.Places();
 
 	mark();
-	/* myLocation(); */
 
     function inputSearch() {
         var want = document.getElementById("search").value;
@@ -727,6 +734,7 @@
 				
 				// 마커와 인포윈도우를 표시합니다
 				displayMarker(locPosition);
+				map.setLevel(5);
 			});
 		    
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -752,13 +760,14 @@
 	       
 	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 	        map.setBounds(bounds);
-	        
+	        map.setLevel(6);
 	        mark();
 	    } 
 	}
 
     function displayMarker(locPosition) { // 지도 중심좌표를 접속위치로 변경합니다
         map.setCenter(locPosition);
+        map.panTo(locPosition);
     }
 
     function map(store) {
@@ -773,7 +782,6 @@
     $(document).on('click', '.close', function () {
         $(".infoHidden").hide();
     });
-
 
     window.onbeforeunload = function () {
         $('#div_load').show();
@@ -802,7 +810,8 @@
 
         var currentYMD = realYear + currentMonth + currentDate;
 
-        location.replace("${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD);
+        location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD;
+        $('#div_load').show(); //현재 페이지에서 다른 페이지로 넘어갈 때 표시해주는 기능
       <%}%>
     }
 </script>

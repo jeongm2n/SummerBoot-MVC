@@ -5,6 +5,7 @@
 
 <head>
 	<%@ include file="./common/head.jsp"%>
+	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
     <title>관리자페이지</title>
 </head>
 
@@ -97,14 +98,13 @@
                         </div>
 
                         <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-3 col-md-6 mb-4 moreIn">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">답변대기 문의</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${count }</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -118,27 +118,12 @@
                     <!-- Content Row -->
 
                     <div class="row">
-
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-6 col-lg-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">월별 예약자수</h6>
-                                    <!-- <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div> -->
+                                    <h6 class="m-0 font-weight-bold text-gray">월별 예약자수</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -148,27 +133,42 @@
                                 </div>
                             </div>
                         </div>
-
+						<!-- Bar Chart -->
+                        <div class="col-xl-6 col-lg-6">
+	                        <div class="card shadow mb-4">
+	                            <div class="card-header py-3">
+	                                <h6 class="m-0 font-weight-bold text-gray">이번달 지점별 예약건수</h6>
+	                            </div>
+	                            <div class="card-body">
+	                                <div class="chart-bar">
+	                                    <canvas id="myBarChart"></canvas>
+	                                </div>
+	                            </div>
+	                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-gray">월별 쇼핑 주문액</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="shopChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Pie Chart -->
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                    <h6 class="m-0 font-weight-bold text-gray">문의별 비율</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -177,20 +177,20 @@
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
+                                            <i class="fas fa-circle text-washboot"></i> 예약
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
+                                            <i class="fas fa-circle text-primary"></i> 쇼핑
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
+                                            <i class="fas fa-circle" style="color:#F2E8C6"></i> 기타
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Content Row -->
                     <div class="row">
 
@@ -235,7 +235,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="col-lg-6 mb-4">
@@ -263,7 +262,7 @@
 			                                </c:forEach>
 										</c:when>
 									</c:choose>
-									<c:if test="${count > 5}"><div style="text-align:center;"><span id="moreIn">더보기</span></div></c:if>
+									<c:if test="${count > 5}"><div style="text-align:center;"><span class="moreIn" style="text-decoration:underline;">더보기</span></div></c:if>
                                 </div>
                             </div>
 
@@ -323,36 +322,27 @@
         </div>
     </div>
 	<%@ include file="./common/footer.jsp" %>
-	<script src="${path}/resources/assets/js/chart-area-demo.js"></script>
-	<script src="${path}/resources/assets/js/chart-pie-demo.js"></script>
+	<script src="${path}/resources/assets/js/monthPerRes.js"></script>
+	<script src="${path}/resources/assets/js/shop-chart.js"></script>
+	<script src="${path}/resources/assets/js/inquiryCnt.js"></script>
+	<script src="${path}/resources/assets/js/storePerRes.js"></script>
 </body>
 
 </html>
 
-<style>
-	.AM-inquiry {
-		display:grid;
-		grid-template-columns:0.5fr 2fr 1fr;
-	    padding-bottom: 1%;
-	}
-	
-	#moreIn{
-		cursor:pointer;
-		text-decoration:underline;
-	}
-</style>
-
 <script>
-	$( document ).ready(function() {
+	$(document).ready(function() {
 	    var message = "${msg}";
 		if ("${msg}" == 'admin') { // 로그인이 되면 url 메인으로 변경
 		    location.href="${path}/admin/"
 		}
 	});
 
-	$(document).on('click', '#moreIn', function() {
-		alert();
+	$(document).on('click', '.moreIn', function() {
 		location.href="${path}/admin/community/inquiry?state=wait"
 	});
-	dataInsert("${reserCount}");
+	dataInsert(${reserCount});
+	orderMonthInsert(${orderMonthSum});
+	storePerRes("${storeName}", "${storePerRes}");
+	inquiryCount(${inquiryCount});
 </script>

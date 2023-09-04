@@ -35,6 +35,7 @@
                                         <tr>
                                             <th class="img">상품사진</th>
                                             <th class="id">상품코드</th>
+                                            <th class="category">카테고리</th>
                                             <th class="name">상품명</th>
                                             <th class="amount">재고</th>
                                             <th class="price">가격</th>
@@ -44,6 +45,7 @@
                                         <tr>
                                             <th class="img">상품사진</th>
                                             <th class="id">상품코드</th>
+                                            <th class="category">카테고리</th>
                                             <th class="name">상품명</th>
                                             <th class="amount">재고</th>
                                             <th class="price">가격</th>
@@ -61,6 +63,7 @@
 			                                        <tr class="item">
 			                                            <td align=center class="img" style="padding:0"><img src = "${file_repo }${list.img }"></td>
 			                                            <td class="id">${list.product_id }</td>
+			                                            <td class="id">${list.category }</td>
 			                                            <td class="name">${list.name }</td>
 			                                            <td class="amount">${list.amount }</td>
 			                                            <td class="price"><fmt:formatNumber value="${list.price }" pattern="#,###"/></td>

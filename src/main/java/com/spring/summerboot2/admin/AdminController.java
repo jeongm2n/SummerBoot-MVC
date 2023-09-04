@@ -39,8 +39,23 @@ public class AdminController {
 		List<Integer> reserCount;
 		reserCount = adminService.reserCount();
 		
+		List<Integer> orderMonthSum;
+		orderMonthSum = adminService.orderMonthSum();
+		
+		Map<String, Integer> storePerRes;
+		List<String> storeName;
+		storePerRes = adminService.storePerRes();
+		storeName = adminService.storeName();
+		
+		List<Integer> inquiryCount;
+		inquiryCount = adminService.inquiryCnt();
+		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("inquiryCount", inquiryCount);
 		mav.addObject("reserCount", reserCount);
+		mav.addObject("orderMonthSum", orderMonthSum);
+		mav.addObject("storePerRes", storePerRes);
+		mav.addObject("storeName", storeName);
 		mav.addObject("count", count);
 		mav.addObject("inquiry", inquiry);
 		mav.setViewName("admin/main");

@@ -2,7 +2,7 @@
 /* #FFB26B */
 /* FFD36E */
 
-/* 세차장리스트 */
+/* 메인 세차장리스트 */
 .wash-card {
 	flex-direction: row;
 }
@@ -20,16 +20,17 @@
 	margin-bottom:2rem;
 }
 
-.card-body {
-	display: grid;
-    align-content: space-evenly;
-    padding : 1rem 2rem;
-}
-
 i {
 	margin-right:5px;
 }
 
+.infoHidden {
+	position:absolute;
+	left:58.5%;
+	z-index:1000;
+	height:100%;
+	display:none;
+}
 
 
 /* 회원가입 */
@@ -158,6 +159,23 @@ i {
 	cursor:pointer;
 }
 
+/* 관리자-메인 */
+.in-title {
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 2%;
+}
+
+.AM-inquiry {
+	display:grid;
+	grid-template-columns:0.7fr 2fr 1fr;
+    padding-bottom: 1%;
+}
+
+.moreIn{
+	cursor:pointer;
+}
 
 /* Q&A */
 .page-link {
