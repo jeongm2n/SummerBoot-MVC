@@ -8,6 +8,10 @@ public class WeatherVO {
 	private String ampop;
 	private String pmpop;
 	private String pop;
+	private String time;
+
+	public WeatherVO() {
+	}
 
 	public WeatherVO(String date, String ampop, String pmpop, String tmx, String tmn) {
 		this.date = date;
@@ -15,10 +19,6 @@ public class WeatherVO {
 		this.pmpop = pmpop;
 		this.tmx = tmx;
 		this.tmn = tmn;
-	}
-
-	public WeatherVO(String pop){
-		this.pop = pop;
 	}
 
 	public String getDate() {
@@ -68,5 +68,12 @@ public class WeatherVO {
 	public void setPop(String pop) {
 		this.pop = pop;
 	}
-	
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
 }

@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,10 +38,8 @@ public class HomeController {
 		String formattedDate = today.format(formatter);
 
 		WeatherDAO wdao = new WeatherDAO();
-		List<WeatherVO> weather3 = wdao.getOneday(formattedDate,"60","127");
-		List<WeatherVO> weekWeather = new ArrayList<>();
-		weekWeather.addAll(weather3);
-		mav.addObject("weathers",weekWeather);
+		List<WeatherVO> weather1 = wdao.getOneday(formattedDate,"60","127");
+		mav.addObject("weather1",weather1);
 		mav.setViewName("home");
     	
 		return mav;
