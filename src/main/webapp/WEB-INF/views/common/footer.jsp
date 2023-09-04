@@ -26,16 +26,16 @@
                 <div class="text-center col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Location</h2>
                     <ul class="list-unstyled text-light footer-link-list" id="loc">
-                        <li><a class="text-decoration-none" href="${path}/branch/list">양평로점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">경인로점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">천왕점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">가제1동점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">강동성안점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">성동마장점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">성북종암점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">은평갈현점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">관악봉천점</a></li>
-                        <li><a class="text-decoration-none" href="${path}/branch/list">용문점</a></li>
+                        <li><span>양평로점</span></li>
+                        <li><span>경인로점</span></li>
+                        <li><span>천왕점</span></li>
+                        <li><span>가제1동점</span></li>
+                        <li><span>강동성안점</span></li>
+                        <li><span>성동마장점</span></li>
+                        <li><span>성북종암점</span></li>
+                        <li><span>은평갈현점</span></li>
+                        <li><span>관악봉천점</span></li>
+                        <li><span>용문점</span></li>
                     </ul>
                 </div>
 
