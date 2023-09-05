@@ -14,15 +14,11 @@ public class OrderVO {
 	private String post;
 	private String addr1;
 	private String addr2;
-
+	
 //	결제 내역 연동을 위해 추가한 변수
 	private int tracking;
 	private String status;
 	private String imp_uid;
-	private String pay_method;
-	private String vbank_name;
-	private String vbank_num;
-	private String vbank_due;
 	
 	
 	public OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount,
@@ -160,30 +156,5 @@ public class OrderVO {
 	}
 	public void setImp_uid(String imp_uid) {
 		this.imp_uid = imp_uid;
-	}
-	public String getPay_method() {
-		return pay_method;
-	}
-	public void setPay_method(String pay_method) {
-		this.pay_method = pay_method;
-	}
-	public String getVbank_name() {
-		return vbank_name;
-	}
-	public void setVbank_name(String vbank_name) {
-		this.vbank_name = vbank_name;
-	}
-	public String getVbank_num() {
-		return vbank_num;
-	}
-	public void setVbank_num(String vbank_num) {
-		this.vbank_num = vbank_num;
-	}
-	
-	public String getVbank_due() {
-		return vbank_due;
-	}
-	public void setVbank_due(String vbank_due) {
-		this.vbank_due = vbank_due;
 	}
 }

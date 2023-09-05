@@ -74,14 +74,14 @@
 				                            		<c:forEach var="list" items="${orderList }">
 				                                        <tr>
 				                                            <td class="order_num align-middle">
-				                                            	<b>주문번호 : ${list.order_num }</b><br>
+				                                            	<b>주문번호 : ${list.order_num }</b>
+				                                            	<c:if test = '${list.status eq "paid"}'> <span class="status" style="background-color: orange;">결제 완료</span><br></c:if>
+				                                            	<c:if test = '${list.status eq "ready"}'> <span class="status" style="background-color: skyblue;">입금 대기 중</span><br></c:if>
+				                                            	<c:if test = '${list.status eq "cancelled"}'> <span class="status" style="background-color: grey;">결제 취소</span><br></c:if>
 				                                            	주문 날짜 : ${list.pur_date }<br>
 				                                            	주문자 : ${list.member_id }<br>
-				                                            	<c:if test = '${list.status eq "paid"}'> 결제 완료<br></c:if>
-				                                            	<c:if test = '${list.status eq "ready"}'> 입금 대기 중<br></c:if>
-				                                            	<c:if test = '${list.status eq "cancelled"}'> 결제 취소<br></c:if>
-				                                            	<c:if test = '${list.pay_method eq "무통장 입금"}'><button style = "width: 80px;height: 20px;font-size: 10px;padding: 0px;border: 1px solid #FD8008;color: #FD8008;border-radius: 5px;background-color: white;"onclick="popup1('${list.pay_method}', '${list.vbank_name}', '${list.vbank_num}', '${list.vbank_due}');">결제 정보 확인</button></c:if>
-				                                            	<c:if test = '${list.pay_method eq "카드 결제"}'><button style = "width: 80px;height: 20px;font-size: 10px;padding: 0px;border: 1px solid #FD8008;color: #FD8008;border-radius: 5px;background-color: white;"onclick="popup2('${list.pay_method}');">결제 정보 확인</button></c:if>
+				                                            	
+				                                            	<button class="btn_popup" onclick="popup('${list.imp_uid}', '${list.pur_date}');">결제 정보 확인</button>
 				                                            </td>
 				                                            <td class="align-middle">
 					                                        	우편번호 : ${list.post }<br>
@@ -110,16 +110,9 @@
 </html>
 
 <script>
-	function popup1(paymentMethod, vbankName, vbankNumber, vbankDueDate){
- 	    let popUrl = "${path}/admin/order/check_payment/" + paymentMethod + "/" + vbankName + "/" + vbankNumber + "/" + vbankDueDate;
- 	    let popOption = "width=450px,height=300px,top=300px,left=300px,scrollbars=yes";
- 	    
- 	    window.open(popUrl, "리뷰 작성", popOption);	
-	}
-	
-	function popup2(paymentMethod){
- 	    let popUrl = "${path}/admin/order/check_payment/" + paymentMethod + "/" + null + "/" + null + "/" + null;
- 	    let popOption = "width=450px,height=300px,top=300px,left=300px,scrollbars=yes";
+	function popup(Imp_uid, Pur_date){
+ 	    let popUrl = "${path}/admin/order/check_payment/" + Imp_uid + "/" + Pur_date;
+ 	    let popOption = "width=450px,height=400px,top=300px,left=300px,scrollbars=yes";
  	    
  	    window.open(popUrl, "리뷰 작성", popOption);	
 	}

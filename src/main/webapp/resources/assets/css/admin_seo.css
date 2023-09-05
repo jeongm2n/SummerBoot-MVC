@@ -6,3 +6,24 @@
 	background-color : #FFDAB9;
 	border-color : #FFDAB9
 }
+
+.btn_popup{
+	width: 80px;
+	height: 20px;
+	font-size: 10px;
+	padding: 0px;
+	border: 1px solid #FD8008;
+	color: #FD8008;
+	border-radius: 5px;
+	background-color: white;
+}
+
+.status{
+	float: right;
+    text-align: center;
+    font-size: 10px;
+	padding: 0px 5px;
+    height: 15px;
+    border-radius: 5px;
+    color: white
+}
