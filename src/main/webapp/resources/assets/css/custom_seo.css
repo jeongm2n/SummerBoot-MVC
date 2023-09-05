@@ -193,20 +193,29 @@ td {
 	.m_time { display: none;}
 } 
 
-.beforecard{
-	margin-bottom : 50px;	
+.cutcard{
+	width : 90%;
+	margin-left : auto;
+	margin-right : auto;
+	background-color : transparent;	
 }
 
 .beforediv{
-	width : 100%;
+	margin-top:10px;
+	width : 95%;
 	height : 200px;
 	overflow-x : hidden;
+	margin-left:2.5%;
+	margin-right:2.5%
 }
 
 .afterdiv{
-	width : 100%;
+	margin-top:10px;
+	width : 95%;
 	height : 400px;
 	overflow-x : hidden;
+	margin-left:2.5%;
+	margin-right:2.5%
 }
 
 .card{
@@ -238,7 +247,27 @@ td {
 }
 
 .sandclock{
-	width:30px;
-	height:25px;
+	width:35px;
+	height:32px;
+	vertical-align: middle;
 }
 
+.myresfont{
+	font-family: 'Black Han Sans', sans-serif;
+	font-size : 24pt;
+	color:#FD8008;
+	vertical-align: middle;
+}
+
+.myresdiv{
+	font-family: 'Black Han Sans', sans-serif;
+	text-align:center;
+	width:100%;
+	color:#FD8008;
+}
+
+.bg{
+	padding-top : 80px;
+	background-repeat : no-repeat;
+	background-size : cover
+}
