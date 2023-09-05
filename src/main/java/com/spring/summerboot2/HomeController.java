@@ -42,11 +42,9 @@ public class HomeController {
 
 		WeatherDAO wdao = new WeatherDAO();
 
-		List<WeatherVO> weather3 = wdao.getOneday(formattedDate,"60","127");
-		List<WeatherVO> weekWeather = new ArrayList<>();
-		weekWeather.addAll(weather3);
+		List<WeatherVO> weather1 = wdao.getOneday(formattedDate,"60","127");
 		mav.addObject("store_no",num);
-		mav.addObject("weathers",weekWeather);
+		mav.addObject("weather1",weather1);
 		mav.setViewName("home");
     	
 		return mav;

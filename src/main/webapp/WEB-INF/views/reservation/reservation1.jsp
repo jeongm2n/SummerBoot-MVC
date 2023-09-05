@@ -86,123 +86,86 @@
 
 <body>
 	<section class="container py-5">
-		<div id="wrapper" class="row">
+		<div id="wrapper">
 			<script
 				src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 				integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 				crossorigin="anonymous"></script>
 	
-			<div class="col-lg-3">
+			
+			<div class="weatherdiv table-responsive">
+				<h1 style="margin:2%;">주간날씨</h1>
+				<table id="weather" class="weathertb">
+				</table>
 			</div>
-			<!--     	이 부분도 위에 지점선택처럼 바꾸고 싶었으나 그건 너무 많이 만지는거 같아서 나중에 원하시면 말해주세요 제가 수정할께요! -->
-			<div class="col-lg-8 p_time">
-				<div class="border border-4 div2" style="text-align: center;">
-	
-					<span
-						style="display: inline-block; width: 20%; line-height: 80px; float: left; vertical-align: middle">사용시간</span>
-					<span
-						style="display: inline-block; width: 80%; height: 80px; float: right">
-						<span class="span-time"> <input type="radio"
-							class="btn-check" name="p_options" id="30" value=29
-							autocomplete="off" checked> <label
-							class="btn btn-secondary" for="30">30M</label></span> <span
-						class="span-time"> <input type="radio" class="btn-check"
-							name="p_options" id="100" value=59 autocomplete="off"> <label
-							class="btn btn-secondary" for="100">1H</label></span> <span
-						class="span-time"> <input type="radio" class="btn-check"
-							name="p_options" id="130" value=89 autocomplete="off"> <label
-							class="btn btn-secondary" for="130">1H30M</label></span> <span
-						class="span-time"> <input type="radio" class="btn-check"
-							name="p_options" id="200" value=119 autocomplete="off"> <label
-							class="btn btn-secondary" for="200">2H</label></span>
-					</span>
-				</div>
-			</div>
-	
-			<div class="col-lg-8 m_time">
-				<div class="col border border-4 div2">
-					<div style="width: 100%; text-align: center;">
-						<a class="title">사용 시간</a><br>
+			
+			<div style="display: grid;grid-template-columns: 1fr 1fr;margin-top:5%;">
+				<div style="height: 450px">
+					<!-- <div class="border border-4"> -->
+					<div class="border">
+						<b style="color: #FFDAB9">달력은 현재 달에서 +1달 까지만 조회하실 수 있습니다.</b>
+						<table class="calendartb" id="calendar">
+							<thead style="border-bottom: 1px solid #000;">
+								<tr>
+									<td class="thead" align="center"><label
+										onclick="prevMonth()"> ◀ </label></td>
+									<td class="thead" colspan="5" align="center" id="calendarTitle"></td>
+									<td class="thead" align="center"><label
+										onclick="nextMonth()"> ▶ </label></td>
+								</tr>
+								<tr>
+									<td class="thead"><font color="#F79DC2">일</font></td>
+									<td class="thead">월</td>
+									<td class="thead">화</td>
+									<td class="thead">수</td>
+									<td class="thead">목</td>
+									<td class="thead">금</td>
+									<td class="thead"><font color="skyblue">토</font></td>
+								</tr>
+							<thead>
+						</table>
 					</div>
-					<div class="container text-center">
-						<div class="row row-cols-2">
-							<div class="col" style="padding-bottom: 10px">
-								<input type="radio" class="btn-check" name="m_options" id="m_30"
-									value=29 autocomplete="off" checked> <label
-									class="btn btn-secondary shops" for="30">30M</label>
-							</div>
-							<div class="col" style="padding-bottom: 10px">
-								<input type="radio" class="btn-check" name="m_options" id="m_100"
-									value=59 autocomplete="off"> <label
-									class="btn btn-secondary shops" for="100">1H</label>
-							</div>
-							<div class="col" style="padding-bottom: 10px">
-								<input type="radio" class="btn-check" name="m_options" id="m_130"
-									value=89 autocomplete="off"> <label
-									class="btn btn-secondary shops" for="130">1H30M</label>
-							</div>
-							<div class="col" style="padding-bottom: 10px">
-								<input type="radio" class="btn-check" name="m_options" id="m_200"
-									value=119 autocomplete="off"> <label
-									class="btn btn-secondary shops" for="200">2H</label>
+				</div>
+		
+				<div>
+					<div>
+						<div class="border p_time" style="text-align: center;">
+							<h3>사용시간</h3>
+							<div>
+								<span style="display: inline-block; width: 80%; height: 80px; float: right">
+									<span class="span-time">
+										<input type="radio" class="btn-check" name="p_options" id="30" value=29 autocomplete="off" checked>
+										<label class="btn btn-secondary" for="30">30M</label>
+									</span>
+									<span class="span-time"> <input type="radio" class="btn-check" name="p_options" id="100" value=59 autocomplete="off">
+										<label class="btn btn-secondary" for="100">1H</label>
+									</span>
+									<span class="span-time">
+										<input type="radio" class="btn-check" name="p_options" id="130" value=89 autocomplete="off">
+										<label class="btn btn-secondary" for="130">1H30M</label>
+									</span>
+									<span class="span-time">
+										<input type="radio" class="btn-check" name="p_options" id="200" value=119 autocomplete="off">
+										<label class="btn btn-secondary" for="200">2H</label>
+									</span>
+								</span>
 							</div>
 						</div>
+						
+						<legend>시간</legend>
+						<div id="container1" style="width: 100%; height: 200px; text-align: center; margin-top: 30px">
+						</div>
+						<hr>
+						<legend>분</legend>
+						<div id="container2"
+							style="margin-top: 10px; width: 100%; height: 100px"></div>
 					</div>
-				</div>
-			</div>
-			<div class="col-lg-1">
-			</div>
-			
-				<div class="border border-4 weatherdiv table-responsive">
-					주간날씨
-					<table id="weather" class="weathertb">
-					</table>
-				</div>
-			
-			<div class="col-lg-6" style="height: 450px">
-				<div class="border border-4 div3" style="float:right;">
-					<b style="color: #FFDAB9">달력은 현재 달에서 +1달 까지만 조회하실 수 있습니다.</b>
-					<table class="calendartb" id="calendar">
-						<thead style="border-bottom: 1px solid #000;">
-							<tr>
-								<td class="thead" align="center"><label
-									onclick="prevMonth()"> ◀ </label></td>
-								<td class="thead" colspan="5" align="center" id="calendarTitle"></td>
-								<td class="thead" align="center"><label
-									onclick="nextMonth()"> ▶ </label></td>
-							</tr>
-							<tr>
-								<td class="thead"><font color="#F79DC2">일</font></td>
-								<td class="thead">월</td>
-								<td class="thead">화</td>
-								<td class="thead">수</td>
-								<td class="thead">목</td>
-								<td class="thead">금</td>
-								<td class="thead"><font color="skyblue">토</font></td>
-							</tr>
-						<thead>
-					</table>
-				</div>
-			</div>
-	
-			<div class="col-lg-6" style="height: 450px">
-				<div class="border border-4 div4"
-					style="float: left; text-align: center">
-					<legend>시간</legend>
-					<div id="container1"
-						style="width: 100%; height: 200px; text-align: center; margin-top: 30px">
+					<div style="width: 400px; height: 50px; margin-top: 15px; float: right">
+						<button id="btn-shop" class="orange-button btn-time" style="margin-right:5px" disabled></button>
+						<button id="btn-date" class="orange-button btn-time" style="margin-right:5px" disabled></button>
+						<button id="btn-time" class="orange-button btn-time" style="margin-right:5px" disabled></button>
+						<button type="button" class="orange-button" onclick="return goReservation2();">Next></button>
 					</div>
-					<hr>
-					<legend>분</legend>
-					<div id="container2"
-						style="margin-top: 10px; width: 100%; height: 100px"></div>
-				</div>
-				<div
-					style="width: 400px; height: 50px; margin-top: 15px; float: right">
-					<button id="btn-shop" class="orange-button btn-time" style="margin-right:5px" disabled></button>
-					<button id="btn-date" class="orange-button btn-time" style="margin-right:5px" disabled></button>
-					<button id="btn-time" class="orange-button btn-time" style="margin-right:5px" disabled></button>
-					<button type="button" class="orange-button" onclick="return goReservation2();">Next></button>
 				</div>
 			</div>
 		</div>

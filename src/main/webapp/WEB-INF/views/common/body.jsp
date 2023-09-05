@@ -617,11 +617,12 @@
 						baseTable += `<tr> <td colspan="4" style="text-align: center">오늘 예약이 없습니다.</td> </tr>`;
 					} else {
 						for (let i = hours+1; i < 24; i++) {
-							let hour    = data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length
-							let fullRes = data[0].sites;
+                            let hour        = data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length //시간대의 예약건수
+                            let fullRes     = data[0].sites; //full예약
+                            let weatherIcon = getWeatherIcon(i) //날씨
 							baseTable += `
 								<tr style="text-align: center">
-								<td></td>
+	                            <td><img src="\${weatherIcon}" alt="날씨이미지" width="50px" height="50px"></td>
 								<td>\${i}:00</td>
 								<td>\${data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length} / \${data[0].sites}
 								</td>
@@ -649,6 +650,33 @@
 			}
 			return null; // 기호가 없는 경우
 		}
+		
+        //날씨데이터
+        var weather1 = [
+            <c:forEach items="${weather1}" var="data">
+            {
+                time: "${data.time}",
+                pop : "${data.pop}"
+            },
+            </c:forEach>
+        ];
+
+        //날씨아이콘 출력
+        function getWeatherIcon(time) {
+            time = time < 10 ? '0' + time + "00" : '' + time + "00"; //time이 '10'미만이면 '0time00' 그렇지않으면 'time00'
+            for (let i = 0; i < weather1.length; i++) {
+                if (time === weather1[i].time) { //시간 비교하여 같으면
+                	alert(weather1[i].pop);
+                    if (weather1[i].pop < 30) { //30미만 sun
+                        return '${path}/resources/assets/img/sun.png';
+                    } else if (weather1[i].pop < 50) { //50미만 cloudy
+                        return '${path}/resources/assets/img/cloudy.png';
+                    } else { //50이상 rain
+                        return '${path}/resources/assets/img/rain.png';
+                    }
+                }
+            }
+        }
 		
 		<!-- 세차가이드 : 모달팝업창으로 유튜브영상 보여주기 -->
 		$(".popupModalVideo a").click(function () {
