@@ -167,8 +167,7 @@ public class ReservationDAO {
 			
 			String sql = "SELECT order_num, name, res_date, site, startTime, useTime, qr_img FROM sb_reservation, sb_carwash "
 					+ "WHERE member_id='"+user_id+"' AND "
-							+ "sb_carwash.no IN (SELECT sb_reservation.no FROM sb_reservation WHERE member_id='"+user_id+"') "
-					+ "ORDER BY res_date DESC";
+							+ "sb_carwash.no = sb_reservation.no ORDER BY res_date DESC";
 			
 			System.out.println("sql : " + sql);
 			

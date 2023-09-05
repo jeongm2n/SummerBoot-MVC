@@ -22,8 +22,8 @@
 <div class="container" style="margin-bottom:30px">
 	<div class="card">
 	<h1 style="color:#FD8008"><b>나의 예약현황</b></h1>
-		<div class="card"><b style="color:#FD8008">사용 전</b>
-			<div class="beforediv" style="text-align:center">
+		<div class="card"><span><b style="color:#FD8008">사용 전</b><img src="${path }/resources/assets/img/before.png" class="sandclock"></span>
+			<div class="beforediv" style="text-align:center;--bs-bg-opacity: .5;">
 			<table class="table restable">
 				<tr><th>예약번호</th><th>지점명</th><th>예약날짜</th><th>선택자리</th><th>예약시간</th></tr>
 				<tbody>
@@ -35,8 +35,8 @@
 			</div>
 		</div>
 		
-		<div class="card"><b style="color:#FD8008">사용 완료</b>
-			<div class="afterdiv" style="text-align:center">
+		<div class="card"><span><b style="color:#FD8008">사용 완료</b><img src="${path }/resources/assets/img/after.png" class="sandclock"></span>
+			<div class="afterdiv" style="text-align:center;--bs-bg-opacity: .5;">
 			<table class="table restable">
 				<tr><th>예약번호</th><th>지점명</th><th>예약날짜</th><th>선택자리</th><th>예약시간</th></tr>
 				<tbody>
