@@ -666,7 +666,6 @@
             time = time < 10 ? '0' + time + "00" : '' + time + "00"; //time이 '10'미만이면 '0time00' 그렇지않으면 'time00'
             for (let i = 0; i < weather1.length; i++) {
                 if (time === weather1[i].time) { //시간 비교하여 같으면
-                	alert(weather1[i].pop);
                     if (weather1[i].pop < 30) { //30미만 sun
                         return '${path}/resources/assets/img/sun.png';
                     } else if (weather1[i].pop < 50) { //50미만 cloudy
@@ -693,17 +692,6 @@
 </body>
 </html>
 <script>
-    var weather = [
-        <c:forEach items="${weathers}" var="data" varStatus="loop">
-        {
-            date : "${data.date}",
-            ampop: "${data.ampop}",
-            pmpop: "${data.pmpop}",
-            tmx  : "${data.tmx}",
-            tmn  : "${data.tmn}"
-        }<c:if test="${!loop.last}">, </c:if>
-        </c:forEach>
-    ];
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	mapOption = {
