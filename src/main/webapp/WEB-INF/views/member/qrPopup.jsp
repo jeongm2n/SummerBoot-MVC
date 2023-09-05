@@ -13,8 +13,6 @@
 <body>
 <div class="card qrPopup">
 	<img src="${path }/resources/assets/img/qr/${qrCode}" class="card-img-top qrImg">
-<!-- 	<div class="card-body"> -->
-<!-- 	</div> -->
 </div>
 </body>
 </html>
