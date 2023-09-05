@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <!doctype html>
 <html lang="ko">
-<<<<<<< HEAD
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Wash Boot</title>
-
-    <link rel="stylesheet" href="${path}/resources/assets/css/custom_ryu.css">
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06a1b9ec0da85dcbc94968ce7bd3be22&libraries=services"></script>
-=======
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -22,7 +10,6 @@
 	
 	<link rel="stylesheet" href="${path}/resources/assets/css/custom_ryu.css">
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06a1b9ec0da85dcbc94968ce7bd3be22&libraries=services"></script>
->>>>>>> origin/lee
 </head>
 <body>
 	<div id="div_load" style="display: none">
@@ -522,71 +509,6 @@
 	</section>
 	<!-- End 당일예약현황 -->
 
-<<<<<<< HEAD
-                <div class="collapse show" id="res_YangPyeong">
-                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
-                        <h2 align="center">양평로점 예약현황</h2><br>
-                        <div id="resList1"></div>
-                    </div>
-                </div>
-                <div class="collapse" id="res_gyeonginro">
-                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
-                        <h2 align="center">경인로점 예약현황</h2>
-                        <div id="resList2"></div>
-                    </div>
-                </div>
-                <div class="collapse" id="res_cheonwang">
-                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
-                        <h2 align="center">천왕점 예약현황</h2>
-                        <div id="resList3"></div>
-                    </div>
-                </div>
-                <div class="collapse" id="res_gaje1dong">
-                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
-                        <h2 align="center">가제1동점 예약현황</h2>
-                        <div id="resList4"></div>
-                    </div>
-                </div>
-                <div class="collapse" id="res_kangdongseongan">
-                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
-                        <h2 align="center">강동성안점 예약현황</h2>
-                        <div id="resList5"></div>
-                    </div>
-                </div>
-                <div class="collapse" id="res_majang">
-                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
-                        <h2 align="center">성동마장점 예약현황</h2>
-                        <div id="resList6"></div>
-                    </div>
-                </div>
-                <div class="collapse" id="res_jongam">
-                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
-                        <h2 align="center">성북종암점 예약현황</h2>
-                        <div id="resList7"></div>
-                    </div>
-                </div>
-                <div class="collapse" id="res_galhyeon">
-                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
-                        <h2 align="center">은평갈현점 예약현황</h2>
-                        <div id="resList8"></div>
-                    </div>
-                </div>
-                <div class="collapse" id="res_bongcheon">
-                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
-                        <h2 align="center">관악봉천점 예약현황</h2>
-                        <div id="resList9"></div>
-                    </div>
-                </div>
-                <div class="collapse" id="res_yongmoon">
-                    <div class="card overflow-auto" style="height: 400px; padding:1rem 2rem">
-                        <h2 align="center">용문점 예약현황</h2>
-                        <div id="resList10"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End 당일예약현황 -->
-=======
 	<!-- Start 세차가이드 -->
 	<section class="container py-5">
 		<div class="row text-center pt-3 justify-content-center">
@@ -615,7 +537,6 @@
 		</div>
 	</section>
 	<!-- End 세차가이드 -->
->>>>>>> origin/lee
 
 	<script>
 		document.getElementById("res_YangPyeong").addEventListener("show.bs.collapse", function () {

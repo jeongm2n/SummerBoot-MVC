@@ -9,7 +9,7 @@ import javax.naming.InitialContext;
 public class DBconn {
 	public static Connection getDBCP() {
         Connection conn = null;
-        String jndiName = "jdbc/washboot";
+        String jndiName = "jdbc/campusdb";
         try {
             Context initContext = (Context) new InitialContext().lookup("java:comp/env");
             DataSource ds = (DataSource) initContext.lookup(jndiName);
