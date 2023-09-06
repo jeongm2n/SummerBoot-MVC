@@ -69,7 +69,7 @@
             }).done(function(data) {
                 if(res.paid_amount == data.response.amount){
                     alert("결제 및 결제검증완료");
-                    let link = '${path}/../pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}' + "," + res.imp_uid;
+                    let link = '${path}/pay/pay_after/' + "WB" + makeMerchantUid  + "," + '${point}' + "," + res.imp_uid;
                     location.href = link;
                 } else {
                     alert("결제 실패");

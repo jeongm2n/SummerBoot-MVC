@@ -3,7 +3,6 @@ package com.spring.summerboot2.pay;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.spring.summerboot2.DBconn;
@@ -48,7 +47,6 @@ public class PayDAO {
 	
 	public String Load_address(String id) {
 		try {
-			InformVO inform = null;
 			conn = DBconn.getDBCP();
 
 			String sql = "SELECT address from sb_member where id='" + id + "'";

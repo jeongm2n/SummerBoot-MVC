@@ -1,6 +1,7 @@
 package com.spring.summerboot2.admin;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -39,24 +40,26 @@ public class OrderController {
 		    if (i == 0 || orderList.get(i).getOrder_num() != orderList.get(i - 1).getOrder_num()) {
 		        api = restapi.paymentLookup(orderList.get(i).getImp_uid());
 		        String payMethod = api.getResponse().getPayMethod();
-		        if (payMethod.equals("card")) {
-		            orderList.get(i).setPay_method("카드 결제");
-		            if (orderList.get(i).getStatus() == null) {
-		                orderList.get(i).setStatus(api.getResponse().getStatus());
-		            }
-		        } else if (payMethod.equals("vbank")) {
-		            orderList.get(i).setPay_method("무통장 입금");
-		            if (orderList.get(i).getStatus() == null) {
-		                SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-		                Calendar cal = Calendar.getInstance();
-		                cal.setTime(orderList.get(i).getPur_date());
-		                cal.add(Calendar.DATE, 3);
-		                orderList.get(i).setStatus(api.getResponse().getStatus());
-		                orderList.get(i).setVbank_name(api.getResponse().getVbankName());
-		                orderList.get(i).setVbank_num(api.getResponse().getVbankNum());
-		                orderList.get(i).setVbank_due(sdformat.format(cal.getTime()));
-		            }
-		        }
+		        orderList.get(i).setStatus(api.getResponse().getStatus());
+		        
+//		        if (payMethod.equals("card")) {
+//		            orderList.get(i).setPay_method("카드 결제");
+//		            if (orderList.get(i).getStatus() == null) {
+//		                orderList.get(i).setStatus(api.getResponse().getStatus());
+//		            }
+//		        } else if (payMethod.equals("vbank")) {
+//		            orderList.get(i).setPay_method("무통장 입금");
+//		            if (orderList.get(i).getStatus() == null) {
+//		                SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+//		                Calendar cal = Calendar.getInstance();
+//		                cal.setTime(orderList.get(i).getPur_date());
+//		                cal.add(Calendar.DATE, 3);
+//		                orderList.get(i).setStatus(api.getResponse().getStatus());
+//		                orderList.get(i).setVbank_name(api.getResponse().getVbankName());
+//		                orderList.get(i).setVbank_num(api.getResponse().getVbankNum());
+//		                orderList.get(i).setVbank_due(sdformat.format(cal.getTime()));
+//		            }
+//		        }
 		        System.out.println(orderList.get(i).getStatus());
 		    }
 		}
@@ -78,20 +81,42 @@ public class OrderController {
         return mav;
 	}
 	
-	@RequestMapping(value = "/check_payment/{pay_method}/{vbank_name}/{vbank_num}/{vbank_due}")
+	@RequestMapping(value = "/check_payment/{Imp_uid}/{Pur_date}")
 	public ModelAndView check_payment(
-			@PathVariable(value= "pay_method") String pay_method  ,@PathVariable(value= "vbank_name") String vbank_name
-			,@PathVariable(value= "vbank_num") String vbank_num   ,@PathVariable(value= "vbank_due") String vbank_due
+			@PathVariable(value= "Imp_uid") String Imp_uid ,@PathVariable(value= "Pur_date") Date Pur_date
 			,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
 		ModelAndView mav = new ModelAndView();
+		IamportResponse<Payment> api;
+		PaymentVO payment = null;
 		
-		mav.addObject("pay_method", pay_method);
-		mav.addObject("vbank_name", vbank_name);
-		mav.addObject("vbank_num", vbank_num);
-		mav.addObject("vbank_num", vbank_due);
+		api = restapi.paymentLookup(Imp_uid);
+		String pay_method = api.getResponse().getPayMethod();
+		if(pay_method.equals("card")) {
+			pay_method = "카드 결제";
+			String buyer_name = api.getResponse().getBuyerName();
+			StringBuffer buyer_tel = new StringBuffer(api.getResponse().getBuyerTel());
+			String card_name = api.getResponse().getCardName();
+			String card_number = api.getResponse().getCardNumber();
+			payment = new PaymentVO(buyer_name, buyer_tel.toString(), pay_method, card_name, card_number);
+		}
+		
+		else if(pay_method.equals("vbank")) {
+			pay_method = "무통장 입금";
+			String buyer_name = api.getResponse().getBuyerName();
+			StringBuffer buyer_tel = new StringBuffer(api.getResponse().getBuyerTel());
+			SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(Pur_date);	cal.add(Calendar.DATE, 3);
+            String vbank_date = sdformat.format(cal.getTime());
+            String vbank_name = api.getResponse().getVbankName();
+            String vbank_num = api.getResponse().getVbankNum();
+			payment = new PaymentVO(buyer_name, buyer_tel.toString(), pay_method, vbank_date, vbank_name, vbank_num);
+		}
+		
+		mav.addObject("payment",payment);
 		mav.setViewName("admin/payment_check");
 		return mav;
 	}
