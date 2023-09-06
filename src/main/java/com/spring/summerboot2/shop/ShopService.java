@@ -12,6 +12,4 @@ public interface ShopService {
 	public ProductVO Load_Product(String product_id);
 	public void Add_Cart(String id, int product_id, int quantity, int amount);
 	public ArrayList<ReviewVO> Load_Review(String product_id);
-	public void Add_review(String id, int product_id, String contents, int rating, String img);
-	public void Update_rating(int product_id, int rating);
 }

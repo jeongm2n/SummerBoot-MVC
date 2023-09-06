@@ -33,18 +33,6 @@
             document.getElementById("one").style.width = one + "%";
  		}
  	});
- 	
- 	function add_review(id, name, img) {
- 		if(${id} == false){
-			alert('로그인을 먼저 해주세요!');
-		}
- 		else{
-	 	    let popUrl = "${path}/shop/review/" + id + "/" + name + "/" + img;
-	 	    let popOption = "width=450px,height=600px,top=300px,left=300px,scrollbars=yes";
-	 	    
-	 	    window.open(popUrl, "리뷰 작성", popOption);	
- 		}
- 	}
  	</script>
 </head>
 
@@ -164,8 +152,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- /tab1  --><a></a>
-					    <button type="button" style="float:right;" onclick="add_review('${product.product_id}', '${product.name}', '${product.img}')">리뷰 작성</button>
+						<!-- /tab1  -->
 					    <div class="tab-label">
 							최근 리뷰
 					    </div>

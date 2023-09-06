@@ -75,9 +75,16 @@
 				                                        <tr>
 				                                            <td class="order_num align-middle">
 				                                            	<b>주문번호 : ${list.order_num }</b>
-				                                            	<c:if test = '${list.status eq "paid"}'> <span class="status" style="background-color: orange;">결제 완료</span><br></c:if>
-				                                            	<c:if test = '${list.status eq "ready"}'> <span class="status" style="background-color: skyblue;">입금 대기 중</span><br></c:if>
-				                                            	<c:if test = '${list.status eq "cancelled"}'> <span class="status" style="background-color: grey;">결제 취소</span><br></c:if>
+																<c:choose>
+																	<c:when test='${list.status eq "paid"}'><span class="status" style="background-color: salmon;">결제 완료</span></c:when>
+																	<c:when test='${list.status eq "ready"}'><span class="status" style="background-color: skyblue;">입금 대기 중</span></c:when>
+																	<c:when test='${list.status eq "cancelled"}'><span class="status" style="background-color: grey;">결제 취소</span></c:when>
+																	<c:when test='${list.status eq "취소 요청"}'><span class="status" style="background-color: darkgrey;">취소 요청</span></c:when>
+																	<c:when test='${list.status eq "배송 준비중"}'><span class="status" style="background-color: darkkhaki;">배송 준비중</span></c:when>
+																	<c:when test='${list.status eq "배송중"}'><span class="status" style="background-color: mediumaquamarine;">배송중</span></c:when>
+																	<c:when test='${list.status eq "배송 완료"}'><span class="status" style="background-color: #FD8008;">배송 완료</span></c:when>
+																</c:choose>
+				                                            	<br>
 				                                            	주문 날짜 : ${list.pur_date }<br>
 				                                            	주문자 : ${list.member_id }<br>
 				                                            	

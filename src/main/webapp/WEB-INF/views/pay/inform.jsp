@@ -39,7 +39,7 @@
         <div class="container">
         <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
-		  	<img src="${path}/resources/assets/img/${product.img}" class="img">
+		  	<img src="${path}/resources/assets/product/img/${product.img}" class="img" >
 		  	<div style="float:right;">
 		  	  <div class="text_box">
 		  	    <a class="amount">x ${product.quantity}</a>
@@ -172,7 +172,7 @@
         <div class="container">
         <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
-		  	<img src="${path}/resources/assets/img/${product.img}" class="img">
+		  	<img src="${path}/resources/assets/product/img/${product.img}" class="img" >
 		  	<div style="float:right;">
 		  	  <div class="text_box">
 		  	    <a class="amount">x ${product.quantity}</a>

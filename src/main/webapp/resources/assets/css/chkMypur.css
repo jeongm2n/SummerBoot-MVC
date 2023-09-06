@@ -1,0 +1,133 @@
+.pur_inform {
+	text-align: left;
+	display: inline-block;
+	width: 70%;
+	max-width:700px;
+	min-width: 350px;;
+	height: auto;
+	margin: 15px auto 15px auto;
+	padding-bottom: 10px;
+	border: 3px solid #FD8008;
+	border-radius: 5px;
+}
+
+.top{
+	padding: 5px;
+	height: auto;
+	width: 100%;
+}
+
+.order_num{
+	font-size: 20px;
+	font-weight: 600;
+	color : slategrey;
+}
+
+.pur_date{
+	font-size: 10px;
+	font-weight: 400;
+	color : slategrey;
+}
+
+.inform{
+	width:500px;
+	height: auto;
+	margin: 0px auto;
+}
+
+
+.status{
+	margin-left: 20px;
+    text-align: center;
+    font-size: 10px;
+	padding: 0px 5px;
+    height: 15px;
+    border-radius: 5px;
+    color: white
+}
+
+.btn_popup{
+	float: right;
+	width: 80px;
+	height: 20px;
+	font-size: 10px;
+	padding: 0px;
+	border: 1px solid #FD8008;
+	color: #FD8008;
+	border-radius: 5px;
+	background-color: white;
+}
+
+.product { 
+	display: inline-block;
+	width: 350px;
+	height: 75px;
+	margin-top: 10px;
+}
+
+.product .img {
+	float:left;
+	width: 75px;
+	height : 75px;
+	border: solid #adb5bd 1px; 
+	border-radius: 10px;
+}
+.product span .product a{
+  	color: #495057 !important;
+  	font-size: 1rem !important;
+  	text-decoration-line: none;
+}
+.product .text_box {
+	width: 274px;
+	height: 25px;
+	margin: 0px;
+}
+.product .amount {
+	float: left;
+	font-weight: 800 !important;
+}
+.product .name{
+	font-weight: 600 !important;
+}
+.product .name:hover{
+	color: #FD8008;
+}
+.product .price{
+	float: right;
+	font-weight: 600 !important;
+}
+
+.review_btn{
+	float:right;
+	width: auto;
+	height: auto;
+	margin-top: 5px;
+	padding: 0px 5px !important;
+	font-size: 15px;
+	font-weight: 400;
+	padding: 0px;
+	border: 1px solid #FD8008;
+	color: #FD8008;
+	border-radius: 5px;
+	background-color: white;
+}
+
+.pur_btn{
+	text-align: center;
+}
+
+.pur_btn button{
+	width: auto;
+	height: auto;
+	margin-top: 5px;
+	padding: 0px 5px !important;
+	font-size: 15px;
+	font-weight: 400;
+	padding: 0px;
+	border: 1px solid #FD8008;
+	color: #FD8008;
+	border-radius: 5px;
+	background-color: white;
+}
+
+

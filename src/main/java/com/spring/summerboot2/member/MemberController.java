@@ -1,6 +1,8 @@
 package com.spring.summerboot2.member;
 
+import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,11 +13,20 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
+import com.spring.summerboot2.admin.OrderVO;
+import com.spring.summerboot2.restapi.ImportApiController;
+import com.spring.summerboot2.shop.ReviewVO;
+import com.spring.summerboot2.shop.ShopService;
 
 @Controller
 @RequestMapping("/member")
@@ -23,6 +34,8 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	ShopService shopService;
+	ImportApiController restapi = new ImportApiController();
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginForm() throws Exception {
@@ -171,5 +184,98 @@ public class MemberController {
 			return mav;
 		}
 		
+	}
+	
+	@RequestMapping(value = "/check_pur")
+	public ModelAndView check_pur(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		HttpSession session = request.getSession();
+		ModelAndView mav = new ModelAndView();
+		IamportResponse<Payment> api;
+		List<OrderVO> orderList;
+
+		String id = (String)session.getAttribute("user_id");
+		orderList = memberService.orderList(id);
+		List<String> orderNum = memberService.orderNum(id);
+		for (int i = 0; i < orderList.size(); i++) {
+		    if (i == 0 || !orderList.get(i).getOrder_num().equals(orderList.get(i - 1).getOrder_num()) && orderList.get(i).getStatus() == null) {
+		    	api = restapi.paymentLookup(orderList.get(i).getImp_uid());
+		        orderList.get(i).setStatus(api.getResponse().getStatus());
+		    }
+		    else {
+		    	if(orderList.get(i).getOrder_num().equals(orderList.get(i - 1).getOrder_num())) {
+		    		orderList.get(i).setPur_date(null);
+		    		orderList.get(i).setStatus(orderList.get(i-1).getStatus());
+		    	}
+		    }
+		}
+		
+		mav.addObject("orderNum",orderNum);
+		mav.addObject("orderList", orderList);
+		mav.setViewName("member/chkMypur");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/review/{product_id}/{name}/{img}/{order_num}")
+	public ModelAndView review(@PathVariable(value= "product_id") String product_id  ,@PathVariable(value= "name") String name  
+			,@PathVariable(value= "img") String img   ,@PathVariable(value= "order_num") String order_num  
+			,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("product_id", product_id);
+		mav.addObject("name", name);
+		mav.addObject("img", img);
+		mav.addObject("order_num",order_num);
+		mav.setViewName("shop/review");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/add_review/{order_num}", method = RequestMethod.POST)
+	public void add_review(HttpServletRequest request, HttpServletResponse response
+			,@RequestParam("product_id") String product_id  ,@RequestParam("rating") int rating
+			,@RequestParam("content") String content  ,@RequestParam("img") MultipartFile img
+			,@PathVariable(value= "order_num") String order_num  ) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		HttpSession session = request.getSession();
+		
+		String path = session.getServletContext().getRealPath("/");
+		String id =	(String)session.getAttribute("user_id");
+		
+		if(!img.isEmpty()) {
+			String imgFileName = img.getOriginalFilename();
+			File saveFile = new File("C:\\JavaProgram\\SummerBoot\\src\\main\\webapp\\resources\\assets\\img", imgFileName);
+			img.transferTo(saveFile);
+			memberService.Add_review(id, Integer.parseInt(product_id), content, rating, imgFileName);
+		}
+		else { memberService.Add_review(id, Integer.parseInt(product_id), content, rating, null);}
+		
+		memberService.After_review(order_num, Integer.parseInt(product_id));
+		
+		ArrayList<ReviewVO> review = shopService.Load_Review(product_id);
+		
+		int point = 0;
+		for(ReviewVO f_review : review) { point += f_review.getPoint();}
+		
+		memberService.Update_rating(Integer.parseInt(product_id), point / review.size());
+		
+	}
+	
+	@RequestMapping(value = "/update_status", method = RequestMethod.GET)
+	public void update_status(
+			@RequestParam(value= "status") String status	,@RequestParam(value= "order_num") String order_num
+			,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		memberService.update_status(status, order_num);
 	}
 }
