@@ -125,7 +125,6 @@
                 <div id="collapseOrder" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="${path}/admin/order/orderList">주문확인</a>
-                        <a class="collapse-item" href="#">반품 관리</a>
                     </div>
                 </div>
             </li>
