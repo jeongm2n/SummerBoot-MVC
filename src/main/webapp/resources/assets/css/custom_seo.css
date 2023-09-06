@@ -273,3 +273,9 @@ td {
 	background-repeat : no-repeat;
 	background-size : cover
 }
+
+.myres_schedule{
+	width : 70px;
+	height : 73px;
+	vertical-align: middle;
+}

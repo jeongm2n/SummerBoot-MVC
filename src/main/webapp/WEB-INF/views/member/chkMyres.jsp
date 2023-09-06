@@ -22,7 +22,9 @@
 <body>
 <div class="container" style="margin-bottom:30px">
 	<div class="card bg" style="background-image:url('${path }/resources/assets/img/calendar-bg.jpg')">
-	<div class="myresdiv"><h1 style="font-size:46pt"><span style="background-color:white">&#91;나의 예약현황&#93;</span></h1></div>
+	<div class="myresdiv"><span><img src="${path }/resources/assets/img/myres_schedule.png" class="myres_schedule"></span>
+	<span style="background-color:white;font-size:46pt;vertical-align: middle;">&#91;나의 예약현황&#93;</span>
+	<span><img src="${path }/resources/assets/img/myres_schedule.png" class="myres_schedule"></span></div>
 		<div class="card cutcard">
 			<div style="text-align:center;background-color:white"><b class="myresfont">사용 전</b><img src="${path }/resources/assets/img/before.png" class="sandclock"></div>
 			<div class="beforediv" style="text-align:center">
