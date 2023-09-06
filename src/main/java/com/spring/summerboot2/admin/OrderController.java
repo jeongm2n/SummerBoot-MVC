@@ -41,25 +41,7 @@ public class OrderController {
 		        api = restapi.paymentLookup(orderList.get(i).getImp_uid());
 		        String payMethod = api.getResponse().getPayMethod();
 		        orderList.get(i).setStatus(api.getResponse().getStatus());
-		        
-//		        if (payMethod.equals("card")) {
-//		            orderList.get(i).setPay_method("카드 결제");
-//		            if (orderList.get(i).getStatus() == null) {
-//		                orderList.get(i).setStatus(api.getResponse().getStatus());
-//		            }
-//		        } else if (payMethod.equals("vbank")) {
-//		            orderList.get(i).setPay_method("무통장 입금");
-//		            if (orderList.get(i).getStatus() == null) {
-//		                SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-//		                Calendar cal = Calendar.getInstance();
-//		                cal.setTime(orderList.get(i).getPur_date());
-//		                cal.add(Calendar.DATE, 3);
-//		                orderList.get(i).setStatus(api.getResponse().getStatus());
-//		                orderList.get(i).setVbank_name(api.getResponse().getVbankName());
-//		                orderList.get(i).setVbank_num(api.getResponse().getVbankNum());
-//		                orderList.get(i).setVbank_due(sdformat.format(cal.getTime()));
-//		            }
-//		        }
+		      
 		        System.out.println(orderList.get(i).getStatus());
 		    }
 		}

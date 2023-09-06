@@ -1,11 +1,13 @@
 package com.spring.summerboot2.member;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import com.spring.summerboot2.DBconn;
+import com.spring.summerboot2.admin.OrderVO;
 
 public class MemberDAO {
 	private PreparedStatement pstmt;
@@ -306,5 +308,152 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return count;
+	}
+	
+	public List<OrderVO> orderList(String id) {
+		List<OrderVO> list= new ArrayList<OrderVO>();
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "SELECT pur.order_num, pur.product_id, p.img, p.name, p.price, pur.mount, pur.pur_date, pur.address, pur.tracking, pur.status, pur.imp_uid, pur.review FROM sb_purchase as pur INNER JOIN sb_product as p on pur.product_id = p.product_id WHERE member_id = '" + id + "'ORDER BY pur.pur_date, pur.order_num ASC";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String order_num = rs.getString("pur.order_num");
+				int product_id = rs.getInt("pur.product_id");
+				String img = rs.getString("p.img");
+				String product_name = rs.getString("p.name");
+				int price = rs.getInt("p.price");
+				int mount = rs.getInt("mount");
+				Date pur_date = rs.getDate("pur_date");
+				String p_address[] = rs.getString("address").split("/");
+				
+				String post = p_address[0];
+				String address = p_address[1] + " " + p_address[2] + " " + p_address[3] + " " + p_address[4];
+	
+				if(p_address.length==6) {
+					address += p_address[5];
+				}
+
+				int tracking = rs.getInt("tracking");
+				String status = rs.getString("status");
+				String imp_uid = rs.getString("imp_uid");
+				
+				int review = rs.getInt("review");
+				
+				OrderVO vo = new OrderVO(order_num, product_id, img, product_name, price, mount, pur_date, post, address, tracking, status, imp_uid, review);
+				list.add(vo);
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<String> orderNum(String id) {
+		List<String> ordernum = new ArrayList<String>();
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "SELECT DISTINCT pur.order_num FROM sb_purchase as pur WHERE member_id = '" + id + "' ORDER BY pur.order_num ASC";
+			
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String num = rs.getString("pur.order_num");
+				ordernum.add(num);
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ordernum;
+	}
+	
+	public void Add_review(String id, int product_id, String contents, int rating, String img) {
+		try {
+			con = DBconn.getDBCP();
+					
+			String sql = "insert into sb_reviews (member_id, point, img, contents, product_id) values (?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, rating);
+			pstmt.setString(3, img);
+			pstmt.setString(4, contents);
+			pstmt.setInt(5, product_id);
+			pstmt.executeUpdate();
+					
+			pstmt.close();
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+	}
+	
+	public void After_review(String order_num, int product_id) {
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "update sb_purchas set review = ? where order_num = ? AND product_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, 1);
+			pstmt.setString(2, order_num);
+			pstmt.setInt(3, product_id);
+			pstmt.executeUpdate();
+					
+			pstmt.close();
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void Update_rating(int product_id, int rating) {
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "update sb_product set rating = ? where product_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rating);
+			pstmt.setInt(2, product_id);
+			pstmt.executeUpdate();
+					
+			pstmt.close();
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void update_status(String status, String order_num) {
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "update sb_purchase set status = ? WHERE order_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, status);
+			pstmt.setString(2, order_num);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

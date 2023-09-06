@@ -33,12 +33,12 @@
 
 	<div class="review">
 	  <div class="product_inform">
-	    <img src="${path}/resources/assets/product/${img}.jpg" style="width:50px; height:50px;"><br>
+	    <img src="${path}/resources/assets/product/${img}" style="width:50px; height:50px;"><br>
 		<h2>${name}</h2>
 	  </div>
 	  <div class="review_input">
 	    <form class="reviewForm" id="reviewForm" method=post enctype="multipart/form-data">
-	      <input type="hidden" name="product_id" id="product_id" value="${id}">
+	      <input type="hidden" name="product_id" id="product_id" value="${product_id}">
           <fieldset>
           <label class="review_label">별점을 입력해주세요</label><br>
           <div class="star_input">
@@ -93,7 +93,7 @@
 			
 		$.ajax({
 			type: "POST",
-			url: "${path}/shop/add_review",
+			url: "${path}/shop/add_review/" + ${order_num},
 			data: formData,
 		 	processData: false,
 		 	contentType: false,

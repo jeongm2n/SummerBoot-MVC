@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.spring.summerboot2.admin.OrderVO;
+import com.spring.summerboot2.shop.ShopDAO;
+
 @Service
 public class MemberServiceImpl implements MemberService {
 
@@ -45,5 +48,34 @@ public class MemberServiceImpl implements MemberService {
 		return dao.update(user_id, tel, address, email, email_yn);
 	}
 	
+	public List<OrderVO> orderList(String id){
+		MemberDAO dao =  new MemberDAO();
+		return dao.orderList(id);
+	}
+	
+	public List<String> orderNum(String id) {
+		MemberDAO dao =  new MemberDAO();
+		return dao.orderNum(id);
+	}
+	
+	public void Add_review(String id, int product_id, String contents, int rating, String img) {
+		MemberDAO dao = new MemberDAO();
+		dao.Add_review(id, product_id, contents, rating, img);
+	}
+	
+	public void After_review(String order_num, int product_id) {
+		MemberDAO dao = new MemberDAO();
+		dao.After_review(order_num, product_id);
+	}
+	
+	public void Update_rating(int product_id, int rating) {
+		MemberDAO dao = new MemberDAO();
+		dao.Update_rating(product_id, rating);
+	}
+	
+	public void update_status(String status, String order_num) {
+		MemberDAO dao =  new MemberDAO();
+		dao.update_status(status, order_num);
+	}
 	
 }

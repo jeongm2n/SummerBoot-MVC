@@ -91,7 +91,7 @@
 										<img src="${path}/resources/assets/product/${product.img}">
 									</div>
 									<div class="product-body">
-										<h3 class="product-name"><a href="../product/${product.product_id}">${product.name}</a></h3>
+										<h3 class="product-name"><a href="${path}/shop/product/${product.product_id}">${product.name}</a></h3>
 										<c:if test="${product.amount == 0}">
 											<h4 class="product-price">품절<br><del class="product-old-price">₩${product.price}</del></h4>
 										</c:if>

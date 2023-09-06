@@ -236,44 +236,4 @@ public class ShopDAO {
 		return null;	
 	}
 	
-	public void Add_review(String id, int product_id, String contents, int rating, String img) {
-		try {
-			conn = DBconn.getDBCP();
-					
-			String sql = "insert into sb_reviews (member_id, point, img, contents, product_id) values (?, ?, ?, ?, ?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setInt(2, rating);
-			pstmt.setString(3, img);
-			pstmt.setString(4, contents);
-			pstmt.setInt(5, product_id);
-			pstmt.executeUpdate();
-					
-			pstmt.close();
-			conn.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-			
-	}
-	
-	public void Update_rating(int product_id, int rating) {
-		try {
-			conn = DBconn.getDBCP();
-			
-			String sql = "update sb_product set rating = ? where product_id = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rating);
-			pstmt.setInt(2, product_id);
-			pstmt.executeUpdate();
-					
-			pstmt.close();
-			conn.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 }
