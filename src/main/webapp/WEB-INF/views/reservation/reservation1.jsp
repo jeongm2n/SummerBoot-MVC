@@ -18,10 +18,6 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 	
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=IBM+Plex+Sans+KR&family=Jua&display=swap" rel="stylesheet">
-	
 <%@ include file="../common/header.jsp"%>
 <link rel="stylesheet" href="${path}/resources/assets/css/custom_seo.css">
 <%
@@ -221,12 +217,12 @@
 		 font-size:25px !important;
 	}
 	
-	.thead {
+	table {
 		font-family: 'IBM Plex Sans KR', sans-serif;
 	}
 	
 	#calBody {
-		font-family: 'IBM Plex Sans KR', sans-serif;
 		font-size: 24px;
+		font-weight:400;
 	}
 </style>

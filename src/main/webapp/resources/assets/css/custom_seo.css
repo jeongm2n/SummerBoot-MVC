@@ -2,10 +2,6 @@
 Custom Css
 */
 
-.btn {
-	/* height:30px; */
-} 
-
 .span-time{
 	display : inline-block;
 	width : 20%;
@@ -16,10 +12,8 @@ Custom Css
 }
 
 .div-margin{
-	text-align : center;
-	width : 600px;
-	height : 100px;
-	margin-top : 50px;
+	margin: 0 auto;
+    width: 50%;
 }
 
 .btn-h{

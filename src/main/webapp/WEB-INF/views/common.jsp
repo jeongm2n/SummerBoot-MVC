@@ -14,17 +14,14 @@
     <link rel="stylesheet" href="${path}/resources/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="${path}/resources/assets/css/templatemo.css">
 
-    <!-- Load fonts style after rendering the layout styles -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="${path}/resources/assets/css/fontawesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300&family=IBM+Plex+Sans+KR:wght@300&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@700;800;&family=IBM+Plex+Sans+KR:wght@300&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous" type="text/javascript"></script>
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="${path}/resources/assets/css/fontawesome.min.css">
+    
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&family=Gamja+Flower&family=Handjet:wght@300;700;800&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=Jua&family=Kanit:ital,wght@1,500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 </head>
 </html>
