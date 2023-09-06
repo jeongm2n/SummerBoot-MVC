@@ -16,227 +16,84 @@
 		<img id="loading_img" src="${path }/resources/assets/img/apiLoading.gif">
 	</div>
 	<!-- start 세차장 배너 -->
-	<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
-		<ol class="carousel-indicators">
+	<div class="carousel slide" data-bs-ride="carousel" id="template-mo-zay-hero-carousel" style="height:55%;background:rgba(248, 240, 229,0.6) !important;"><!--  class="carousel slide" data-bs-ride="carousel"  -->
+		<ol class="carousel-indicators" style="bottom:-25px;">
 			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
 			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
 			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
 			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="3"></li>
-			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="4"></li>
-			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="5"></li>
-			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="6"></li>
-			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="7"></li>
-			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="8"></li>
-			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="9"></li>
 		</ol>
-		<div class="carousel-inner">
+		<div class="carousel-inner" style="height:100%;">
 			<div class="carousel-item active">
-				<div class="container">
-					<div class="row p-5">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/YangPyeong.jpg" alt="">
-						</div>
-						<div class="col-lg-6 mb-0 d-flex align-items-center">
-							<div class="text-align-left align-self-center">
-								<h1 class="h1">
-									<b>Wash Boot</b> 양평로점
-								</h1>
-								<h3 class="h2">서울특별시 영등포구 양평로22마길 28</h3>
-								<p>
-									기존 세차장과 다르게 고객님이 예약한 시간에 바로바로 세차가 가능한 Wash Boot 양평로점입니다.<br>
-									더나은 서비스를 위하여 여유로운 세차공간으로 고객여러분을 맞이 하고 있습니다.
-								</p>
-							</div>
-						</div>
+				<div class="container ad">
+					<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+						<img class="img-fluid" src="${path}/resources/assets/img/YangPyeong.jpg" alt="">
+					</div>
+					<div class="col-lg-6 mb-0 text-align-left">
+						<h1 class="h1 ad-title">
+							<b>Wash Boot</b> 양평로점
+						</h1>
+						<p> 서울특별시 영등포구 양평로22마길 28</p>
+						<h3 class="h2" style="margin-top:5%;">
+							기존 세차장과 다르게 고객님이 예약한 시간에<br>
+							<b>바로바로!</b> 세차가 가능한 Wash Boot 양평로점입니다.<br>
+							더나은 서비스를 위하여 여유로운 세차공간으로<br>
+							고객여러분을 맞이 하고 있습니다.
+						</h3>
 					</div>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<div class="container">
-					<div class="row p-5">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/gyeonginro.jpg" alt="">
+				<div class="container ad">
+						<div class="mx-auto col-md-8 col-lg-6 order-lg-last" style="height:90%;">
+							<img class="img-fluid" src="${path}/resources/assets/img/gyeonginro.jpg" alt="" style="height:110%">
 						</div>
-						<div class="col-lg-6 mb-0 d-flex align-items-center">
-							<div class="text-align-left">
-								<h1 class="h1">
-									<b>Wash Boot</b> 경인로점
-								</h1>
-								<h3 class="h2">서울특별시 영등포구 경인로71길 50</h3>
-								<p>
-									줄서서 기다리지 말고, 예약을 통해서 시간아껴보세요!<br> 지금은 핫썸머 이벤트 중입니다. 방문하셔서
-									사은품 챙겨가세요 :)
-								</p>
-							</div>
+						<div class="col-lg-6 mb-0 text-align-left">
+							<h1 class="h1 ad-title">
+								<b>Wash Boot</b> 경인로점
+							</h1>
+							<p>서울특별시 영등포구 경인로71길 50</p>
+							<h3 class="h2" style="margin-top:5%;">
+								줄서서 기다리지 말고, 예약을 통해서 시간아껴보세요!<br>
+								지금은 <b style="color:#A73121;">핫썸머 이벤트</b> 중입니다.<br>
+								방문하셔서 사은품 챙겨가세요 :)
+							</h3>
 						</div>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<div class="container ad">
+					<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+						<img class="img-fluid" src="${path}/resources/assets/img/cheonwang.jpg" alt="">
+					</div>
+					<div class="col-lg-6 mb-0 text-align-left">
+						<h1 class="h1 ad-title">
+							<b>Wash Boot</b> 천왕점
+						</h1>
+						<p>서울특별시 구로구 천왕동 277-15</p>
+						<h3 class="h2" style="margin-top:5%;">
+							연중무휴 오픈 프리미엄 실내 셀프세차장<br>
+							<b>700평</b> 국내 최대 규모의 실내 셀프세차장입니다.<br>
+							깨끗한 시설에서 기분좋게 세차해보세요.
+						</h3>
 					</div>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<div class="container">
-					<div class="row p-5">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/cheonwang.jpg" alt="">
-						</div>
-						<div class="col-lg-6 mb-0 d-flex align-items-center">
-							<div class="text-align-left">
-								<h1 class="h1">
-									<b>Wash Boot</b> 천왕점
-								</h1>
-								<h3 class="h2">서울특별시 구로구 천왕동 277-15</h3>
-								<p>
-									연중무휴 오픈 프리미엄 실내 셀프세차장. 700평 국내 최대 규모의 실내 셀프세차장입니다.<br> 깨끗한
-									시설에서 기분좋게 세차해보세요.
-								</p>
-							</div>
-						</div>
+				<div class="container ad">
+					<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+						<img class="img-fluid" src="${path}/resources/assets/img/gaje1dong.jpg" alt="">
 					</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="container">
-					<div class="row p-5">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/gaje1dong.jpg" alt="">
-						</div>
-						<div class="col-lg-6 mb-0 d-flex align-items-center">
-							<div class="text-align-left">
-								<h1 class="h1">
-									<b>Wash Boot</b> 가제1동점
-								</h1>
-								<h3 class="h2">서울특별시 성동구 성수1가제1동 656-310</h3>
-								<p>
-									최신식 시설을 자랑하는 Wash Boot 가제1동점입니다. <br> 옆 차와 간섭없는 넓은 공간에서
-									쾌적한 셀프세차하러 오세요.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="container">
-					<div class="row p-5">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/kangdongseongan.jpg" alt="">
-						</div>
-						<div class="col-lg-6 mb-0 d-flex align-items-center">
-							<div class="text-align-left">
-								<h1 class="h1">
-									<b>Wash Boot</b> 강동성안점
-								</h1>
-								<h3 class="h2">서울특별시 강동구 성내제3동 성안로 46</h3>
-								<p>
-									최신식 시설을 자랑하는 Wash Boot 강동성안점입니다. <br> 옆 차와 간섭없는 넓은 공간에서
-									쾌적한 셀프세차하러 오세요.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="container">
-					<div class="row p-5">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/majang.jpg" alt="">
-						</div>
-						<div class="col-lg-6 mb-0 d-flex align-items-center">
-							<div class="text-align-left">
-								<h1 class="h1">
-									<b>Wash Boot</b> 성동마장점
-								</h1>
-								<h3 class="h2">서울특별시 성동구 마장동 775-1</h3>
-								<p>
-									최신식 시설을 자랑하는 Wash Boot입니다. <br> 옆 차와 간섭없는 넓은 공간에서 쾌적한
-									셀프세차하러 오세요.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="container">
-					<div class="row p-5">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/jongam.JPEG" alt="">
-						</div>
-						<div class="col-lg-6 mb-0 d-flex align-items-center">
-							<div class="text-align-left">
-								<h1 class="h1">
-									<b>Wash Boot</b> 성북종암점
-								</h1>
-								<h3 class="h2">서울특별시 성북구 종암동 8-18</h3>
-								<p>
-									최신식 시설을 자랑하는 Wash Boot 입니다. <br> 옆 차와 간섭없는 넓은 공간에서 쾌적한
-									셀프세차하러 오세요.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="container">
-					<div class="row p-5">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/galhyeon.jpg" alt="">
-						</div>
-						<div class="col-lg-6 mb-0 d-flex align-items-center">
-							<div class="text-align-left">
-								<h1 class="h1">
-									<b>Wash Boot</b> 은평갈현점
-								</h1>
-								<h3 class="h2">서울특별시 은평구 갈현동 464-22번지</h3>
-								<p>
-									최신식 시설을 자랑하는 Wash Boot 입니다. <br> 옆 차와 간섭없는 넓은 공간에서 쾌적한
-									셀프세차하러 오세요.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="container">
-					<div class="row p-5">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/bongcheon.jpg" alt="">
-						</div>
-						<div class="col-lg-6 mb-0 d-flex align-items-center">
-							<div class="text-align-left">
-								<h1 class="h1">
-									<b>Wash Boot</b> 관악봉천점
-								</h1>
-								<h3 class="h2">서울특별시 관악구 봉천동 1538-1</h3>
-								<p>
-									최신식 시설을 자랑하는 Wash Boot 입니다. <br> 옆 차와 간섭없는 넓은 공간에서 쾌적한
-									셀프세차하러 오세요.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="container">
-					<div class="row p-5">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/yongmoon.JPG" alt="">
-						</div>
-						<div class="col-lg-6 mb-0 d-flex align-items-center">
-							<div class="text-align-left">
-								<h1 class="h1">
-									<b>Wash Boot</b> 용문점
-								</h1>
-								<h3 class="h2">서울특별시 용산구 용문동 32-18</h3>
-								<p>
-									최신식 시설을 자랑하는 Wash Boot 입니다. <br> 옆 차와 간섭없는 넓은 공간에서 쾌적한
-									셀프세차하러 오세요.
-								</p>
-							</div>
-						</div>
+					<div class="col-lg-6 mb-0 text-align-left">
+						<h1 class="h1 ad-title">
+							<b>Wash Boot</b> 가제1동점
+						</h1>
+						<p>서울특별시 성동구 성수1가제1동 656-310</p>
+						<h3 class="h2" style="margin-top:5%;">
+							<b>최신식 시설</b>을 자랑하는 Wash Boot 가제1동점입니다.<br>
+							옆 차와 간섭없는 넓은 공간에서<br>
+							쾌적한 셀프세차하러 오세요.
+						</h3>
 					</div>
 				</div>
 			</div>
@@ -268,15 +125,15 @@
 				<fmt:parseDate var="open_time" value="${time[0]}" pattern="HH:mm" />
 				<fmt:parseDate var="end_time" value="${time[1]}" pattern="HH:mm" />
 
-				<div class="col-12 col-md-5 infoHidden" id="${list.no }">
+				<div class="col-12 col-md-5 infoHidden" id="${list.no }" style="border: 5px solid #FFDBAA;">
 					<div class="card h-100">
 						<div style="text-align: end; margin: 0.5% 2%;">
 							<span class="close">X</span>
 						</div>
-						<div style="width: 100%; height: 43%;">
+						<div style="width: 95%;height: 43%;align-self: center;">
 							<img src="${path}/resources/assets/img/${list.img}" class="card-img-top" alt="..." height=100%>
 						</div>
-						<div class="card-body">
+						<div class="card-body list-card" style="align-items: center;">
 							<ul class="list-unstyled d-flex justify-content-between star">
 								<li>
 									<i class="text-warning fa fa-star"></i>
@@ -285,25 +142,25 @@
 									<i class="text-muted fa fa-star"></i>
 									<i class="text-muted fa fa-star"></i>
 								</li>
-								<li class="h3 text-decoration-none text-dark text-right">${list.name }</li>
+								<li class="storeName text-right">${list.name }</li>
 							</ul>
 							<div class="list">
 								<i class="fa fa-map-marker-alt"></i>
-								<span class="card-text h3">${list.address }</span>
+								<span class="card-text storeDetail">${list.address }</span>
 							</div>
 							<div class="list">
 								<i class="fa fa-clock"></i>
-								<span class="card-text h3 h3">
+								<span class="card-text storeDetail">
 									<fmt:formatDate value="${open_time}" pattern="kk:mm" /> ~ <fmt:formatDate value="${end_time}" pattern="kk:mm" />
 								</span>
 							</div>
 							<div class="list">
 								<i class="fa fa-phone"></i>
-								<span class="card-text h3">${list.tel }</span>
+								<span class="card-text storeDetail">${list.tel }</span>
 							</div>
 							<div class="list-regist">
 								<div>
-									<p class="text-muted pt-4">Reviews (24)</p>
+									<p class="text-muted">Reviews (24)</p>
 								</div>
 								<%-- <div>
 									<input type="button" id="btn_res" class="btn-join" value="오늘의 예약" onclick="todayRes(${list.no }, todayRes);">
@@ -321,14 +178,15 @@
 
 	<!-- Start 당일예약현황 -->
 	<section class="container py-5" id="todayRes">
-		<div class="row text-center pt-5 pb-3">
-			<div class="col-lg-6 m-auto">
-				<h1 class="h1">
-					<b> Today's Reservation<br>
-						<c:set var="date" value="<%=new java.util.Date()%>" />
-						<fmt:formatDate value="${date}" pattern="yyyy-MM-dd" />
-					</b>
+		<div class="row text-center pb-3">
+			<div class="col-lg-8 m-auto">
+				<h1 class="today-title">
+					<img src="${path }/resources/assets/img/todayReservation.png" style="vertical-align: bottom;"><b> Today's Reservation</b>
 				</h1>
+				<h2 id="today">
+					<c:set var="date" value="<%=new java.util.Date()%>" />
+					<fmt:formatDate value="${date}" pattern="yyyy-MM-dd" />
+				</h2>
 				<p>
 					상쾌한 셀프세차, Wash Boot와 함께!<br> Wash Boot 오늘의 예약현황과 날씨를 확인해보세요.
 				</p>
@@ -447,61 +305,61 @@
 
 			<div class="collapse show" id="res_YangPyeong">
 				<div class="card card-body overflow-auto" style="height: 400px">
-					양평로점 예약현황<br>
+					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">양평로점 예약현황</h5>
 					<div id="resList1"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_gyeonginro">
 				<div class="card card-body overflow-auto" style="height: 400px">
-					경인로점 예약현황
+					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">경인로점 예약현황</h5>
 					<div id="resList2"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_cheonwang">
 				<div class="card card-body overflow-auto" style="height: 400px">
-					천왕점 예약현황
+					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">천왕점 예약현황</h5>
 					<div id="resList3"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_gaje1dong">
 				<div class="card card-body overflow-auto" style="height: 400px">
-					가제1동점 예약현황
+					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">가제1동점 예약현황</h5>
 					<div id="resList4"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_kangdongseongan">
 				<div class="card card-body overflow-auto" style="height: 400px">
-					강동성안점 예약현황
+					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">강동성안점 예약현황</h5>
 					<div id="resList5"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_majang">
 				<div class="card card-body overflow-auto" style="height: 400px">
-					성동마장점 예약현황
+					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">성동마장점 예약현황</h5>
 					<div id="resList6"></div>
 				</div>
 			</div>
 			<div class="collapse todayHidden" id="res_jongam">
 				<div class="card card-body overflow-auto" style="height: 400px">
-					성북종암점 예약현황
+					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">성북종암점 예약현황</h5>
 					<div id="resList7"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_galhyeon">
 				<div class="card card-body overflow-auto" style="height: 400px">
-					은평갈현점 예약현황
+					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">은평갈현점 예약현황</h5>
 					<div id="resList8"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_bongcheon">
 				<div class="card card-body overflow-auto" style="height: 400px">
-					관악봉천점 예약현황
+					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">관악봉천점 예약현황</h5>
 					<div id="resList9"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_yongmoon">
 				<div class="card card-body overflow-auto" style="height: 400px">
-					용문점 예약현황
+					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">용문점 예약현황</h5>
 					<div id="resList10"></div>
 				</div>
 			</div>
@@ -510,26 +368,26 @@
 	<!-- End 당일예약현황 -->
 
 	<!-- Start 세차가이드 -->
-	<section class="container py-5">
+	<section class="container py-5" style="height: 65%;">
 		<div class="row text-center pt-3 justify-content-center">
 			<div class="col-12 col-md-4 p-5 mt-3 popupModalVideo">
-				<img src="${path}/resources/assets/img/05.jpg" class="rounded-circle img-fluid border">
-				<h5 class="text-center mt-3 mb-3">
+				<img src="${path}/resources/assets/img/05.jpg" class="rounded-circle img-fluid border" style="height: 80%;">
+				<h5 class="text-center mt-3 mb-3" style="font-family: 'IBM Plex Sans KR', sans-serif;font-size: 27px;">
 					<b>외부세차</b>
 				</h5>
 				<!-- data-video="youtube주소일부"-->
-				<p class="text-center">
-					<a data-video="lWHEHVpYiuk" class="btn btn-washboot">가이드</a>
-				</p>
+				<span class="text-center">
+					<a data-video="lWHEHVpYiuk" class="btn btn-washboot" style="font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px;">가이드</a>
+				</span>
 			</div>
 			<div class="col-12 col-md-4 p-5 mt-3 popupModalVideo">
-				<img src="${path}/resources/assets/img/06.jpg" class="rounded-circle img-fluid border">
-				<h2 class="h5 text-center mt-3 mb-3">
+				<img src="${path}/resources/assets/img/06.jpg" class="rounded-circle img-fluid border" style="height: 80%;">
+				<h2 class="h5 text-center mt-3 mb-3" style="font-family: 'IBM Plex Sans KR', sans-serif;font-size: 27px;">
 					<b>내부세차</b>
 				</h2>
-				<p class="text-center">
-					<a data-video="OWj8gocWwg8" class="btn btn-washboot">가이드</a>
-				</p>
+				<span class="text-center">
+					<a data-video="OWj8gocWwg8" class="btn btn-washboot" style="font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px;">가이드</a>
+				</span>
 			</div>
 		</div>
 		<div class="video_modal_popup">
@@ -833,14 +691,91 @@
     	getTodayResList(no);
     } */
 </script>
-<style>
-.close {
-	cursor: pointer;
-}
 
-.list-regist {
-	display: flex;
-	justify-content: space-between;
-	align-items: baseline;
-}
+<style>
+	.close {
+		cursor: pointer;
+	}
+	
+	.list-regist {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+	
+	.storeName {
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		font-size: 27px !important;
+		font-weight:600 !important;
+	}
+	
+	.storeDetail{
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		font-size: 22px !important;
+	}
+	
+	.today-title {
+	    font-family: 'Kanit', sans-serif;
+	    font-style: italic;
+	    font-weight: 500 !important;
+	    font-size: 60px !important;
+	}
+	
+	#today {
+		font-family: 'Kanit', sans-serif;
+		font-size: 40px !important;
+	}
+	
+	input {
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		font-weight:500 !important;
+	}
+	
+	p {
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		font-size: 22px !important;
+	}
+	
+	.ad-title {
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		font-weight:500 !important;
+		font-size: 58px !important;
+	}
+
+	.h2 {
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		margin-top : 1%;
+		font-size:25px !important;
+	}
+	.carousel-item {
+		height:80%;
+	}
+	.ad {
+		display:flex;
+		padding: 3% 0 1.5% 0;
+		height:75%;
+	}
+	.img-fluid {
+		 height: 100%;
+		 width: 100%;
+		 padding-left:2%;
+	}
+	.text-align-left {
+		text-align: right;
+		align-self: end;
+		padding-bottom: 1%;
+		margin-right: 2%;
+	}
+	table {
+		font-family: 'IBM Plex Sans KR', sans-serif;
+	}
+	.table>thead {
+		font-size: 21px;
+	}
+	
+	.main-si {
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		font-size: 30px;
+		font-weight:400;
+	}
 </style>
