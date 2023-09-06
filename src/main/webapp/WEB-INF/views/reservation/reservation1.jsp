@@ -17,6 +17,11 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=IBM+Plex+Sans+KR&family=Jua&display=swap" rel="stylesheet">
+	
 <%@ include file="../common/header.jsp"%>
 <link rel="stylesheet" href="${path}/resources/assets/css/custom_seo.css">
 <%
@@ -27,20 +32,16 @@
 	const shops = [ '양평로점', '경인로점', '천왕점', '가제1동점', '강동성안점', '성동마장점', '성북종암점', '은평갈현점', '관악봉천점', '용문점' ];
 	
 	$(document).ready(function() {
-		$('label[for="30"]').click(function() {
-			$('#m_30').prop('checked', true);
-			$('#30').prop('checked', true);
+		$('label[for="40"]').click(function() {
+			$('#40').prop('checked', true);
 		});
 		$('label[for="100"]').click(function() {
-			$('#m_100').prop('checked', true);
 			$('#100').prop('checked', true);
 		});
 		$('label[for="130"]').click(function() {
-			$('#m_130').prop('checked', true);
 			$('#130').prop('checked', true);
 		});
 		$('label[for="200"]').click(function() {
-			$('#m_200').prop('checked', true);
 			$('#200').prop('checked', true);
 		});
 		
@@ -91,82 +92,82 @@
 				src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 				integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 				crossorigin="anonymous"></script>
-	
 			
+			<h1 style="margin:2%;font-family: 'Jua', sans-serif;font-size:50px;"><img src="${path}/resources/assets/img/weather.png" style="margin-right:10px;">주간날씨</h1>
 			<div class="weatherdiv table-responsive">
-				<h1 style="margin:2%;">주간날씨</h1>
-				<table id="weather" class="weathertb">
+				<table id="weather" class="weathertb" style="border:1px solid #B9B4C7;">
 				</table>
 			</div>
 			
-			<div style="display: grid;grid-template-columns: 1fr 1fr;margin-top:5%;">
-				<div style="height: 450px">
-					<!-- <div class="border border-4"> -->
+			<div id="calTime">
+				<div>
 					<div class="border">
-						<b style="color: #FFDAB9">달력은 현재 달에서 +1달 까지만 조회하실 수 있습니다.</b>
-						<table class="calendartb" id="calendar">
-							<thead style="border-bottom: 1px solid #000;">
+						<div style="margin-top:2%;">
+							<img src="${path}/resources/assets/img/alert.png" style="margin-right:10px;">
+							<b style="color: #FF9B50">달력은 현재 달에서 +1달 까지만 조회하실 수 있습니다.</b>
+						</div>
+						<table class="calendartb" id="calendar" style="height:30em;">
+							<thead style="border-bottom: 1px solid #B9B4C7;">
 								<tr>
-									<td class="thead" align="center"><label
-										onclick="prevMonth()"> ◀ </label></td>
-									<td class="thead" colspan="5" align="center" id="calendarTitle"></td>
-									<td class="thead" align="center"><label
-										onclick="nextMonth()"> ▶ </label></td>
+									<td class="thead" align="center"><label onclick="prevMonth()"> ◀ </label></td>
+									<td class="thead" colspan="5" align="center"><h4 id="calendarTitle" style="margin:0;font-weight:600;"></h4></td>
+									<td class="thead" align="center"><label onclick="nextMonth()"> ▶ </label></td>
 								</tr>
 								<tr>
-									<td class="thead"><font color="#F79DC2">일</font></td>
+									<td class="thead"><font color="#D71313">일</font></td>
 									<td class="thead">월</td>
 									<td class="thead">화</td>
 									<td class="thead">수</td>
 									<td class="thead">목</td>
 									<td class="thead">금</td>
-									<td class="thead"><font color="skyblue">토</font></td>
+									<td class="thead"><font color="#1D5D9B">토</font></td>
 								</tr>
 							<thead>
 						</table>
 					</div>
 				</div>
 		
-				<div>
-					<div>
-						<div class="border p_time" style="text-align: center;">
-							<h3>사용시간</h3>
-							<div>
-								<span style="display: inline-block; width: 80%; height: 80px; float: right">
-									<span class="span-time">
-										<input type="radio" class="btn-check" name="p_options" id="30" value=29 autocomplete="off" checked>
-										<label class="btn btn-secondary" for="30">30M</label>
-									</span>
-									<span class="span-time"> <input type="radio" class="btn-check" name="p_options" id="100" value=59 autocomplete="off">
-										<label class="btn btn-secondary" for="100">1H</label>
-									</span>
-									<span class="span-time">
-										<input type="radio" class="btn-check" name="p_options" id="130" value=89 autocomplete="off">
-										<label class="btn btn-secondary" for="130">1H30M</label>
-									</span>
-									<span class="span-time">
-										<input type="radio" class="btn-check" name="p_options" id="200" value=119 autocomplete="off">
-										<label class="btn btn-secondary" for="200">2H</label>
-									</span>
-								</span>
-							</div>
+				<div id="res-time" style="padding:1% 2%;">
+					<div class="p_time" style="text-align: center;margin-bottom:5%;">
+						<h4 style="font-family: 'Jua', sans-serif;font-size: 40px;">사용시간<img src="${path}/resources/assets/img/time2.png" style="height:40px;"></h4>
+						<div class="line"></div>
+						<div>
+							<span class="span-time">
+								<input type="radio" class="btn-check" name="p_options" id="40" value=29 autocomplete="off">
+								<label class="btn btn-h" for="40" style="width:60%;">30M</label>
+							</span>
+							<span class="span-time">
+								<input type="radio" class="btn-check" name="p_options" id="100" value=59 autocomplete="off">
+								<label class="btn btn-h" for="100" style="width:60%;">1H</label>
+							</span>
+							<span class="span-time">
+								<input type="radio" class="btn-check" name="p_options" id="130" value=89 autocomplete="off">
+								<label class="btn btn-h" for="130" style="width:60%;">1H30M</label>
+							</span>
+							<span class="span-time">
+								<input type="radio" class="btn-check" name="p_options" id="200" value=119 autocomplete="off">
+								<label class="btn btn-h" for="200" style="width:60%;">2H</label>
+							</span>
 						</div>
-						
-						<legend>시간</legend>
-						<div id="container1" style="width: 100%; height: 200px; text-align: center; margin-top: 30px">
-						</div>
-						<hr>
-						<legend>분</legend>
-						<div id="container2"
-							style="margin-top: 10px; width: 100%; height: 100px"></div>
 					</div>
-					<div style="width: 400px; height: 50px; margin-top: 15px; float: right">
-						<button id="btn-shop" class="orange-button btn-time" style="margin-right:5px" disabled></button>
-						<button id="btn-date" class="orange-button btn-time" style="margin-right:5px" disabled></button>
-						<button id="btn-time" class="orange-button btn-time" style="margin-right:5px" disabled></button>
-						<button type="button" class="orange-button" onclick="return goReservation2();">Next></button>
+					
+					<div style="text-align: center;margin-bottom:5%;">
+						<legend><h4 style="font-family: 'Jua', sans-serif;font-size: 40px;">시간</h4></legend>
+						<div class="line"></div>
+						<div id="container1" style="width: 100%; text-align: center;"></div>
+					</div>
+					<div style="text-align: center;margin-bottom:5%;">
+						<legend><h4 style="font-family: 'Jua', sans-serif;font-size: 40px;">분</h4></legend>
+						<div class="line"></div>
+						<div id="container2" style="width: 100%;"></div>
 					</div>
 				</div>
+			</div>
+			<div style="display:inline-flex;align-items:center;float:right;margin-top:1%;">
+				<h5 id="btn-shop" class="reser"></h5>
+				<h5 id="btn-date" class="reser"></h5>
+				<h5 id="btn-time" class="reser"></h5>
+				<button type="button" class="orange-button" onclick="return goReservation2();">NEXT ></button>
 			</div>
 		</div>
 	</section>
@@ -176,3 +177,56 @@
 	<script src="../resources/assets/js/reservation1.js"></script>
 </body>
 </html>
+
+<style>
+	.btn-hour {
+		width:60%;
+		border:1px solid #FD8008;
+		padding:0;
+	}
+	
+	.btn-check:checked+.btn, .btn.active {
+		background: #FD8008;
+	    border-color: #FD8008;
+	}
+	
+	.btn-check+.btn:hover {
+		background-color : #FFDAB9;
+	}
+	
+	.line {
+		background : linear-gradient(to right, #ffe6b3 0%,#ff8b1f 100%);
+		padding : 0 3%;
+		width:90%;
+		margin:0 auto;
+		margin-bottom : 2%;
+		height:2px;
+	}
+	
+	#calTime {
+	 	display:grid;
+	 	grid-template-columns: 1fr 1fr;
+	 	margin-top:5%;
+	 	height:630px;
+ 	}
+ 	
+ 	@media (max-width: 992px) {
+ 		#calTime {grid-template-columns: 1fr;height:100%;}
+ 		#res-time {margin-top:5%;}
+	}
+	
+	.reser{
+		 margin: 0 15px;
+		 font-family: 'IBM Plex Sans KR', sans-serif;
+		 font-size:25px !important;
+	}
+	
+	.thead {
+		font-family: 'IBM Plex Sans KR', sans-serif;
+	}
+	
+	#calBody {
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		font-size: 24px;
+	}
+</style>

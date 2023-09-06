@@ -61,7 +61,7 @@
       	
       	const monthLabel = document.getElementById('calendarTitle');
       	//달력의 yyyy년 M월을 표현하기 위한 Label
-      	var headerYM = now.getFullYear()+"년"+(now.getMonth()+1)+"월";
+      	var headerYM = now.getFullYear()+"년 "+(now.getMonth()+1)+"월";
   		monthLabel.textContent = headerYM;
       	
   		const tbody = document.createElement('tbody');
@@ -330,6 +330,7 @@
 			const eachday = document.createElement('th');
 			eachday.colSpan = 2;
 			eachday.innerText = weather[i].date;
+			if(i!=6) {eachday.style = "border-right: 1px solid #B9B4C7;";}
 			week.appendChild(eachday);
 			
 			const amweather = document.createElement('td');
@@ -347,15 +348,27 @@
 			img = judgeweather(weather[i].pmpop)
 			pmweather.appendChild(img);
 			pmweather.classList.add('weathertd');
-			
+			if(i!=6) {pmweather.style = "border-right: 1px solid #B9B4C7;"}
 			weathers.appendChild(amweather);
 			weathers.appendChild(pmweather);
 			
 			const temp = document.createElement('td');
 			temp.colSpan = 2;
-			temp.innerText = weather[i].tmn + String.fromCharCode(176) + "C / " + weather[i].tmx + String.fromCharCode(176) + "C";
+			if(i!=6) {temp.style = "border-right: 1px solid #B9B4C7;";}
+			const textLTemp = document.createElement('span');
+			const textHTemp = document.createElement('span');
+			const slice = document.createElement('span');
+			textLTemp.style = 'color:blue';
+			textHTemp.style = 'color:red';
+			textLTemp.innerText = weather[i].tmn + String.fromCharCode(176) + "C";
+			slice.innerText = " / ";
+			textHTemp.innerText = weather[i].tmx + String.fromCharCode(176) + "C";
+			/*temp.innerText = weather[i].tmn + String.fromCharCode(176) + "C / " + weather[i].tmx + String.fromCharCode(176) + "C";*/
 			temp.classList.add('weathertd');
 			temps.appendChild(temp);
+			temp.appendChild(textLTemp);
+			temp.appendChild(slice);
+			temp.appendChild(textHTemp);
 		}
 		
 		weathertable.appendChild(week);
