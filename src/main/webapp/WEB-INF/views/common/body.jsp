@@ -666,7 +666,6 @@
             time = time < 10 ? '0' + time + "00" : '' + time + "00"; //time이 '10'미만이면 '0time00' 그렇지않으면 'time00'
             for (let i = 0; i < weather1.length; i++) {
                 if (time === weather1[i].time) { //시간 비교하여 같으면
-                	alert(weather1[i].pop);
                     if (weather1[i].pop < 30) { //30미만 sun
                         return '${path}/resources/assets/img/sun.png';
                     } else if (weather1[i].pop < 50) { //50미만 cloudy

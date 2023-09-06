@@ -3,14 +3,12 @@ Custom Css
 */
 
 .btn {
-	height:30px;
+	/* height:30px; */
 } 
 
 .span-time{
-	vertical-align : middle;
 	display : inline-block;
 	width : 20%;
-	line-height : 70px;
 }
 
 .btn-secondary{
@@ -25,11 +23,14 @@ Custom Css
 }
 
 .btn-h{
+	font-family: 'Gamja Flower', cursive;
+	font-size:25px !important;
+	padding:0;
 	border : none;
-  	border-radius : 20px;
+  	border-radius : 10px;
   	width : 15%;
-  	margin-right : 2%;
-  	margin-bottom : 5%;
+  	height:38px;
+  	margin : 2% 1%;
   	background-color : #F5F5F5;
 }
 
@@ -78,12 +79,16 @@ Custom Css
 }
 
 .btn-disabled{
+	font-family: 'Gamja Flower', cursive;
+	font-size:25px !important;
+	padding:0;
 	border : none;
-  	border-radius : 20px;
+  	border-radius : 10px;
   	width : 15%;
-  	margin-right : 2%;
-  	margin-bottom : 5%;
-	background-color : #D3D3D3
+  	height:38px;
+  	margin : 2% 1%;
+  	text-decoration : line-through;
+	/* background-color : #D3D3D3 */
 }
 
 .calendartb {
@@ -102,7 +107,7 @@ th, td {
 
 td {
   cursor : pointer;
-  background-color : #D3D3D3
+  /* background-color : #D3D3D3 */
 }
 
 .td-click:hover {
@@ -181,7 +186,6 @@ td {
 	.div2 { margin-left: auto !important;	margin-right: auto !important;		}
 	.div3 { margin-left: auto !important;	margin-right: auto !important; 		}
 	.m_div { text-align: center;}
-	.p_time { display: none;}
 } 
 
 @media screen and (min-width: 1000px) {
@@ -189,8 +193,6 @@ td {
 	.div2 { float:left;}
 	.div3 { float:right;}
 	.div4 { float:left;}
-	.m_div {text-align: left;}
-	.m_time { display: none;}
 } 
 
 .beforecard{
