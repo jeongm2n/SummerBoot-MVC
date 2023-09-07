@@ -87,7 +87,7 @@
 								<a href="#" onclick="gomyres();" class="d-flex align-items-center gap-2 dropdown-item">
 								<i class="fa fa-calendar-check fs-6"></i><span>예약확인</span>
 								</a>
-								<a href="#" class="d-flex align-items-center gap-2 dropdown-item">
+                              	<a href="${path}/member/check_pur" class="d-flex align-items-center gap-2 dropdown-item">
 									<i class="fa fa-wallet fs-6"></i><span>주문확인</span>
 								</a>
 								<a href="${path }/member/logout" class="btn btn-join mx-3 mt-2 d-block" style="color:#FD8008">Logout</a>

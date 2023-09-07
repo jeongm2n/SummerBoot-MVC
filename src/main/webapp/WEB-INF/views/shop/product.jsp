@@ -70,7 +70,7 @@
 			<div class="col-md-5 col-md-push-2" style="margin-bottom : 10px;">
 				<div id="product-main-img">
 					<div class="product-preview">
-						<img src="${path}/resources/assets/img/${product.img}">
+						<img src="${path}/resources/assets/product/${product.img}">
 					</div>
 
 					<div class="product-preview">
