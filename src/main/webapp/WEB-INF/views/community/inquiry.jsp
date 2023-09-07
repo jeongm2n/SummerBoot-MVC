@@ -8,16 +8,19 @@
 	<%@ include file="../common.jsp"%>
 	<%@ include file="../common/header.jsp" %>
 	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
 </head>
 <body>
 	<section class="container py-5">
 		<div class="row text-center pt-5 pb-3">
 			<div class="col-lg-6 m-auto">
-				<h1 class="h1" id="title" style="font-weight:bolder !important;">Q&A</h1>
+				<h1 class="h1" id="title" style="font-family: 'Rubik', sans-serif;font-weight:500 !important;font-size: 4em !important;">Q&A</h1>
 			</div>
 		</div>
 		
-		<div class="row choose">
+		<%-- <div class="row choose">
 			<div class="pb-5 ch">
 				<a class="h4 mt-4" href="${path}/community/faq">FAQ</a>
 			</div>
@@ -25,7 +28,7 @@
 			<div class="pb-5 ch">
 				<a class="h4 mt-4 disabled" href="${path}/community/qna">Q&A</a>
 			</div>
-		</div>
+		</div> --%>
 		
 		<div class="flex-sm-fill col-7 mx-auto searchG">
 			<div style="margin-right:10px;">
@@ -95,12 +98,12 @@
 									<td colspan="7">  
 					                    <div class="card-body-inquiry">
 							            	<div class="inquiry-answer">
-							            		<div class="h1">Q.</div>
-							            		<div class="h4" style="padding-top:2%;">${list.content }</div>
+							            		<div class="h1" style="font-family: 'Rubik', sans-serif;">Q.</div>
+							            		<div class="h4" style="padding-top:2%;font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px !important;">${list.content }</div>
 							                </div>
 							                <div class="inquiry-answer" <c:if test="${list.state eq '답변대기'}" >style="display:none;"</c:if>>
-							                    <div class="h1">A.</div>
-							            		<div class="h4" style="padding-top:2%;">${list.answer }</div>
+							                    <div class="h1" style="font-family: 'Rubik', sans-serif;">A.</div>
+							            		<div class="h4" style="padding-top:2%;font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px !important;">${list.answer }</div>
 							                </div>
 						                </div>
 									</td>  
@@ -149,11 +152,16 @@
     	grid-template-columns:1fr;
     }
     .searchG {
+		font-family: 'IBM Plex Sans KR', sans-serif;
     	display : grid;
     	grid-template-columns : 0.5fr 1.5fr;
+    	margin-top:3%;
     }
     .h1 {
     	font-weight:700 !important;
+    }
+    table {
+    	font-family: 'IBM Plex Sans KR', sans-serif;
     }
 </style>
 
