@@ -41,13 +41,29 @@
 			$('#200').prop('checked', true);
 		});
 		
+		clickedMD = '${today}';
+		selectedHM = '${resTime}';
+		
 		$("input:radio[name='p_options']").click(function() {
 			a = $("input[name='p_options']:checked").val();
+			
+			timeHour();
+			if(selectedHM != 'null'){ //당일 예약현황에서 예약페이지1로 왔다면 + 사용시간을 바꿀떄마다 종료 시간을 새로 계산.
+				const temp = new Date('2023-'+clickedMD+'T'+selectedHM+':00');
+				var temp2 = new Date(temp.getTime() + a * 60000);
+				console.log(temp2);
+				
+				const tempH = temp2.getHours() >= 10 ? temp2.getHours() : '0' + temp2.getHours();
+				const tempM = temp2.getMinutes();
+				endtime = tempH + ":" + tempM;
+					
+				document.getElementById("btn-time").value = selectedHM;
+				var btn = document.getElementById('btn-time');
+				btn.innerHTML = selectedHM + " ~ " + endtime;
+			}
 		});
 		
 		shopName = shops[<%=no %>-1];
-		clickedMD = '${today}';
-		selectedHM = '${resTime}';
 		var btn = document.getElementById('btn-shop');
 		btn.innerHTML = shopName;
 	});
@@ -58,7 +74,8 @@
     		alert("날짜, 시간을 확인해주세요");
     		return false;
     	}else{
-    		window.location.href = "./reservation2?shopName="+shopName+"&no="+<%=no %>+"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+a;
+    		window.location.href = "./reservation2?shopName="+shopName+"&no="+<%=no %>+
+    				"&date="+clickedMD+"&startTime="+selectedHM+"&useTime="+a+"&endTime="+endtime;
     		//reservation2로 지점 이름, 세차장 고유번호, 선택날짜, 선택한 시작시간, 사용시간에 대한 정보를 넘김
     		return true;
     	}
@@ -112,13 +129,13 @@
 									<td class="thead" align="center"><label onclick="nextMonth()"> ▶ </label></td>
 								</tr>
 								<tr>
-									<td class="thead"><font color="#D71313">일</font></td>
+									<td class="thead sunday-td">일</td>
 									<td class="thead">월</td>
 									<td class="thead">화</td>
 									<td class="thead">수</td>
 									<td class="thead">목</td>
 									<td class="thead">금</td>
-									<td class="thead"><font color="#1D5D9B">토</font></td>
+									<td class="thead saturday-td">토</td>
 								</tr>
 							<thead>
 						</table>
@@ -127,24 +144,26 @@
 		
 				<div id="res-time" style="padding:1% 2%;">
 					<div class="p_time" style="text-align: center;margin-bottom:5%;">
+						<img src="${path}/resources/assets/img/alert.png" style="margin-right:5px;width:20px;">
+						<b style="color: #FF9B50;font-size:10pt">세차 시간은 입/출차 시간을 고려하여 1분정도 일찍 마무리해주시기 바랍니다.</b>
 						<h4 style="font-family: 'Jua', sans-serif;font-size: 40px;">사용시간<img src="${path}/resources/assets/img/time2.png" style="height:40px;"></h4>
 						<div class="line"></div>
 						<div>
 							<span class="span-time">
-								<input type="radio" class="btn-check" name="p_options" id="40" value=29 autocomplete="off">
-								<label class="btn btn-h" for="40" style="width:60%;">30M</label>
+								<input type="radio" class="btn-check" name="p_options" id="30M" value=29 autocomplete="off">
+								<label class="btn btn-h" for="30M" style="width:60%;">30M</label>
 							</span>
 							<span class="span-time">
-								<input type="radio" class="btn-check" name="p_options" id="100" value=59 autocomplete="off">
-								<label class="btn btn-h" for="100" style="width:60%;">1H</label>
+								<input type="radio" class="btn-check" name="p_options" id="60M" value=59 autocomplete="off">
+								<label class="btn btn-h" for="60M" style="width:60%;">1H</label>
 							</span>
 							<span class="span-time">
-								<input type="radio" class="btn-check" name="p_options" id="130" value=89 autocomplete="off">
-								<label class="btn btn-h" for="130" style="width:60%;">1H30M</label>
+								<input type="radio" class="btn-check" name="p_options" id="90M" value=89 autocomplete="off">
+								<label class="btn btn-h" for="90M" style="width:60%;">1H30M</label>
 							</span>
 							<span class="span-time">
-								<input type="radio" class="btn-check" name="p_options" id="200" value=119 autocomplete="off">
-								<label class="btn btn-h" for="200" style="width:60%;">2H</label>
+								<input type="radio" class="btn-check" name="p_options" id="120M" value=119 autocomplete="off">
+								<label class="btn btn-h" for="120M" style="width:60%;">2H</label>
 							</span>
 						</div>
 					</div>
@@ -164,7 +183,9 @@
 			<div style="display:inline-flex;align-items:center;float:right;margin-top:1%;">
 				<h5 id="btn-shop" class="reser"></h5>
 				<h5 id="btn-date" class="reser">${today }</h5>
-				<h5 id="btn-time" class="reser">${resTime }</h5>
+				<h5 id="btn-time" class="reser">
+				<c:if test="${resTime eq 'null'}"></c:if>
+				<c:if test="${resTime ne 'null'}">${resTime }</c:if></h5>
 				<button type="button" class="orange-button" onclick="return goReservation2();">NEXT ></button>
 			</div>
 		</div>

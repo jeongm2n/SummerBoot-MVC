@@ -18,7 +18,7 @@
 	<title>자리선택</title>
 	<script>
 		function goRes_pay(site){
-			location.href="${path}/pay/reservation_pay/${no},${date},${startTime},${useTime},"+site;
+			location.href="${path}/pay/reservation_pay/${no},${date},${startTime},${useTime},"+site+",${endTime}";
 		}
 	</script>
 </head>
@@ -30,7 +30,7 @@
 			<div class="border border-4 div-margin">
 		    	<table class="table table-borderless" style="margin-bottom:0;">
 		    	<tr><th>지점명</th><th>선택날짜</th><th>예약시간</th><th>이용시간</th></tr>
-		    	<tr><td><%=shopName %></td><td>${date}</td><td>${startTime}</td><td>${useTime}</td></tr>
+		    	<tr><td><%=shopName %></td><td>${date}</td><td>${startTime} ~ ${endTime}</td><td>${useTime}</td></tr>
 		    	</table>
 		    </div>
 		    

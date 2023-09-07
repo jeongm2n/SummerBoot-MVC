@@ -273,3 +273,11 @@ td {
 	height : 73px;
 	vertical-align: middle;
 }
+
+.sunday-td{
+	color : #D71313;
+}
+
+.saturday-td{
+	color : #1D5D9B;
+}

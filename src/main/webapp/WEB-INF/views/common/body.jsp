@@ -697,7 +697,7 @@
         var currentYMD = realYear + currentMonth + currentDate;
 	
         if(judge==0){
-        	location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD + "&resTime=";
+        	location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD + "&resTime=null";
         }else{
         	location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD + "&resTime=" + resTime;
         }

@@ -50,7 +50,7 @@ public class ReservationController {
 	
 	@RequestMapping(value = "/reservation2", method = RequestMethod.GET)
 	public ModelAndView reservation2(@RequestParam("no") int no, @RequestParam("date") String date, 
-			@RequestParam("startTime") String startTime,@RequestParam("useTime") int useTime) {
+			@RequestParam("startTime") String startTime,@RequestParam("useTime") int useTime,@RequestParam("endTime") String endTime ) {
 		
 		//예약된 세차 구역의 정보를 가져옴
 		List<Integer> sites = rsDAO.chkSite(no, date, startTime, useTime);
@@ -66,6 +66,7 @@ public class ReservationController {
 		mav.addObject("date",date);
 		mav.addObject("startTime",startTime);
 		mav.addObject("useTime",useTime);
+		mav.addObject("endTime",endTime);
 		mav.addObject("sites",sites);
 		mav.setViewName("reservation/reservation2");
 		return mav;

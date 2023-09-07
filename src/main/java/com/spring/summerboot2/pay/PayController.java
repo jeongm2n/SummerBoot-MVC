@@ -214,11 +214,11 @@ public class PayController {
 	}
 	 
 	 @ResponseBody
-	 @RequestMapping(value="/reservation_pay/{no},{date},{startTime},{useTime},{site}")
+	 @RequestMapping(value="/reservation_pay/{no},{date},{startTime},{useTime},{site},{endTime}")
 	 public ModelAndView resevation_pay(HttpServletRequest request, HttpServletResponse response
 			 ,@PathVariable(value= "no") String no ,@PathVariable(value= "date") String date
 			 ,@PathVariable(value= "startTime") String startTime ,@PathVariable(value= "useTime") String useTime
-			 ,@PathVariable(value= "site") String site) throws Exception
+			 ,@PathVariable(value= "site") String site, @PathVariable(value= "endTime") String endTime) throws Exception
 	{
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -240,18 +240,10 @@ public class PayController {
 		b_Inform[4] = inform.getName();
 		
 		String[] carwash = payService.Load_CarWash(no);
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		Date date1 = sdf.parse(startTime);
 		String[] f_date = date.split("-");
 		
 		if(f_date[0].charAt(0) == '0') { f_date[0] = f_date[0].substring(1);}
-		
-	    Calendar cal = Calendar.getInstance();
-	    cal.setTime(date1);
-	    cal.add(Calendar.MINUTE, Integer.parseInt(useTime));
-	    
-	    String endTime = sdf.format(cal.getTime());  
-	    
+	
 		ReservationVO reservation = new ReservationVO(Integer.parseInt(no), date, Integer.parseInt(site), startTime, useTime, endTime);
 		
 		int price = 0;

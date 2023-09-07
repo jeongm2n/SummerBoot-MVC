@@ -7,23 +7,18 @@
     const realYear = date.getFullYear();
     
     var currentMonth = realMonth >= 10 ? realMonth : "0" + realMonth;
-    var currentDate = date.getDate() >= 10 ? date.getDate() : "0" +date.getDate();
+    var currentDate = realToDay >= 10 ? realToDay : "0" + realToDay;
     var currentMD = currentMonth + "-" + currentDate;
     var currentHour = date.getHours();
     var currentMinute = date.getMinutes();
     
-    var currentYMD = realYear + currentMonth + currentDate;
+    var selectedbtn_H; //시간 버튼 선택 시 색상 변경하게 하기 위한 변수
+    var selectedbtn_M; //분 버튼 선택 시 색상 변경하게 하기 위한 변수
     
-    var selectedCell;
-    var selectedbtn_H;
-    var selectedbtn_M;
-    
-    var shopName = null;
-    var clickedMD = currentMD;
-    var selectedHM = null;
-    
-    var selectedMonth = null;
-    var selectedDate = null;
+    var shopName; //지점 이름
+    var clickedMD = currentMD; //오늘 날짜를 기본 선택값으로 하기 위함
+    var selectedHM = null; 
+    var endtime = null;
     
     var selectedHour = null;
     var selectedMinute = null;
@@ -50,6 +45,7 @@
     
     //예약 가능한 기간이 다음달로 넘어갈 시 
     var r = 0;
+    
     //달력 만드는 함수
     function buildCalendar(now){
 		var nowMonth = now.getMonth()+1;
@@ -83,29 +79,40 @@
 					dateCell.setAttribute('id',date);
 					dateCell.textContent = date;
 					
+					if(j==0){ //일요일이면 빨간색 글씨로 표시
+						dateCell.classList.add('sunday-td');
+					}else if(j==6){
+						dateCell.classList.add('saturday-td');
+					}
+					
+					if(date == realToDay){
+						dateCell.classList.add('selected');
+					}
+					
 					if(months[r] === nowMonth){  //예약 가능한 날짜의 Month 값이 현재 띄워진 달력의 달과 일치하면
 						if(date === days[r]){ //예약 가능한 날짜의 Date 값과 같은 date에 클릭 이벤트 설정
 							r++; //days와 months의 인덱스를 높여주는 변수
 							dateCell.classList.add('td-click');
 							dateCell.onclick = function(){ //7일 동안만 클릭가능하도록 클릭이벤트 설정
-						        selectedMonth = 1 + now.getMonth(); //선택한 달의 정보
-						        selectedDate = this.getAttribute('id'); //선택한 날의 정보
 						        
 						        //10의자리 숫자면 그대로, 1의자리 숫자면 0을 붙여서 (ex.09)
-						        clickedDate = selectedDate >= 10 ? selectedDate : '0' + selectedDate; 
-				            	clickedMonth = selectedMonth >= 10 ? selectedMonth : '0' + selectedMonth;
+						        clickedDate = this.getAttribute('id') >= 10 ? this.getAttribute('id') : '0' + this.getAttribute('id');//선택한 달의 정보
+				            	clickedMonth = (1 + now.getMonth()) >= 10 ? (1 + now.getMonth()) : '0' + (1 + now.getMonth()); //선택한 날짜의 정보
 				            	clickedMD = clickedMonth + "-" + clickedDate; //"08-11" 의 형태로 만듬
 			            		
-			            		removeAllChildren(minuteContainer);		
+			            		minuteContainer.innerHTML='';
 			            		timeHour();	
 			            		document.getElementById("btn-date").value = clickedMD;
 			            		var btn = document.getElementById('btn-date');
 			                	btn.innerHTML = clickedMD; //아래쪽에 사용자가 선택한 날짜를 띄우기 위한 코드
-											                	
-				                if(dateCell != null){ //다른 셀을 선택 시 색 변경 (선택된 셀은 주황색, 아닌 셀은 흰색)
-									dateCell.classList.remove('selected');
-								}
-								dateCell = this;
+			                	
+			                	//selected 클래스를 갖고있는 dateCell을 selectedDateCell에 담고
+				                var selectedDateCell = document.querySelector('.selected');
+					            if (selectedDateCell !== null && selectedDateCell !== this) {
+									//선택되어 있는 셀이 있고, 그 셀이 현재 자신의 셀이 아니라면
+					            	selectedDateCell.classList.remove('selected');
+					            }
+					            
 								this.classList.add('selected');	                	
 				        	};
 						}
@@ -120,15 +127,9 @@
   		return tbody;
 	}
     
-    function removeAllChildren(element) { //시간, 분 버튼 초기화 시키기 위한 함수
-	  	while (element.firstChild) {
-	    	element.removeChild(element.firstChild);
-	  	}
-	}
-    
     function timeHour(){ //예약 가능 시간대 버튼 만드는 함수
     
-		removeAllChildren(hourContainer); //이 함수가 실행될 때마다 시간대 버튼을 다 지웠다가 다시 만들기 위함
+		hourContainer.innerHTML=''; //이 함수가 실행될 때마다 시간대 버튼을 다 지웠다가 다시 만들기 위함
 		
 	    var line = 0; //한 줄에 5개만 있도록 갯수 설정하는 변수 
 	   	
@@ -198,7 +199,8 @@
     
 	//분 선택 버튼 만들기
     function timeMinute(compareHour, istoday){
-		removeAllChildren(minuteContainer);
+		minuteContainer.innerHTML=''; //초기화해주지 않으면 계속 쌓임
+		
     	for(i=0 ; i<=30 ; i+=30){
     		var button = document.createElement('button');
             button.type = 'button';
@@ -209,10 +211,13 @@
             	button.innerHTML = i;
             }
             button.setAttribute('id',i);
-            
+			
 			if (a == 119 && compareHour == 22 && i == 30) {
 				button.classList.add('btn-disabled');
-			} else if (a == 59 && compareHour == 23 && i == 30) {
+			}else if(a==119 && compareHour == 23){
+				button.classList.add('btn-disabled');
+			} 
+			else if (a == 59 && compareHour == 23 && i == 30) {
 				button.classList.add('btn-disabled');
 			} else {
 				if (compareHour == currentHour && istoday==1) {
@@ -234,9 +239,17 @@
 							this.classList.add('btn-click');
 
 							selectedHM = selectedHour + ":" + selectedMinute;
+							
+							const temp = new Date('2023-'+clickedMD+'T'+selectedHM+':00');
+							var temp2 = new Date(temp.getTime() + a * 60000);
+							
+							const tempH = temp2.getHours() >= 10 ? temp2.getHours() : '0' + temp2.getHours();
+							const tempM = temp2.getMinutes();
+							endtime = tempH + ":" + tempM;
+							
 							document.getElementById("btn-time").value = selectedHM;
 							var btn = document.getElementById('btn-time');
-							btn.innerHTML = selectedHM;
+							btn.innerHTML = selectedHM + " ~ " + endtime;
 						};
 					}
 				} else {
@@ -255,9 +268,18 @@
 						this.classList.add('btn-click');
 
 						selectedHM = selectedHour + ":" + selectedMinute;
+						
+						const temp = new Date('2023-'+clickedMD+'T'+selectedHM+':00');
+						var temp2 = new Date(temp.getTime() + a * 60000);
+						console.log(temp2);
+						
+						const tempH = temp2.getHours() >= 10 ? temp2.getHours() : '0' + temp2.getHours();
+						const tempM = temp2.getMinutes();
+						endtime = tempH + ":" + tempM;
+							
 						document.getElementById("btn-time").value = selectedHM;
 						var btn = document.getElementById('btn-time');
-						btn.innerHTML = selectedHM;
+						btn.innerHTML = selectedHM + " ~ " + endtime;
 					};
 				}
 			}
@@ -295,7 +317,7 @@
 		}
 		else{
 			cnt += 1;
-			removeMonth(calendar,'calBody');
+			removeMonth(calendar,'calBody'); //초기화하지 않으면 계속 쌓임
 	    	now = new Date(now.getFullYear(), now.getMonth()+1, now.getDate());
 	    	calendar.appendChild(buildCalendar(now));
 	    	hourContainer.innerHTML = ""; // 시간 선택 버튼 컨테이너 초기화
@@ -363,7 +385,6 @@
 			textLTemp.innerText = weather[i].tmn + String.fromCharCode(176) + "C";
 			slice.innerText = " / ";
 			textHTemp.innerText = weather[i].tmx + String.fromCharCode(176) + "C";
-			/*temp.innerText = weather[i].tmn + String.fromCharCode(176) + "C / " + weather[i].tmx + String.fromCharCode(176) + "C";*/
 			temp.classList.add('weathertd');
 			temps.appendChild(temp);
 			temp.appendChild(textLTemp);
