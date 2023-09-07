@@ -21,6 +21,7 @@ public class OrderVO {
 	private int tracking;
 	private String status;
 	private String imp_uid;
+	private int total_price;
 	
 	
 	public OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount,
@@ -192,6 +193,14 @@ public class OrderVO {
 	}
 	public void setImp_uid(String imp_uid) {
 		this.imp_uid = imp_uid;
+	}
+
+	public int getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
 	}
 
 }

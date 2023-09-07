@@ -48,19 +48,21 @@
                                     <thead>
                                         <tr>
                                             <th>주문정보</th>
-                                            <th>배송지</th>
+                                            <th class="address">배송지</th>
                                             <th>주문상품</th>
-                                            <th>수량</th>
-                                            <th>금액</th>
+                                            <th>수량(개)</th>
+                                            <th class="price">금액</th>
+                                            <th class="buttons"></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>주문정보</th>
-                                            <th>배송지</th>
+                                            <th class="address">배송지</th>
                                             <th>주문상품</th>
-                                            <th>수량</th>
-                                            <th>금액</th>
+                                            <th>수량(개)</th>
+                                            <th class="price">금액</th>
+                                            <th class="buttons"></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -76,27 +78,57 @@
 				                                            <td class="order_num align-middle">
 				                                            	<b>주문번호 : ${list.order_num }</b>
 																<c:choose>
-																	<c:when test='${list.status eq "paid"}'><span class="status" style="background-color: salmon;">결제 완료</span></c:when>
-																	<c:when test='${list.status eq "ready"}'><span class="status" style="background-color: skyblue;">입금 대기 중</span></c:when>
-																	<c:when test='${list.status eq "cancelled"}'><span class="status" style="background-color: grey;">결제 취소</span></c:when>
-																	<c:when test='${list.status eq "취소 요청"}'><span class="status" style="background-color: darkgrey;">취소 요청</span></c:when>
-																	<c:when test='${list.status eq "배송 준비중"}'><span class="status" style="background-color: darkkhaki;">배송 준비중</span></c:when>
-																	<c:when test='${list.status eq "배송중"}'><span class="status" style="background-color: mediumaquamarine;">배송중</span></c:when>
-																	<c:when test='${list.status eq "배송 완료"}'><span class="status" style="background-color: #FD8008;">배송 완료</span></c:when>
+																  <c:when test="${list.status eq 'paid'}">
+																    <span class="status" style="background-color: salmon;">결제 완료</span>
+																  </c:when>
+																  <c:when test="${list.status eq 'ready'}">
+																    <span class="status" style="background-color: skyblue;">입금 대기 중</span>
+																  </c:when>
+																  <c:when test="${list.status eq 'cancelled'}">
+																    <span class="status" style="background-color: grey;">결제 취소</span>
+																  </c:when>
+																  <c:when test="${list.status eq '취소 요청'}">
+																    <span class="status" style="background-color: darkgrey;">취소 요청</span>
+																  </c:when>
+																  <c:when test="${list.status eq '배송 준비중'}">
+																    <span class="status" style="background-color: darkkhaki;">배송 준비중</span>
+																  </c:when>
+																  <c:when test="${list.status eq '배송중'}">
+																    <span class="status" style="background-color: mediumaquamarine;">배송중</span>
+																  </c:when>
+																  <c:when test="${list.status eq '배송 완료'}">
+																    <span class="status" style="background-color: #FD8008;">배송 완료</span>
+																  </c:when>
 																</c:choose>
 				                                            	<br>
 				                                            	주문 날짜 : ${list.pur_date }<br>
 				                                            	주문자 : ${list.member_id }<br>
-				                                            	
 				                                            	<button class="btn_popup" onclick="popup('${list.imp_uid}', '${list.pur_date}');">결제 정보 확인</button>
 				                                            </td>
-				                                            <td class="align-middle">
+				                                            <td class="address align-middle">
 					                                        	우편번호 : ${list.post }<br>
 					                                        	<b>주소</b> : ${list.addr1 }<br>
-					                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${list.addr2 }</td>
+					                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${list.addr2 }
+					                                        	<c:if test='${list.status eq "배송중"}'>
+					                                        	<br><font size="1">운송장 번호 (대한통운): ${list.tracking}</font>
+					                                        	</c:if></td>
 				                                            <td class="align-middle">${list.product_id }(${list.product_name })</td>
 				                                            <td class="align-middle">${list.mount}</td>
-				                                            <td class="align-middle">${list.mount*list.price}</td>
+				                                            <td class="price align-middle">물품 가격 : ${list.mount*list.price}￦<br>
+				                                            배송비 : ${list.total_price-(list.mount*list.price)}￦<br>
+				                                            총 가격 : ${list.total_price}￦</td>
+				                                            <td class="buttons align-middle">
+				                                            <div class="pur_btn">
+				                                            <c:if test='${list.status eq "paid"}'>
+				                                              <button type="button" class="other_btn" onclick="update_status('배송 준비중','${list.order_num}')"> 결제 확인 </button><br>
+				                                            </c:if>
+				                                            <c:if test='${list.status eq "배송 준비중"}'>
+				                                              <button type="button" class="other_btn"> 운송장 입력 </button><br>
+				                                            </c:if>
+				                                            <c:if test='${list.status eq "취소 요청"}'>
+				                                              <button type="button" class="other_btn" onclick="CardcancelPay('${list.order_num}', '${list.total_price}');"> 주문 취소 </button><br>
+				                                            </c:if>
+				                                            </td>
 				                                        </tr>
 					                            	</c:forEach>
 			                            	</c:when>
@@ -123,19 +155,31 @@
  	    
  	    window.open(popUrl, "리뷰 작성", popOption);	
 	}
+	  
+	function rowspan(order_num, adjacent_column1, adjacent_column2, adjacent_column3) {
+	    $("." + order_num).each(function () {
+	        var $currentCell = $(this);
+	        var $rows = $("." + order_num + ":contains('" + $currentCell.text() + "')");
+	        var $addressCells = $rows.closest('tr').find("." + adjacent_column1);
+			var $priceCells  = $rows.closest('tr').find("." + adjacent_column2);
+			var $buttonsCells  = $rows.closest('tr').find("." + adjacent_column3);
+			
+	        if ($rows.length > 1) {
+	            $rows.eq(0).attr("rowspan", $rows.length);
+	            $rows.not(":eq(0)").remove();
 
-	function rowspan(order_num) {
-		var rows;
-		$("." + order_num).each(function () {
-			rows = $("." + order_num + ":contains('" + $(this).text() + "')");
-	        if (rows.length > 1) {
-	            rows.eq(0).attr("rowspan", rows.length);
-	            rows.not(":eq(0)").remove();
+	            $addressCells.eq(0).attr("rowspan", $rows.length);
+	            $addressCells.not(":eq(0)").remove();
+	            $priceCells.eq(0).attr("rowspan", $rows.length);
+	            $priceCells.not(":eq(0)").remove();
+	            $buttonsCells.eq(0).attr("rowspan", $rows.length);
+	            $buttonsCells.not(":eq(0)").remove();
 	        }
-		});
+	    });
 	}
 
-	$(document).ready(function() {
-		rowspan("order_num");
+	$(document).ready(function () {
+	    rowspan("order_num", "address", "price", "buttons");
 	});
+	
 </script>

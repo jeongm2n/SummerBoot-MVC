@@ -37,12 +37,20 @@ public class OrderController {
 		orderList = adminService.orderList();
 		
 		for (int i = 0; i < orderList.size(); i++) {
-		    if (i == 0 || orderList.get(i).getOrder_num() != orderList.get(i - 1).getOrder_num()) {
-		        api = restapi.paymentLookup(orderList.get(i).getImp_uid());
-		        String payMethod = api.getResponse().getPayMethod();
+		    if (i == 0 || !orderList.get(i).getOrder_num().equals(orderList.get(i - 1).getOrder_num()) && orderList.get(i).getStatus() == null) {
+		    	api = restapi.paymentLookup(orderList.get(i).getImp_uid());
 		        orderList.get(i).setStatus(api.getResponse().getStatus());
-		      
-		        System.out.println(orderList.get(i).getStatus());
+		        orderList.get(i).setTotal_price(api.getResponse().getAmount().intValue());
+		        
+		    }
+		    else {
+		    	if(orderList.get(i).getOrder_num().equals(orderList.get(i - 1).getOrder_num())) {
+		    		orderList.get(i).setStatus(orderList.get(i-1).getStatus());
+		    	}
+		    	else{
+		    		api = restapi.paymentLookup(orderList.get(i).getImp_uid());
+		    		orderList.get(i).setTotal_price(api.getResponse().getAmount().intValue());
+		    	}
 		    }
 		}
 		

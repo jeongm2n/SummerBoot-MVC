@@ -18,6 +18,11 @@
 	background-color: white;
 }
 
+.btn_popup:hover{
+	background-color: #FD8008;
+	color: white;
+}
+
 .status{
 	float: right;
     text-align: center;
@@ -26,4 +31,25 @@
     height: 15px;
     border-radius: 5px;
     color: white
+}
+
+.pur_btn{
+	text-align: center;
+}
+.pur_btn button{
+	width: auto;
+	height: auto;
+	margin-top: 5px;
+	padding: 0px 5px !important;
+	font-size: 15px;
+	font-weight: 400;
+	padding: 0px;
+	border: 1px solid #FD8008;
+	color: #FD8008;
+	border-radius: 5px;
+	background-color: white;
+}
+.pur_btn button:hover{
+	background-color: #FD8008;
+	color: white;
 }
