@@ -46,6 +46,18 @@ public class InformVO {
 		this.option_add = option_add;
 	}
 	
+	public InformVO(String tel , String email, String name, int point, String postcode, String state, String city, String town, String street_add) {
+		this.tel = tel;
+		this.email = email;
+		this.name = name;
+		this.point = point;
+		this.postcode = postcode;
+		this.state = state;
+		this.city = city;
+		this.town = town;
+		this.street_add = street_add;
+	}
+	
 	public String getTel() { return tel;}
 	public void setTel(String tel) { this.tel = tel;}
 	

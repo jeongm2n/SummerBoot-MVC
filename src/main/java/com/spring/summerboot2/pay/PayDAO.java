@@ -31,7 +31,8 @@ public class PayDAO {
 			}
 			else {
 				String[] address = d_address.split("/");
-				inform = new InformVO(u_tel, email, u_name, point, address[0], address[1], address[2], address[3], address[4], address[5]);
+				if(address.length == 6) { inform = new InformVO(u_tel, email, u_name, point, address[0], address[1], address[2], address[3], address[4], address[5]);}
+				else { inform = new InformVO(u_tel, email, u_name, point, address[0], address[1], address[2], address[3], address[4]);}
 			}
 			
 			rs.close();

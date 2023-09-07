@@ -123,7 +123,7 @@ public class PayController {
 			InformVO s_inform = new InformVO(tel, email, name, point, postcode, state, city, town, street_add, option_add);
 			session.setAttribute("Inform", s_inform);
 			
-			if(session.getAttribute("user_id") != null && save_add.equals("동의")) { payService.Save_Inform((String)session.getAttribute("user_id"), snssts, state, postcode, city, town, street_add, option_add, save_add);}
+			if(session.getAttribute("user_id") != null && save_add != null) { payService.Save_Inform((String)session.getAttribute("user_id"), snssts, state, postcode, city, town, street_add, option_add, save_add);}
 			
 			ArrayList<CartVO> product = (ArrayList<CartVO>) session.getAttribute("Product");
 			
