@@ -46,6 +46,8 @@
 		});
 		
 		shopName = shops[<%=no %>-1];
+		clickedMD = '${today}';
+		selectedHM = '${resTime}';
 		var btn = document.getElementById('btn-shop');
 		btn.innerHTML = shopName;
 	});
@@ -161,8 +163,8 @@
 			</div>
 			<div style="display:inline-flex;align-items:center;float:right;margin-top:1%;">
 				<h5 id="btn-shop" class="reser"></h5>
-				<h5 id="btn-date" class="reser"></h5>
-				<h5 id="btn-time" class="reser"></h5>
+				<h5 id="btn-date" class="reser">${today }</h5>
+				<h5 id="btn-time" class="reser">${resTime }</h5>
 				<button type="button" class="orange-button" onclick="return goReservation2();">NEXT ></button>
 			</div>
 		</div>

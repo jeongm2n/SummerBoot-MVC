@@ -182,7 +182,7 @@
 									<input type="button" id="btn_res" class="btn-join" value="오늘의 예약" onclick="todayRes(${list.no }, todayRes);">
 								</div> --%>
 								<div>
-									<input type="button" id="btn_res" class="btn-join" value="예약하기" onclick="reservation(${list.no });">
+									<input type="button" id="btn_res" class="btn-join" value="예약하기" onclick="reservation(${list.no },'0','0');">
 								</div>
 							</div>
 						</div>
@@ -500,7 +500,7 @@
 								<td>\${i}:00</td>
 								<td>\${data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length} / \${data[0].sites}
 								</td>
-								<td><button id="res_ch" class="btn btn-join btn-lg px-3" onclick="reservation(siteNo)" \${fullRes == hour? 'disabled' : ''} >예약</button></td>
+								<td><button id="res_ch" class="btn btn-join btn-lg px-3" onclick="reservation(siteNo,'\${i}:00','1')" \${fullRes == hour? 'disabled' : ''} >예약</button></td>
 								</tr>
 							`;
 						}
@@ -681,7 +681,7 @@
         $(".infoHidden").hide();
     });
 
-    function reservation(no) {
+    function reservation(no,resTime,judge) {
         <%if(user_id==null){%>
 	        alert('로그인을 먼저 해주세요!');
 	        location.href='${path}/member/login';
@@ -695,8 +695,12 @@
         var currentDate  = date.getDate() >= 10 ? date.getDate() : "0" + date.getDate();
 
         var currentYMD = realYear + currentMonth + currentDate;
-
-        location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD;
+	
+        if(judge==0){
+        	location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD + "&resTime=";
+        }else{
+        	location.href = "${path}/reservation/reservation1?no=" + no + "&date=" + currentYMD + "&resTime=" + resTime;
+        }
         $('#div_load').show(); //현재 페이지에서 다른 페이지로 넘어갈 때 표시해주는 기능
       <%}%>
     }

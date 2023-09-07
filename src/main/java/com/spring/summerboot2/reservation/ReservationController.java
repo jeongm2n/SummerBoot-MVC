@@ -26,7 +26,7 @@ public class ReservationController {
 //	 public String reservation1() { return "reservation/reservation1"; }
 	
 	 @RequestMapping(value = "/reservation1", method = RequestMethod.GET) 
-	 public ModelAndView goreservation1(@RequestParam("no") int no,@RequestParam("date") String today) throws IOException,ParseException {
+	 public ModelAndView goreservation1(@RequestParam("no") int no,@RequestParam("date") String today,@RequestParam("resTime") String resTime) throws IOException,ParseException {
 	 
 		 ModelAndView mav = new ModelAndView();
 		 
@@ -38,6 +38,10 @@ public class ReservationController {
 		 List<WeatherVO> weekWeather = new ArrayList();
 		 weekWeather.addAll(weather3); weekWeather.addAll(weather4);
 		 
+		 mav.addObject("resTime",resTime);
+		 String str = today.substring(4);
+		 String date = str.substring(0,2) + "-" + str.substring(2,4);
+		 mav.addObject("today",date);
 		 mav.addObject("weathers",weekWeather);
 		 mav.setViewName("reservation/reservation1");
 	 
