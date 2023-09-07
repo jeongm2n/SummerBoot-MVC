@@ -77,7 +77,8 @@ i {
 
 .row_cart {
 	align-items: center;
-	
+	border-top : 1px solid #D8D9DA;
+	border-bottom : 1px solid #D8D9DA;
 }
 
 @media (min-width: 992px) {
@@ -89,13 +90,11 @@ i {
 .cart_list {
 	display: inline-flex;
 	flex-direction: row;
-	align-items: center;
 }
 
 .product_img {
-	width: 35%;
-	height : 35%;
-    margin-right: 5%;
+    height: inherit;
+    padding: 5%;
 }
 
 .quan {
@@ -300,8 +299,14 @@ a {
 
 [type="checkbox"]:checked {
 	accent-color: #FD8008;
-	width: 1em;
-	height: 1em;
+	width: 1.3em;
+	height: 1.3em;
+	vertical-align:middle;
+}
+
+[type="checkbox"] {
+	width: 1.3em;
+	height: 1.3em;
 	vertical-align:middle;
 }
 	

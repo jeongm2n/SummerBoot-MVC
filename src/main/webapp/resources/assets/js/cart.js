@@ -1,4 +1,4 @@
-$(document).ready(function() {
+	$(document).ready(function() {
 		total();
 	});
 
@@ -36,7 +36,9 @@ $(document).ready(function() {
 		var total = 0;
 		$('input:checkbox[name=chkbox]').each(function () {
             if($(this).is(":checked")==true){
+				console.log($(this).val());
                 total += parseInt($("#"+$(this).val()+"_sum").html().replace(/,/g, ""));
+                console.log("total>>>> " + total);
             }
         })
         $("#sum").html(total.toLocaleString('ko-KR'));
@@ -67,6 +69,16 @@ $(document).ready(function() {
 		} else {
 			alert("선택한 상품이 없습니다.");
 			return false;
+		}
+	}
+	
+	function allChk() {
+		if($("#allC").is(":checked")) {
+			$(".chk").prop("checked", true);
+			total();
+		} else {
+			$(".chk").prop("checked", false);
+			total();
 		}
 	}
     

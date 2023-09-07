@@ -74,7 +74,7 @@
 				<a class="nav-icon position-relative text-decoration-none" href="${path}/cart/my_cart">
 					<i class="fa fa-fw fa-2x fa-cart-arrow-down text-dark mr-1"></i>
 				</a>
-				<ul class="navbar-nav flex-row align-items-center justify-content-end">
+				<ul class="navbar-nav flex-row">
 					<li class="nav-item dropdown">
 						<a class="nav-icon-hover menu" href="#" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="fa fa-fw fa-2x fa-user text-dark mr-3"></i>
