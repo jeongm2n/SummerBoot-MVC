@@ -16,84 +16,100 @@
 		<img id="loading_img" src="${path }/resources/assets/img/apiLoading.gif">
 	</div>
 	<!-- start 세차장 배너 -->
-	<div class="carousel slide" data-bs-ride="carousel" id="template-mo-zay-hero-carousel" style="height:55%;background:rgba(248, 240, 229,0.6) !important;"><!--  class="carousel slide" data-bs-ride="carousel"  -->
-		<ol class="carousel-indicators" style="bottom:-25px;">
+	<div class="carousel slide" data-bs-ride="carousel" id="template-mo-zay-hero-carousel" style="background:rgba(248, 240, 229,0.6) !important;"><!--  class="carousel slide" data-bs-ride="carousel"  -->
+		<ol class="carousel-indicators">
 			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
 			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
 			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
 			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="3"></li>
 		</ol>
-		<div class="carousel-inner" style="height:100%;">
+		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<div class="container ad">
-					<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-						<img class="img-fluid" src="${path}/resources/assets/img/YangPyeong.jpg" alt="">
-					</div>
-					<div class="col-lg-6 mb-0 text-align-left">
-						<h1 class="h1 ad-title">
-							<b>Wash Boot</b> 양평로점
-						</h1>
-						<p> 서울특별시 영등포구 양평로22마길 28</p>
-						<h3 class="h2" style="margin-top:5%;">
-							기존 세차장과 다르게 고객님이 예약한 시간에<br>
-							<b>바로바로!</b> 세차가 가능한 Wash Boot 양평로점입니다.<br>
-							더나은 서비스를 위하여 여유로운 세차공간으로<br>
-							고객여러분을 맞이 하고 있습니다.
-						</h3>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="container ad">
-						<div class="mx-auto col-md-8 col-lg-6 order-lg-last" style="height:90%;">
-							<img class="img-fluid" src="${path}/resources/assets/img/gyeonginro.jpg" alt="" style="height:110%">
+				<div class="container" style="height: 30em;">
+					<div class="row p-4" style="height: 100%;">
+						<div class="mx-auto col-md-8 col-lg-6 order-lg-last" style="flex-grow:2">
+							<img class="img-fluid" src="${path}/resources/assets/img/YangPyeong.jpg" alt="">
 						</div>
-						<div class="col-lg-6 mb-0 text-align-left">
-							<h1 class="h1 ad-title">
-								<b>Wash Boot</b> 경인로점
-							</h1>
-							<p>서울특별시 영등포구 경인로71길 50</p>
-							<h3 class="h2" style="margin-top:5%;">
-								줄서서 기다리지 말고, 예약을 통해서 시간아껴보세요!<br>
-								지금은 <b style="color:#A73121;">핫썸머 이벤트</b> 중입니다.<br>
-								방문하셔서 사은품 챙겨가세요 :)
-							</h3>
+						<div class="col-lg-6 mb-0 d-flex" style="flex-grow:1">
+							<div class="text-align-left align-items-center">
+								<h1 class="h1 ad-title">
+									<b>Wash Boot</b> 양평로점
+								</h1>
+								<p> 서울특별시 영등포구 양평로22마길 28</p>
+								<h3 class="h2" style="margin-top:5%;">
+									기존 세차장과 다르게 고객님이 예약한 시간에<br>
+									<b>바로바로!</b> 세차가 가능한 Wash Boot 양평로점입니다.<br>
+									더나은 서비스를 위하여 여유로운 세차공간으로<br>
+									고객여러분을 맞이 하고 있습니다.
+								</h3>
+							</div>
 						</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="container ad">
-					<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-						<img class="img-fluid" src="${path}/resources/assets/img/cheonwang.jpg" alt="">
-					</div>
-					<div class="col-lg-6 mb-0 text-align-left">
-						<h1 class="h1 ad-title">
-							<b>Wash Boot</b> 천왕점
-						</h1>
-						<p>서울특별시 구로구 천왕동 277-15</p>
-						<h3 class="h2" style="margin-top:5%;">
-							연중무휴 오픈 프리미엄 실내 셀프세차장<br>
-							<b>700평</b> 국내 최대 규모의 실내 셀프세차장입니다.<br>
-							깨끗한 시설에서 기분좋게 세차해보세요.
-						</h3>
 					</div>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<div class="container ad">
-					<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-						<img class="img-fluid" src="${path}/resources/assets/img/gaje1dong.jpg" alt="">
+				<div class="container" style="height: 30em;">
+					<div class="row p-4" style="height: 100%;">
+						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+							<img class="img-fluid" src="${path}/resources/assets/img/gyeonginro.jpg" alt="">
+						</div>
+						<div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+								<h1 class="h1 ad-title">
+									<b>Wash Boot</b> 경인로점
+								</h1>
+								<p>서울특별시 영등포구 경인로71길 50</p>
+								<h3 class="h2" style="margin-top:5%;">
+									줄서서 기다리지 말고, 예약을 통해서 시간아껴보세요!<br>
+									지금은 <b style="color:#A73121;">핫썸머 이벤트</b> 중입니다.<br>
+									방문하셔서 사은품 챙겨가세요 :)
+								</h3>
+							</div>
+						</div>
 					</div>
-					<div class="col-lg-6 mb-0 text-align-left">
-						<h1 class="h1 ad-title">
-							<b>Wash Boot</b> 가제1동점
-						</h1>
-						<p>서울특별시 성동구 성수1가제1동 656-310</p>
-						<h3 class="h2" style="margin-top:5%;">
-							<b>최신식 시설</b>을 자랑하는 Wash Boot 가제1동점입니다.<br>
-							옆 차와 간섭없는 넓은 공간에서<br>
-							쾌적한 셀프세차하러 오세요.
-						</h3>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<div class="container" style="height: 30em;">
+					<div class="row p-4" style="height: 100%;">
+						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+							<img class="img-fluid" src="${path}/resources/assets/img/cheonwang.jpg" alt="">
+						</div>
+						<div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+								<h1 class="h1 ad-title">
+									<b>Wash Boot</b> 천왕점
+								</h1>
+								<p>서울특별시 구로구 천왕동 277-15</p>
+								<h3 class="h2" style="margin-top:5%;">
+									연중무휴 오픈 프리미엄 실내 셀프세차장<br>
+									<b>700평</b> 국내 최대 규모의 실내 셀프세차장입니다.<br>
+									깨끗한 시설에서 기분좋게 세차해보세요.
+								</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<div class="container" style="height: 30em;">
+					<div class="row p-4" style="height: 100%;">
+						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+							<img class="img-fluid" src="${path}/resources/assets/img/gaje1dong.jpg" alt="">
+						</div>
+						<div class="col-lg-6 mb-0 d-flex align-items-center">
+                    		<div class="text-align-left">
+								<h1 class="h1 ad-title">
+									<b>Wash Boot</b> 가제1동점
+								</h1>
+								<p>서울특별시 성동구 성수1가제1동 656-310</p>
+								<h3 class="h2" style="margin-top:5%;">
+									<b>최신식 시설</b>을 자랑하는 Wash Boot 가제1동점입니다.<br>
+									옆 차와 간섭없는 넓은 공간에서<br>
+									쾌적한 셀프세차하러 오세요.
+								</h3>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -747,18 +763,10 @@
 		margin-top : 1%;
 		font-size:25px !important;
 	}
-	.carousel-item {
-		height:80%;
-	}
-	.ad {
-		display:flex;
-		padding: 3% 0 1.5% 0;
-		height:75%;
-	}
 	.img-fluid {
-		 height: 100%;
-		 width: 100%;
 		 padding-left:2%;
+		 object-fit:fill;
+	     min-height: 100%;
 	}
 	.text-align-left {
 		text-align: right;
@@ -778,4 +786,10 @@
 		font-size: 30px;
 		font-weight:400;
 	}
+	
+	@media (min-width: 992px){
+	}
+		#template-mo-zay-hero-carousel .carousel-item {
+		    min-height: 38rem !important;
+		}
 </style>
