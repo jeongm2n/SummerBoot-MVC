@@ -214,10 +214,7 @@
 			
 			if (a == 119 && compareHour == 22 && i == 30) {
 				button.classList.add('btn-disabled');
-			}else if(a==119 && compareHour == 23){
-				button.classList.add('btn-disabled');
-			} 
-			else if (a == 59 && compareHour == 23 && i == 30) {
+			}else if (a == 59 && compareHour == 23 && i == 30) {
 				button.classList.add('btn-disabled');
 			} else {
 				if (compareHour == currentHour && istoday==1) {
@@ -399,3 +396,4 @@
     
     makeWeather();
     calendar.appendChild(buildCalendar(now));
+    timeHour();
