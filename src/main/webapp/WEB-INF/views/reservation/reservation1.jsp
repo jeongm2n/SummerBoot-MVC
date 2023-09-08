@@ -26,9 +26,9 @@
 <script>
 	// 지점선택 시 아래에 선택한 지점이 뜨도록 
 	const shops = [ '양평로점', '경인로점', '천왕점', '가제1동점', '강동성안점', '성동마장점', '성북종암점', '은평갈현점', '관악봉천점', '용문점' ];
+	clickedMD = '${today}';
 	
 	$(document).ready(function() {
-		clickedMD = '${today}';
 		selectedHM = '${resTime}';
 		
 		$("input:radio[name='p_options']").click(function() {
