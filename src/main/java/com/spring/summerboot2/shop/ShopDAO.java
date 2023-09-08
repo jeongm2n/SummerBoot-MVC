@@ -23,19 +23,21 @@ public class ShopDAO {
 			String sql = null;
 			
 			int f_page = (0 + (9*(page-1)));
-			int b_page = (9 + (9*(page-1)));
+
+			
+			System.out.println(f_page);
 			
 			if(category.equals("전체")) {
-				if(sort == 1) {sql = "SELECT * from sb_product order by name asc limit " + f_page + "," + b_page + "";}
-				else if(sort == 2) {sql = "SELECT * from sb_product order by price desc limit " + f_page + "," + b_page + "";}
-				else if(sort == 3) {sql = "SELECT * from sb_product order by price asc limit " + f_page + "," + b_page + "";}
-				else {sql = "SELECT * from sb_product  limit " + f_page + "," + b_page + "";}
+				if(sort == 1) {sql = "SELECT * from sb_product order by name asc limit " + f_page + ", 9";}
+				else if(sort == 2) {sql = "SELECT * from sb_product order by price desc limit " + f_page + ", 9";}
+				else if(sort == 3) {sql = "SELECT * from sb_product order by price asc limit " + f_page + ", 9";}
+				else {sql = "SELECT * from sb_product  limit " + f_page + ", 9";}
 			}
 			else{
-				if(sort == 1) {sql = "SELECT * from sb_product where category = '" + category + "' order by name asc limit " + f_page + "," + b_page + "";}
-				else if(sort == 2) {sql = "SELECT * from sb_product where category = '" + category + "' order by price desc limit " + f_page + "," + b_page + "";}
-				else if(sort == 3) {sql = "SELECT * from sb_product where category = '" + category + "' order by price asc limit " + f_page + "," + b_page + "";}
-				else {sql = "SELECT * from sb_product where category = '" + category + "' limit " + f_page +"," + b_page + "";}
+				if(sort == 1) {sql = "SELECT * from sb_product where category = '" + category + "' order by name asc limit " + f_page + ", 9";}
+				else if(sort == 2) {sql = "SELECT * from sb_product where category = '" + category + "' order by price desc limit " + f_page + ", 9";}
+				else if(sort == 3) {sql = "SELECT * from sb_product where category = '" + category + "' order by price asc limit " + f_page + ", 9";}
+				else {sql = "SELECT * from sb_product where category = '" + category + "' limit " + f_page + ", 9";}
 			}
 					
 			pstmt = conn.prepareStatement(sql);
