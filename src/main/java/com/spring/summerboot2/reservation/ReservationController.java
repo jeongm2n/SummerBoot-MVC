@@ -26,7 +26,8 @@ public class ReservationController {
 //	 public String reservation1() { return "reservation/reservation1"; }
 	
 	 @RequestMapping(value = "/reservation1", method = RequestMethod.GET) 
-	 public ModelAndView goreservation1(@RequestParam("no") int no,@RequestParam("date") String today,@RequestParam("resTime") String resTime) throws IOException,ParseException {
+	 public ModelAndView goreservation1(@RequestParam("no") int no,@RequestParam("date") String today,
+			 @RequestParam("resTime") String resTime) throws IOException,ParseException {
 	 
 		 ModelAndView mav = new ModelAndView();
 		 

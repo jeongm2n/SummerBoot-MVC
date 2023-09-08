@@ -26,39 +26,28 @@
 <script>
 	// 지점선택 시 아래에 선택한 지점이 뜨도록 
 	const shops = [ '양평로점', '경인로점', '천왕점', '가제1동점', '강동성안점', '성동마장점', '성북종암점', '은평갈현점', '관악봉천점', '용문점' ];
+	clickedMD = '${today}';
+	selectedHM = '${resTime}';
 	
 	$(document).ready(function() {
-		$('label[for="40"]').click(function() {
-			$('#40').prop('checked', true);
-		});
-		$('label[for="100"]').click(function() {
-			$('#100').prop('checked', true);
-		});
-		$('label[for="130"]').click(function() {
-			$('#130').prop('checked', true);
-		});
-		$('label[for="200"]').click(function() {
-			$('#200').prop('checked', true);
-		});
-		
-		clickedMD = '${today}';
-		selectedHM = '${resTime}';
 		
 		$("input:radio[name='p_options']").click(function() {
 			a = $("input[name='p_options']:checked").val();
 			
+			var btn = document.getElementById('btn-time');
+			
 			timeHour();
+			minuteContainer.innerHTML='';
+			
 			if(selectedHM != 'null'){ //당일 예약현황에서 예약페이지1로 왔다면 + 사용시간을 바꿀떄마다 종료 시간을 새로 계산.
-				const temp = new Date('2023-'+clickedMD+'T'+selectedHM+':00');
-				var temp2 = new Date(temp.getTime() + a * 60000);
-				console.log(temp2);
+				var temp = new Date('2023-'+clickedMD+'T'+selectedHM+':00');
+				temp = new Date(temp.getTime() + a * 60000);
 				
-				const tempH = temp2.getHours() >= 10 ? temp2.getHours() : '0' + temp2.getHours();
-				const tempM = temp2.getMinutes();
+				const tempH = temp.getHours() >= 10 ? temp.getHours() : '0' + temp.getHours();
+				const tempM = temp.getMinutes();
 				endtime = tempH + ":" + tempM;
 					
 				document.getElementById("btn-time").value = selectedHM;
-				var btn = document.getElementById('btn-time');
 				btn.innerHTML = selectedHM + " ~ " + endtime;
 			}
 		});
@@ -150,7 +139,7 @@
 						<div class="line"></div>
 						<div>
 							<span class="span-time">
-								<input type="radio" class="btn-check" name="p_options" id="30M" value=29 autocomplete="off">
+								<input type="radio" class="btn-check" name="p_options" id="30M" value=29 autocomplete="off" checked>
 								<label class="btn btn-h" for="30M" style="width:60%;">30M</label>
 							</span>
 							<span class="span-time">

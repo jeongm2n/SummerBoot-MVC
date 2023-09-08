@@ -14,39 +14,6 @@ public class ReservationDAO {
 	private Connection conn;
 	private ResultSet rs;
 	
-	public List<ReservationVO> chkReservation1(int no, String date){
-		List<ReservationVO> forres1 = new ArrayList();
-		PreparedStatement pstmt;
-		try {
-			conn = DBconn.getDBCP();
-			
-			String startTime;
-			String useTime;
-			
-			String sql = "SELECT startTime,useTime FROM sb_reservation WHERE no="+no+" AND res_date='"+date+"'";
-			
-			System.out.println("sql : " + sql);
-			pstmt = conn.prepareStatement(sql);
-			
-			rs = pstmt.executeQuery(sql);
-
-			while(rs.next()) {
-				startTime = rs.getString("startTime");
-				useTime = rs.getString("useTime");
-				ReservationVO resVO = new ReservationVO(startTime,useTime);
-				forres1.add(resVO);
-				System.out.println(startTime);
-				System.out.println(useTime);
-			}
-			rs.close();
-			pstmt.close();
-			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return forres1;
-	}
-	
 	public List<Integer> chkSite(int no, String date, String startTime, int useTime){
 		PreparedStatement pstmt;
 
@@ -59,9 +26,11 @@ public class ReservationDAO {
 		try {
 			conn = DBconn.getDBCP();
 	
-			String sql = "select distinct site from sb_reservation where no=1 and res_date='"+date+"' and (startTime between time_format('"+startTime+"','%T') "
+			String sql = "select distinct site from sb_reservation where no=1 and res_date='"+date+"' "
+					+ "and (startTime between time_format('"+startTime+"','%T') "
 					+ "and (SEC_TO_TIME(TIME_TO_SEC('"+startTime+"') + (118 * "+useTime+"))) "
-					+ "or date_add(startTime, interval useTime minute) between time_format('"+startTime+"','%T') and SEC_TO_TIME(TIME_TO_SEC('"+startTime+"') + (118 * "+useTime+")))";
+					+ "or date_add(startTime, interval useTime minute) between time_format('"+startTime+"','%T') "
+							+ "and SEC_TO_TIME(TIME_TO_SEC('"+startTime+"') + (118 * "+useTime+")))";
 
 			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
