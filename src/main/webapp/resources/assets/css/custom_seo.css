@@ -196,24 +196,25 @@ td {
 	background-color : transparent;	
 }
 
+/* beforediv, afterdiv를 div랑 Tb로 나눴어요! */
 .beforediv{
-	margin-top:10px;
-	width : 95%;
-	height : 200px;
-	overflow-x : hidden;
+	margin-top:10px;width : 95%;
 	margin-left:2.5%;
-	margin-right:2.5%
+	margin-right:2.5%;
 }
-
+.beforeTb{
+	height : 17em;
+	overflow-x : hidden;
+}
 .afterdiv{
-	margin-top:10px;
-	width : 95%;
-	height : 400px;
-	overflow-x : hidden;
+	margin-top:10px;width : 95%;
 	margin-left:2.5%;
-	margin-right:2.5%
+	margin-right:2.5%;
 }
-
+.afterTb{
+	height : 22em;
+	overflow-x : hidden;
+}
 .card{
 	margin-top : 50px;
 }
@@ -222,13 +223,13 @@ td {
 	width:100%;	
 }
 
-.restr{
-	background-color : #FFDAB9;
+.restr:hover{
+	background-color : rgba(255, 155, 80, 0.5); /* 색깔 변경 */
 }
 
-.restd:hover{
+/* .restd:hover{
 	background-color :salmon;
-}
+} */
 
 .qrPopup{
 	width : 100%;
@@ -248,7 +249,8 @@ td {
 	vertical-align: middle;
 }
 
-.myresfont{
+/* 글씨 통일하려구 지웠어요! */
+/* .myresfont{
 	font-family: 'Black Han Sans', sans-serif;
 	font-size : 24pt;
 	vertical-align: middle;
@@ -258,10 +260,10 @@ td {
 	font-family: 'Black Han Sans', sans-serif;
 	text-align:center;
 	width:100%;
-}
+} */
 
 .bg{
-	padding-top : 80px;
+	padding-top : 5em; /* px로 하면 모니터 크기에 따라 달라질 수 있다해서 em으로 변경*/
 	background-repeat : no-repeat;
 	background-size : cover
 }

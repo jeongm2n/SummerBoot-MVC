@@ -151,4 +151,9 @@ public class AdminService {
 		AdminDAO dao = new AdminDAO();
 		return dao.inquiryCnt();
 	}
+	
+	public int memCnt() {
+		AdminDAO dao = new AdminDAO();
+		return dao.memCnt();
+	}
 }

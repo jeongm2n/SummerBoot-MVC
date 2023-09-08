@@ -381,4 +381,28 @@ public class AdminDAO {
 		
 		return list;
 	}
+	
+	public int memCnt() {
+		int cnt = 0;
+		try {
+			con = DBconn.getDBCP();
+			String sql = "SELECT count(*) as cnt FROM sb_member";
+			System.out.println("prepareStatement : " + sql);
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
 }

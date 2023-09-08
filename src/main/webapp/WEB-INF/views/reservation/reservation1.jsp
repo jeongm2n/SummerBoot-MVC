@@ -97,7 +97,7 @@
 				integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 				crossorigin="anonymous"></script>
 			
-			<h1 style="margin:2%;font-family: 'Jua', sans-serif;font-size:50px;"><img src="${path}/resources/assets/img/weather.png" style="margin-right:10px;">주간날씨</h1>
+			<h1 style="margin:2%;font-size:50px;"><img src="${path}/resources/assets/img/weather.png" style="margin-right:10px;">주간날씨</h1>
 			<div class="weatherdiv table-responsive">
 				<table id="weather" class="weathertb" style="border:1px solid #B9B4C7;">
 				</table>
@@ -107,14 +107,14 @@
 				<div>
 					<div class="border">
 						<div style="margin-top:2%;">
-							<img src="${path}/resources/assets/img/alert.png" style="margin-right:10px;">
+							<img src="${path}/resources/assets/img/alert.png" style="margin-right:8px;">
 							<b style="color: #FF9B50">달력은 현재 달에서 +1달 까지만 조회하실 수 있습니다.</b>
 						</div>
 						<table class="calendartb" id="calendar" style="height:30em;">
 							<thead style="border-bottom: 1px solid #B9B4C7;">
 								<tr>
 									<td class="thead" align="center"><label onclick="prevMonth()"> ◀ </label></td>
-									<td class="thead" colspan="5" align="center"><h4 id="calendarTitle" style="margin:0;font-weight:600;"></h4></td>
+									<td class="thead" colspan="5" align="center"><h4 id="calendarTitle" style="margin:0;font-size:27px;font-weight:600;"></h4></td>
 									<td class="thead" align="center"><label onclick="nextMonth()"> ▶ </label></td>
 								</tr>
 								<tr>
@@ -135,7 +135,7 @@
 					<div class="p_time" style="text-align: center;margin-bottom:5%;">
 						<img src="${path}/resources/assets/img/alert.png" style="margin-right:5px;width:20px;">
 						<b style="color: #FF9B50;font-size:10pt">세차 시간은 입/출차 시간을 고려하여 1분정도 일찍 마무리해주시기 바랍니다.</b>
-						<h4 style="font-family: 'Jua', sans-serif;font-size: 40px;">사용시간<img src="${path}/resources/assets/img/time2.png" style="height:40px;"></h4>
+						<h4>사용시간<img src="${path}/resources/assets/img/time2.png" style="height:40px;"></h4>
 						<div class="line"></div>
 						<div>
 							<span class="span-time">
@@ -158,12 +158,12 @@
 					</div>
 					
 					<div style="text-align: center;margin-bottom:5%;">
-						<legend><h4 style="font-family: 'Jua', sans-serif;font-size: 40px;">시간</h4></legend>
+						<legend><h4>시간</h4></legend>
 						<div class="line"></div>
 						<div id="container1" style="width: 100%; text-align: center;"></div>
 					</div>
 					<div style="text-align: center;margin-bottom:5%;">
-						<legend><h4 style="font-family: 'Jua', sans-serif;font-size: 40px;">분</h4></legend>
+						<legend><h4>분</h4></legend>
 						<div class="line"></div>
 						<div id="container2" style="width: 100%;"></div>
 					</div>
@@ -187,6 +187,15 @@
 </html>
 
 <style>
+	h1 {
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		font-weight:600;
+	}
+	h4{
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		font-weight:500;
+		font-size: 32px;
+	}
 	.btn-hour {
 		width:60%;
 		border:1px solid #FD8008;

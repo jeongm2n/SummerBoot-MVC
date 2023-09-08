@@ -28,7 +28,7 @@
 				<div class="container" style="height: 30em;">
 					<div class="row p-4" style="height: 100%;">
 						<div class="mx-auto col-md-8 col-lg-6 order-lg-last" style="flex-grow:2">
-							<img class="img-fluid" src="${path}/resources/assets/img/YangPyeong.jpg" alt="">
+							<img class="img-fluid adPic" src="${path}/resources/assets/img/YangPyeong.jpg" alt="">
 						</div>
 						<div class="col-lg-6 mb-0 d-flex" style="flex-grow:1">
 							<div class="text-align-left align-items-center">
@@ -51,7 +51,7 @@
 				<div class="container" style="height: 30em;">
 					<div class="row p-4" style="height: 100%;">
 						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/gyeonginro.jpg" alt="">
+							<img class="img-fluid adPic" src="${path}/resources/assets/img/gyeonginro.jpg" alt="">
 						</div>
 						<div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -73,7 +73,7 @@
 				<div class="container" style="height: 30em;">
 					<div class="row p-4" style="height: 100%;">
 						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/cheonwang.jpg" alt="">
+							<img class="img-fluid adPic" src="${path}/resources/assets/img/cheonwang.jpg" alt="" style="min-height:100%;">
 						</div>
 						<div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -95,7 +95,7 @@
 				<div class="container" style="height: 30em;">
 					<div class="row p-4" style="height: 100%;">
 						<div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-							<img class="img-fluid" src="${path}/resources/assets/img/gaje1dong.jpg" alt="">
+							<img class="img-fluid adPic" src="${path}/resources/assets/img/gaje1dong.jpg" alt="">
 						</div>
 						<div class="col-lg-6 mb-0 d-flex align-items-center">
                     		<div class="text-align-left">
@@ -178,9 +178,6 @@
 								<div>
 									<p class="text-muted">Reviews (24)</p>
 								</div>
-								<%-- <div>
-									<input type="button" id="btn_res" class="btn-join" value="오늘의 예약" onclick="todayRes(${list.no }, todayRes);">
-								</div> --%>
 								<div>
 									<input type="button" id="btn_res" class="btn-join" value="예약하기" onclick="reservation(${list.no },'0','0');">
 								</div>
@@ -320,63 +317,63 @@
 			</div>
 
 			<div class="collapse show" id="res_YangPyeong">
-				<div class="card card-body overflow-auto" style="height: 400px">
-					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">양평로점 예약현황</h5>
-					<div id="resList1"></div>
+				<div class="card card-body" style="height: 22em;">
+					<h5 class="main-si">📍양평로점 예약현황</h5>
+					<div id="resList1" class="overflow-auto"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_gyeonginro">
-				<div class="card card-body overflow-auto" style="height: 400px">
-					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">경인로점 예약현황</h5>
-					<div id="resList2"></div>
+				<div class="card card-body" style="height: 22em;">
+					<h5 class="main-si">📍경인로점 예약현황</h5>
+					<div id="resList2" class="overflow-auto"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_cheonwang">
-				<div class="card card-body overflow-auto" style="height: 400px">
-					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">천왕점 예약현황</h5>
-					<div id="resList3"></div>
+				<div class="card card-body" style="height: 22em;">
+					<h5 class="main-si">📍천왕점 예약현황</h5>
+					<div id="resList3" class="overflow-auto"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_gaje1dong">
-				<div class="card card-body overflow-auto" style="height: 400px">
-					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">가제1동점 예약현황</h5>
-					<div id="resList4"></div>
+				<div class="card card-body" style="height: 22em;">
+					<h5 class="main-si">📍가제1동점 예약현황</h5>
+					<div id="resList4" class="overflow-auto"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_kangdongseongan">
-				<div class="card card-body overflow-auto" style="height: 400px">
-					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">강동성안점 예약현황</h5>
-					<div id="resList5"></div>
+				<div class="card card-body" style="height: 22em;">
+					<h5 class="main-si">📍강동성안점 예약현황</h5>
+					<div id="resList5" class="overflow-auto"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_majang">
-				<div class="card card-body overflow-auto" style="height: 400px">
-					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">성동마장점 예약현황</h5>
-					<div id="resList6"></div>
+				<div class="card card-body" style="height: 22em;">
+					<h5 class="main-si">📍성동마장점 예약현황</h5>
+					<div id="resList6" class="overflow-auto"></div>
 				</div>
 			</div>
 			<div class="collapse todayHidden" id="res_jongam">
-				<div class="card card-body overflow-auto" style="height: 400px">
-					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">성북종암점 예약현황</h5>
-					<div id="resList7"></div>
+				<div class="card card-body" style="height: 22em;">
+					<h5 class="main-si">📍성북종암점 예약현황</h5>
+					<div id="resList7" class="overflow-auto"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_galhyeon">
-				<div class="card card-body overflow-auto" style="height: 400px">
-					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">은평갈현점 예약현황</h5>
-					<div id="resList8"></div>
+				<div class="card card-body" style="height: 22em;">
+					<h5 class="main-si">📍은평갈현점 예약현황</h5>
+					<div id="resList8" class="overflow-auto"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_bongcheon">
-				<div class="card card-body overflow-auto" style="height: 400px">
-					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">관악봉천점 예약현황</h5>
-					<div id="resList9"></div>
+				<div class="card card-body" style="height: 22em;">
+					<h5 class="main-si">📍관악봉천점 예약현황</h5>
+					<div id="resList9" class="overflow-auto"></div>
 				</div>
 			</div>
 			<div class="collapse" id="res_yongmoon">
-				<div class="card card-body overflow-auto" style="height: 400px">
-					<h5 class="main-si"><img src="${path }/resources/assets/img/point.png">용문점 예약현황</h5>
-					<div id="resList10"></div>
+				<div class="card card-body" style="height: 22em;">
+					<h5 class="main-si">📍용문점 예약현황</h5>
+					<div id="resList10" class="overflow-auto"></div>
 				</div>
 			</div>
 		</div>
@@ -387,7 +384,7 @@
 	<section class="container py-5" style="height: 32em;">
 		<div class="row text-center pt-3 justify-content-center">
 			<div class="col-12 col-md-4 p-5 mt-3 popupModalVideo">
-				<img src="${path}/resources/assets/img/05.jpg" class="rounded-circle img-fluid border" style="height: 80%;">
+				<img src="${path}/resources/assets/img/05.jpg" class="rounded-circle img-fluid border" style="min-height: 15em;">
 				<h5 class="text-center mt-3 mb-3" style="font-family: 'IBM Plex Sans KR', sans-serif;font-size: 27px;">
 					<b>외부세차</b>
 				</h5>
@@ -397,7 +394,7 @@
 				</span>
 			</div>
 			<div class="col-12 col-md-4 p-5 mt-3 popupModalVideo">
-				<img src="${path}/resources/assets/img/06.jpg" class="rounded-circle img-fluid border" style="height: 80%;">
+				<img src="${path}/resources/assets/img/06.jpg" class="rounded-circle img-fluid border" style="min-height: 15em;">
 				<h2 class="h5 text-center mt-3 mb-3" style="font-family: 'IBM Plex Sans KR', sans-serif;font-size: 27px;">
 					<b>내부세차</b>
 				</h2>
@@ -478,17 +475,30 @@
 					
 					let baseTable = `
 						<table class="table table-hover">
-						<thead>
+						<thead style="position:sticky;top:0;background:white;">
 						<tr style="text-align: center" >
 							<th scope="col" style="padding: 0.5rem 6.5rem">날씨</th>
 							<th scope="col" style="padding: 0.5rem 6.5rem">시간</th>
-							<th scope="col" style="padding: 0.5rem 6.5rem">예약현황<br>(예약건수/총자리수)</th>
+							<th scope="col" style="padding: 0.5rem 4.5rem">예약현황(예약건수/총자리수)</th>
 							<th scope="col" style="padding: 0.5rem 6.5rem">예약바로가기</th>
 						</tr>
 						</thead>
 						<tbody >`
 					if (!data || data.length === 0) {
-						baseTable += `<tr> <td colspan="4" style="text-align: center">오늘 예약이 없습니다.</td> </tr>`;
+						/* baseTable += `<tr> <td colspan="4" style="text-align: center">오늘 예약이 없습니다.</td> </tr>`; */
+						for (let i = hours+1; i < 24; i++) {
+                            let hour        = data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length //시간대의 예약건수
+                            let weatherIcon = getWeatherIcon(i) //날씨
+							baseTable += `
+								<tr style="text-align:center;vertical-align:middle;">
+	                            <td><img src="\${weatherIcon}" alt="날씨이미지" width="50px" height="50px"></td>
+								<td>\${i}:00</td>
+								<td>0 / 8
+								</td>
+								<td><button id="res_ch" class="btn btn-join px-3" onclick="reservation(siteNo,'\${i}:00','1')"} >예약</button></td>
+								</tr>
+							`;
+						}
 					} else {
 						for (let i = hours+1; i < 24; i++) {
                             let hour        = data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length //시간대의 예약건수
@@ -704,12 +714,6 @@
         $('#div_load').show(); //현재 페이지에서 다른 페이지로 넘어갈 때 표시해주는 기능
       <%}%>
     }
-    
-    /* function todayRes(no, position) {
-    	var path = "${path}?#todayRes";
-    	location.href = path;
-    	getTodayResList(no);
-    } */
 </script>
 
 <style>
@@ -768,9 +772,8 @@
 		font-size:25px !important;
 	}
 	.img-fluid {
-		 padding-left:2%;
 		 object-fit:fill;
-	     min-height: 14em;
+	     min-height: 100%;
 	}
 	.text-align-left {
 		text-align: right;
@@ -780,6 +783,8 @@
 	}
 	table {
 		font-family: 'IBM Plex Sans KR', sans-serif;
+		border-collapse: separate;
+		border-spacing: 0;
 	}
 	.table>thead {
 		font-size: 21px;
@@ -789,6 +794,7 @@
 		font-family: 'IBM Plex Sans KR', sans-serif;
 		font-size: 30px;
 		font-weight:400;
+		margin-bottom:1.5rem;
 	}
 	
 	@media (min-width: 992px){
@@ -796,5 +802,8 @@
 		    min-height: 38rem !important;
 		}
 	}
-	
+	.adPic{
+		box-shadow:11px 14px 13px 0px #B9B4C7;
+	}
+	tbody, td, tfoot, th, thead, tr{border-width:inherit;}
 </style>

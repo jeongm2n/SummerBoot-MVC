@@ -50,6 +50,8 @@ public class AdminController {
 		List<Integer> inquiryCount;
 		inquiryCount = adminService.inquiryCnt();
 		
+		int memCnt = adminService.memCnt();
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("inquiryCount", inquiryCount);
 		mav.addObject("reserCount", reserCount);
@@ -58,6 +60,7 @@ public class AdminController {
 		mav.addObject("storeName", storeName);
 		mav.addObject("count", count);
 		mav.addObject("inquiry", inquiry);
+		mav.addObject("memCnt", memCnt);
 		mav.setViewName("admin/main");
         return mav;
     }

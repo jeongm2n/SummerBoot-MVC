@@ -106,7 +106,7 @@
 <body> 
 	<div class="container py-5" id="wrap">
        	<div class="col-lg-6 m-auto ">
-	       	<h2 class="h2 text-center border-bottom pb-3" style="padding-top: 5.5rem!important;">회원가입</h2>
+	       	<h2 class="h2 text-center border-bottom border-2 pb-3" style="padding-top: 5.5rem!important;">회원가입</h2>
        	</div>
         <div class="row py-5">
             <form class="col-md-6 m-auto" method="post" role="form" id="joinForm" action="regist">
@@ -199,16 +199,18 @@
 </html>
 
 <style>
-.title {
-	width: 136px;
-    padding-top: 2%;
-}
-
-.search {
-	border-radius : 0;
-}
-#chb{
-	padding-top:2%;
-    margin-left: 2%;
-}
+	.title {
+		width: 136px;
+	    padding-top: 2%;
+	    margin-right: 2%
+	}
+	
+	.search {
+		border-radius : 0;
+	}
+	#chb{
+		padding-top:2%;
+	    margin-left: 2%;
+	}
+	.h2{font-family: 'IBM Plex Sans KR', sans-serif;font-size: 2em !important;font-weight:500!important;}
 </style>

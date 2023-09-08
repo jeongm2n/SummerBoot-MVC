@@ -53,7 +53,7 @@
 												<div class="col-2" style="height: 11em;">
 													<img class="product_img" src="${file_repo }${my_cart.img }">
 												</div>
-												<div class="col-4" style="align-self: flex-start;padding-left:2%;">
+												<div class="col-4" style="align-self: flex-start;">
 													<input type="hidden" name="product_img" value="${my_cart.img }" class="${my_cart.product_id }"> 
 													<div style="font-family: 'IBM Plex Sans KR', sans-serif;text-align: left;padding-top: 7%;">
 														<h5 class="fw-semibold mb-3" style="font-size:1.1rem;">${my_cart.name }</h5>
