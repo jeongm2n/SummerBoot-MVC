@@ -43,8 +43,6 @@ public class ShopController {
 		HttpSession session = request.getSession();
 		boolean id = true;
 		if(session.getAttribute("user_id") == null) { id = false;}
-
-		System.out.println(page);
 		
 		mav.addObject("id",id);
 		mav.addObject("sort", sort);
