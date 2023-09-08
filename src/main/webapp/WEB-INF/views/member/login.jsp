@@ -40,7 +40,7 @@
 	
 	<div class="container py-5" id="wrap">
        	<div class="col-lg-6 m-auto ">
-	       	<h2 class="h2 text-center border-bottom pb-3" style="padding-top: 5.5rem!important;">로그인</h2>
+	       	<h2 class="h2 text-center border-bottom border-2 pb-3" style="padding-top: 5.5rem!important;">로그인</h2>
        	</div>
         <div class="row py-5">
             <form class="col-md-4 m-auto" method="post" role="form" id="loginForm" action="login.do">
@@ -66,3 +66,7 @@
 </body>
 </html>
 
+<style>
+	.h2{font-family: 'IBM Plex Sans KR', sans-serif;font-size: 2em !important;font-weight:500!important;}
+	button{font-family: 'IBM Plex Sans KR', sans-serif;}
+</style>

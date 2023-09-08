@@ -116,11 +116,11 @@
 														<td colspan="7">  
 										                    <div class="card-body-inquiry">
 												            	<div class="inquiry-answer" style="margin-bottom:3%;">
-												            		<div class="h1">Q</div>
+												            		<div class="h1" style="font-family: 'Rubik', sans-serif;">Q</div>
 												            		<div class="h4" style="padding-top:2%;">${list.content }</div>
 												                </div>
 												                <div class="inquiry-answer" <c:if test="${list.state eq '답변대기'}" >style="display:none;"</c:if>>
-												                    <div class="h1">A</div>
+												                    <div class="h1" style="font-family: 'Rubik', sans-serif;">A</div>
 												            		<div class="h4" style="padding-top:2%;">${list.answer }</div>
 												                </div>
 											                </div>

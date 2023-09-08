@@ -20,3 +20,7 @@
 <link rel="stylesheet" href="${path}/resources/assets/css/sb-admin-2.min.css">
 <link rel="stylesheet" href="${path}/resources/assets/css/templatemo.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;1,400;1,500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
