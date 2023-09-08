@@ -73,11 +73,12 @@ public class ShopDAO {
 		return null;
 		}
 	
-	public int Load_Size() {
+	public int Load_Size(String category) {
 		try {
 			conn = DBconn.getDBCP();
-				
-			String sql = "SELECT count(*) as size from sb_product";
+			String sql = null;
+			if(category.equals("전체")) {	 sql = "SELECT count(*) as size from sb_product";}
+			else { sql = "SELECT count(*) as size from sb_product where category = '" + category + "'";}
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
 			

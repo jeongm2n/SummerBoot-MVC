@@ -35,7 +35,7 @@ public class ShopController {
 		ArrayList<ProductVO> productVO = shopService.Load_Product(n_category, sort, n_page);
 		ArrayList<String> type_category = shopService.Load_Category();
 		
-		int page = shopService.Load_Size();
+		int page = shopService.Load_Size(n_category);
 		
 		if(page % 9 > 0) {page = page/9 + 1;}
 		else {page = page/9;}

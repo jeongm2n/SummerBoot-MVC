@@ -11,9 +11,9 @@ public class ShopServiceimpl implements ShopService{
 		return shopdao.Load_Product(category, sort, page);
 	}
 	
-	public int Load_Size() {
+	public int Load_Size(String category) {
 		ShopDAO shopdao = new ShopDAO();
-		return shopdao.Load_Size();
+		return shopdao.Load_Size(category);
 	}
 	
 	public ArrayList<String> Load_Category(){

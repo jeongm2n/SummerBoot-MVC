@@ -13,14 +13,16 @@
 <!-- 	헤더 -->
 	<%@ include file="../common/header.jsp"%>
 	
-	
+	<div class="topbar">
+		주문 확인
+	</div>
 	<c:choose>
     <c:when test="${empty orderList}">
 	  <span style="text-align:center;">주문이 없습니다.</span>
 	</c:when>
 	<c:when test="${!empty orderList }">
-      <c:forEach var="num" items="${orderNum}">
-      <div style="text-align:center">
+    <c:forEach var="num" items="${orderNum}">
+    <div style="text-align:center">
 	  <div class="pur_inform">
 	    <c:forEach var="list" items="${orderList}">
 	    <c:if test="${num eq list.order_num}">
@@ -28,14 +30,28 @@
 	      <div class="top">
 	        <span class="order_num">${list.order_num}</span>
 	        <c:choose>
-	          <c:when test='${list.status eq "paid"}'><span class="status" style="background-color: salmon;">결제 완료</span></c:when>
-		      <c:when test='${list.status eq "ready"}'><span class="status" style="background-color: skyblue;">입금 대기 중</span></c:when>
-		      <c:when test='${list.status eq "cancelled"}'><span class="status" style="background-color: grey;">결제 취소</span></c:when>
-		      <c:when test='${list.status eq "취소 요청"}'><span class="status" style="background-color: darkgrey;">취소 요청</span></c:when>
-		      <c:when test='${list.status eq "배송 준비중"}'><span class="status" style="background-color: darkkhaki;">배송 준비중</span></c:when>
-		      <c:when test='${list.status eq "배송중"}'><span class="status" style="background-color: mediumaquamarine;">배송중</span></c:when>
-		      <c:when test='${list.status eq "배송 완료"}'><span class="status" style="background-color: #FD8008;">배송 완료</span></c:when>
-	        </c:choose>
+			  <c:when test="${list.status eq 'paid'}">
+			    <span class="status" style="background-color: salmon;">결제 완료</span>
+			  </c:when>
+			  <c:when test="${list.status eq 'ready'}">
+			    <span class="status" style="background-color: skyblue;">입금 대기 중</span>
+			  </c:when>
+			  <c:when test="${list.status eq 'cancelled'}">
+			    <span class="status" style="background-color: grey;">결제 취소</span>
+			  </c:when>
+			  <c:when test="${list.status eq '취소 요청'}">
+			    <span class="status" style="background-color: darkgrey;">취소 요청</span>
+			  </c:when>
+			  <c:when test="${list.status eq '배송 준비중'}">
+			    <span class="status" style="background-color: darkkhaki;">배송 준비중</span>
+			  </c:when>
+			  <c:when test="${list.status eq '배송중'}">
+			    <span class="status" style="background-color: mediumaquamarine;">배송중</span>
+			  </c:when>
+			  <c:when test="${list.status eq '배송 완료'}">
+			    <span class="status" style="background-color: #FD8008;">배송 완료</span>
+			  </c:when>
+			</c:choose>
 	        <button class="btn_popup" onclick="popup('${list.imp_uid}', '${list.pur_date}');">결제 정보 확인</button><br>
 	        <span class="pur_date">${list.pur_date}</span>
 		    <br>
@@ -65,13 +81,18 @@
 	    <c:forEach var="list" items="${orderList}">
 	    <div class="pur_btn">
 	      <c:if test="${num eq list.order_num && list.pur_date != null}">
-	   	  <c:if test='${list.status eq "배송중" || list.status eq "배송 완료"}'><button type="button" class="tracking other_btn"> 배송 조회 </button></c:if>
-	      <c:if test='${list.status ne "배송중" && list.status ne "배송 완료" && list.status ne "취소 요청" && list.status ne "cancelled"}'><button type="button" class="cancel" onclick="update_status('취소 요청','${num}')"> 주문 취소 </button></c:if>
+	      <c:choose>
+	   	    <c:when test='${list.status eq "배송중" || list.status eq "배송 완료"}'>
+	   	      <button type="button" class=""> 배송 조회 </button></c:when>
+	        <c:when test='${list.status ne "배송중" && list.status ne "배송 완료" && list.status ne "취소 요청" && list.status ne "cancelled"}'>
+	          <button type="button" class="cancel" onclick="update_status('취소 요청','${num}')"> 주문 취소 </button>
+	        </c:when>
+	      </c:choose>
 	      </c:if>
 	    </div>
 	    </c:forEach>
 	  </div>
-	  </div>
+	</div>
 	</c:forEach>
 	</c:when>
 	</c:choose>
@@ -82,25 +103,27 @@
     
     <script>
     function update_status(status, order_num){
-		$.ajax({
-			type:"get",
-			async:false,  
-			url:"${path}/member/update_status",
-			dataType:"text",
-			data: {
-				status:status,
-				order_num:order_num
-			},
-			success:function (){
-				alert("취소 요청이 전달되었습니다.");
-				window.location.reload();
-			},
-			error:function(request, error){
-				alert("에러가 발생했습니다.");
-			},
-			complete:function(){
-			}
-		});
+    	if(confirm("주문 취소 하시겠습니까?")){
+			$.ajax({
+				type:"get",
+				async:false,  
+				url:"${path}/member/update_status",
+				dataType:"text",
+				data: {
+					status:status,
+					order_num:order_num
+				},
+				success:function (){
+					alert("취소 요청이 전달되었습니다.");
+					window.location.reload();
+				},
+				error:function(request, error){
+					alert("에러가 발생했습니다.");
+				},
+				complete:function(){
+				}
+			});
+    	}
 	}
     
 	function popup(Imp_uid, Pur_date){
