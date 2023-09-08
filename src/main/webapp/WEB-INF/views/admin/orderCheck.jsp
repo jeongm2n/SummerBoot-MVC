@@ -7,8 +7,8 @@
 	<%@ include file="./common/head.jsp"%>
     <title>주문관리</title>
     <link rel="stylesheet" href="${path}/resources/assets/css/admin_seo.css">
+    
 </head>
-
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -126,8 +126,12 @@
 				                                              <button type="button" class="other_btn"> 운송장 입력 </button><br>
 				                                            </c:if>
 				                                            <c:if test='${list.status eq "취소 요청"}'>
-				                                              <button type="button" class="other_btn" onclick="CardcancelPay('${list.order_num}', '${list.total_price}');"> 주문 취소 </button><br>
-				                                            </c:if>
+				                                              <c:choose>
+				                                                <c:when test='${list.paymethod eq "card"}'>
+				                                                <button type="button" class="other_btn" onclick="cancelPayments('${list.imp_uid}', '구매자 요청');"> 주문 취소 </button><br>
+				                                           		</c:when>
+				                                            </c:choose>
+				                                            </c:if>				
 				                                            </td>
 				                                        </tr>
 					                            	</c:forEach>
@@ -149,6 +153,27 @@
 </html>
 
 <script>
+
+	function cancelPayments(imp_uid, reason){
+		$.ajax({
+			type:"get",
+			async:false,  
+			url:"${path}/cancelPayment",
+			dataType:"text",
+			data: {
+				imp_uid:imp_uid,
+				reason:reason
+			},
+			success: function(result){
+				alert("결제금액 환불완료");
+				location.reload();
+			},
+			error: function(result){
+				alert("결제금액 환불못함. 계속 오류 발생시 관리자에게 문의해주세요!");
+			}
+		});
+	}
+
 	function popup(Imp_uid, Pur_date){
  	    let popUrl = "${path}/admin/order/check_payment/" + Imp_uid + "/" + Pur_date;
  	    let popOption = "width=450px,height=400px,top=300px,left=300px,scrollbars=yes";

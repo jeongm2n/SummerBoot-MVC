@@ -72,7 +72,7 @@
 	  	  	  </div>
 	  	  	</div>
             </div>
-            <c:if test="${review == null && list.status == '배송 완료'}">
+            <c:if test="${list.review ne 1 && list.status eq '배송 완료'}">
 	        <button type="button" class="review_btn" onclick="add_review('${list.product_id}', '${list.product_name}', '${list.img}' ,'${list.order_num}')">리뷰 작성</button>
 	    	</c:if>
 	    </div>
@@ -85,7 +85,14 @@
 	   	    <c:when test='${list.status eq "배송중" || list.status eq "배송 완료"}'>
 	   	      <button type="button" class=""> 배송 조회 </button></c:when>
 	        <c:when test='${list.status ne "배송중" && list.status ne "배송 완료" && list.status ne "취소 요청" && list.status ne "cancelled"}'>
-	          <button type="button" class="cancel" onclick="update_status('취소 요청','${num}')"> 주문 취소 </button>
+	          <c:choose> 
+	            <c:when test='${list.paymethod eq "card"}'>
+	              <button type="button" class="cancel" onclick="cardcancel('취소 요청','${list.order_num}')"> 주문 취소 </button>
+	            </c:when>
+	            <c:when test='${list.paymethod eq "vbank"}'>
+	              <button type="button" class="cancel" onclick="vbankcancel('${list.order_num}')"> 주문 취소 </button>
+	            </c:when>
+	          </c:choose>
 	        </c:when>
 	      </c:choose>
 	      </c:if>
@@ -97,12 +104,11 @@
 	</c:when>
 	</c:choose>
 	
-	
 <!-- 	푸터 -->
 	<%@ include file="../common/footer.jsp"%>
     
     <script>
-    function update_status(status, order_num){
+    function cardcancel(status, order_num){
     	if(confirm("주문 취소 하시겠습니까?")){
 			$.ajax({
 				type:"get",
@@ -115,7 +121,7 @@
 				},
 				success:function (){
 					alert("취소 요청이 전달되었습니다.");
-					window.location.reload();
+					location.reload();
 				},
 				error:function(request, error){
 					alert("에러가 발생했습니다.");
@@ -124,6 +130,13 @@
 				}
 			});
     	}
+	}
+    
+    function vbankcancel(order_num){
+ 	    let popUrl = "${path}/member/vbankcancel/" + order_num;
+ 	    let popOption = "width=450px,height=700px,top=300px,left=300px,scrollbars=yes";
+ 	    
+ 	    window.open(popUrl, "결제 취소", popOption);	
 	}
     
 	function popup(Imp_uid, Pur_date){
@@ -135,7 +148,7 @@
 
     
  	function add_review(product_id, name, img, order_num) {
-	 	let popUrl = "${path}/shop/review/" + product_id + "/" + name + "/" + img + "/" + order_num;
+	 	let popUrl = "${path}/member/review/" + product_id + "/" + name + "/" + img + "/" + order_num;
 	 	let popOption = "width=450px,height=600px,top=300px,left=300px,scrollbars=yes";
 	 	
 	 	window.open(popUrl, "리뷰 작성", popOption);	
