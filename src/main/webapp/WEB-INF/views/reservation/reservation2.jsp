@@ -38,79 +38,34 @@
 				<div style="width:100%;display:inline-block;margin-bottom:1%;">
 					<img class="float-end" id="ableImg" src="${path}/resources/assets/img/legend2.png">
 				</div>
-		<!-- 		우측 margin을 제거하지 않아 좌우 길이가 맞지 않았어요! margin-right 0px !important로 제거! -->
-				<div class="row" style="margin-bottom:2%;align-items: center;">
-					<div class="col-5"><img style="width:100%" src="${path}/resources/assets/img/Line.png"/></div>
-					<div class="col-2" style="padding:0"><h3>Entrance</h3></div>
-					<div class="col-5"><img style="width:100%;padding-right:0;" src="${path}/resources/assets/img/Line.png"/></div>
-				</div>
 		<!-- 		div안에 무엇을 넣을땐 꼭 div 크기가 안에 들어가는것보다 크게! 안그러면 튀어나가버려요! height를 44px로! -->
-				<div style="display:grid;grid-template-columns:1fr 2fr 1fr;">
-		<!-- 			왜 자꾸 모양이 이상해지나 했는데 padding때문이였던것같아요! padding을 제거하고 이미지들을 묶을 div 생성! 좌측 정렬! 혹시 이게 수직이 아니라 2줄로 늘어나고 막 그런걸 원하시라면 말해주세요! -->
-					<!-- <div style="width:50%;height:100%;float:left">
-					<div style="width:200px;height:100%;float:left"> -->
-					<%-- <c:forEach var="site" items="${sites }" begin="1" end="4" varStatus="status">
-						<div class="float-start" style="width:200px">
-						<c:if test="${site==0}">
-						<img src="${path}/resources/assets/img/car_white.png" style="width:14em" onclick="goRes_pay(${status.index})">site ${status.index }
-						</c:if>
-						<c:if test="${site==1}">
-						<img src="${path}/resources/assets/img/car_orange.png" style="width:14em">site ${status.index }
-						</c:if>
-						</div>
-					</c:forEach>
-					<!-- </div>
-					</div> -->
-		<!-- 			얘도 동일하게 div하나 추가하고 padding 삭제! 개인적으로는 이미지 크기가 커서 특정 px아래로 가면 확 이미지 크기가 줄었으면 해요! <- 아거 원하시면 말해주세요! 금방해요!-->
-					<!-- <div style="width:50%;height:100%;float:right;"> -->
+				<div style="display:grid;">
+					<div style="display:flex;">
+						<div style="border-left:10px solid #D8D9DA;width: 10em;margin: 0 auto;"></div>
+						<c:forEach var="site" items="${sites }" begin="1" end="4" varStatus="status">
+							<div class="carSeat">
+								<c:if test="${site==0}">
+									<img src="${path}/resources/assets/img/car_white.png" style="width: 8em;" onclick="goRes_pay(${status.index})">
+								</c:if>
+								<c:if test="${site==1}">
+									<img src="${path}/resources/assets/img/car_orange.png" style="width: 8em;">
+								</c:if>
+								<h4 style="margin-bottom:2rem;">SEAT ${status.index }</h4>
+							</div>
+						</c:forEach>
+					</div>
+					<div style="height:8em;"><h2 style="text-align:left;width:1em;font-family: 'Jua', sans-serif;margin: 1em 0.3em;">입구</h2></div>
+					<div style="display:flex;">
+						<div style="border-left:10px solid #D8D9DA;width: 10em;margin: 0 auto;"></div>
 						<c:forEach var="site" items="${sites }" begin="5" end="8" varStatus="status">
-							<div style="width:200px">
-							<c:if test="${site==0}">
-							<img src="${path}/resources/assets/img/car_white.png" style="width:14em" onclick="goRes_pay(${status.index})">site ${status.index }
-							</c:if>
-							<c:if test="${site==1}">
-							<img src="${path}/resources/assets/img/car_orange.png" style="width:14em">site ${status.index }
-							</c:if>
-							</div>
-						</c:forEach> --%>
-					<!-- </div> -->
-					<div style="display:flex;flex-direction: column;">
-						<c:forEach var="site" items="${sites }" begin="1" end="3" varStatus="status">
-							<div>
+							<div class="carSeat">
 								<c:if test="${site==0}">
-									<img src="${path}/resources/assets/img/car_white.png" style="width:76%" onclick="goRes_pay(${status.index})">
+									<img src="${path}/resources/assets/img/car_white.png" style="width: 8em;" onclick="goRes_pay(${status.index})">
 								</c:if>
 								<c:if test="${site==1}">
-									<img src="${path}/resources/assets/img/car_orange.png" style="width:76%">
+									<img src="${path}/resources/assets/img/car_orange.png" style="width: 8em;">
 								</c:if>
-								<h2 style="margin-bottom:2rem;">SEAT ${status.index }</h2>
-							</div>
-						</c:forEach>
-					</div>
-					<div style="display:flex;justify-content: space-evenly;align-items: flex-end;">
-						<c:forEach var="site" items="${sites }" begin="4" end="5" varStatus="status">
-							<div>
-								<c:if test="${site==0}">
-									<img src="${path}/resources/assets/img/car_white.png" style="width:76%" onclick="goRes_pay(${status.index})">
-								</c:if>
-								<c:if test="${site==1}">
-									<img src="${path}/resources/assets/img/car_orange.png" style="width:76%">
-								</c:if>
-								<h2>SEAT ${status.index }</h2>
-							</div>
-						</c:forEach>
-					</div>
-					<div style="display:flex;flex-direction: column-reverse;">
-						<div class="div-height"></div>
-						<c:forEach var="site" items="${sites }" begin="6" end="8" varStatus="status">
-							<div>
-								<c:if test="${site==0}">
-									<img src="${path}/resources/assets/img/car_white.png" style="width:76%" onclick="goRes_pay(${status.index})">
-								</c:if>
-								<c:if test="${site==1}">
-									<img src="${path}/resources/assets/img/car_orange.png" style="width:76%">
-								</c:if>
-								<h2 style="margin-bottom:2rem;">SEAT ${status.index }</h2>
+								<h4 style="margin-bottom:2rem;">SEAT ${status.index }</h4>
 							</div>
 						</c:forEach>
 					</div>
@@ -126,17 +81,17 @@
 <style>
 	table {
 		font-family: 'IBM Plex Sans KR', sans-serif;
-		font-size: 26px;
+		font-size: 20px;
 	}
 	h3{
 		 font-size:30pt;
 		 margin:0;
 	}
 	#ableImg {
-		width:12%;
+	    width: 6em;
 		padding:0;
 	}
-	.div-height{height:10em;}
+	.div-height{height:20em;}
 	
 	@media (max-width: 1160px) {
 		h3 {font-size:20pt;}
@@ -146,13 +101,20 @@
 	@media (max-width: 750px) {
 		h3 {font-size:15pt;}
 		.div-margin{width:90%;}
-		#ableImg {width:15%;}
+		#ableImg {width:5em;}
 	}
 	@media (max-width: 576px) {
 		.container, .container-sm {max-width: 80%;}
 		table, h3, h2 {font-size:12pt;}
 		.div-margin{width:100%;}
 		.div-height{height:3em;}
-		#ableImg {width:18%;}
+		#ableImg {width:3em;}
+	}
+	.carSeat {
+		width: 15em;
+	    height: 18em;
+	    padding: 3%;
+        padding-top: 6%;
+	    border: 1px solid #D8D9DA;
 	}
 </style>

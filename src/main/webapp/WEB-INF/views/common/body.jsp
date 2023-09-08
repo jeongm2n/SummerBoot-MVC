@@ -141,8 +141,8 @@
 				<fmt:parseDate var="open_time" value="${time[0]}" pattern="HH:mm" />
 				<fmt:parseDate var="end_time" value="${time[1]}" pattern="HH:mm" />
 
-				<div class="col-12 col-md-5 infoHidden" id="${list.no }" style="border: 5px solid #FFDBAA;">
-					<div class="card h-100">
+				<div class="col-12 col-md-5 infoHidden" id="${list.no }" style="border: 5px solid ##EEEDED;border-radius: 6px;">
+					<div class="card h-100" style="border-radius: 1px;">
 						<div style="text-align: end; margin: 0.5% 2%;">
 							<span class="close">X</span>
 						</div>
@@ -384,7 +384,7 @@
 	<!-- End 당일예약현황 -->
 
 	<!-- Start 세차가이드 -->
-	<section class="container py-5" style="height: 65%;">
+	<section class="container py-5" style="height: 32em;">
 		<div class="row text-center pt-3 justify-content-center">
 			<div class="col-12 col-md-4 p-5 mt-3 popupModalVideo">
 				<img src="${path}/resources/assets/img/05.jpg" class="rounded-circle img-fluid border" style="height: 80%;">
@@ -495,7 +495,7 @@
                             let fullRes     = data[0].sites; //full예약
                             let weatherIcon = getWeatherIcon(i) //날씨
 							baseTable += `
-								<tr style="text-align: center">
+								<tr style="text-align:center;vertical-align:middle;">
 	                            <td><img src="\${weatherIcon}" alt="날씨이미지" width="50px" height="50px"></td>
 								<td>\${i}:00</td>
 								<td>\${data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length} / \${data[0].sites}
@@ -770,7 +770,7 @@
 	.img-fluid {
 		 padding-left:2%;
 		 object-fit:fill;
-	     min-height: 100%;
+	     min-height: 14em;
 	}
 	.text-align-left {
 		text-align: right;
@@ -792,8 +792,9 @@
 	}
 	
 	@media (min-width: 992px){
-	}
 		#template-mo-zay-hero-carousel .carousel-item {
 		    min-height: 38rem !important;
 		}
+	}
+	
 </style>

@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class="container" style="margin-bottom:30px">
-	<div class="card bg" style="background-image:url('${path }/resources/assets/img/calendar-bg.jpg')">
+	<div class="bg">
 	<div class="myresdiv"><span><img src="${path }/resources/assets/img/myres_schedule.png" class="myres_schedule"></span>
 	<span style="background-color:white;font-size:46pt;vertical-align: middle;">&#91;나의 예약현황&#93;</span>
 	<span><img src="${path }/resources/assets/img/myres_schedule.png" class="myres_schedule"></span></div>
@@ -58,3 +58,7 @@
 <%@ include file="../common/footer.jsp"%>
 </body>
 </html>
+
+<style>
+	table{font-family: 'IBM Plex Sans KR', sans-serif;}
+</style>

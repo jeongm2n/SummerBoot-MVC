@@ -8,13 +8,15 @@
 	<%@ include file="../common.jsp"%>
 	<%@ include file="../common/header.jsp" %>
 	<link rel="stylesheet" href="${path}/resources/assets/css/custom_lee.css">
-	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
 </head>
 <body>
 	<section class="container py-5">
 		<div class="row text-center pt-5 pb-3">
 			<div class="col-lg-6 m-auto">
-				<h1 class="h1" style="font-weight:bolder !important;">Q&A</h1>
+				<h1 class="h1" style="font-family: 'Rubik', sans-serif;font-weight: 500 !important;font-size: 4em !important;">Q&A</h1>
 			</div>
 		</div>
 		<form id="inquiryForm" method="post" action="registInquiry">
