@@ -87,14 +87,16 @@ public class WeatherDAO {
         return oneday;
     }
 
-    //3일의 정보 가져오기
+    //오늘~3일간의 정보 가져오기
     public List<WeatherVO> get3Days(String today) throws IOException, ParseException {
         /*단기예보조회 URL*/
-        String urlBuilder = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst" + "?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + skey + /*Service Key*/
+        String urlBuilder = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst" + "?" 
+        + URLEncoder.encode("serviceKey", "UTF-8") + "=" + skey + /*Service Key*/
                 "&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8") + /*페이지번호*/
                 "&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8") + /*한 페이지 결과 수*/
                 "&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8") + /*요청자료형식(XML/JSON) Default: XML*/
-                "&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(today, "UTF-8") + "&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode("0200", "UTF-8") + /*02시 발표(정시단위) */
+                "&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(today, "UTF-8") + "&" 
+                + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode("0200", "UTF-8") + /*02시 발표(정시단위) */
                 "&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode("60", "UTF-8") + /*예보지점의 X 좌표값*/
                 "&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode("127", "UTF-8"); /*예보지점의 Y 좌표값*/
         URL url = new URL(urlBuilder);

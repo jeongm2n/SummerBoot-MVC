@@ -7,95 +7,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
         
     <link rel="stylesheet" href="${path}/resources/assets/css/chkMypur.css">
-
 </head>
 <body>
 <!-- 	헤더 -->
-	<%@ include file="../common/header.jsp"%>
-	
-	<div class="topbar">
-		주문 확인
+<%@ include file="../common/header.jsp"%>
+	<div class="container">
+	<div class="card">
+	<table class="table purtable"><caption>주문배송확인</caption>
+		<c:choose>
+	    <c:when test="${empty orderList}">
+		<tr><td>주문이 없습니다.</td></tr>
+		</c:when>
+		<c:when test="${!empty orderList }">
+	    <c:forEach var="num" items="${orderNum}">
+		    <c:forEach var="list" items="${orderList}">
+		    	<c:if test="${num eq list.order_num}">
+		    		<c:if test="${list.pur_date != null}">
+		    		<tbody class="tbody1">
+		    		<tr><th colspan="4"><div class=row><div class="col-4"><b>주문번호: ${list.order_num}</b></div>
+		    		<div class="col-4"><b>주문날짜: ${list.pur_date }</b></div>
+					<div class="col"><button class="btn_popup" onclick="popup('${list.imp_uid}', '${list.pur_date}');">결제 정보 확인</button>
+					</div>
+					<c:if test="${review == null && list.status != '배송 완료'}">
+						<div class="col">
+						<button type="button" class="review_btn text-decoration-line-through" style="font-size:12pt" disabled>리뷰 작성</button></div>
+					</c:if>
+					</div></th></tr>
+					</tbody>	
+		    		</c:if>
+		    		<tbody class="tbody2">
+		    			<tr><td class="imgtd"><img src="${path}/resources/assets/product/${list.img}" class="img" ></td>
+		    			<td class="td2"><span>상품명:</span> <a class="name" href="${path}/shop/product/${list.product_id}">${list.product_name}</a><br>
+		    				<span>가격:</span> ${list.price}원<br>
+		    				<span>수량:</span> ${list.mount}</td>
+		    			<td class="td3">
+			    		<c:choose>
+						  <c:when test="${list.status eq 'paid'}">
+						    <span class="status" style="background-color: salmon;">결제 완료</span>
+						  </c:when>
+						  <c:when test="${list.status eq 'ready'}">
+						    <span class="status" style="background-color: skyblue;">입금 대기 중</span>
+						  </c:when>
+						  <c:when test="${list.status eq 'cancelled'}">
+						    <span class="status" style="background-color: grey;">결제 취소</span>
+						  </c:when>
+						  <c:when test="${list.status eq '취소 요청'}">
+						    <span class="status" style="background-color: darkgrey;">취소 요청</span>
+						  </c:when>
+						  <c:when test="${list.status eq '배송 준비중'}">
+						    <span class="status" style="background-color: darkkhaki;">배송 준비중</span>
+						  </c:when>
+						  <c:when test="${list.status eq '배송중'}">
+						    <span class="status" style="background-color: mediumaquamarine;">배송중</span>
+						  </c:when>
+						  <c:when test="${list.status eq '배송 완료'}">
+						    <span class="status" style="background-color: #FD8008;">배송 완료</span>
+						  </c:when>
+						</c:choose></td>
+						<td class="td3">
+						<c:choose>
+							<c:when test="${review == null && list.status == '배송 완료'}">
+						        <button type="button" class="review_btn" onclick="add_review('${list.product_id}', '${list.product_name}', '${list.img}' ,'${list.order_num}')">리뷰 작성</button>
+						    </c:when>
+						    <c:when test="${review != null }">
+						    <button type="button" class="review_btn" disabled>리뷰완료
+						    <img class="chkimg" src="${path}/resources/assets/img/checked.png"></button>
+						    </c:when>
+						</c:choose>
+						</td></tr>
+		    		</tbody>
+		    	</c:if>
+		    </c:forEach>
+	    </tbody>
+		</c:forEach>
+		</c:when>
+		</c:choose>
+	</table>
 	</div>
-	<c:choose>
-    <c:when test="${empty orderList}">
-	  <span style="text-align:center;">주문이 없습니다.</span>
-	</c:when>
-	<c:when test="${!empty orderList }">
-    <c:forEach var="num" items="${orderNum}">
-    <div style="text-align:center">
-	  <div class="pur_inform">
-	    <c:forEach var="list" items="${orderList}">
-	    <c:if test="${num eq list.order_num}">
-	      <c:if test="${list.pur_date != null}">
-	      <div class="top">
-	        <span class="order_num">${list.order_num}</span>
-	        <c:choose>
-			  <c:when test="${list.status eq 'paid'}">
-			    <span class="status" style="background-color: salmon;">결제 완료</span>
-			  </c:when>
-			  <c:when test="${list.status eq 'ready'}">
-			    <span class="status" style="background-color: skyblue;">입금 대기 중</span>
-			  </c:when>
-			  <c:when test="${list.status eq 'cancelled'}">
-			    <span class="status" style="background-color: grey;">결제 취소</span>
-			  </c:when>
-			  <c:when test="${list.status eq '취소 요청'}">
-			    <span class="status" style="background-color: darkgrey;">취소 요청</span>
-			  </c:when>
-			  <c:when test="${list.status eq '배송 준비중'}">
-			    <span class="status" style="background-color: darkkhaki;">배송 준비중</span>
-			  </c:when>
-			  <c:when test="${list.status eq '배송중'}">
-			    <span class="status" style="background-color: mediumaquamarine;">배송중</span>
-			  </c:when>
-			  <c:when test="${list.status eq '배송 완료'}">
-			    <span class="status" style="background-color: #FD8008;">배송 완료</span>
-			  </c:when>
-			</c:choose>
-	        <button class="btn_popup" onclick="popup('${list.imp_uid}', '${list.pur_date}');">결제 정보 확인</button><br>
-	        <span class="pur_date">${list.pur_date}</span>
-		    <br>
-		  </div>
-	      </c:if>
-	    <div class="inform">
-	      <div class="product">
-	        <img src="${path}/resources/assets/product/${list.img}" class="img" >
-	  	  	<div style="float:right;">
-	  	  	  <div class="text_box">
-	  	  	    <span class="amount">x ${list.mount}</span>
-	  	  	  </div>
-	  	  	  <div class="text_box" style="text-align: center;">
-	  	  	    <a class="name" href="${path}/shop/product/${list.product_id}">${list.product_name}</a>
-	  	  	  </div>
-	  	  	  <div class="text_box">
-	  	  	    <span class="price">${list.price}원</span>
-	  	  	  </div>
-	  	  	</div>
-            </div>
-            <c:if test="${review == null && list.status == '배송 완료'}">
-	        <button type="button" class="review_btn" onclick="add_review('${list.product_id}', '${list.product_name}', '${list.img}' ,'${list.order_num}')">리뷰 작성</button>
-	    	</c:if>
-	    </div>
-	    </c:if>
-	    </c:forEach>
-	    <c:forEach var="list" items="${orderList}">
-	    <div class="pur_btn">
-	      <c:if test="${num eq list.order_num && list.pur_date != null}">
-	      <c:choose>
-	   	    <c:when test='${list.status eq "배송중" || list.status eq "배송 완료"}'>
-	   	      <button type="button" class=""> 배송 조회 </button></c:when>
-	        <c:when test='${list.status ne "배송중" && list.status ne "배송 완료" && list.status ne "취소 요청" && list.status ne "cancelled"}'>
-	          <button type="button" class="cancel" onclick="update_status('취소 요청','${num}')"> 주문 취소 </button>
-	        </c:when>
-	      </c:choose>
-	      </c:if>
-	    </div>
-	    </c:forEach>
-	  </div>
 	</div>
-	</c:forEach>
-	</c:when>
-	</c:choose>
 	
 	
 <!-- 	푸터 -->
