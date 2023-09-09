@@ -89,7 +89,7 @@
 	            <c:when test='${list.paymethod eq "card"}'>
 	              <button type="button" class="cancel" onclick="cardcancel('취소 요청','${list.order_num}')"> 주문 취소 </button>
 	            </c:when>
-	            <c:when test='${list.paymethod eq "vbank"}'>
+	            <c:when test='${list.paymethod eq "vbank" && list.status eq "paid"}'>
 	              <button type="button" class="cancel" onclick="vbankcancel('${list.order_num}')"> 주문 취소 </button>
 	            </c:when>
 	          </c:choose>
@@ -145,7 +145,6 @@
  	    
  	    window.open(popUrl, "결제 내역", popOption);	
 	}
-
     
  	function add_review(product_id, name, img, order_num) {
 	 	let popUrl = "${path}/member/review/" + product_id + "/" + name + "/" + img + "/" + order_num;

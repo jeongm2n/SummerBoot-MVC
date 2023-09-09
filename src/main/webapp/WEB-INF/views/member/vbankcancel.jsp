@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <html>
 <head>
 	<title>결제 취소</title>
@@ -79,7 +80,7 @@
 	      <label class="input_label" for="tel">예금주의 전화번호(-없이)</label>
 	      <span class="input_span"></span>
 	 	  </div>
-	   <button type="button" class="cancel" id="submitBtn">취소 요청</button>
+	   <button type="button" class="cancel" id="submitBtn" style="margin-left:5px">취소 요청</button>
 	</form>
 	
 <script>

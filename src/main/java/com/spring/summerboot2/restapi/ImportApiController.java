@@ -21,6 +21,7 @@ import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import com.spring.summerboot2.pay.PayService;
 
 @Controller
 public class ImportApiController {
@@ -28,8 +29,10 @@ public class ImportApiController {
 //	@Autowired
 //	private PaymentService paymentService;
 	
+	@Autowired
+	private ImportApiService importApiService;
+	
     private IamportClient api;
-    
     
     public ImportApiController() {
         // REST API 키와 REST API secret 를 아래처럼 순서대로 입력한다.
@@ -54,19 +57,30 @@ public class ImportApiController {
     }
     
     @ResponseBody
-    @RequestMapping(value="/cancelPayment", method = RequestMethod.GET)
-	public IamportResponse<Payment> cancelPayments(HttpServletRequest request, HttpServletResponse response
+    @RequestMapping(value="/CancelPayments", method = RequestMethod.GET)
+	public IamportResponse<Payment> CancelPayments(HttpServletRequest request, HttpServletResponse response
 			,@RequestParam(value= "imp_uid") String imp_uid  ,@RequestParam(value= "reason") String reason) throws IamportResponseException, IOException
     {
 
     	request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		//조회
-//		IamportResponse<Payment> lookUp = null;
-//		lookUp = paymentLookup(imp_uid);
-		 
-		CancelData data = new CancelData(imp_uid, true);
+
+		IamportResponse<Payment> lookUp = null;
+		CancelData data = null;
+		lookUp = paymentLookup(imp_uid);
+		data = new CancelData(imp_uid, true);
 		data.setReason(reason);
+		if(lookUp.getResponse().getPayMethod().equals("vbank")) {
+			String order_num = lookUp.getResponse().getMerchantUid();
+			String[] v_data = new String[4];
+			v_data = importApiService.vInformLoad(order_num);
+			data.setReason(reason);
+			data.setRefund_bank(v_data[0]);
+			data.setRefund_holder(v_data[1]);
+			data.setRefund_account(v_data[2]);
+//			왜 refund_tel이 없지 실패...
+		}
+		
 		IamportResponse<Payment> cancel = api.cancelPaymentByImpUid(data);//취소
 		
 		return cancel;

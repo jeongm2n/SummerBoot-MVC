@@ -28,7 +28,9 @@ import com.spring.summerboot2.restapi.ImportApiController;
 public class OrderController {
 	@Autowired
 	AdminService adminService;
+	
 	ImportApiController restapi = new ImportApiController();
+	
 	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
     public ModelAndView userList() throws IamportResponseException, IOException {
 		List<OrderVO> orderList;
@@ -40,7 +42,6 @@ public class OrderController {
 		    	api = restapi.paymentLookup(orderList.get(i).getImp_uid());
 		        orderList.get(i).setStatus(api.getResponse().getStatus());
 		        orderList.get(i).setTotal_price(api.getResponse().getAmount().intValue());
-		        orderList.get(i).setPaymethod(api.getResponse().getPayMethod());
 		    }
 		    else {
 		    	if(orderList.get(i).getOrder_num().equals(orderList.get(i - 1).getOrder_num())) {
@@ -49,7 +50,6 @@ public class OrderController {
 		    	else{
 		    		api = restapi.paymentLookup(orderList.get(i).getImp_uid());
 		    		orderList.get(i).setTotal_price(api.getResponse().getAmount().intValue());
-		    		orderList.get(i).setPaymethod(api.getResponse().getPayMethod());
 		    	}
 		    }
 		}

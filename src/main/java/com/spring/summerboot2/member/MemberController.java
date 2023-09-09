@@ -302,15 +302,14 @@ public class MemberController {
 	
 	@RequestMapping(value = "/requestrefund/{order_num}", method = {RequestMethod.GET, RequestMethod.POST})
 	public void requestrefund(
-			@PathVariable(value= "order_num") String order_num	,@RequestParam("bank") int bank
-			,@RequestParam("name") String name	,@RequestParam("account") int account
-			,@RequestParam("tel") int tel
-			,HttpServletRequest request, HttpServletResponse response) throws Exception {
+			@PathVariable(value= "order_num") String order_num	,@RequestParam("bank") String bank
+			,@RequestParam("name") String name	,@RequestParam("account") String account
+			,@RequestParam("tel") String tel ,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		memberService.request_refund(order_num, bank, name, account, tel);
+		memberService.request_refund(order_num, Integer.parseInt(bank), name, account, Integer.parseInt(tel));
 		memberService.update_status("취소 요청", order_num);
 	}
 	
