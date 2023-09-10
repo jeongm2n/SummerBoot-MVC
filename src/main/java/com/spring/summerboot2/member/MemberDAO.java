@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.spring.summerboot2.DBconn;
 import com.spring.summerboot2.admin.OrderVO;
 
@@ -406,8 +410,9 @@ public class MemberDAO {
 		try {
 			con = DBconn.getDBCP();
 			
-			String sql = "update sb_purchas set review = ? where order_num = ? AND product_id = ?";
+			String sql = "update sb_purchase set review = ? where order_num = ? AND product_id = ?";
 			pstmt = con.prepareStatement(sql);
+			System.out.print(sql);
 			pstmt.setInt(1, 1);
 			pstmt.setString(2, order_num);
 			pstmt.setInt(3, product_id);
@@ -447,6 +452,27 @@ public class MemberDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, status);
 			pstmt.setString(2, order_num);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void request_refund(String order_num, int bank, String name, int account, int tel) {
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "update sb_purchase set refundbank = ?, rerfundname = ?, refundaccount = ?, refundtel =? WHERE order_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bank);
+			pstmt.setString(2, name);
+			pstmt.setInt(3, account);
+			pstmt.setInt(4, tel);
+			pstmt.setString(5, order_num);
 			pstmt.executeUpdate();
 			
 			pstmt.close();

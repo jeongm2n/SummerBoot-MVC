@@ -23,4 +23,5 @@ public interface  MemberService  {
 	public void After_review(String order_num, int product_id);
 	public void Update_rating(int product_id, int rating);
 	public void update_status(String status, String order_num);
+	public void request_refund(String order_num, int bank, String name, int account, int tel);
 }

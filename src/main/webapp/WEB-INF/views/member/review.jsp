@@ -93,7 +93,7 @@
 			
 		$.ajax({
 			type: "POST",
-			url: "${path}/shop/add_review/" + ${order_num},
+			url: "${path}/member/add_review/${order_num}",
 			data: formData,
 		 	processData: false,
 		 	contentType: false,

@@ -78,4 +78,9 @@ public class MemberServiceImpl implements MemberService {
 		dao.update_status(status, order_num);
 	}
 	
+	public void request_refund(String order_num, int bank, String name, int account, int tel) {
+		MemberDAO dao =  new MemberDAO();
+		dao.request_refund(order_num, bank, name, account, tel);
+	}
+	
 }

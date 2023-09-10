@@ -34,7 +34,10 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
 	ShopService shopService;
+	
 	ImportApiController restapi = new ImportApiController();
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -203,11 +206,16 @@ public class MemberController {
 		    if (i == 0 || !orderList.get(i).getOrder_num().equals(orderList.get(i - 1).getOrder_num()) && orderList.get(i).getStatus() == null) {
 		    	api = restapi.paymentLookup(orderList.get(i).getImp_uid());
 		        orderList.get(i).setStatus(api.getResponse().getStatus());
+		        orderList.get(i).setPaymethod(api.getResponse().getPayMethod());
 		    }
 		    else {
 		    	if(orderList.get(i).getOrder_num().equals(orderList.get(i - 1).getOrder_num())) {
 		    		orderList.get(i).setPur_date(null);
 		    		orderList.get(i).setStatus(orderList.get(i-1).getStatus());
+		    	}
+		    	else{
+		    		api = restapi.paymentLookup(orderList.get(i).getImp_uid());
+		    		orderList.get(i).setPaymethod(api.getResponse().getPayMethod());
 		    	}
 		    }
 		}
@@ -231,11 +239,11 @@ public class MemberController {
 		mav.addObject("name", name);
 		mav.addObject("img", img);
 		mav.addObject("order_num",order_num);
-		mav.setViewName("shop/review");
+		mav.setViewName("member/review");
 		return mav;
 	}
 	
-	@RequestMapping(value = "/add_review/{order_num}", method = RequestMethod.POST)
+	@RequestMapping(value = "/add_review/{order_num}", method = {RequestMethod.GET, RequestMethod.POST})
 	public void add_review(HttpServletRequest request, HttpServletResponse response
 			,@RequestParam("product_id") String product_id  ,@RequestParam("rating") int rating
 			,@RequestParam("content") String content  ,@RequestParam("img") MultipartFile img
@@ -246,7 +254,6 @@ public class MemberController {
 		
 		HttpSession session = request.getSession();
 		
-		String path = session.getServletContext().getRealPath("/");
 		String id =	(String)session.getAttribute("user_id");
 		
 		if(!img.isEmpty()) {
@@ -270,7 +277,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/update_status", method = RequestMethod.GET)
 	public void update_status(
-			@RequestParam(value= "status") String status	,@RequestParam(value= "order_num") String order_num
+			@RequestParam(value= "status") String status  ,@RequestParam(value= "order_num") String order_num
 			,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
@@ -278,4 +285,33 @@ public class MemberController {
 		
 		memberService.update_status(status, order_num);
 	}
+	
+	@RequestMapping(value = "/vbankcancel/{order_num}")
+	public ModelAndView vbankcancel(@PathVariable(value= "order_num") String order_num,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("order_num", order_num);
+		mav.setViewName("member/vbankcancel");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/requestrefund/{order_num}", method = {RequestMethod.GET, RequestMethod.POST})
+	public void requestrefund(
+			@PathVariable(value= "order_num") String order_num	,@RequestParam("bank") int bank
+			,@RequestParam("name") String name	,@RequestParam("account") int account
+			,@RequestParam("tel") int tel
+			,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		memberService.request_refund(order_num, bank, name, account, tel);
+		memberService.update_status("취소 요청", order_num);
+	}
+	
 }

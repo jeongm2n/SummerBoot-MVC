@@ -18,10 +18,15 @@ public class OrderVO {
 	private int review;
 	
 //	결제 내역 연동을 위해 추가한 변수
+	private String paymethod;
 	private int tracking;
 	private String status;
 	private String imp_uid;
 	private int total_price;
+	private int refundbank;
+	private String refundname;
+	private int refundaccount;
+	private int refundtel;
 	
 	
 	public OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount,
@@ -201,6 +206,46 @@ public class OrderVO {
 
 	public void setTotal_price(int total_price) {
 		this.total_price = total_price;
+	}
+
+	public String getPaymethod() {
+		return paymethod;
+	}
+
+	public void setPaymethod(String paymethod) {
+		this.paymethod = paymethod;
+	}
+
+	public int getRefundbank() {
+		return refundbank;
+	}
+
+	public void setRefundbank(int refundbank) {
+		this.refundbank = refundbank;
+	}
+
+	public String getRefundname() {
+		return refundname;
+	}
+
+	public void setRefundname(String refundname) {
+		this.refundname = refundname;
+	}
+
+	public int getRefundaccount() {
+		return refundaccount;
+	}
+
+	public void setRefundaccount(int refundaccount) {
+		this.refundaccount = refundaccount;
+	}
+
+	public int getRefundtel() {
+		return refundtel;
+	}
+
+	public void setRefundtel(int refundtel) {
+		this.refundtel = refundtel;
 	}
 
 }
