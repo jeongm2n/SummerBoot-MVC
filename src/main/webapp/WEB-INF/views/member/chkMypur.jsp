@@ -27,7 +27,7 @@
 		    		<tr><th colspan="4"><div class=row><div class="col-4"><b>주문번호: ${list.order_num}</b></div>
 		    		<div class="col-4"><b>주문날짜: ${list.pur_date }</b></div>
 					<div class="col"><button class="btn_popup" onclick="popup('${list.imp_uid}', '${list.pur_date}');">결제 정보 확인</button>
-					</div>
+					</div></div>
 					<c:choose>
 						<c:when test="${list.review eq 1 && list.status != '배송 완료'}">
 							<div class="col">
@@ -52,7 +52,8 @@
 						    <span class="status" style="background-color: salmon;">결제 완료</span>
 						  </c:when>
 						  <c:when test="${list.status eq 'ready'}">
-						    <span class="status" style="background-color: skyblue;">입금 대기 중</span>
+						    <span class="status" style="background-color: skyblue;">입금</span><br>
+						    <span class="status" style="background-color: skyblue;">대기중</span>
 						  </c:when>
 						  <c:when test="${list.status eq 'cancelled'}">
 						    <span class="status" style="background-color: grey;">결제 취소</span>
@@ -61,7 +62,8 @@
 						    <span class="status" style="background-color: darkgrey;">취소 요청</span>
 						  </c:when>
 						  <c:when test="${list.status eq '배송 준비중'}">
-						    <span class="status" style="background-color: darkkhaki;">배송 준비중</span>
+						    <span class="status" style="background-color: darkkhaki;">배송</span><br>
+						    <span class="status" style="background-color: darkkhaki;">준비중</span>
 						  </c:when>
 						  <c:when test="${list.status eq '배송중'}">
 						    <span class="status" style="background-color: mediumaquamarine;">배송중</span>
@@ -75,10 +77,10 @@
 				        <c:when test='${list.status ne "배송중" && list.status ne "배송 완료" && list.status ne "취소 요청" && list.status ne "cancelled"}'>
 				          <c:choose> 
 				            <c:when test='${list.paymethod eq "card"}'>
-				              <button type="button" class="cancel" onclick="cardcancel('취소 요청','${list.order_num}')"> 주문 취소 </button>
+				              <button type="button" class="btn_popup" onclick="cardcancel('취소 요청','${list.order_num}')"> 주문 취소 </button>
 				            </c:when>
 				            <c:when test='${list.paymethod eq "vbank"}'>
-				              <button type="button" class="cancel" onclick="vbankcancel('${list.order_num}')"> 주문 취소 </button>
+				              <button type="button" class="btn_popup" onclick="vbankcancel('${list.order_num}')"> 주문 취소 </button>
 				            </c:when>
 				          </c:choose>
 				        </c:when>
