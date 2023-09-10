@@ -79,7 +79,7 @@
 				            <c:when test='${list.paymethod eq "card"}'>
 				              <button type="button" class="btn_popup" onclick="cardcancel('취소 요청','${list.order_num}')"> 주문 취소 </button>
 				            </c:when>
-				            <c:when test='${list.paymethod eq "vbank"}'>
+				            <c:when test='${list.paymethod eq "vbank" && list.status eq "paid"}'>
 				              <button type="button" class="btn_popup" onclick="vbankcancel('${list.order_num}')"> 주문 취소 </button>
 				            </c:when>
 				          </c:choose>
