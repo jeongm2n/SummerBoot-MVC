@@ -101,7 +101,7 @@
 		</c:when>
 		</c:choose>
 	</table>
-	</div>
+	</div></div>
 	
 <!-- 	푸터 -->
 	<%@ include file="../common/footer.jsp"%>
@@ -144,7 +144,6 @@
  	    
  	    window.open(popUrl, "결제 내역", popOption);	
 	}
-
     
  	function add_review(product_id, name, img, order_num) {
 	 	let popUrl = "${path}/member/review/" + product_id + "/" + name + "/" + img + "/" + order_num;

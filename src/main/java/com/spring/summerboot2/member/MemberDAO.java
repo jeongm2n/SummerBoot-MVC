@@ -462,15 +462,15 @@ public class MemberDAO {
 		}
 	}
 	
-	public void request_refund(String order_num, int bank, String name, int account, int tel) {
+	public void request_refund(String order_num, int bank, String name, String account, int tel) {
 		try {
 			con = DBconn.getDBCP();
 			
-			String sql = "update sb_purchase set refundbank = ?, rerfundname = ?, refundaccount = ?, refundtel =? WHERE order_num = ?";
+			String sql = "update sb_purchase set refundbank = ?, refundname = ?, refundaccount = ?, refundtel =? WHERE order_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bank);
 			pstmt.setString(2, name);
-			pstmt.setInt(3, account);
+			pstmt.setString(3, account);
 			pstmt.setInt(4, tel);
 			pstmt.setString(5, order_num);
 			pstmt.executeUpdate();

@@ -126,11 +126,7 @@
 				                                              <button type="button" class="other_btn"> 운송장 입력 </button><br>
 				                                            </c:if>
 				                                            <c:if test='${list.status eq "취소 요청"}'>
-				                                              <c:choose>
-				                                                <c:when test='${list.paymethod eq "card"}'>
-				                                                <button type="button" class="other_btn" onclick="cancelPayments('${list.imp_uid}', '구매자 요청');"> 주문 취소 </button><br>
-				                                           		</c:when>
-				                                            </c:choose>
+				                                              <button type="button" class="other_btn" onclick="CancelPayments'${list.imp_uid}', '구매자 요청');"> 주문 취소 </button><br>
 				                                            </c:if>				
 				                                            </td>
 				                                        </tr>
@@ -154,11 +150,11 @@
 
 <script>
 
-	function cancelPayments(imp_uid, reason){
+	function CancelPayments(imp_uid, reason){
 		$.ajax({
 			type:"get",
 			async:false,  
-			url:"${path}/cancelPayment",
+			url:"${path}/CancelPayments",
 			dataType:"text",
 			data: {
 				imp_uid:imp_uid,
@@ -169,7 +165,7 @@
 				location.reload();
 			},
 			error: function(result){
-				alert("결제금액 환불못함. 계속 오류 발생시 관리자에게 문의해주세요!");
+				alert("결제금액 환불실패. 계속 오류 발생시 관리자에게 문의해주세요!");
 			}
 		});
 	}
