@@ -118,4 +118,54 @@ public class OrderDAO {
 		}
 		return list;
 	}
+	
+	public OrderVO Load_Account(String order_num) {
+		List<OrderVO> list= new ArrayList<OrderVO>();
+		try {
+			con = DBconn.getDBCP();
+			
+			OrderVO account = null;
+			
+			String sql = "SELECT refundbank, refundname, refundaccount, refundtel FROM sb_purchase WHERE order_num = '" + order_num +"'";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			rs.next();
+			int refundbank = rs.getInt("refundbank");
+			String refundname = rs.getString("refundname");
+			String refundaccount = rs.getString("refundaccount");
+			int refundtel = rs.getInt("refundtel");
+			account = new OrderVO(refundbank, refundname, refundaccount, refundtel);
+			
+			
+			rs.close();
+			pstmt.close();
+			con.close();
+			
+			return account;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void add_tracking(String order_num, String tracking) {
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "update sb_purchase set tracking = ? WHERE order_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tracking);
+			pstmt.setString(2, order_num);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

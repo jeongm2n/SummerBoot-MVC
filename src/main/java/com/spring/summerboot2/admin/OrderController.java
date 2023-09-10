@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import com.spring.summerboot2.member.MemberService;
 import com.spring.summerboot2.restapi.ImportApiController;
 
 
@@ -28,6 +29,9 @@ import com.spring.summerboot2.restapi.ImportApiController;
 public class OrderController {
 	@Autowired
 	AdminService adminService;
+	
+	@Autowired
+	MemberService memberService;
 	
 	ImportApiController restapi = new ImportApiController();
 	
@@ -110,4 +114,64 @@ public class OrderController {
 		mav.setViewName("admin/payment_check");
 		return mav;
 	}
+	
+	//무통장이 작동 안할시 사용할 컨트롤러
+	@RequestMapping(value = "/check_account/{order_num}")
+	public ModelAndView check_payment(
+			@PathVariable(value= "order_num") String order_num
+			,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		ModelAndView mav = new ModelAndView();
+		OrderVO account = null;
+		
+		account = adminService.Load_Account(order_num);
+		
+		String bank_name = null;
+		int bank_code = account.getRefundbank();
+		switch(bank_code){
+			case 04 : { bank_name = "KB국민은행"; break;} case 23 : { bank_name = "SC제일은행"; break;}
+			case 39 : { bank_name = "경남은행"; break;} case 34 : { bank_name = "광주은행"; break;}
+			case 03 : { bank_name = "기업은행"; break;} case 11 : { bank_name = "NH농협은행"; break;}
+			case 31 : { bank_name = "대구은행"; break;} case 32 : { bank_name = "부산은행"; break;}
+			case 02 : { bank_name = "산업은행"; break;} case 37 : { bank_name = "전북은행"; break;}
+			case 07 : { bank_name = "수협은행"; break;} case 71 : { bank_name = "우체국"; break;}
+			case 20 : { bank_name = "우리은행"; break;} case 81 : { bank_name = "하나은행"; break;}
+			case 88 : { bank_name = "신한은행"; break;} case 89 : { bank_name = "케이뱅크"; break;}
+			case 92 : { bank_name = "토스뱅크"; break;} case 45 : { bank_name = "새마을금고"; break;}
+		}
+		
+		mav.addObject("bank_name", bank_name);
+		mav.addObject("account",account);
+		mav.setViewName("admin/account_check");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/popuptracking/{order_num}")
+	public ModelAndView popuptracking(
+			@PathVariable(value= "order_num") String order_num
+			,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("order_num",order_num);
+		mav.setViewName("admin/tracking");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/add_tracking/{order_num}", method = {RequestMethod.POST})
+	public void updatetracking(
+			@PathVariable(value= "order_num") String order_num	,@RequestParam("tracking") String tracking
+			,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		adminService.add_tracking(order_num, tracking);
+		memberService.update_status("배송중", order_num);
+	}
+	
 }

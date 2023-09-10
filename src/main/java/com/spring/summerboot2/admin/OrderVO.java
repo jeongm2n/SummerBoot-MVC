@@ -25,9 +25,16 @@ public class OrderVO {
 	private int total_price;
 	private int refundbank;
 	private String refundname;
-	private int refundaccount;
+	private String refundaccount;
 	private int refundtel;
 	
+	
+	public OrderVO(int refundbank, String refundname, String refundaccount, int refundtel) {
+		this.refundbank = refundbank;
+		this.refundname = refundname;
+		this.refundaccount = refundaccount;
+		this.refundtel = refundtel;
+	}
 	
 	public OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount,
 			Date pur_date, String address) {
@@ -43,7 +50,8 @@ public class OrderVO {
 	}
 	
 //	결제내역 추가를 위해 만든 생성자
-	OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount, Date pur_date,String post, String addr1, String addr2, int tracking, String status, String imp_uid) {
+	OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount, Date pur_date,
+			String post, String addr1, String addr2, int tracking, String status, String imp_uid) {
 		this.order_num = order_num;
 		this.member_id = member_id;
 		this.product_id = product_id;
@@ -59,7 +67,8 @@ public class OrderVO {
 		this.imp_uid = imp_uid;
 	}
 	
-	public OrderVO(String order_num, int product_id, String img, String product_name, int price, int mount, Date pur_date, String post, String address, int tracking, String status, String imp_uid, int review) {
+	public OrderVO(String order_num, int product_id, String img, String product_name, int price, int mount, Date pur_date,
+			String post, String address, int tracking, String status, String imp_uid, int review) {
 		this.order_num = order_num;
 		this.product_id = product_id;
 		this.img = img;
@@ -232,11 +241,11 @@ public class OrderVO {
 		this.refundname = refundname;
 	}
 
-	public int getRefundaccount() {
+	public String getRefundaccount() {
 		return refundaccount;
 	}
 
-	public void setRefundaccount(int refundaccount) {
+	public void setRefundaccount(String refundaccount) {
 		this.refundaccount = refundaccount;
 	}
 
