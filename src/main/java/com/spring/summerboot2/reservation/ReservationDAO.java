@@ -26,7 +26,7 @@ public class ReservationDAO {
 		try {
 			conn = DBconn.getDBCP();
 	
-			String sql = "select distinct site from sb_reservation where no=1 and res_date='"+date+"' "
+			String sql = "select distinct site from sb_reservation where no="+no+" and res_date='"+date+"' "
 					+ "and (startTime between time_format('"+startTime+"','%T') "
 					+ "and (SEC_TO_TIME(TIME_TO_SEC('"+startTime+"') + (118 * "+useTime+"))) "
 					+ "or date_add(startTime, interval useTime minute) between time_format('"+startTime+"','%T') "
