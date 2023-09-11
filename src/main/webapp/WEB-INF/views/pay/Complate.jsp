@@ -17,6 +17,7 @@
     	<div style="height: 500px; width:1000px; position: relative; margin: auto;">
     		<div style=" width: 100%; position: absolute; top: 45%; text-align: center;">
     			<h1>주문 ${merchant_uid}이 결제 완료되었습니다.</h1>
+    			<span id="qr" style="font-size:10pt"></span><br>
     			<input type=button value="메인페이지로" onclick="location.href = '${path}'" >
     		</div>
     	</div>
@@ -42,6 +43,15 @@
     window.onpopstate = function(event) {
     history.go(1);
     };
+    
+    var referrer = document.referrer;
+    
+    $(function(){	
+    	if(referrer.includes('reservation_pay')){
+		  const element1 = document.getElementById('qr');
+ 		  element1.innerText = "나의예약현황에서 qr코드를 확인하세요!!!";
+    	}
+  })
     </script>
 </body>
 </html>
