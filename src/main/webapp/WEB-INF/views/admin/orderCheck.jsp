@@ -123,10 +123,10 @@
 				                                              <button type="button" class="other_btn" onclick="update_status('배송 준비중','${list.order_num}')"> 결제 확인 </button><br>
 				                                            </c:if>
 				                                            <c:if test='${list.status eq "배송 준비중"}'>
-				                                              <button type="button" class="other_btn"> 운송장 입력 </button><br>
+				                                              <button type="button" class="other_btn" onclick="popuptracking('${list.order_num}')"> 운송장 입력 </button><br>
 				                                            </c:if>
 				                                            <c:if test='${list.status eq "취소 요청"}'>
-				                                              <button type="button" class="other_btn" onclick="CancelPayments'${list.imp_uid}', '구매자 요청');"> 주문 취소 </button><br>
+				                                              <button type="button" class="other_btn" onclick="CancelPayments('${list.imp_uid}', '구매자 요청');"> 주문 취소 </button><br>
 				                                            </c:if>				
 				                                            </td>
 				                                        </tr>
@@ -168,6 +168,22 @@
 				alert("결제금액 환불실패. 계속 오류 발생시 관리자에게 문의해주세요!");
 			}
 		});
+	}
+	
+	//무통장 환불이 작동 안할시를 위한 코드
+	function VbankCancelPayments(order_num){
+		alert("아임포트 관리자 페이지에서 직접 환불해주세요!");
+ 	    let popUrl = "${path}/admin/order/check_account/" + order_num;
+ 	    let popOption = "width=450px,height=300px,top=300px,left=300px,scrollbars=yes";
+ 	    
+ 	    window.open(popUrl, "계좌 확인", popOption);
+	}
+
+	function popuptracking(order_num){
+ 	    let popUrl = "${path}/admin/order/popuptracking/" + order_num;
+ 	    let popOption = "width=450px,height=300px,top=300px,left=300px,scrollbars=yes";
+ 	    
+ 	    window.open(popUrl, "운송장 입력", popOption);
 	}
 
 	function popup(Imp_uid, Pur_date){

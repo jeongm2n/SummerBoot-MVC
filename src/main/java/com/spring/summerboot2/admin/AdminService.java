@@ -90,6 +90,16 @@ public class AdminService {
 		OrderDAO orderdao = new OrderDAO();
 		return orderdao.filterOrderList(column,str);
 	}
+	
+	public OrderVO Load_Account(String order_num) {
+		OrderDAO orderdao = new OrderDAO();
+		return orderdao.Load_Account(order_num);
+	}
+	
+	public void add_tracking(String order_num, String tracking) {
+		OrderDAO orderdao = new OrderDAO();
+		orderdao.add_tracking(order_num, tracking);
+	}
 
 	public Map<String, Object> inquiry(int q_no) {
 		AdminCommunityDAO dao = new AdminCommunityDAO();

@@ -3,17 +3,13 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-	<title>payment_check</title>
+	<title>결제정보 확인</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <style>
-    	modal-body{color:#858796 !important}
-    </style>
-    
+
 </head>
 <body>
-	<div class="modal-body">
+	<div class="payment_inform">
         <!-- Payment Information -->
         <p><strong>구매자 이름 : </strong> <span>${payment.buyer_name }</span></p>
         <p><strong>구매자 전화번호 : </strong> <span>${payment.buyer_tel }</span></p>
@@ -28,7 +24,7 @@
         <p><strong>입금 기한:</strong> <span>${payment.vbank_date  }</span></p>
         </c:if>
       </div>
-      <div class="modal-footer">
+      <div class="btn">
         <button type="button" style = "width: 30px;height: 20px;font-size: 10px;padding: 0px;border: 1px solid #FD8008;color: #FD8008;border-radius: 5px;background-color: white;"onclick="closePopup();">닫기</button>
       </div>
 <script>
