@@ -63,7 +63,6 @@
 												    	<h4 style="color: #FD8008;">배송중</h4>
 								    						<b>대한통운 : ${list.tracking}</b>
 								  				  	</c:when>
-												  	</c:when>
 													<c:when test="${list.status eq '배송완료'}">
 												  		<h4 style="color: black">배송 완료</h4>
 												  			<b>대한통운 : ${list.tracking}</b>
