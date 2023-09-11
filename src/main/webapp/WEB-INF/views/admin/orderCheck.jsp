@@ -96,7 +96,7 @@
 																  <c:when test="${list.status eq '배송중'}">
 																    <span class="status" style="background-color: mediumaquamarine;">배송중</span>
 																  </c:when>
-																  <c:when test="${list.status eq '배송 완료'}">
+																  <c:when test="${list.status eq '배송완료'}">
 																    <span class="status" style="background-color: #FD8008;">배송 완료</span>
 																  </c:when>
 																</c:choose>

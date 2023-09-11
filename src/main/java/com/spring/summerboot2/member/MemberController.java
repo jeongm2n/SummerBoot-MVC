@@ -203,22 +203,22 @@ public class MemberController {
 		orderList = memberService.orderList(id);
 		List<String> orderNum = memberService.orderNum(id);
 		for (int i = 0; i < orderList.size(); i++) {
-		    if (i == 0 || !orderList.get(i).getOrder_num().equals(orderList.get(i - 1).getOrder_num()) && orderList.get(i).getStatus() == null) {
-		    	api = restapi.paymentLookup(orderList.get(i).getImp_uid());
-		        orderList.get(i).setStatus(api.getResponse().getStatus());
-		        orderList.get(i).setPaymethod(api.getResponse().getPayMethod());
-		    }
-		    else {
-		    	if(orderList.get(i).getOrder_num().equals(orderList.get(i - 1).getOrder_num())) {
-		    		orderList.get(i).setPur_date(null);
-		    		orderList.get(i).setStatus(orderList.get(i-1).getStatus());
-		    	}
-		    	else{
-		    		api = restapi.paymentLookup(orderList.get(i).getImp_uid());
-		    		orderList.get(i).setPaymethod(api.getResponse().getPayMethod());
-		    	}
-		    }
-		}
+	          if (i == 0 || !orderList.get(i).getOrder_num().equals(orderList.get(i - 1).getOrder_num())) {
+	             if(orderList.get(i).getStatus() == null) {
+	                api = restapi.paymentLookup(orderList.get(i).getImp_uid());
+	                 orderList.get(i).setStatus(api.getResponse().getStatus());
+	                 orderList.get(i).setPaymethod(api.getResponse().getPayMethod());
+	             }
+	             else{
+	                 api = restapi.paymentLookup(orderList.get(i).getImp_uid());
+	                 orderList.get(i).setPaymethod(api.getResponse().getPayMethod());
+	             }
+	          }
+	          else {
+	             orderList.get(i).setPur_date(null);
+	             orderList.get(i).setStatus(orderList.get(i-1).getStatus());
+	          }
+	    }
 		
 		mav.addObject("orderNum",orderNum);
 		mav.addObject("orderList", orderList);

@@ -53,7 +53,7 @@
 		<div>
 			<table class="table inquiryT">
 				<thead>
-					<tr>
+					<tr style="text-align:center;">
 						<th width="5%">#</th>
 						<th width="8%">
 							<select id="category" name="category" style="padding:0;border:none;font-size:18px;font-weight:bolder;">
@@ -63,9 +63,9 @@
 								<option value="etc" <c:if test="${category eq 'etc'}">selected</c:if>>기타문의</option>
 							</select>
 						</th>
-						<th width="42%">제목</th>
+						<th width="42%" style="text-align:left;">제목</th>
 						<th width="15%">작성자</th>
-						<th width="15%">작성시간</th>
+						<th width="15%">작성날짜</th>
 						<th width="15%">
 							<select id="state" name="state" style="padding:0;border:none;font-size:18px;font-weight:bolder;">
 								<option value="0">답변상태</option>
@@ -75,7 +75,7 @@
 						</th>
 					</tr>
 				</thead>
-				<tbody class="inquiryTB">
+				<tbody class="inquiryTB" style="text-align:center;">
 					<c:choose>
 						<c:when test="${empty inquiryList }">
 							<tr>
@@ -88,7 +88,7 @@
 								<tr class="inquiryTr">
 									<td>${count }</td>
 									<td>${list.category }</td>
-									<td><c:if test="${list.secret eq 'Y'}"><i class="fa fa-lock"></i></c:if>${list.title }</td>
+									<td style="text-align:left;"><c:if test="${list.secret eq 'Y'}"><i class="fa fa-lock" style="color:#FD8008"></i></c:if>${list.title }</td>
 									<td class="writer">${list.writer }</td>
 									<td><fmt:formatDate value="${list.ins_date }" pattern="YYYY/MM/dd" /></td>
 									<td>${list.state }</td>
@@ -99,11 +99,11 @@
 					                    <div class="card-body-inquiry">
 							            	<div class="inquiry-answer">
 							            		<div class="h1" style="font-family: 'Rubik', sans-serif;">Q.</div>
-							            		<div class="h4" style="padding-top:2%;font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px !important;">${list.content }</div>
+							            		<div class="h4" style="padding-top:2%;font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px !important;text-align:left;">${list.content }</div>
 							                </div>
 							                <div class="inquiry-answer" <c:if test="${list.state eq '답변대기'}" >style="display:none;"</c:if>>
 							                    <div class="h1" style="font-family: 'Rubik', sans-serif;">A.</div>
-							            		<div class="h4" style="padding-top:2%;font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px !important;">${list.answer }</div>
+							            		<div class="h4" style="padding-top:2%;font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px !important;text-align:left;">${list.answer }</div>
 							                </div>
 						                </div>
 									</td>  
