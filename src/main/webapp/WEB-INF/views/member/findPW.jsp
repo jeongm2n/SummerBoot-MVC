@@ -53,7 +53,7 @@
 <body> 
 	<div class="container py-5" id="wrap">
        	<div class="col-lg-6 m-auto ">
-	       	<h2 class="text-center border-bottom pb-3" style="padding-top: 5.5rem!important;font-weight:500;font-size: 2.5rem;">아이디 찾기</h2>
+	       	<h2 class="text-center border-bottom pb-3" style="padding-top: 5.5rem!important;font-weight:500;font-size: 2.5rem;">비밀번호 찾기</h2>
        	</div>
         <div class="row py-5 pwd">
             <form class="col-md-6 m-auto">
