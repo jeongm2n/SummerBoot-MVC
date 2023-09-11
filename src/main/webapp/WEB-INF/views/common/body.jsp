@@ -176,7 +176,7 @@
 							</div>
 							<div class="list-regist">
 								<div>
-									<p class="text-muted">Reviews (24)</p>
+									<a onclick="showReview()"> <p style="color: #4f5050">Reviews (24)</p> </a>
 								</div>
 								<div>
 									<input type="button" id="btn_res" class="btn-join" value="예약하기" onclick="reservation(${list.no },'0','0');">
@@ -571,7 +571,18 @@
 			$(".video_modal_popup .video-wrapper").remove(),
 			$(".video_modal_popup").removeClass("reveal")
 		});
-	
+
+
+		// 세차장리뷰 팝업
+		function showReview() {
+			try {
+				var url = "${path}/review/new_rv";
+				var option = "width=1000, height=500, top=130, left=250";
+				window.open(url, "세차장리뷰", option)
+			} catch (error) {
+				console.error("에러 발생:", error);
+			}
+		}
 	</script>
 </body>
 </html>

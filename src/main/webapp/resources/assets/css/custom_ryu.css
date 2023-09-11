@@ -101,3 +101,40 @@ a {
     grid-gap: 10px;
 }
 
+/*세차장리뷰*/
+#star_rv input[type=radio] {
+    display: none;
+}
+
+#star_rv input[type=radio]:checked ~ label {
+    text-shadow: 0 0 0 #fd8008;
+}
+
+#star_rv label {
+    color: transparent;
+    text-shadow: 0 0 0 #F0F0F0;
+}
+
+#star_rv label:hover {
+    text-shadow: 0 0 0 #fd8008;
+}
+
+#star_rv label:hover ~ label {
+    text-shadow: 0 0 0 #F0F0F0;
+}
+
+#star_rv fieldset {
+    display: inline-block;
+    direction: rtl;
+}
+
+#text_rv {
+    width: 1100px;
+    height: 100px;
+    resize: none;
+    padding: 20px;
+}
+
+.rvForm {
+    padding: 20px;
+}
