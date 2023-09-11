@@ -84,7 +84,7 @@
 						dateCell.classList.add('saturday-td');
 					}
 					
-					if(date == realToDay){ //오늘 날짜에 'selected' css를 줌
+					if(nowMonth==realMonth && date == realToDay){ //오늘 날짜에 'selected' css를 줌
 						dateCell.classList.add('selected');
 					}
 					
