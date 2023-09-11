@@ -41,7 +41,7 @@
 	height: auto;
 	margin-top: 5px;
 	padding: 0px 5px !important;
-	font-size: 15px;
+	font-size: 15pt;
 	font-weight: 400;
 	padding: 0px;
 	border: 1px solid #FD8008;
@@ -49,6 +49,12 @@
 	border-radius: 5px;
 	background-color: white;
 }
+@media screen and (max-width: 1400px) {
+	.pur_btn button {font-size: 8pt;}
+	.price {font-size: 8pt;}
+} 
+
+
 .pur_btn button:hover{
 	background-color: #FD8008;
 	color: white;
