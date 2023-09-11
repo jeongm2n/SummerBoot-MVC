@@ -88,7 +88,7 @@
 						</td>
 						<td class="td3">
 						<c:choose>
-							<c:when test="${list.review ne 1 && list.status == '배송 완료'}">
+							<c:when test="${list.review ne 1 && list.status eq '배송 완료'}">
 						        <button type="button" class="review_btn" onclick="add_review('${list.product_id}', '${list.product_name}', '${list.img}' ,'${list.order_num}')">리뷰 작성</button>
 						    </c:when>
 						</c:choose>
