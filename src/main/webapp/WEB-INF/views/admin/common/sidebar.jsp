@@ -134,20 +134,12 @@
 
 			<!-- Heading -->
             <div class="sidebar-heading">
-                문의&리뷰 관리
+                문의
             </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item">
                 <a class="nav-link" href="${path}/admin/community/inquiry">
                     <i class="fas fa-fw fa-comments"></i>
-                    <span>문의</span>
-                </a>
-            </li>
-			<li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-fw fa-comment"></i>
-                    <span>리뷰</span>
+                    <span>문의관리</span>
                 </a>
             </li>
 
