@@ -173,7 +173,7 @@
         <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
 		  	<img src="${path}/resources/assets/product/${product.img}" class="img" >
-		  	<div style="display:flex;float:right;">
+		  	<div style="float:right;">
 		  	  <div class="text_box">
 		  	    <a class="amount">x ${product.quantity}</a>
 		  	  </div>
