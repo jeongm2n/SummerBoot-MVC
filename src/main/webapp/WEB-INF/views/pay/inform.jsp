@@ -183,7 +183,7 @@
 		  	  <div class="text_box">
 		  	    <a class="price">${product.price}원</a>
 		  	  </div>
-		  	</div>
+		  	</div>	
           </div>
         </c:forEach>
           <div class="point" id="P_point">

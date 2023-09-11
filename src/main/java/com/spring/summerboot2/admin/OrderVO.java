@@ -16,6 +16,7 @@ public class OrderVO {
 	private String addr1;
 	private String addr2;
 	private int review;
+	private int delivery_fee;
 	
 //	결제 내역 연동을 위해 추가한 변수
 	private String paymethod;
@@ -255,6 +256,14 @@ public class OrderVO {
 
 	public void setRefundtel(int refundtel) {
 		this.refundtel = refundtel;
+	}
+
+	public int getDelivery_fee() {
+		return delivery_fee;
+	}
+
+	public void setDelivery_fee(int delivery_fee) {
+		this.delivery_fee = delivery_fee;
 	}
 
 }
