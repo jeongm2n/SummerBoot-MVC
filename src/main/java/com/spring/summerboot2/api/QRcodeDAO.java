@@ -13,7 +13,8 @@ import java.io.IOException;
 
 public class QRcodeDAO{
 	
-	public String makeQR(String merchant_uid, String id, String no, String date, String startTime, String useTime, String site, String savePath) {
+	public String makeQR(String merchant_uid, String id, String no, String date, String startTime, 
+			String useTime, String site, String savePath) {
 		//String savePath = "C:/Users/wjdal/SummerBoot2/SummerBoot-MVC/src/main/webapp/resources/assets/img/qr/";
 		
 		String payInfo = id+"/"+no+"/"+date+"/"+startTime+"/"+useTime+"/"+site;

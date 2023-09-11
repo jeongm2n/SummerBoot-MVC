@@ -282,7 +282,6 @@ public class PayController {
 		String user_id = (String)session.getAttribute("user_id");
 		payService.pay_point(payService.Load_Point(user_id), s_point, user_id);
 		
-		//String savePath = servletContext.getRealPath("resources/assets/img/qr/");
 		String savePath = request.getSession().getServletContext().getRealPath("resources/assets/img/qr/");
 		System.out.println(savePath);
 		
