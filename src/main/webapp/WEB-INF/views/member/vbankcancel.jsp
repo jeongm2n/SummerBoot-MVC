@@ -93,22 +93,24 @@
 	function requestRefund() {
 		let formData = new FormData($("#refundform")[0]);
 		
-		$.ajax({
-			type: "POST",
-			url: "${path}/member/requestrefund/${order_num}",
-			data: formData,
-		 	processData: false,
-		 	contentType: false,
-			success: function(response) {
-			    console.log("환불 요청이 완료되었습니다.");
-			    opener.parent.location.reload();
-			    window.close();
-			    },
-			error: function(xhr) {
-			    console.log("에러가 발생했습니다: " + xhr.responseText);
-			    alert("에러가 발생했습니다: " + xhr.responseText);
-			}
-		});
+		if(confirm("주문 취소 하시겠습니까?")){
+			$.ajax({
+				type: "POST",
+				url: "${path}/member/requestrefund/${order_num}",
+				data: formData,
+			 	processData: false,
+			 	contentType: false,
+				success: function(response) {
+				    console.log("환불 요청이 완료되었습니다.");
+				    opener.parent.location.reload();
+				    window.close();
+				    },
+				error: function(xhr) {
+				    console.log("에러가 발생했습니다: " + xhr.responseText);
+				    alert("에러가 발생했습니다: " + xhr.responseText);
+				}
+			});
+		}
 	}
 </script>
 </body>

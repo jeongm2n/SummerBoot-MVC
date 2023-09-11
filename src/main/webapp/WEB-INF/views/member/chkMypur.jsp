@@ -61,9 +61,11 @@
 												  	</c:when>
 												  	<c:when test="${list.status eq '배송중'}">
 												    	<h4 style="color: #FD8008;">배송중</h4>
-												  	</c:when>
+								    						<b>대한통운 : ${list.tracking}</b>
+								  				  	</c:when>
 													<c:when test="${list.status eq '배송 완료'}">
 												  		<h4 style="color: black">배송 완료</h4>
+												  			<b>대한통운 : ${list.tracking}</b>
 												  	</c:when>
 												  	<c:when test="${list.status eq 'ready'}">
 													    <h4 style="color: #CF0A0A;">입금 대기 중</h4>
@@ -81,11 +83,20 @@
 													<div style="margin-bottom:1%;">
 												        <button type="button" class="review_btn" onclick="add_review('${list.product_id}', '${list.product_name}', '${list.img}' ,'${list.order_num}')">리뷰작성</button>
 													</div>
-											    </c:if>
-												<c:if test="${list.status ne '배송중' && list.status ne '배송 완료' && list.status ne '취소 요청' && list.status ne 'cancelled'}">
-													<div style="margin-bottom:1%;">
-											        	<button style="border-radius:5px;border:1px solid grey;color:grey;">주문취소</button>
-													</div>
+											    </c:if>											   
+												<c:if test="${list.status eq 'paid' || list.status eq '배송 준비중' && list.paymethod eq 'card'}">
+												  <c:choose>
+													<c:when test="${list.paymethod eq 'card'}">
+													  <div style="margin-bottom:1%;">
+											          	<button style="border-radius:5px;border:1px solid grey;color:grey;" onclick="cardcancel('취소 요청','${list.order_num}')">주문취소</button>
+													  </div>
+													</c:when>
+													<c:when test="${list.paymethod eq 'vbank'}">
+													  <div style="margin-bottom:1%;">
+											          	<button style="border-radius:5px;border:1px solid grey;color:grey;" onclick="vbankcancel('${list.order_num}')">주문취소</button>
+													  </div>
+													</c:when>
+												  </c:choose>
 											    </c:if>
 												<div class="my-qna">
 											        <button class="inquiry">문의하기</button>
@@ -150,6 +161,7 @@
 	 	
 	 	window.open(popUrl, "리뷰 작성", popOption);	
  	}
+ 	
  	$(document).on('click', '.inquiry', function() {
 		 location.href = "${path}/community/qnaWrite"	;
  	})

@@ -125,8 +125,18 @@
 				                                            <c:if test='${list.status eq "배송 준비중"}'>
 				                                              <button type="button" class="other_btn" onclick="popuptracking('${list.order_num}')"> 운송장 입력 </button><br>
 				                                            </c:if>
+				                                            <c:if test='${list.status eq "배송중"}'>
+				                                              <button type="button" class="other_btn" onclick="update_status('배송 완료','${list.order_num}')"> 배송 완료 확인 </button><br>
+				                                            </c:if>
 				                                            <c:if test='${list.status eq "취소 요청"}'>
-				                                              <button type="button" class="other_btn" onclick="CancelPayments('${list.imp_uid}', '구매자 요청');"> 주문 취소 </button><br>
+				                                              <c:choose>
+				                                                <c:when test='${list.paymethod eq "card"}'>
+				                                                  <button type="button" class="other_btn" onclick="CancelPayments('${list.imp_uid}', '구매자 요청');"> 취소 확인 </button><br>
+				                                                </c:when>
+				                                                <c:when test='${list.paymethod eq "vbank"}'>
+				                                                  <button type="button" class="other_btn" onclick="VbankCancelPayments('${list.order_num}');"> 취소 확인 </button><br>
+				                                                </c:when>
+				                                              </c:choose>
 				                                            </c:if>				
 				                                            </td>
 				                                        </tr>
@@ -166,6 +176,28 @@
 			},
 			error: function(result){
 				alert("결제금액 환불실패. 계속 오류 발생시 관리자에게 문의해주세요!");
+			}
+		});
+	}
+	
+    function update_status(status, order_num){
+		$.ajax({
+			type:"get",
+			async:false,  
+			url:"${path}/member/update_status",
+			dataType:"text",
+			data: {
+				status:status,
+				order_num:order_num
+			},
+			success:function (){
+				alert("변경이 완료되었습니다.");
+				location.reload();
+			},
+			error:function(request, error){
+				alert("에러가 발생했습니다.");
+			},
+			complete:function(){
 			}
 		});
 	}

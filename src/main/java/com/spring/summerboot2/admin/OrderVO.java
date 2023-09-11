@@ -19,7 +19,7 @@ public class OrderVO {
 	
 //	결제 내역 연동을 위해 추가한 변수
 	private String paymethod;
-	private int tracking;
+	private String tracking;
 	private String status;
 	private String imp_uid;
 	private int total_price;
@@ -51,7 +51,7 @@ public class OrderVO {
 	
 //	결제내역 추가를 위해 만든 생성자
 	OrderVO(String order_num, String member_id, int product_id, String product_name, int price, int mount, Date pur_date,
-			String post, String addr1, String addr2, int tracking, String status, String imp_uid) {
+			String post, String addr1, String addr2,String tracking, String status, String imp_uid) {
 		this.order_num = order_num;
 		this.member_id = member_id;
 		this.product_id = product_id;
@@ -68,7 +68,7 @@ public class OrderVO {
 	}
 	
 	public OrderVO(String order_num, int product_id, String img, String product_name, int price, int mount, Date pur_date,
-			String post, String address, int tracking, String status, String imp_uid, int review) {
+			String post, String address, String tracking, String status, String imp_uid, int review) {
 		this.order_num = order_num;
 		this.product_id = product_id;
 		this.img = img;
@@ -188,10 +188,10 @@ public class OrderVO {
 		this.review = review;
 	}
 	
-	public int getTracking() {
+	public String getTracking() {
 		return tracking;
 	}
-	public void setTracking(int tracking) {
+	public void setTracking(String tracking) {
 		this.tracking = tracking;
 	}
 	

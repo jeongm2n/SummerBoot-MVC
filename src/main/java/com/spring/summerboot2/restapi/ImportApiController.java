@@ -21,6 +21,7 @@ import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import com.spring.summerboot2.member.MemberService;
 import com.spring.summerboot2.pay.PayService;
 
 @Controller
@@ -28,6 +29,8 @@ public class ImportApiController {
 
 //	@Autowired
 //	private PaymentService paymentService;
+	@Autowired
+	MemberService memberService;
 	
 	@Autowired
 	private ImportApiService importApiService;
@@ -70,18 +73,18 @@ public class ImportApiController {
 		lookUp = paymentLookup(imp_uid);
 		data = new CancelData(imp_uid, true);
 		data.setReason(reason);
-		if(lookUp.getResponse().getPayMethod().equals("vbank")) {
-			String order_num = lookUp.getResponse().getMerchantUid();
-			String[] v_data = new String[4];
-			v_data = importApiService.vInformLoad(order_num);
-			data.setReason(reason);
-			data.setRefund_bank(v_data[0]);
-			data.setRefund_holder(v_data[1]);
-			data.setRefund_account(v_data[2]);
-//			왜 refund_tel이 없지 실패...
-		}
+		String order_num = lookUp.getResponse().getMerchantUid();
+//		if(lookUp.getResponse().getPayMethod().equals("vbank")) {
+//			String[] v_data = new String[4];
+//			v_data = importApiService.vInformLoad(order_num);
+//			data.setReason(reason);
+//			data.setRefund_bank(v_data[0]);
+//			data.setRefund_holder(v_data[1]);
+//			data.setRefund_account(v_data[2]);
+//		}
 		
 		IamportResponse<Payment> cancel = api.cancelPaymentByImpUid(data);//취소
+		memberService.update_status("cancelled", order_num);
 		
 		return cancel;
 	}

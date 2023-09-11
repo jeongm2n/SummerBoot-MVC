@@ -361,7 +361,7 @@ public class MemberDAO {
 					address += p_address[5];
 				}
 
-				int tracking = rs.getInt("tracking");
+				String tracking = rs.getString("tracking");
 				String status = rs.getString("status");
 				String imp_uid = rs.getString("imp_uid");
 				

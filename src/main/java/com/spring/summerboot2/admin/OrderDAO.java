@@ -45,7 +45,7 @@ public class OrderDAO {
 					str2 += address[5];
 				}
 
-				int tracking = rs.getInt("tracking");
+				String tracking = rs.getString("tracking");
 				String status = rs.getString("status");
 				String imp_uid = rs.getString("imp_uid");
 				System.out.println(order_num+","+ member_id+","+product_id+","+mount+","+pur_date+","+address+","+tracking+","+status+","+imp_uid);
@@ -102,7 +102,7 @@ public class OrderDAO {
 					str2 += address[5];
 				}
 				
-				int tracking = rs.getInt("tracking");
+				String tracking = rs.getString("tracking");
 				String status = rs.getString("status");
 				String imp_uid = rs.getString("imp_uid");
 				System.out.println(order_num+","+ member_id+","+product_id+","+mount+","+pur_date+","+address+","+tracking+","+status+","+imp_uid);
