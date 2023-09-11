@@ -220,7 +220,7 @@ public class MemberController {
 		    	orderList.get(i).setStatus(orderList.get(i-1).getStatus());
 		    }
 		}
-		
+
 		mav.addObject("orderNum",orderNum);
 		mav.addObject("orderList", orderList);
 		mav.setViewName("member/chkMypur");
