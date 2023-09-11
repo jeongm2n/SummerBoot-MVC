@@ -13,10 +13,7 @@
 
 <script>
 	$(document).on('click', '#update' , function() {
-		if($("#pwd").val().length == 0) {
-	   		alert("기존 비밀번호을 입력하세요.");
-			return;
-		} else if($("#new_pwd").val().length == 0){
+		if($("#new_pwd").val().length == 0){
 	   		alert("새 비밀번호을 입력하세요.");
 	   		return;
 		} else if($("#new_pwd_check").val().length == 0) {
@@ -24,6 +21,7 @@
 	   		return;
 		} else {
 			document.getElementById("pwdForm").submit();
+			alert("비밀번호가 설정되었습니다")
 	   	}
 	});
 	 
@@ -42,17 +40,6 @@
 			}
 		}
 	}
-	
-	$(document).ready(function() {
-        var message = "${msg}";
-        if(message == 4){
-       		alert("기존 비밀번호가 일치하지않습니다.");
-        } else if(message == 999){
-        	alert("비밀번호 수정이 완료되었습니다.");
-	        window.close();
-			opener.location.href="${path }	/member/my_info";
-        }
-    });
 </script>
 
 </head>
@@ -62,11 +49,7 @@
 	       	<h2 class="h2 text-center border-bottom pb-3" style="padding-top: 5.5rem!important;">비밀번호 변경</h2>
        	</div>
         <div class="row py-5 pwd" style="width: 82%;">
-            <form class="col-md-6 m-auto" method="post" role="form" id="pwdForm" action="pwd_update">
-                <div class="input-group mb-3">
-                    <label for="inputname" class="title">기존 비밀번호</label>
-                    <input type="password" class="form-control mt-1" id="pwd" name="pwd" placeholder="PASSWORD">
-                </div>
+            <form class="col-md-6 m-auto" method="post" role="form" id="pwdForm" action="findPW_update">
                 <div class="input-group mb-3">
                     <label for="inputemail" class="title">새 비밀번호</label>
                     <input type="password" class="form-control mt-1" id="new_pwd" name="new_pwd" placeholder="NEW PASSWORD">
@@ -79,7 +62,7 @@
                 	<label></label>
                 	<span id="notice"></span>
                 </div>
-                
+                <input type="hidden" name="id" value="${param.id}">
                 <div class="row">
                     <div class="col text-center mt-2">
                         <button type="button" class="btn btn-washboot btn-lg px-3" id="update">수정</button>

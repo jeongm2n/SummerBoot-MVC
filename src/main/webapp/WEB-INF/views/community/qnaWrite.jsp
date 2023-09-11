@@ -13,7 +13,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
 </head>
 <body>
-	<section class="container py-5">
+	<section class="container py-5" style="margin-top:10%;">
 		<div class="row text-center pt-5 pb-3">
 			<div class="col-lg-6 m-auto">
 				<h1 class="h1" style="font-family: 'Rubik', sans-serif;font-weight: 500 !important;font-size: 4em !important;">Q&A</h1>

@@ -8,28 +8,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <style>
-    	modal-body{color:#858796 !important}
+    	.modal-body{margin:10% auto;}
+    	.pay-title {width:50%;text-align:right;padding-right:4%;border-right:1px solid #858796;}
+    	.pay-info{padding-left:2%;}
+    	table{border-top:2px solid black;border-collapse:collapse;border-spacing:0;margin:0 auto;width:75%;font-size:17px;}
+    	td{border-bottom:1px solid #858796;}
+    	h2{
+    		width: 75%;
+		    margin: 9% auto;
+		    margin-bottom: 1%;
+		    padding-left: 3%;
+   		}
     </style>
     
 </head>
 <body>
 	<div class="modal-body">
         <!-- Payment Information -->
-        <p><strong>구매자 이름 : </strong> <span>${payment.buyer_name }</span></p>
-        <p><strong>구매자 전화번호 : </strong> <span>${payment.buyer_tel }</span></p>
-        <p><strong>결제 수단 : </strong> <span>${payment.pay_method }</span></p>
-        <c:if test = '${payment.pay_method eq "카드 결제"}'>
-        <p><strong>카드사 : </strong> <span>${payment.card_name  }</span></p>
-        <p><strong>카드 번호:</strong> <span>${payment.card_number  }</span></p>
-        </c:if>
-        <c:if test = '${payment.pay_method eq "무통장 입금"}'>
-        <p><strong>예금주:</strong> <span>${payment.vbank_name  }</span></p>
-        <p><strong>입금 계좌 번호:</strong> <span>${payment.vbank_num  }</span></p>
-        <p><strong>입금 기한:</strong> <span>${payment.vbank_date  }</span></p>
-        </c:if>
-      </div>
-      <div class="modal-footer">
-        <button type="button" style = "width: 30px;height: 20px;font-size: 10px;padding: 0px;border: 1px solid #FD8008;color: #FD8008;border-radius: 5px;background-color: white;"onclick="closePopup();">닫기</button>
+        <h2>구매자 정보</h2>
+		<table>
+			<tr>
+				<td class="pay-title">구매자 이름</td><td class="pay-info">${payment.buyer_name }</td>
+			</tr>
+			<tr>
+				<td class="pay-title">구매자 전화번호</td><td class="pay-info">${payment.buyer_tel }</td>
+			</tr>
+		</table>
+		<h2>결제 정보</h2>
+		<table>
+			<tr>
+				<td class="pay-title">결제 수단</td><td class="pay-info">${payment.pay_method }</td>
+			</tr>
+			<c:if test = '${payment.pay_method eq "카드 결제"}'>
+				<tr>
+					<td class="pay-title">카드사</td><td class="pay-info">${payment.card_name }</td>
+				</tr>
+				<tr>
+					<td class="pay-title">카드 번호</td><td class="pay-info">${payment.card_number }</td>
+				</tr>
+			</c:if>
+			<c:if test = '${payment.pay_method eq "무통장 입금"}'>
+				<tr>
+					<td class="pay-title">예금주</td><td class="pay-info">${payment.vbank_name }</td>
+				</tr>
+				<tr>
+					<td class="pay-title">입금 계좌 번호</td><td class="pay-info">${payment.vbank_num }</td>
+				</tr>
+				<tr>
+					<td class="pay-title">입금 기한</td><td class="pay-info">${payment.vbank_date }</td>
+				</tr>
+			</c:if>
+		</table>
+		<div style="margin: 2% 44%">
+	      	<button type="button" style = "width: 3rem;height: 1.5rem;font-size: 0.8rem;border: 1px solid #FD8008;color: #FD8008;border-radius: 6px;background-color: white;"onclick="closePopup();">닫기</button>
+		</div>
       </div>
 <script>
 function closePopup() {

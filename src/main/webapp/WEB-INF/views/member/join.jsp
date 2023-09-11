@@ -18,8 +18,8 @@
 <script>
 	function fn_overlapped(){
 	    if($("#id").val().length == 0){
-	   	 alert("ID를 입력하세요");
-	   	 return;
+		   	alert("ID를 입력하세요");
+		   	return;
 	    }
 	     
 	    var _id = $("#id").val();
@@ -27,7 +27,7 @@
 	    $.ajax({
 	       type:"post",
 	       async:false,  
-	       url:"${contextPath}/member/overlapped.do",
+	       url:"${path}/member/overlapped.do",
 	       dataType:"text",
 	       data: {id:_id},
 	       success:function (data,textStatus){
@@ -104,7 +104,7 @@
 
 </head>
 <body> 
-	<div class="container py-5" id="wrap">
+	<div class="container py-5" id="wrap" style="margin-top:10%;">
        	<div class="col-lg-6 m-auto ">
 	       	<h2 class="h2 text-center border-bottom border-2 pb-3" style="padding-top: 5.5rem!important;">회원가입</h2>
        	</div>
@@ -116,7 +116,7 @@
                     <div class="input-group-text btn-washboot mt-1" id="checkID" onclick="fn_overlapped();">중복확인</div>
                     <div><input type="hidden" value="false" id="overlap_check"></div>
                 </div>
-                <div class="mb-3 notice_id" id = "notice_id" style="display : none; padding-left:136px;">
+                <div class="mb-3 notice_id" id = "notice_id" style="display : none; padding-left:9em;">
                 	<span id="notice_id"></span>
                 </div>
                 
@@ -128,7 +128,7 @@
                     <label for="inputemail" class="title">비밀번호 확인</label>
                     <input type="password" class="form-control mt-1" id="check_pwd" name="check_pwd" placeholder="PASSWORD" oninput="isSame();">
                 </div>
-                <div class="mb-3 hidden" style="display : none; padding-left:136px;"> <!-- 비밀번호확인 일치 여부 알림 표시 -->
+                <div class="mb-3 hidden" style="display : none; padding-left:9em;"> <!-- 비밀번호확인 일치 여부 알림 표시 -->
                 	<label></label>
                 	<span id="notice"></span>
                 </div>

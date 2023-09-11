@@ -278,4 +278,58 @@ public class MemberController {
 		
 		memberService.update_status(status, order_num);
 	}
+	
+	@RequestMapping(value = "/findID", method = RequestMethod.GET)
+	public String findID() {
+		return "member/findID";
+	}
+	
+	@RequestMapping(value = "/findID.do", method = RequestMethod.GET)
+	public void findIDact(@RequestParam("name") String name, @RequestParam("tel") String tel, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter writer = response.getWriter();
+		
+		String findID = memberService.findID(name, tel);
+		System.out.println("ID >>>" + findID);
+		if(!findID.equals("")) {
+			writer.print("'" + name + "'님의 아이디 > '" + findID + "'");
+		} else {
+			writer.print("WASHBOOT의 회원이 아닙니다");
+		}
+	}
+	
+	@RequestMapping(value = "/findPW", method = RequestMethod.GET)
+	public String findPW() {
+		return "member/findPW";
+	}
+	
+	@RequestMapping(value = "/findPW.do", method = RequestMethod.GET)
+	public void findPWact(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("tel") String tel, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter writer = response.getWriter();
+		
+		if(memberService.findPW(id, name, tel)) {
+			writer.print("change");
+		} else {
+			writer.print("해당 아이디가 없습니다");
+		}
+	}
+	
+	@RequestMapping(value = "/pwChange", method = RequestMethod.GET)
+	public String findPW_Change() {
+		return "member/findPWChange";
+	}
+	
+	@RequestMapping(value = "/findPW_update", method = RequestMethod.POST)
+	public void pwd_update(@RequestParam("id") String id, @RequestParam("new_pwd") String new_pwd, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		System.out.println("Controller!!!!!!!!!!!!");
+
+		memberService.pwd_change(id, new_pwd);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>window.close();</script>");
+	}
 }

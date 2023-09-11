@@ -3,8 +3,8 @@ package com.spring.summerboot2;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,13 @@ public class HomeController {
     	washList = washlistService.washList();
     	ModelAndView mav = new ModelAndView();
     	mav.addObject("washList", washList);
-
+    	
+    	Map<Integer, Object> star = washlistService.storeStar(); // 지점별 별점
+    	mav.addObject("star", star);
+    	
+    	Map<Integer, Object> reviewCnt = washlistService.reviewCnt(); // 지점별 리뷰수
+    	mav.addObject("reviewCnt", reviewCnt);
+    	
 		LocalDate today = LocalDate.now();
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");

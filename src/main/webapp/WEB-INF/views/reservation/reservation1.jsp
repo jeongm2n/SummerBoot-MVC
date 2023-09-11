@@ -59,7 +59,7 @@
 	
 	//Next>버튼 클릭 시 예약페이지2로 이동
     function goReservation2(){
-    	if(clickedMD==null || selectedHM==null ||shopName==null){
+    	if(clickedMD==null || selectedHM=='null' ||shopName==null){
     		alert("날짜, 시간을 확인해주세요");
     		return false;
     	}else{
@@ -90,7 +90,7 @@
 </head>
 
 <body>
-	<section class="container py-5">
+	<section class="container py-5" style="margin-top:10%;">
 		<div id="wrapper">
 			<script
 				src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

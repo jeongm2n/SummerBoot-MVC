@@ -172,7 +172,7 @@ public class MemberDAO {
 	
 				pstmt.executeUpdate();
 				pstmt.close();
-				
+				con.close();
 				change = true;
 			}
 		} catch (Exception e) {
@@ -180,6 +180,26 @@ public class MemberDAO {
 		}
 		
 		return change;
+	}
+	
+	public void pwd_change(String id, String new_pwd) {
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "UPDATE sb_member";
+			sql += " SET pwd=? WHERE id = ?";
+			System.out.println("prepareStatement : " + sql);
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, new_pwd);
+			pstmt.setString(2, id);
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public boolean update(String user_id, String tel, String address, String email, String email_yn) {
@@ -200,7 +220,7 @@ public class MemberDAO {
 
 			pstmt.executeUpdate();
 			pstmt.close();
-			
+			con.close();
 			change = true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -455,5 +475,52 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String findID(String name, String tel) {
+		String id = "";
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "SELECT id FROM sb_member WHERE mem_name=? AND tel=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, tel);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getString("id");
+			}
+			pstmt.close();
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+	
+	public boolean findPW(String id, String name, String tel) {
+		boolean chk = false;
+		try {
+			con = DBconn.getDBCP();
+			
+			String sql = "SELECT count(*) as cnt FROM sb_member WHERE mem_name=? AND tel=? AND id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, tel);
+			pstmt.setString(3, id);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getInt("cnt") == 1) {chk=true;}
+			}
+			pstmt.close();
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return chk;
 	}
 }

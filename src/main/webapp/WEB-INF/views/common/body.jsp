@@ -12,11 +12,11 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06a1b9ec0da85dcbc94968ce7bd3be22&libraries=services"></script>
 </head>
 <body>
-	<div id="div_load" style="display: none">
+	<div id="div_load" style="display: none;z-index:1000;">
 		<img id="loading_img" src="${path }/resources/assets/img/apiLoading.gif">
 	</div>
 	<!-- start 세차장 배너 -->
-	<div class="carousel slide" data-bs-ride="carousel" id="template-mo-zay-hero-carousel" style="background:rgba(248, 240, 229,0.6) !important;"><!--  class="carousel slide" data-bs-ride="carousel"  -->
+	<div class="carousel slide" data-bs-ride="carousel" id="template-mo-zay-hero-carousel" style="margin-top:10%;background:rgba(248, 240, 229,0.6) !important;"><!--  class="carousel slide" data-bs-ride="carousel"  -->
 		<ol class="carousel-indicators">
 			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
 			<li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
@@ -150,13 +150,14 @@
 							<img src="${path}/resources/assets/img/${list.img}" class="card-img-top" alt="..." height=100%>
 						</div>
 						<div class="card-body list-card" style="align-items: center;">
-							<ul class="list-unstyled d-flex justify-content-between star">
+							<ul class="list-unstyled d-flex justify-content-between align-items-center star">
 								<li>
-									<i class="text-warning fa fa-star"></i>
-									<i class="text-warning fa fa-star"></i>
-									<i class="text-warning fa fa-star"></i>
-									<i class="text-muted fa fa-star"></i>
-									<i class="text-muted fa fa-star"></i>
+									<c:forEach var="i" begin="1" end="${star[list.no] }" step="1">
+										<i class="text-warning fa fa-star"></i>
+									</c:forEach>
+									<c:forEach var="i" begin="${star[list.no]+1 }" end="5" step="1">
+										<i class="text-muted fa fa-star"></i>
+									</c:forEach>
 								</li>
 								<li class="storeName text-right">${list.name }</li>
 							</ul>
@@ -176,7 +177,14 @@
 							</div>
 							<div class="list-regist">
 								<div>
-									<p class="text-muted">Reviews (24)</p>
+									<c:choose>
+										<c:when test="${reviewCnt.containsKey(list.no)}">
+											<p class="text-muted">Reviews (${reviewCnt[list.no] })</p>
+										</c:when>
+										<c:when test="${!reviewCnt.containsKey(list.no)}">
+											<p class="text-muted">Reviews (0)</p>
+										</c:when>
+									</c:choose>
 								</div>
 								<div>
 									<input type="button" id="btn_res" class="btn-join" value="예약하기" onclick="reservation(${list.no },'0','0');">
@@ -463,7 +471,10 @@
 		function getTodayResList(todayres) {
 			siteNo = todayres;
 			var today = new Date();
-			let hours = today.getHours();
+			let hours = today.getHours(); // 현재시간
+			if(hours < 9) { // 오픈시간이 9시부터라서 그 이전시간의 데이터들을 출력하지않기위해!
+				hours = 8;
+			}
 			//비동기
 			$.ajax({
 				type   : "GET",
@@ -486,7 +497,7 @@
 						<tbody >`
 					if (!data || data.length === 0) {
 						/* baseTable += `<tr> <td colspan="4" style="text-align: center">오늘 예약이 없습니다.</td> </tr>`; */
-						for (let i = hours+1; i < 24; i++) {
+						for (let i = hours+1; i < 24; i++) { // 현재시간 이후의 데이터만 불러오도록
                             let hour        = data.filter(item => getStringBeforeSymbol(item.startTime, ':') == i).length //시간대의 예약건수
                             let weatherIcon = getWeatherIcon(i) //날씨
 							baseTable += `

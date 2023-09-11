@@ -15,7 +15,7 @@
 
 <body>
 	<c:set var="file_repo" value="/summerboot2/resources/assets/product/"/>
-	<section class="bg-light">
+	<section class="bg-light" style="margin-top:10%;">
 		<div class="container py-5">
 			<div class="col-lg-12 align-items-stretch" id="cart" >
 				<form id="cartForm" method="get" action="../pay/inform">

@@ -77,5 +77,23 @@ public class MemberServiceImpl implements MemberService {
 		MemberDAO dao =  new MemberDAO();
 		dao.update_status(status, order_num);
 	}
+
+	@Override
+	public String findID(String name, String tel) {
+		MemberDAO dao =  new MemberDAO();
+		return dao.findID(name, tel);
+	}
+
+	@Override
+	public boolean findPW(String id, String name, String tel) {
+		MemberDAO dao =  new MemberDAO();
+		return dao.findPW(id, name, tel);
+	}
+
+	@Override
+	public void pwd_change(String id, String new_pwd) {
+		MemberDAO dao =  new MemberDAO();
+		dao.pwd_change(id, new_pwd);
+	}
 	
 }

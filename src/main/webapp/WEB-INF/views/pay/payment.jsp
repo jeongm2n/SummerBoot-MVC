@@ -93,7 +93,7 @@
 	<%@ include file="../common/header.jsp"%>
     
 <!--     부트스트랩 그리드 -->
-	<div class="main row justify-content-md-center">
+	<div class="main row justify-content-md-center" style="margin-top:10%;">
 	<!--     모바일화면에서 or 작은 화면에서 보일 상품 정보 -->
       <div class="mobile_pro_inform col col-lg-5">
         <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a>${total_price}₩</a></button>
