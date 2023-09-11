@@ -10,7 +10,7 @@
 
 <body id="page-top">
     <!-- Page Wrapper -->
-    <c:set var="file_repo" value="/summerboot2/resources/assets/img/"/>
+    <c:set var="file_repo" value="${path }/resources/assets/product/"/>
     <div id="wrapper">
 		<%@ include file="./common/sidebar.jsp" %>
 

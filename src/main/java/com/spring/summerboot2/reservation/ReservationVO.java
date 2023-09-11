@@ -12,6 +12,7 @@ public class ReservationVO {
 	private String endTime;
 	private String order_num;
 	private String shop;
+	private boolean review;
 
 	public ReservationVO(String startTime, String useTime) {
 		this.startTime=startTime;
@@ -39,7 +40,7 @@ public class ReservationVO {
 	
 	
 
-	public ReservationVO(String order_num, String shop, String res_date, int site, String startTime, String useTime, String endTime, String qr_img) {
+	public ReservationVO(String order_num, String shop, String res_date, int site, String startTime, String useTime, String endTime, String qr_img, int no, int res_no, boolean review) {
 		super();
 		this.order_num = order_num;
 		this.shop = shop;
@@ -49,6 +50,17 @@ public class ReservationVO {
 		this.useTime = useTime;
 		this.endTime = endTime;
 		this.qr_img = qr_img;
+		this.no = no;
+		this.res_no = res_no;
+		this.review = review;
+	}
+
+	public boolean isReview() {
+		return review;
+	}
+
+	public void setReview(boolean review) {
+		this.review = review;
 	}
 
 	public int getRes_no() {

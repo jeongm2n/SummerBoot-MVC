@@ -153,7 +153,7 @@
 							<ul class="list-unstyled d-flex justify-content-between align-items-center star">
 								<li>
 									<c:forEach var="i" begin="1" end="${star[list.no] }" step="1">
-										<i class="text-warning fa fa-star"></i>
+										<i class="text-warning fa fa-star" style="color:#FD8008;"></i>
 									</c:forEach>
 									<c:forEach var="i" begin="${star[list.no]+1 }" end="5" step="1">
 										<i class="text-muted fa fa-star"></i>
@@ -179,13 +179,12 @@
 								<div>
 									<c:choose>
 										<c:when test="${reviewCnt.containsKey(list.no)}">
-											<p class="text-muted">Reviews (${reviewCnt[list.no] })</p>
+											<p class="text-muted" onclick="showReview(${list.no })">Reviews (${reviewCnt[list.no] })</p>
 										</c:when>
 										<c:when test="${!reviewCnt.containsKey(list.no)}">
-											<p class="text-muted">Reviews (0)</p>
+											<p class="text-muted" onclick="showReview(${list.no })">Reviews (0)</p>
 										</c:when>
 									</c:choose>
-									<a onclick="showReview()"> <p style="color: #4f5050">Reviews (24)</p> </a>
 								</div>
 								<div>
 									<input type="button" id="btn_res" class="btn-join" value="예약하기" onclick="reservation(${list.no },'0','0');">
@@ -586,9 +585,9 @@
 
 
 		// 세차장리뷰 팝업
-		function showReview() {
+		function showReview(no) {
 			try {
-				var url = "${path}/review/new_rv";
+				var url = "${path}/review/new_rv?store=" + no;
 				var option = "width=1000, height=500, top=130, left=250";
 				window.open(url, "세차장리뷰", option)
 			} catch (error) {

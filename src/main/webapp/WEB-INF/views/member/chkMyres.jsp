@@ -17,6 +17,16 @@
 			var status = "width=400,height=400,top=100,left=200,location=no,scrollbars=no";
 			window.open(url,qrCode,status)
 		}
+		
+		function showReview(no, res_no) {
+			try {
+				var url = "${path}/review/reviewWrite?store=" + no + "&res_no=" + res_no;
+				var option = "width=1000, height=500, top=130, left=250";
+				window.open(url, "세차장리뷰", option)
+			} catch (error) {
+				console.error("에러 발생:", error);
+			}
+		}
 	</script>
 </head>
 <body>
@@ -60,7 +70,13 @@
 									<c:forEach var="data" items="${afterres }" varStatus="i">
 										<tr class="restr">
 											<td>${data.order_num }</td><td>${data.shop }</td><td>${data.res_date }</td><td>${data.site }</td>
-											<td>${data.startTime } ~ ${data.endTime }</td><td id="review">리뷰작성</td>
+											<td>${data.startTime } ~ ${data.endTime }</td>
+											<c:if test="${!data.review}">
+												<td id="review" onclick="showReview(${data.no }, ${data.res_no })">리뷰작성</td>
+											</c:if>
+											<c:if test="${data.review}">
+												<td></td>
+											</c:if>
 										</tr>
 									</c:forEach>
 								</tbody>
