@@ -63,7 +63,7 @@
 												    	<h4 style="color: #FD8008;">배송중</h4>
 								    						<b>대한통운 : ${list.tracking}</b>
 								  				  	</c:when>
-													<c:when test="${list.status eq '배송 완료'}">
+													<c:when test="${list.status eq '배송완료'}">
 												  		<h4 style="color: black">배송 완료</h4>
 												  			<b>대한통운 : ${list.tracking}</b>
 												  	</c:when>
@@ -79,21 +79,21 @@
 												</c:choose>
 						    				</td>
 											<td class="col-2 button-line">
-												<c:if test="${list.review ne 1 && list.status eq '배송 완료'}">
+												<c:if test="${list.review ne 1 && list.status eq '배송완료'}">
 													<div style="margin-bottom:1%;">
 												        <button type="button" class="review_btn" onclick="add_review('${list.product_id}', '${list.product_name}', '${list.img}' ,'${list.order_num}')">리뷰작성</button>
 													</div>
 											    </c:if>											   
-												<c:if test="${list.status eq 'paid' || list.status eq '배송 준비중' && list.paymethod eq 'card'}">
+												<c:if test="${list.status eq 'paid' || list.status eq '배송 준비중'}">
 												  <c:choose>
 													<c:when test="${list.paymethod eq 'card'}">
 													  <div style="margin-bottom:1%;">
-											          	<button style="border-radius:5px;border:1px solid grey;color:grey;" onclick="cardcancel('취소 요청','${list.order_num}')">주문취소</button>
+											          	<button style="border-radius:5px;border:1px solid grey;color:grey;" onclick="cardcancel('취소 요청','${list.order_num}')">취소확인</button>
 													  </div>
 													</c:when>
 													<c:when test="${list.paymethod eq 'vbank'}">
 													  <div style="margin-bottom:1%;">
-											          	<button style="border-radius:5px;border:1px solid grey;color:grey;" onclick="vbankcancel('${list.order_num}')">주문취소</button>
+											          	<button style="border-radius:5px;border:1px solid grey;color:grey;" onclick="vbankcancel('${list.order_num}')">취소확인</button>
 													  </div>
 													</c:when>
 												  </c:choose>

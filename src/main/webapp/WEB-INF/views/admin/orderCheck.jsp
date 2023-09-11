@@ -96,7 +96,7 @@
 																  <c:when test="${list.status eq '배송중'}">
 																    <span class="status" style="background-color: mediumaquamarine;">배송중</span>
 																  </c:when>
-																  <c:when test="${list.status eq '배송 완료'}">
+																  <c:when test="${list.status eq '배송완료'}">
 																    <span class="status" style="background-color: #FD8008;">배송 완료</span>
 																  </c:when>
 																</c:choose>
@@ -126,7 +126,7 @@
 				                                              <button type="button" class="other_btn" onclick="popuptracking('${list.order_num}')"> 운송장 입력 </button><br>
 				                                            </c:if>
 				                                            <c:if test='${list.status eq "배송중"}'>
-				                                              <button type="button" class="other_btn" onclick="update_status('배송 완료','${list.order_num}')"> 배송 완료 확인 </button><br>
+				                                              <button type="button" class="other_btn" onclick="update_status('배송완료','${list.order_num}')"> 배송완료 확인 </button><br>
 				                                            </c:if>
 				                                            <c:if test='${list.status eq "취소 요청"}'>
 				                                              <c:choose>
