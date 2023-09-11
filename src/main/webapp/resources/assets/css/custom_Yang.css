@@ -254,9 +254,8 @@ input:-ms-input-placeholder {color:#FD8008;}
 }
 
 .product .img {
-	float:left;
-	width: 75px;
-	height : 75px;
+	width: 5em;
+	height : 5em;
 	border: solid #adb5bd 1px; 
 	border-radius: 10px;
 }
@@ -266,9 +265,12 @@ input:-ms-input-placeholder {color:#FD8008;}
   	text-decoration-line: none;
 }
 .product .text_box {
-	width: 274px;
-	height: 25px;
+	display:block;
+	width: 20rem;
+	height: 1.5rem;
 	margin: 0px;
+	overflow:hidden;
+	text-overflow:ellipsis;
 }
 .product .amount {
 	font-weight: 800 !important;

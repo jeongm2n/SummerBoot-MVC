@@ -173,12 +173,12 @@
         <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
 		  	<img src="${path}/resources/assets/product/${product.img}" class="img" >
-		  	<div style="display:flex;float:right;">
+		  	<div style="display:flex;flex-direction: column;justify-content: space-evenly;">
 		  	  <div class="text_box">
-		  	    <a class="amount">x ${product.quantity}</a>
+		  	    <p class="amount">x ${product.quantity}</p>
 		  	  </div>
-		  	  <div class="text_box" style="text-align: center;">
-		  	    <a class="name">${product.name}</a>
+		  	  <div class="text_box">
+		  	    <p class="name" style="overflow: hidden;text-overflow: ellipsis;display: block;white-space: nowrap;">${product.name}</p>
 		  	  </div>
 		  	  <div class="text_box">
 		  	    <a class="price">${product.price}원</a>
@@ -214,17 +214,12 @@
 </html>
  
  <style>
- /* .product{
- width: 70%;
-    height: 10%;
-    vertical-align: middle;
-    display: flex;
-    justify-content: space-between;
- } */
-  /* product부분 */
- 	/* display: flex;
-    float: right;
-    flex-direction: column;
-    width: 76%;
-    justify-content: space-evenly; */
+ 	p{height:100%;}
+	.product{
+		width: 70%;
+		height: 10%;
+		vertical-align: middle;
+		display: flex;
+		justify-content: space-between;
+	}
  </style>

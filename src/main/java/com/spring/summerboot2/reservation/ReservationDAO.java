@@ -1,13 +1,16 @@
 package com.spring.summerboot2.reservation;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.spring.summerboot2.DBconn;
+import com.spring.summerboot2.shop.ReviewVO;
 
 public class ReservationDAO {
 
@@ -134,7 +137,7 @@ public class ReservationDAO {
 		try {
 			conn = DBconn.getDBCP();
 			
-			String sql = "SELECT order_num, name, res_date, site, startTime, useTime, qr_img FROM sb_reservation, sb_carwash "
+			String sql = "SELECT order_num, sb_carwash.no, name, res_date, site, startTime, useTime, qr_img, res_no, review FROM sb_reservation, sb_carwash "
 					+ "WHERE member_id='"+user_id+"' AND "
 							+ "sb_carwash.no = sb_reservation.no ORDER BY res_date DESC";
 			
@@ -150,7 +153,7 @@ public class ReservationDAO {
 				
 				String endTime = timeCal(startTime,useTime);
 				vo = new ReservationVO(rs.getString("order_num"),rs.getString("name"),rs.getString("res_date"),rs.getInt("site"),startTime,
-						Integer.toString(useTime),endTime,rs.getString("qr_img"));
+						Integer.toString(useTime),endTime,rs.getString("qr_img"),rs.getInt("sb_carwash.no"), rs.getInt("res_no"), rs.getBoolean("review"));
 				res.add(vo);
 			}
 			
@@ -158,5 +161,69 @@ public class ReservationDAO {
 			e.printStackTrace();
 		}
 		return res;
+	}
+	
+	public boolean reviewInsert(String id, String text, int rating, int store, int res_no) {
+		PreparedStatement pstmt;
+		try {
+			conn = DBconn.getDBCP();
+			
+			String sql = "INSERT INTO sb_reviews(member_id, point, contents, carwash_no) VALUES (?, ?, ?, ?)";
+			
+			System.out.println("sql : " + sql);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			pstmt.setInt(2, rating);
+			pstmt.setString(3, text);
+			pstmt.setInt(4, store);
+			
+			if(pstmt.executeUpdate() == 1) {
+				sql = "UPDATE sb_reservation SET review=1 WHERE res_no = ?";
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, res_no);
+				pstmt.executeUpdate();
+				return true;
+			}
+			
+			pstmt.close();
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public List<ReviewVO> reviewList(int store){
+		PreparedStatement pstmt;
+		List<ReviewVO> review = new ArrayList();
+		ReviewVO vo;
+		
+		try {
+			conn = DBconn.getDBCP();
+			
+			String sql = "SELECT member_id, point, contents, DATE_FORMAT(rev_date, '%Y-%m-%d') as rev_date FROM sb_reviews WHERE carwash_no=" + store;
+			
+			System.out.println("sql : " + sql);
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				String member_id = rs.getString("member_id");
+				int point = rs.getInt("point");
+				String contents = rs.getString("contents");
+				String date = rs.getString("rev_date");
+				
+				vo = new ReviewVO(member_id, point, contents, date);
+				review.add(vo);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return review;
 	}
 }

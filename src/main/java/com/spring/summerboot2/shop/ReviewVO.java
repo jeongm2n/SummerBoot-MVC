@@ -19,6 +19,13 @@ public class ReviewVO {
 		this.date = date;
 	}
 	
+	public ReviewVO(String member_id, int point, String contents, String date) {
+		this.member_id = member_id;
+		this.point = point;
+		this.contents = contents;
+		this.date = date;
+	}
+	
 	
 	public String getMember_id() { return member_id;}
 	public void setMember_id(String member_id) { this.member_id = member_id;}
