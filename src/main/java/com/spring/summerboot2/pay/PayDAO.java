@@ -26,7 +26,7 @@ public class PayDAO {
 			
 			String email = rs.getString("email"); String u_name = rs.getString("mem_name"); String u_tel = rs.getString("tel").replace("-", "");
 			int point = rs.getInt("point");	String d_address = rs.getString("delivery_addr");
-			if(rs.wasNull()) {
+			if(rs.wasNull() || d_address.equals("")) {
 				inform = new InformVO(u_tel, email, u_name, point);
 			}
 			else {
@@ -40,7 +40,7 @@ public class PayDAO {
 			conn.close();
 			
 			return inform;
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
