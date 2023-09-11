@@ -115,6 +115,9 @@
 				                                            <td class="align-middle">${list.product_id }(${list.product_name })</td>
 				                                            <td class="align-middle">${list.mount}</td>
 				                                            <td class="price align-middle">물품 가격 : ${list.total_price-list.delivery_fee}￦<br>
+				                                            <c:if test='${(list.total_price - (list.total_price-list.delivery_fee) - list.delivery_fee) > 0}'>
+				                                            포인트 : ${list.total_price - (list.total_price-list.delivery_fee) - list.delivery_fee}￦<br>
+				                                          	</c:if>
 				                                            배송비 : ${list.delivery_fee}￦<br>
 				                                            총 가격 : ${list.total_price}￦</td>
 				                                            <td class="buttons align-middle">
