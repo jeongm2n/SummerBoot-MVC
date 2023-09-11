@@ -31,7 +31,7 @@
     
     
 <!--     부트스트랩 그리드 -->
-    <div class="main row justify-content-md-center">
+    <div class="main row justify-content-md-center" style="margin-top:10%;">
 <!--     모바일화면에서 or 작은 화면에서 보일 상품 정보 -->
       <div class="mobile_pro_inform col col-lg-5">
         <button type="button" class="collapsible" onclick="collapse(this);">상품 정보 <a>가격 : 계산중</a></button>
@@ -169,11 +169,11 @@
       </div>
 <!--       pc or 큰화면에서 보일 제품 정보 -->
       <div class="pc_pro_inform col col-lg-5">
-        <div class="container">
+        <div class="container" style="width:80%;">
         <c:forEach var="product" items="${product}" varStatus="status">
 		  <div class="product">
 		  	<img src="${path}/resources/assets/product/${product.img}" class="img" >
-		  	<div style="float:right;">
+		  	<div style="display:flex;float:right;">
 		  	  <div class="text_box">
 		  	    <a class="amount">x ${product.quantity}</a>
 		  	  </div>
@@ -213,3 +213,18 @@
 </body>
 </html>
  
+ <style>
+ /* .product{
+ width: 70%;
+    height: 10%;
+    vertical-align: middle;
+    display: flex;
+    justify-content: space-between;
+ } */
+  /* product부분 */
+ 	/* display: flex;
+    float: right;
+    flex-direction: column;
+    width: 76%;
+    justify-content: space-evenly; */
+ </style>

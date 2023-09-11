@@ -41,7 +41,7 @@
 	<%@ include file="../common/header.jsp"%>
 
 		<!-- SECTION -->
-		<div class="section">
+		<div class="section" style="margin-top:10%;">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->

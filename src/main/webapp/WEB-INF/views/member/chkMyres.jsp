@@ -20,7 +20,7 @@
 	</script>
 </head>
 <body>
-	<div class="container" style="margin-bottom:7em;">
+	<div class="container" style="margin-bottom:7em;margin-top:10%;">
 		<div class="bg">
 			<div class="myresdiv">
 				<h1>📆나의 예약현황</h1>

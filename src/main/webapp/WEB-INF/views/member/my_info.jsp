@@ -67,7 +67,7 @@
 
 </head>
 <body> 
-	<div class="container py-5" id="wrap">
+	<div class="container py-5" id="wrap" style="margin-top:10%;">
        	<div class="col-lg-6 m-auto ">
 	       	<h2 class="h2 text-center border-bottom border-2 pb-3" style="padding-top: 5.5rem!important;">내 정보</h2>
        	</div>

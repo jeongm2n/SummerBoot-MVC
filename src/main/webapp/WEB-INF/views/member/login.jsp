@@ -32,17 +32,24 @@
             alert(message);
         }
     });
+	function findID() {
+		window.open("${path}/member/findID", "name(about:blank)", "width=600, height=600");
+	}
+	
+	function findPW() {
+		window.open("${path}/member/findPW", "name(about:blank)", "width=600, height=600");
+	}
 </script>
 
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
 	
-	<div class="container py-5" id="wrap">
+	<div class="container py-5" id="wrap" style="margin-top:10%;">
        	<div class="col-lg-6 m-auto ">
 	       	<h2 class="h2 text-center border-bottom border-2 pb-3" style="padding-top: 5.5rem!important;">로그인</h2>
        	</div>
-        <div class="row py-5">
+        <div class="row py-5" style="padding-bottom: 2rem !important;">
             <form class="col-md-4 m-auto" method="post" role="form" id="loginForm" action="login.do">
             	<div class="input-group mb-3">
                     <input type="text" class="form-control mt-1" id="id" name="id" placeholder="ID" value="dool">
@@ -59,6 +66,11 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div style="text-align:center;font-size:18px !important;">
+        	<span onclick="findID()" style="cursor:pointer;">아이디찾기</span>
+        	<span> | </span>
+        	<span onclick="findPW()" style="cursor:pointer;">비밀번호찾기</span>
         </div>
     </div>
 	

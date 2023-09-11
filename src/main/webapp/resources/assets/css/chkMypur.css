@@ -1,10 +1,9 @@
 .status{
-    text-align: center;
-    font-size: 14pt;
-	padding: 0px 5px;
-    height: 20px;
+    font-size: 1em;
+	padding: 0px 5px; 
+    height: 1.8em;
     border-radius: 5px;
-    color: white;
+    color: white; 
 }
 
 .btn_popup{
@@ -19,6 +18,7 @@
 	background-color: white;
 	vertical-align: middle;
 }
+
 .btn_popup:hover{
 	background-color: #FD8008;
 	color: white;
@@ -52,17 +52,9 @@
 .review_btn{
 	float:right;
 	width: auto;
-	height: auto;
-	margin-top: 5px;
-	padding: 0px 5px !important;
-	font-size: 14pt;
-	font-weight: 400;
-	padding: 0px;
 	border: 1px solid #FD8008;
 	color: #FD8008;
 	border-radius: 5px;
-	background-color: white;
-	vertical-align: middle;
 }
 
 .pur_btn{
@@ -86,15 +78,8 @@
 	background-color: #FD8008;
 	color: white;
 }
-
-.purtable{
+body, ul, li, p, a, label, input, div, .purtable, h1 {
 	font-family: 'IBM Plex Sans KR', sans-serif;
-}
-
-.container{
-/*	margin-top : 50px;*/
-	padding-top : 50px;
-	width : 70%
 }
 
 .imgtd{
@@ -103,9 +88,9 @@
 }
 
 .tbody1{
-	height : 50px;
-	border-top : 5px solid black;
-	border-bottom : 2px solid black;
+	height : 3rem;
+	border-top : 2px solid black;
+	border-bottom: 1.5px solid #D8D8D8;
 }
 
 .col-4 b{
@@ -113,20 +98,9 @@
 	color : #696969;
 }
 
+.tbody {vertical-align:middle;}
 .tbody2 tr{
-	border-top : 2px solid gray;
-	height : 150px;
-	vertical-align: middle;
-}
-
-.td2{
-	width : 38%;
-	font-size : 12pt;
-}
-
-.td3{
-	vertical-align: middle;	
-	width : 15%;
+	height : 10em;
 }
 
 .td2 span{
@@ -148,4 +122,11 @@ caption{
 .chkimg{
 	width : 10px;
 	height : 10px;	
+}
+
+#payInfo{
+	cursor:pointer;
+}
+#payInfo:hover{
+	color:#FD8008;
 }
