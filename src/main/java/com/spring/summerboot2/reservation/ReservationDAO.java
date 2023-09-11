@@ -138,8 +138,7 @@ public class ReservationDAO {
 			conn = DBconn.getDBCP();
 			
 			String sql = "SELECT order_num, sb_carwash.no, name, res_date, site, startTime, useTime, qr_img, res_no, review FROM sb_reservation, sb_carwash "
-					+ "WHERE member_id='"+user_id+"' AND "
-							+ "sb_carwash.no = sb_reservation.no ORDER BY res_date DESC";
+					+ "WHERE member_id='"+user_id+"' AND sb_carwash.no = sb_reservation.no";
 			
 			System.out.println("sql : " + sql);
 			
