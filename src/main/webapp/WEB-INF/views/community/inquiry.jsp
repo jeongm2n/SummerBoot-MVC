@@ -99,11 +99,11 @@
 					                    <div class="card-body-inquiry">
 							            	<div class="inquiry-answer">
 							            		<div class="h1" style="font-family: 'Rubik', sans-serif;">Q.</div>
-							            		<div class="h4" style="padding-top:2%;font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px !important;text-align:left;">${list.content }</div>
+							            		<div class="h4" style="padding-top:2%;font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px !important;text-align:left;white-space: pre;">${list.content }</div>
 							                </div>
 							                <div class="inquiry-answer" <c:if test="${list.state eq '답변대기'}" >style="display:none;"</c:if>>
 							                    <div class="h1" style="font-family: 'Rubik', sans-serif;">A.</div>
-							            		<div class="h4" style="padding-top:2%;font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px !important;text-align:left;">${list.answer }</div>
+							            		<div class="h4" style="padding-top:2%;font-family: 'IBM Plex Sans KR', sans-serif;font-size: 20px !important;text-align:left;white-space: pre;">${list.answer }</div>
 							                </div>
 						                </div>
 									</td>  

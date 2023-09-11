@@ -14,7 +14,7 @@
 			<div style="border-bottom:3px solid black;"><h1 style="margin-bottom:1%;font-size:2rem;">주문배송확인</h1></div>
 			<table class="table purtable">
 				<thead>
-					<tr id="pur-title">
+					<tr id="pur-title" style="border-bottom: 2px solid gray;">
 						<td class="col-6" colspan=2>주문정보</td>
 						<td class="col-3">주문상태</td>
 						<td class="col-3"></td>
@@ -22,7 +22,7 @@
 				</thead>
 				<c:choose>
 				    <c:when test="${empty orderList}">
-						<tr><td>주문이 없습니다.</td></tr>
+						<tr style="text-align:center;"><td colspan=4>주문이 없습니다.</td></tr>
 					</c:when>
 					<c:when test="${!empty orderList }">
 					    <c:forEach var="num" items="${orderNum}">

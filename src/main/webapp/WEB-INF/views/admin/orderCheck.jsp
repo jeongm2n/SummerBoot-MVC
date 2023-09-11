@@ -119,25 +119,26 @@
 				                                            총 가격 : ${list.total_price}￦</td>
 				                                            <td class="buttons align-middle">
 				                                            <div class="pur_btn">
-				                                            <c:if test='${list.status eq "paid"}'>
-				                                              <button type="button" class="other_btn" onclick="update_status('배송 준비중','${list.order_num}')"> 결제 확인 </button><br>
-				                                            </c:if>
-				                                            <c:if test='${list.status eq "배송 준비중"}'>
-				                                              <button type="button" class="other_btn" onclick="popuptracking('${list.order_num}')"> 운송장 입력 </button><br>
-				                                            </c:if>
-				                                            <c:if test='${list.status eq "배송중"}'>
-				                                              <button type="button" class="other_btn" onclick="update_status('배송완료','${list.order_num}')"> 배송완료 확인 </button><br>
-				                                            </c:if>
-				                                            <c:if test='${list.status eq "취소 요청"}'>
-				                                              <c:choose>
-				                                                <c:when test='${list.paymethod eq "card"}'>
-				                                                  <button type="button" class="other_btn" onclick="CancelPayments('${list.imp_uid}', '구매자 요청');"> 취소 확인 </button><br>
-				                                                </c:when>
-				                                                <c:when test='${list.paymethod eq "vbank"}'>
-				                                                  <button type="button" class="other_btn" onclick="VbankCancelPayments('${list.order_num}');"> 취소 확인 </button><br>
-				                                                </c:when>
-				                                              </c:choose>
-				                                            </c:if>				
+					                                            <c:if test='${list.status eq "paid"}'>
+					                                              <button type="button" class="other_btn" onclick="update_status('배송 준비중','${list.order_num}')"> 결제 확인 </button><br>
+					                                            </c:if>
+					                                            <c:if test='${list.status eq "배송 준비중"}'>
+					                                              <button type="button" class="other_btn" onclick="popuptracking('${list.order_num}')"> 운송장 입력 </button><br>
+					                                            </c:if>
+					                                            <c:if test='${list.status eq "배송중"}'>
+					                                              <button type="button" class="other_btn" onclick="update_status('배송완료','${list.order_num}')"> 배송완료 확인 </button><br>
+					                                            </c:if>
+					                                            <c:if test='${list.status eq "취소 요청"}'>
+					                                              <c:choose>
+					                                                <c:when test='${list.paymethod eq "card"}'>
+					                                                  <button type="button" class="other_btn" onclick="CancelPayments('${list.imp_uid}', '구매자 요청');"> 취소 확인 </button><br>
+					                                                </c:when>
+					                                                <c:when test='${list.paymethod eq "vbank"}'>
+					                                                  <button type="button" class="other_btn" onclick="VbankCancelPayments('${list.order_num}');"> 취소 확인 </button><br>
+					                                                </c:when>
+					                                              </c:choose>
+					                                            </c:if>		
+				                                            </div>		
 				                                            </td>
 				                                        </tr>
 					                            	</c:forEach>
