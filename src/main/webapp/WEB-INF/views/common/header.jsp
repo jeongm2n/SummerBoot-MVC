@@ -36,8 +36,18 @@
 	    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
 	        <div class="container text-light">
 	            <div class="w-100 d-flex justify-content-between">
-	                <div>Wash Boot에 오신걸 환영합니다!
-	                    <%--                로그인시 '아이디님'표시하기--%>
+	                <div>
+	                    <%
+							if (user_id != null) {
+						%>
+								Wash Boot에 오신걸 환영합니다! <%=user_id%>님
+						<%
+							} else {
+						%>
+							Wash Boot에 오신걸 환영합니다!
+	                    <%
+							}
+	                    %>
 	                </div>
 	            </div>
 	        </div>
