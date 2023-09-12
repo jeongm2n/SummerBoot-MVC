@@ -88,20 +88,15 @@
 												  <c:choose>
 													<c:when test="${list.paymethod eq 'card'}">
 													  <div style="margin-bottom:1%;">
-											          	<button style="border-radius:5px;border:1px solid grey;color:grey;" onclick="cardcancel('취소 요청','${list.order_num}')">취소확인</button>
+											          	<button style="border-radius:5px;border:1px solid grey;color:grey;" onclick="cardcancel('취소 요청','${list.order_num}')">주문취소</button>
 													  </div>
 													</c:when>
 													<c:when test="${list.paymethod eq 'vbank'}">
 													  <div style="margin-bottom:1%;">
-											          	<button style="border-radius:5px;border:1px solid grey;color:grey;" onclick="vbankcancel('${list.order_num}')">취소확인</button>
+											          	<button style="border-radius:5px;border:1px solid grey;color:grey;" onclick="vbankcancel('${list.order_num}')">주문취소</button>
 													  </div>
 													</c:when>
 												  </c:choose>
-											    </c:if>
-												<c:if test="${list.status ne '배송중' && list.status ne '배송완료' && list.status ne '취소 요청' && list.status ne 'cancelled'}">
-													<div style="margin-bottom:1%;">
-											        	<button style="border-radius:5px;border:1px solid grey;color:grey;">주문취소</button>
-													</div>
 											    </c:if>
 												<div class="my-qna">
 											        <button class="inquiry">문의하기</button>

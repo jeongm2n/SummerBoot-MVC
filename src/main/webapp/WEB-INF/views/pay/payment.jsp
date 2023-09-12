@@ -79,7 +79,7 @@
     }
     
     $(function(){
-    	if(${point eq null}){
+    	if(${point eq null} || point < 0 ){
     		document.getElementById("m_point_price").style.display = "none";
     		document.getElementById("p_point_price").style.display = "none";
     	}

@@ -152,12 +152,19 @@
 						<div class="card-body list-card" style="align-items: center;">
 							<ul class="list-unstyled d-flex justify-content-between align-items-center star">
 								<li>
-									<c:forEach var="i" begin="1" end="${star[list.no] }" step="1">
-										<i class="text-warning fa fa-star" style="color:#FD8008;"></i>
-									</c:forEach>
-									<c:forEach var="i" begin="${star[list.no]+1 }" end="5" step="1">
-										<i class="text-muted fa fa-star"></i>
-									</c:forEach>
+									<c:if test="${star[list.no] ne null}">
+		                              <c:forEach var="i" begin="1" end="${star[list.no] }" step="1">
+		                                 <i class="fa-solid fa fa-star" style="color:#FD8008;"></i>
+		                              </c:forEach>
+		                              <c:forEach var="i" begin="${star[list.no]+1 }" end="5" step="1">
+		                                 <i class="text-muted fa fa-star"></i>
+		                              </c:forEach>
+		                           </c:if>
+		                           <c:if test="${star[list.no] eq null}">
+		                              <c:forEach var="i" begin="1" end="5" step="1">
+		                                 <i class="fa-solid fa fa-star" style="color:#FD8008;"></i>
+		                              </c:forEach>
+		                           </c:if>
 								</li>
 								<li class="storeName text-right">${list.name }</li>
 							</ul>
