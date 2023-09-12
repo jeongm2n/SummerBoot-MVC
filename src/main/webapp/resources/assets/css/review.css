@@ -1,0 +1,74 @@
+.review {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.reviewForm fieldset{
+    display: inline-block; 
+    direction: rtl;
+    border: 0; 
+}
+.reviewForm input[type=radio]{
+    display: none;
+}
+.reviewForm input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 #FD8008; 
+}
+.star_input label{
+    font-size: 2em; 
+    color: transparent; 
+    text-shadow: 0 0 0 #f0f0f0; 
+}
+.star_input label:hover{
+    text-shadow: 0 0 0 #FD8008; 
+}
+.star_input label:hover ~ label{
+    text-shadow: 0 0 0 #FD8008;
+}
+.input_text{
+	width: 90%;
+	height: 30%;
+	border: 2px solid #FD8008;
+}
+
+.filelabel {
+	display: inline-block;
+	background-color: #FD8008;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 5px 15px;
+	margin-top: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+.filelabel:hover {
+	background-color: rgb(255, 128, 0);
+}
+#obj_img {
+	display: none;
+}
+.preview-image {
+	display: none;
+	align-items: center;
+	width: 100px;
+	height: 100px;
+	margin-top: 10px;
+	border-radius: 5px;
+}
+
+#submitBtn{
+	font-size: 10px;
+	display: inline-block;
+	background-color: #FD8008;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 5px 15px;
+	margin-top: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+#submitBtn:hover {
+	background-color: rgb(255, 128, 0);
+}

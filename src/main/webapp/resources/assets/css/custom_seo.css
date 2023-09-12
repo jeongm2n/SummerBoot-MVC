@@ -1,0 +1,283 @@
+/*
+Custom Css
+*/
+
+.span-time{
+	display : inline-block;
+	width : 20%;
+}
+
+.btn-secondary{
+	background-color: lightgray;	
+}
+
+.div-margin{
+	margin: 0 auto;
+    width: 50%;
+}
+
+.btn-h{
+	font-family: 'Gamja Flower', cursive;
+	font-size:25px !important;
+	padding:0;
+	border : none;
+  	border-radius : 10px;
+  	width : 15%;
+  	height:38px;
+  	margin : 2% 1%;
+  	background-color : #F5F5F5;
+}
+
+.btn-h:hover{
+	background-color : #FFDAB9;
+}
+
+.btn-click{
+	background-color : #FD8008;
+}
+
+.btn-outline-dark:hover{
+	background-color : #FD8008;
+}
+
+#wrapper{
+	width : 100%;
+	min-height : 1200px;
+	margin-top : 40px;
+	margin-bottom : 50px;
+	text-align : center;
+}
+
+.orange-button {
+	background-color: white;
+	color: #FD8008; 
+	border: 2px solid #FD8008; 
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 13pt;
+	cursor: pointer;
+}
+
+.btn-time{
+	color : white;
+	background-color: #FFDAB9;
+	border : none;
+}
+
+.shops{
+	border : none;
+  	border-radius : 20px;
+	background-color : #C0C0C0;
+	width : 150px !important;
+	height : 30px;
+}
+
+.btn-disabled{
+	font-family: 'Gamja Flower', cursive;
+	font-size:25px !important;
+	padding:0;
+	border : none;
+  	border-radius : 10px;
+  	width : 15%;
+  	height:38px;
+  	margin : 2% 1%;
+  	text-decoration : line-through;
+	/* background-color : #D3D3D3 */
+}
+
+.calendartb {
+  width : 100%;
+  height : 93%;
+  border-collapse : collapse;
+  text-align : center;
+  font-weight : bold
+}
+
+th, td {
+  text-align : center;
+  padding : 10px;
+  background-color : #f0f0f0;
+}
+
+td {
+  cursor : pointer;
+  /* background-color : #D3D3D3 */
+}
+
+.td-click:hover {
+  background-color : #FFDAB9;
+}
+
+.td-click{
+	background-color : #FFFFFF;
+}
+
+.selected{
+	background-color : #FFDAB9;
+}
+
+.thead{
+	background-color : #FFFFFF;
+}
+
+.div2, .div3, .div4{
+	margin-top : 30px;
+}
+
+.div2{
+	margin-left: auto;
+	margin-right: auto;
+	width : 600px;
+	height : 100px;
+}
+
+.div3{
+	width : 610px;
+	height : 400px;
+}
+
+.div4{
+	width : 630px;
+	height : 400px
+}
+
+.weatherdiv{
+	width : 100%;
+	height : 100%;
+	margin-top : 20px
+}
+
+.weathertb{
+	text-align : center;
+	width : 100%;
+	height : 100%;
+}
+
+.weathertd{
+	background-color: white;
+}
+
+.weatherimg{
+	width : 60px;
+	height : 60px
+}
+
+.div6{
+/*	너무 꽉차는 느낌이라 width를 95%로 바꿔봤어요!*/
+	width:95%;
+	max-width: 1240px;
+	min-width : 390px;
+	height:100px;
+	margin-top:40px;
+/*	가운데 정렬 하기 위해 추가했어요! 왼쪽에 붙어있더라구요*/
+	margin-right:auto;
+	margin-left:auto;
+}
+
+/*미디어 쿼리*/
+@media screen and (max-width: 1000px) {
+	.Point_sel { text-align:center; display: inline-block;}
+	.div2 { margin-left: auto !important;	margin-right: auto !important;		}
+	.div3 { margin-left: auto !important;	margin-right: auto !important; 		}
+	.m_div { text-align: center;}
+} 
+
+@media screen and (min-width: 1000px) {
+	.Point_sel { text-align:right; display: inline-block;}
+	.div2 { float:left;}
+	.div3 { float:right;}
+	.div4 { float:left;}
+} 
+
+.cutcard{
+	width : 90%;
+	margin-left : auto;
+	margin-right : auto;
+	background-color : transparent;	
+}
+
+/* beforediv, afterdiv를 div랑 Tb로 나눴어요! */
+.beforediv{
+	margin-top:10px;width : 95%;
+	margin-left:2.5%;
+	margin-right:2.5%;
+}
+.beforeTb{
+	height : 17em;
+	overflow-x : hidden;
+}
+.afterdiv{
+	margin-top:10px;width : 95%;
+	margin-left:2.5%;
+	margin-right:2.5%;
+}
+.afterTb{
+	height : 22em;
+	overflow-x : hidden;
+}
+.card{
+	margin-top : 50px;
+}
+
+.restable{
+	width:100%;	
+}
+
+.restr:hover{
+	background-color : rgba(255, 155, 80, 0.5); /* 색깔 변경 */
+}
+
+/* .restd:hover{
+	background-color :salmon;
+} */
+
+.qrPopup{
+	width : 100%;
+	height : 100%;
+}
+
+.qrImg{
+	width : 300px;
+	height : 300px;
+	margin-left : auto;
+	margin-right : auto;
+}
+
+.sandclock{
+	width:35px;
+	height:32px;
+	vertical-align: middle;
+}
+
+/* 글씨 통일하려구 지웠어요! */
+/* .myresfont{
+	font-family: 'Black Han Sans', sans-serif;
+	font-size : 24pt;
+	vertical-align: middle;
+}
+
+.myresdiv{
+	font-family: 'Black Han Sans', sans-serif;
+	text-align:center;
+	width:100%;
+} */
+
+.bg{
+	padding-top : 5em; /* px로 하면 모니터 크기에 따라 달라질 수 있다해서 em으로 변경*/
+	background-repeat : no-repeat;
+	background-size : cover
+}
+
+.myres_schedule{
+	width : 70px;
+	height : 73px;
+	vertical-align: middle;
+}
+
+.sunday-td{
+	color : #D71313;
+}
+
+.saturday-td{
+	color : #1D5D9B;
+}

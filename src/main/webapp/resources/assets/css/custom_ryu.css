@@ -1,0 +1,140 @@
+/*custom_ryu.css*/
+
+/*로그인*/
+.login_btn {
+    background-color: #FD8008;
+    color: #fff;
+    border-color: #FD8008;
+}
+
+/*메인예약현황*/
+a {
+    text-decoration-line: none;
+    color: black;
+}
+
+.table {
+    --bs-table-hover-bg: #FFDAB9 !important;
+}
+
+.pb-5 {
+    padding-bottom: 2rem;
+}
+
+.col-lg-3 {
+    width: 20%;
+}
+
+.btn-join:disabled {
+    background: #f1f3f5;
+    color: #6e707e;
+    border: 1px solid #6e707e;
+}
+
+/*세차가이드*/
+.video_modal_popup.reveal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999999
+}
+
+.video_modal_popup .video-wrapper {
+    position: relative;
+    width: 55%;
+    padding-bottom: 33%;
+    z-index: 9999999
+}
+
+.video_modal_popup .video-wrapper iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.video_modal_popup.reveal .video_modal_popup-closer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 9999999
+}
+
+#div_load{
+	display:block;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:99;
+	background:#f0f0f0;
+	filter:alpha(opacity=50);
+	opacity:0.5;
+	margin:auto;
+	padding:0;
+	text-align:center
+}
+
+#loading_img{
+	position:absolute;
+	width:150px; 
+	height:150px;
+	top:50%;
+	left:50%;
+	z-index:100;
+	transform : translate(-50%, -50%);
+}
+
+/*footer location*/
+#loc {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+/*세차장리뷰*/
+#star_rv input[type=radio] {
+    display: none;
+}
+
+#star_rv input[type=radio]:checked ~ label {
+    text-shadow: 0 0 0 #fd8008;
+}
+
+#star_rv label {
+    color: transparent;
+    text-shadow: 0 0 0 #F0F0F0;
+}
+
+#star_rv label:hover {
+    text-shadow: 0 0 0 #fd8008;
+}
+
+#star_rv label:hover ~ label {
+    text-shadow: 0 0 0 #F0F0F0;
+}
+
+#star_rv fieldset {
+    display: inline-block;
+    direction: rtl;
+}
+
+#text_rv {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    padding: 20px;
+}
+
+.rvForm {
+    padding: 20px;
+}

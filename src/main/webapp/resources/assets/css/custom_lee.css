@@ -1,0 +1,318 @@
+@charset "UTF-8";
+/* #FFB26B */
+/* FFD36E */
+
+/* 메인 세차장리스트 */
+.wash-card {
+	flex-direction: row;
+}
+
+.washList {
+	width:40%;
+}
+
+.list {
+	margin-bottom : 1.5rem;
+	vertical-align : middle;
+}
+
+.star {
+	margin-bottom:2rem;
+}
+
+i {
+	margin-right:5px;
+}
+
+.infoHidden {
+	position:absolute;
+	left:58.3%;
+	z-index:2;
+	height:100%;
+	display:none;
+	border: 3px solid #D8D9DA;
+}
+
+
+/* 회원가입 */
+#checkID {cursor: pointer;}
+
+.tel {
+	width:25%;
+	display:inline;
+}
+
+.tel2 {
+	width:33%;
+	display:inline;
+}
+
+
+
+/* 비밀번호 */
+.pwd {
+	width: 70%;
+    margin: 0 auto;
+}
+
+.addr {
+	display:flex;
+	flex-direction: column;
+	position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+}
+
+.addr-text {
+	flex:1 1 auto;
+	/* width: 1%; */
+}
+
+
+
+/* 장바구니 */
+.badge {
+	color:black;
+}
+
+.row_cart {
+	align-items: center;
+	border-top : 1px solid #D8D9DA;
+	border-bottom : 1px solid #D8D9DA;
+}
+
+@media (min-width: 992px) {
+  .row_cart {
+  	flex : 1 1 40%;
+   	justify-content: space-around;
+  }
+}
+.cart_list {
+	display: inline-flex;
+	flex-direction: row;
+}
+
+.product_img {
+    height: inherit;
+    padding: 10%;
+}
+
+.quan {
+	margin-top : 0;
+	margin-bottom : 0;
+}
+
+.pay {
+	justify-content: flex-end;
+	margin-bottom:1%;
+    align-items: center;
+}
+
+.cost {
+	max-width: 170px;
+}
+
+.delete {
+	position: absolute;
+    margin-left: 85%;
+}
+
+
+
+/* 관리자페이지 - 지점리스트 */
+.upBody {
+	display:grid;
+	grid-template-columns : 2fr 1fr;
+}
+.storeImg {
+	align-content: stretch;
+	justify-content: center;
+}
+
+@media (max-width: 1200px) {
+	.upBody {
+		grid-template-columns : 1fr;
+		align-items: end;
+	}
+	.upBody > .storeImg{
+		grid-row: 1;
+	}
+}
+
+.store-show {
+	display : table-row;
+}
+.store-hide {
+	display : none;
+}
+.store-update, .store-delete {
+	cursor:pointer;
+}
+.inquiry-select {
+	display : grid;
+	grid-template-columns:1fr;
+}
+.searchG {
+	display : grid;
+	grid-template-columns : 0.5fr 1.5fr;
+	cursor:pointer;
+}
+
+/* 관리자-메인 */
+.in-title {
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 2%;
+}
+
+.AM-inquiry {
+	display:grid;
+	grid-template-columns:0.7fr 2fr 1fr;
+    padding-bottom: 1%;
+}
+
+.moreIn{
+	cursor:pointer;
+}
+
+/* Q&A */
+.page-link {
+	border:0;
+}
+.pagination .page-link:hover, .pagination .page-link.active {
+	background-color: white;
+	color: black;
+	text-decoration : underline;
+	text-underline-position : under;
+}
+.disabled {
+	color: black;
+	pointer-events: none;
+	text-decoration : underline;
+	text-underline-position : under;
+}
+.inquiryT>:not(caption)>*>*{
+	padding : 8px;
+}
+.card-body-inquiry {
+	display: grid;
+    padding : 1rem 2rem;
+}
+.inquiry-answer {
+	display : grid;
+	grid-template-columns: 0.3fr 5fr;
+	padding: 1%;
+}
+.inquiryTr:hover {
+	background-color : rgba(255, 214, 165, 0.2);
+}
+
+a {
+	cursor:pointer;
+}
+
+/* Q&A 글쓰기 */
+.qna {
+	display : grid;
+	grid-template-columns : 0.5fr 2fr;
+	margin-top : 2%;
+}
+.qna-title {
+	text-align: end;
+	border-right: 1px solid black;
+	padding-right: 8%;
+}
+.qnaRadio {
+	margin-left:4%;
+}
+.qna-input {
+	margin-right : 1%;
+	margin-left : 4%;
+}
+.qr {
+	display:inline-block;
+	width:170px;
+}
+#write {
+	margin-top : 2%;
+	text-align : center;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	font-size: 20px !important;
+    font-weight: 500 !important;
+}
+
+@media (max-width: 992px) {
+	.qna {
+		grid-template-columns : 1fr;
+	    justify-items: start;
+	    margin:2% 4%;
+		border-bottom : 1px solid black;
+	}
+	.qnaRadio {
+		width:100%;
+		padding-bottom:2%;
+	}
+	.qna-title {
+		text-align: end;
+		border-right:0px !important;
+		padding-right: 8%;
+		margin-bottom:1%;
+	}
+	.qna-id {
+		grid-template-columns : 0.5fr 1fr;
+		border-bottom:none;
+	}
+	.qna-t {
+		border-bottom:none;
+	}
+	.qna-x {
+		display:none;
+	}
+	.qna-text {
+		margin-left:0 !important;
+		padding-right:4% !important;
+		width:100%;
+	}
+	.qr {
+		display:inline-block;
+		width:170px;
+	}
+}
+
+
+[type="radio"] {
+	appearance: none;
+	border : 1.5px solid gray;
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	transition: border 0.2s ease-in-out;
+	vertical-align:middle;
+}
+[type="radio"]:hover, [type="checkbox"]:hover {
+	cursor: pointer;
+}
+[type="radio"]:checked {
+	border: 0.3em solid #FD8008;
+}
+
+[type="checkbox"]:checked {
+	accent-color: #FD8008;
+	width: 1.3em;
+	height: 1.3em;
+	vertical-align:middle;
+}
+
+[type="checkbox"] {
+	width: 1.3em;
+	height: 1.3em;
+	vertical-align:middle;
+}
+	
+
+/* @media (min-width:992px){} */
+/* @media (min-width: 992px) {
+  .row_media { flex-direction: column;}
+} */

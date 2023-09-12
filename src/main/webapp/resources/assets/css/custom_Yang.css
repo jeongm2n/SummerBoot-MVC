@@ -1,0 +1,349 @@
+/*여백 방지*/
+html, body {margin: 0px; padding: 0px; overflow-x: hidden;}
+
+.main {
+	accent-color: #FD8008;
+	height: auto;
+}
+
+/*여닫는 메뉴용*/
+.collapsible {
+    background-color: #F5F5F5;
+    color: #FD8008;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+.collapsible a {
+	float:right;
+	font-size: 15px !important;
+}
+
+.active,
+.collapsible:hover {
+    background-color: #F5F5F5;
+}
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #F5F5F5;
+}
+.collapsible:after {
+    content: '\2212';
+    color: #FD8008;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+.active:after {
+    content: "\2193";
+}
+
+/*작은화면용 제품정보*/
+.mobile_pro_inform {
+    grid-area: main;
+	background-color: #F5F5F5;
+}
+
+.mobile_pro_inform .container {
+	margin-right: auto !important;
+	margin-left: auto !important;
+	padding: 0px !important;
+	width: 30%;
+	max-width: 750px;
+	min-width: 350px;
+}
+
+/*주소 정보 입력창*/
+.add_inform {
+	display:flex;
+	height: auto;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.add_inform .container {
+    justify-content: flex-end;
+	width: 70%;
+	max-width: 750px;
+	min-width: 400px;
+}
+
+.head {
+  	font-size: 0.9rem !important;
+  	font-size: bold;
+  	display: inline-block;
+  	color: #495057;
+  	height: 21px;
+}
+
+.head a {
+	color: blue;
+  	font-size: 0.9rem !important;
+ 	display: inline-block;
+  	text-decoration-line: none;
+}
+
+.input{
+	margin-top : 20px;
+}
+
+.Inform_label {
+	font-size: 1.2rem !important;
+	font-weight: 800 !important;
+	display: inline-block;
+}
+
+.add_btn {
+	float: right;
+	width: 100px;
+	height: 30px;
+	font-size:1rem !important;
+	color: white !important;
+	background-color: #FD8008;
+	border: 2px solid #de6e18;
+	border-radius: 5px;
+}
+
+/*input칸*/
+.input_type1 {
+  	position: relative;
+  	width: 100%;
+  	height: 60px;
+  	margin-top: 20px;
+}
+
+.input_type2{
+	position: relative;
+	width: 49%;
+	height: 60px;
+	margin-top: 20px;
+}
+
+._input {
+  color: #222222;
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  padding-left: 10px;
+  padding-top: 15px;
+  position: relative;
+  background: none;
+  z-index: auto;
+}
+
+._input::placeholder { color: #aaaaaa; }
+._input:focus { outline: none; }
+
+.input_span {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  background-color: #FD8008;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  transition: 0.5s;
+}
+
+.input_label {
+  position: relative;
+  color: #aaa;
+  left: 10px;
+  font-size: 1rem !important;
+  bottom: 35px;
+  transition: all .2s;
+}
+
+.text:focus ~ .input_label, .text[value]:not([value=""]) ~ .input_label {
+  font-size: 0.7rem !important;
+  bottom: 65px;
+  color: #FD8008;
+}
+.text:focus ~ .input_span, .text[value]:not([value=""]) ~ .input_span { width: 100%;}
+
+.select:focus ~ .input_label, .select:valid ~ .input_label {
+  font-size: 0.7rem !important;
+  bottom: 65px;
+  color: #FD8008;
+}
+.select:focus ~ .input_span, .select:valid ~ .input_span { width: 100%;}
+
+.error {
+  font-size: 0.5rem !important;
+  color: #FD8008;
+}
+
+select { border: solid #adb5bd 1px; border-radius: 5px; color: #FD8008;}
+input::placeholder {color:#FD8008;}
+input::-webkit-input-placeholder {color:#FD8008;}
+input:-ms-input-placeholder {color:#FD8008;}
+
+.sub_btn{
+	width: 150px;
+	height: 50px;
+	margin-top: 15px;
+	font-size:1rem !important;
+	color: white !important;
+	background-color: #FD8008;
+	border: 2px solid #de6e18;
+	border-radius: 5px;
+}
+
+/*미디어 쿼리*/
+@media screen and (max-width: 800px) {
+	.pc_pro_inform {
+		display:none !important;
+	}
+	
+	.add_inform .container {
+		margin-left: auto !important;
+		margin-right: auto !important;		
+	}
+} 
+
+@media screen and (min-width: 800px) {
+	.mobile_pro_inform {
+		display:none !important;
+	}
+	
+	.add_inform {
+		border-right: 2px solid #adb5bd;
+	}
+	
+	.add_inform .container {
+		margin-left: auto !important;	
+		margin-right: max(10%, 30px) !important;
+	}
+} 
+
+/*큰 화면의 제품정보*/
+.pc_pro_inform {
+	display: flex;
+    grid-area: main;
+	padding: 30px 0px 50px 0px !important;
+	background-color: #F5F5F5;
+}
+
+
+.pc_pro_inform .container {
+	align-items: center;
+	justify-content: flex-start;
+	margin-right: auto !important;
+	margin-left: auto !important;
+	padding: 0px !important;
+	width: 30%;
+	max-width: 750px;
+	min-width: 350px;
+}
+
+/*각 제품 정보*/
+.product { 
+	display: inline-block;
+	width: 350px;
+	height: 75px;
+	margin-top: 10px;
+}
+
+.product .img {
+	width: 5em;
+	height : 5em;
+	border: solid #adb5bd 1px; 
+	border-radius: 10px;
+}
+.product a{
+  	color: #495057 !important;
+  	font-size: 1rem !important;
+  	text-decoration-line: none;
+}
+.product .text_box {
+	display:block;
+	width: 20rem;
+	height: 1.5rem;
+	margin: 0px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.product .amount {
+	font-weight: 800 !important;
+}
+.product .name{
+	font-weight: 600 !important;
+}
+.product .price{
+	float: right;
+	font-weight: 600 !important;
+}
+
+.point {
+	margin-top: 50px;
+	width: 350px;
+	height: 75px;
+	line-height: 30px;
+}
+
+.point .Label {
+	float: left;
+	font-size: 0.7rem !important;
+	font-weight: 800 !important;
+}
+
+.point a {
+	float: right;
+	color: #495057 !important;
+  	font-size:0.8rem !important;
+  	text-decoration-line: none;
+}
+
+.point .point_input{
+	float: left;
+	vertical-align:bottom;
+	text-align: center;
+	width:65%;
+	height: 35px;
+	border: 1px solid #FD8008;
+	border-radius: 5px;
+}
+
+.point_input[type='number']::-webkit-outer-spin-button,
+.point_input[type='number']::-webkit-inner-spin-button {
+	  -webkit-appearance: none;
+}
+
+.point .btn {
+	float: right;
+	vertical-align:bottom;
+	padding:0px;
+	width: 120px;
+	height: 35px;
+	font-size:1rem !important;
+	color: white !important;
+	background-color: #FD8008;
+	border: 2px solid #de6e18;
+	border-radius: 5px;
+}
+
+.total { width:350px; height: 135px; margin-bottom: 10px; margin-top: 40px;}
+
+.total a {
+	float: right;
+	color: #495057 !important;
+  	font-size: 1rem !important;
+  	font-weight: 600 !important;
+  	text-decoration-line: none;
+}
+
+.total .point_price {
+	display: block;
+}
+.total .total_price {
+	margin-top: 20px;
+}
