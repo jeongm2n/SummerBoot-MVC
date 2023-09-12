@@ -46,7 +46,7 @@
 							<span>작성자 : ${inquiry.writer}</span>
 						</div>
 						<div class="qna-input qna-text" style="padding-top:2%;">
-							<span style="white-space: pre;">${inquiry.content }</span>
+							<span>${inquiry.content }</span>
 						</div>
 					</div>
 				</div>
