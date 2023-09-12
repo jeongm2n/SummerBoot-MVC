@@ -264,14 +264,13 @@ input:-ms-input-placeholder {color:#FD8008;}
   	font-size: 1rem !important;
   	text-decoration-line: none;
 }
+
 .product .text_box {
-	display:block;
-	width: 20rem;
-	height: 1.5rem;
-	margin: 0px;
-	overflow:hidden;
-	text-overflow:ellipsis;
+   width: 16rem;
+   height: 2rem;
+   margin: 0px;
 }
+
 .product .amount {
 	font-weight: 800 !important;
 }

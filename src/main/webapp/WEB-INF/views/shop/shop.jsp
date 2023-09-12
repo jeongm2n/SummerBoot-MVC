@@ -124,7 +124,7 @@
 							<span class="store-qty">Showing 9 products</span>
 							<ul class="store-pagination">
 								<c:forEach var="i" begin = "1" end="${page}">
-								<li id="${i}"><a href="${path }/shop/main/${category},${i},1">${i}</a></li>
+								<li id="${i}"><a href="${path }/shop/main/${category},${i},0">${i}</a></li>
 								</c:forEach>
 							</ul>
 						</div>
